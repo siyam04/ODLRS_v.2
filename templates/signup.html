@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <h3 class="p-3 text-center text-dark">Become a Hero!</h3>
+        <form action="." method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary float-right">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
