@@ -47,3 +47,20 @@ def profile(request):
 
 
 
+# from allauth.account.views import SignupView, LoginView, PasswordResetView
+#
+# class MySignupView(SignupView):
+#     template_name = 'signup.html'
+#
+# class MyLoginView(LoginView):
+#     template_name = 'login.html'
+#
+# class MyPasswordResetView(PasswordResetView):
+#     template_name = 'password_reset.html'
+#
+# urlpatterns = [
+#     url(r'^accounts/login', MyLoginView.as_view(), name='account_login'),
+#     url(r'^accounts/signup', MySignupView.as_view(), name='account_signup'),
+#     url(r'^accounts/password_reset', MyPasswordResetView.as_view(), name='account_reset_password'),
+# ]
+

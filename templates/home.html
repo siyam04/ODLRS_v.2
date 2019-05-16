@@ -1,20 +1,13 @@
 {% extends 'base.html' %}
-{% load socialaccount %}
-
 
 {% block content %}
 
-    <h1>Home</h1>
+    <div class="welcome text-dark">
+        <h1>Home Page</h1>
 
-    {% if request.user.is_authenticated %}
-        <div class="welcome text-dark">
-            <h1>Hello <b style="color: red">{{ user.username }}</b>!</h1>
-        </div>
-    {% else %}
-        <div class="welcome text-dark">
-            <h2>You are Not LoggedInn</h2>
-        </div>
-    {% endif %}
+        {% if user.is_authenticated %}
+            <h2>Welcome <b>@<a href="{% url 'custom_users:profile' %}" style="color: orangered">{{ user.username }}</a></b></h2>
+        {% endif %}
+    </div>
 
 {% endblock content %}
-
