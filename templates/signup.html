@@ -6,7 +6,14 @@
         <h3 class="p-3 text-center text-dark">Become a Hero!</h3>
         <form action="." method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form.email.label_tag}}
+            {{ form.email }}
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+                      {{ form.password2.label_tag }}
+            {{ form.password2 }}
+
+
             <button type="submit" class="btn btn-primary float-right">Register</button>
         </form>
     </div>
