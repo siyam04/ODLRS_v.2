@@ -1,26 +1,44 @@
 from django import forms
 from django.contrib.auth.models import User
+from allauth.account.views import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import TextInput, EmailInput, Select
 
 from .models import Profile
 
 
-# class UserRegisterForm(UserCreationForm):
+class UserLoginForm(LoginForm):
 
-    # GENDER = (
-    #     ('MALE', 'MALE'),
-    #     ('FEMALE', 'FEMALE'),
-    # )
-    #
-    # gender = forms.ChoiceField(required=True, choices=GENDER, widget=forms.Select)
-    # contact_no = forms.CharField(max_length=20, required=True, widget=forms.TextInput)
-    # address = forms.CharField(max_length=250, required=True, widget=forms.TextInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control col-sm-9'
+    }))
 
-#     class Meta:
-#         model = User
-#
-#         fields = ['first_name','last_name', 'email', 'username', 'password1', 'password2']
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control col-sm-9'
+    }))
+
+    class Meta:
+        model = User
+        fields = ('username', 'password')
+
+
+class SignupForm(UserCreationForm):
+
+    email = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control col-sm-9'
+    }))
+
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control col-sm-9'
+    }))
+
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control col-sm-9'
+    }))
+
+    class Meta:
+        model = User
+        fields = ('email', 'password1', 'password2')
 
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -28,6 +46,7 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
 
         fields = '__all__'
-        # exclude = ['user', ]
+        exclude = ['user', ]
+
 
 

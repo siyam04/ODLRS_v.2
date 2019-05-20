@@ -56,9 +56,8 @@
                 {% else %}
                     <a class="nav-item nav-link" href="{% url 'account_login' %}">Login</a>
                     <a class="nav-item nav-link" href="{% url 'account_signup' %}">Signup</a>
-               <a class="nav-item nav-link" href="{% provider_login_url "google" method="oauth2" %}">
-             Google
-        </a>
+
+               <a class="nav-item nav-link" href="{% provider_login_url "google" method="oauth2" %}">Login with Google</a>
                 {% endif %}
             </div>
 

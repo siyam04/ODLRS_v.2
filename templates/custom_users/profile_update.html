@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Update Profile{% endblock %}
+{% block title %}Update Profile | ODLRS{% endblock %}
 
 {% block content %}
 
@@ -11,12 +11,15 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
-        {{profile_form.as_p}}
-{#        {{user.customer_profile.image.url}}<br>#}
-{#        {{user.username}}<br>#}
-{#        {{user.customer_profile.email}}<br>#}
+        <img src="{{ existing_profile.image.url }}" alt="image" height="200" width="200">
 
-        <button type="submit" class="btn btn-dark my-2"><a href="{% url 'custom_users:profile' %}">Update</a></button>
+        <br>{{profile_form.as_p}}
+
+{#        {{ existing_profile.user.username }}<br>#}
+{#        {{ existing_profile.user.email }}#}
+        <hr>
+        <button type="submit" class="btn btn-dark my-2">Update</button>
+
     </form>
 
 {% endblock %}

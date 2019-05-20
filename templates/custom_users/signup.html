@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
 
+{% block title %}SignUp | ODLRS{% endblock %}
+
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-7">
-        <h3 class="p-3 text-center text-dark">Become a Hero!</h3>
+
+        <h3 class="p-3 text-center text-dark">User SignUp</h3>
+
         <form action="." method="POST">
             {% csrf_token %}
+
             {{ form.email.label_tag}}
             {{ form.email }}
+
             {{ form.password1.label_tag }}
             {{ form.password1 }}
-                      {{ form.password2.label_tag }}
-            {{ form.password2 }}
 
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
 
             <button type="submit" class="btn btn-primary float-right">Register</button>
         </form>
+
     </div>
 </div>
 {% endblock content %}
