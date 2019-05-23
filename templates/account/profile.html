@@ -5,22 +5,20 @@
 {% block content %}
     <div class="welcome text-dark">
 
-        {% include 'messages.html' %}
-
         <div class="alert alert-success text-center">Your Profile</div>
         <div class="row">
         <div class="col-md-5">
             <div class="card p-3">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                    Your Profile Name<h2 class="text-success text-center">{{ user.customer_profile.profile_name }}</h2>
+                    Profile Name: <h2 class="text-success text-center">{{ user.customer_profile.profile_name }}</h2>
 
                         <img src="{{ user.customer_profile.image.url }}" alt="" class="rounded-circle mx-auto d-block"
                              height="200" width="200">
                     </li>
                     <li class="list-group-item">
-                        <h3 class="text-success text-center">{{ user.username }}</h3>
-                        <p class="text-success text-center">{{ user.email }}</p>
+                        Username: <h3 class="text-success text-center">{{ user.username }}</h3>
+                        Email: <p class="text-success text-center">{{ user.email }}</p>
                     </li>
                     {% if user.email %}
                     <li class="list-group-item">
@@ -33,7 +31,7 @@
         <div class="col-md-7">
             <div class="card p-3">
 {#                <a href="{% url 'account_change_password' %}">Change your password</a>#}
-                <button><b><a href="{% url 'custom_users:profile-update' %}">Update Profile</a></b></button>
+                <button><b><a href="{% url 'custom_users:profile-edit' %}">Edit Profile</a></b></button>
                 <br>
                 <button><b><a href="#">Reports / Notifications</a></b></button>
 

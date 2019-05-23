@@ -10,16 +10,16 @@ from .views import HomeView
 urlpatterns = [
 
 
-    # Super_user PATH
+    # Superuser
     path('admin/', admin.site.urls),
 
-    # Home PATH
+    # Home
     path('', HomeView.as_view(), name='home'),
 
-    # Accounts PATH
+    # App1 (custom_users)
     path('', include('custom_users.urls', namespace='custom_users')),
 
-    # Allauth PATH
+    # Allauth (built-in)
     path('accounts/', include('allauth.urls')),
 
 

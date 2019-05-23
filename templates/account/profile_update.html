@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Update Profile | ODLRS{% endblock %}
+{% block title %}Edit Profile | ODLRS{% endblock %}
 
 {% block content %}
 
-    <h1>Update Your Profile</h1>
+    <h1>Edit Your Profile</h1>
 
 
 
@@ -15,11 +15,12 @@
 
         <br>{{profile_form.as_p}}
 
-{#        {{ existing_profile.user.username }}<br>#}
-{#        {{ existing_profile.user.email }}#}
+        <li>Change E-mail: <a href="{% url 'account_email' %}">{{ existing_profile.user.email }}</a></li>
+        <li><a href="{% url 'account_change_password' %}">Change Password</a></li>
+        <li><a href="{% url 'account_reset_password' %}">Reset Password</a></li>
         <hr>
         <button type="submit" class="btn btn-dark my-2">Update</button>
-
+        <hr>
     </form>
 
 {% endblock %}

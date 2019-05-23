@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    # Custom App
+    # App
     'custom_users.apps.CustomUsersConfig',
     # 'custom_users'
 
-    # Built-in Auth Apps
+    # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -73,7 +73,7 @@ ROOT_URLCONF = 'source.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'account')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -163,8 +163,9 @@ LOGOUT_REDIRECT_URL = 'home'
 
 SITE_ID = 1
 
+# so they can provide email instead of user name
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
