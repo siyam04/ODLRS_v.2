@@ -33,7 +33,7 @@ def profile(request, template_name='account/profile.html'):
 
 
 @login_required()
-def profile_edit(request, template_name='account/profile_update.html'):
+def profile_edit(request, template_name='account/profile_edit.html'):
 
     existing_profile = get_object_or_404(Profile, user=request.user)
     profile_form = ProfileUpdateForm(instance=existing_profile)

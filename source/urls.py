@@ -19,6 +19,9 @@ urlpatterns = [
     # App1 (custom_users)
     path('', include('custom_users.urls', namespace='custom_users')),
 
+    # App2 (diagnostic_centers)
+    path('', include('diagnostic_centers.urls', namespace='diagnostic_centers')),
+
     # Allauth (built-in)
     path('accounts/', include('allauth.urls')),
 

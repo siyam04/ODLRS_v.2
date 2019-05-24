@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}All Centers | ODLRS{% endblock %}
+
+{% block content %}
+    <hr>
+    <h1>All Diagnostic Centers</h1>
+    <hr>
+    <br>
+    {% for centers in object_list %}
+
+        <h3>Name: <b style="color: orangered">{{ centers.name }}</b></h3>
+
+        <img src="{{ centers.image.url }}" alt="image" height="300" width="300">
+
+        <h3>ID: <b style="color: orangered">{{ centers.id }}</b></h3>
+        <h3>Email: <b style="color: orangered">{{ centers.email }}</b></h3>
+        <h3>Contact: <b style="color: orangered">{{ centers.contact_no }}</b></h3>
+        <h3>Website: <b style="color: orangered">{{ centers.website }}</b></h3>
+        <h3>Address: <b style="color: orangered">{{ centers.address }}</b></h3>
+        <hr>
+        <hr>
+    {% endfor %}
+
+
+{% endblock %}

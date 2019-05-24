@@ -27,8 +27,11 @@
     <div>
       <strong>Menu:</strong>
       <ul>
+
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'diagnostic_centers:all-centers' %}">Centers</a></li>
+
 	{% if user.is_authenticated %}
-        <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'custom_users:profile' %}">Profile</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
 	{% else %}

@@ -40,21 +40,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    # App
+    # Apps
     'custom_users.apps.CustomUsersConfig',
-    # 'custom_users'
+    'diagnostic_centers',
 
     # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    # Google Auth API
+    # Google Auth
     'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.github',
 
-    'crispy_forms',
+    # Facebook Auth
+    # 'allauth.socialaccount.providers.facebook',
+
+    # GitHub Auth
+    'allauth.socialaccount.providers.github',
 
 ]
 
@@ -169,4 +171,11 @@ ACCOUNT_USERNAME_REQUIRED = True
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)
+
+
 

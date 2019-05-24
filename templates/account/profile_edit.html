@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile | ODLRS{% endblock %}
+
+{% block content %}
+
+    <h1>Edit Your Profile</h1>
+
+
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <img src="{{ existing_profile.image.url }}" alt="image" height="200" width="200">
+
+        <br>{{profile_form.as_p}}
+
+        <li>Change E-mail: <a href="{% url 'account_email' %}">{{ existing_profile.user.email }}</a></li>
+        <li><a href="{% url 'account_change_password' %}">Change Password</a></li>
+        <li><a href="{% url 'account_reset_password' %}">Reset Password</a></li>
+        <hr>
+        <button type="submit" class="btn btn-dark my-2">Update</button>
+        <hr>
+    </form>
+
+{% endblock %}
