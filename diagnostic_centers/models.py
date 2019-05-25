@@ -10,6 +10,8 @@ class DiagnosticCenter(models.Model):
     website = models.CharField(max_length=100, blank=True)
     address = models.CharField(max_length=150, blank=False)
 
+    # admin = models.ForeignKey('DiagnosticAdmin', on_delete=models.CASCADE, related_name='admin_centers')
+
     class Meta:
         verbose_name_plural = 'Diagnostic Centers'
         ordering = ['-id']
@@ -19,8 +21,8 @@ class DiagnosticCenter(models.Model):
 
 
 class DiagnosticAdmin(models.Model):
-    username = models.CharField(max_length=20, blank=False)
-    password = models.CharField(max_length=100, default='123', blank=False)
+    username = models.CharField(max_length=20, unique=True, blank=False)
+    password = models.CharField(max_length=100, unique=True, blank=False)
 
     center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_admins')
     staff = models.ForeignKey('DiagnosticStaff', on_delete=models.CASCADE, related_name='staff_admins')
@@ -34,8 +36,8 @@ class DiagnosticAdmin(models.Model):
 
 
 class DiagnosticStaff(models.Model):
-    username = models.CharField(max_length=20, blank=False)
-    password = models.CharField(max_length=100, default='456', blank=False)
+    username = models.CharField(max_length=20, unique=True, blank=False)
+    password = models.CharField(max_length=100, unique=True,  blank=False)
 
     center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_staffs')
 

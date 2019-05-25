@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | ODLRS</title>
+</head>
+
+<body>
+{#    {% include 'diagnostic_centers/messages.html' %}#}
+{% if messages %}
+    <strong>Messages:</strong>
+    <ul>
+	    {% for message in messages %}
+	        <li>{{message}}</li>
+	    {% endfor %}
+    </ul>
+{% endif %}
+
+    <h1>Admin Dashboard</h1>
+    <hr>
+    <button type="submit"><a href="{% url 'diagnostic_centers:admin-logout' %}"><b>Logout</b></a></button>
+    <hr>
+    <h3>Diagnostic Center Name: </h3>
+    <h3>Admin Name: {{ admin_login_form.username }}</h3>
+    <hr>
+    <h2>Admin Task Status</h2>
+
+</body>
+</html>

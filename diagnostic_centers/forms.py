@@ -1,10 +1,17 @@
-# from django import forms
-#
-# from .models import Profile
-#
-#
-# class ProfileUpdateForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#
-#         fields = ['profile_name', 'image']
+from django import forms
+
+from .models import DiagnosticAdmin, DiagnosticStaff, DiagnosticCenter
+
+
+class AdminLoginForm(forms.ModelForm):
+    class Meta:
+        model = DiagnosticAdmin
+        fields = ['username', 'password']
+
+
+class StaffLoginForm(forms.ModelForm):
+    class Meta:
+        model = DiagnosticStaff
+        fields = ['username', 'password']
+
+
