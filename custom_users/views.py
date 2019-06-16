@@ -11,20 +11,20 @@ from .models import Profile
 from .forms import ProfileUpdateForm
 
 
-class MySignupView(SignupView):
-    template_name = 'account/signup.html'
-
-
-class MyLoginView(LoginView):
-    template_name = 'account/login.html'
-
-
-class MyPasswordResetView(PasswordResetView):
-    template_name = 'account/password_reset.html'
-
-
-class MyPasswordChangeView(PasswordResetView):
-    template_name = 'account/password_change.html'
+# class MySignupView(SignupView):
+#     template_name = 'account/signup.html'
+#
+#
+# class MyLoginView(LoginView):
+#     template_name = 'account/login.html'
+#
+#
+# class MyPasswordResetView(PasswordResetView):
+#     template_name = 'account/password_reset.html'
+#
+#
+# class MyPasswordChangeView(PasswordResetView):
+#     template_name = 'account/password_change.html'
 
 
 @login_required()

@@ -3,10 +3,10 @@ from django.urls import path
 from .views import (
     profile,
     profile_edit,
-    MyLoginView,
-    MySignupView,
-    MyPasswordResetView,
-    MyPasswordChangeView,
+    # MyLoginView,
+    # MySignupView,
+    # MyPasswordResetView,
+    # MyPasswordChangeView,
 )
 
 
@@ -14,17 +14,17 @@ app_name = 'custom_users'
 
 urlpatterns = [
 
-    path('login/', MyLoginView.as_view(), name='account_login'),
+    # path('login/', MyLoginView.as_view(), name='account_login'),
 
-    path('signup/', MySignupView.as_view(), name='account_signup'),
+    # path('signup/', MySignupView.as_view(), name='account_signup'),
 
     path('profile/', profile, name='profile'),
 
     path('profile-edit/', profile_edit, name='profile-edit'),
 
-    path('password_reset', MyPasswordResetView.as_view(), name='account_reset_password'),
+    # path('password_reset', MyPasswordResetView.as_view(), name='account_reset_password'),
 
-    path('password/change/', MyPasswordChangeView, name='account_change_password'),
+    # path('password/change/', MyPasswordChangeView, name='account_change_password'),
 
 
 ]

@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.facebook',
 
     # GitHub Auth
-    'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.github',
 
 ]
 
