@@ -19,4 +19,30 @@
         <hr>
     </div>
 
+    <br>
+     <hr>
+    <h1>All Diagnostic Centers</h1>
+    <hr>
+    {% for centers in object_list %}
+            <div class="container py-3">
+            
+            <div class="card" style="width:600px">
+            <h2>Name: {{ centers.name }}</h2>
+            <p>ID: {{ centers.id }}</p>
+                <img class="card-img-top" src="{{ centers.image.url }}" alt="Card image" height="300" width="300">
+                <div class="card-body">
+                <h4 class="card-title">Email: {{ centers.email }}</h4>
+                <h4 class="card-title">Contact:  {{ centers.contact_no }}</h4>
+                <h4 class="card-title">Website: {{ centers.website }}</h4>
+
+                <p class="card-text">Address: {{ centers.address }}</p>
+                
+                </div>
+            </div>
+  
+        
+        {% endfor %}
+
 {% endblock content %}
+
+
