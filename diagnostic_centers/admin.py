@@ -7,6 +7,12 @@ from .models import (
     DiagnosticStaff,
 )
 
+# 'Group' class hiding from the superuser
+
+from django.contrib.auth.models import Group
+
+admin.site.unregister(Group)
+
 
 class DiagnosticCenterAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'email', 'contact_no', 'website', 'address', 'image']
@@ -33,4 +39,6 @@ class DiagnosticStaffAdmin(admin.ModelAdmin):
 admin.site.register(DiagnosticCenter, DiagnosticCenterAdmin)
 admin.site.register(DiagnosticAdmin, DiagnosticAdminAdmin)
 admin.site.register(DiagnosticStaff, DiagnosticStaffAdmin)
+
+#
 
