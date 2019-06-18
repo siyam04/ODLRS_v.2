@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | ODLRS{% endblock %}
+
+{% block content %}
+
+    <div class="welcome text-dark">
+        <hr>
+        <h1>Customer Page</h1>
+
+        <hr>
+
+        {% if user.is_authenticated %}
+            <h2>Welcome <b>@<a href="{% url 'custom_users:profile' %}" style="color: orangered">{{ user.username }}</a></b></h2>
+        {% else %}
+            <h2><b style="color: red">Logged Out!</b></h2>
+        {% endif %}
+
+        <hr>
+    </div>
+
+{% endblock content %}
