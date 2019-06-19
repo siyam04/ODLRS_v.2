@@ -12,7 +12,7 @@
         {% if user.is_authenticated %}
             <h4 style="color: blue">**Welcome @<b><a href="{% url 'custom_users:profile' %}" style="color: forestgreen">{{ user.username }}</a></b></h4>
         {% else %}
-            <h2><b style="color: red">Logged Out!</b></h2>
+            <h2><b style="color: forestgreen">Logged Out!</b></h2>
         {% endif %}
         <br>
         <h4 style="color: blue">**Need to add 'Tests' here</h4>
