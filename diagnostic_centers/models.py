@@ -20,19 +20,7 @@ class DiagnosticCenter(models.Model):
         return self.name
 
 
-class DiagnosticAdmin(models.Model):
-    username = models.CharField(max_length=20, unique=True, blank=False)
-    password = models.CharField(max_length=100, unique=True, blank=False)
 
-    center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_admins')
-    staff = models.ForeignKey('DiagnosticStaff', on_delete=models.CASCADE, related_name='staff_admins')
-    # task_status = models.ForeignKey('TaskStatus', on_delete=models.CASCADE, related_name='task_status_admins')
-
-    class Meta:
-        verbose_name_plural = 'Diagnostic Admins'
-
-    def __str__(self):
-        return self.username
 
 
 class DiagnosticStaff(models.Model):
@@ -47,4 +35,23 @@ class DiagnosticStaff(models.Model):
     def __str__(self):
         return self.username
 
+
+class DiagnosticAdmin(models.Model):
+    username = models.CharField(max_length=20, unique=True, blank=False)
+    password = models.CharField(max_length=100, unique=True, blank=False)
+
+    center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_admins')
+    staff = models.ManyToManyField(DiagnosticStaff)
+    # task_status = models.ForeignKey('TaskStatus', on_delete=models.CASCADE, related_name='task_status_admins')
+
+
+    class Meta:
+        verbose_name_plural = 'Diagnostic Admins'
+
+
+    # def get_staff(self):
+    #     return "\n".join([p.staff for p in self.staff.all()])
+
+    def __str__(self):
+        return self.username
 
