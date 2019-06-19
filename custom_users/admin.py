@@ -6,7 +6,7 @@ from .models import Profile
 
 class ProfileAdmin(admin.ModelAdmin):
     """Customizing Admin Interface"""
-    list_display = ['id', 'user', 'profile_name', 'image']
+    list_display = ['id', 'user', 'profile_name', 'address', 'image']
     list_display_links = ['user']
     list_editable = ['profile_name']
     list_filter = ['user']

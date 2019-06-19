@@ -19,6 +19,7 @@
                     <li class="list-group-item">
                         Username: <h3 class="text-success text-center">{{ user.username }}</h3>
                         Email: <p class="text-success text-center">{{ user.email }}</p>
+                        Address: <p class="text-success text-center">{{ user.customer_profile.address }}</p>
                     </li>
                     {% if user.email %}
                     <li class="list-group-item">
