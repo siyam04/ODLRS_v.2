@@ -119,4 +119,4 @@ dmypy.json
 # Database ignore
 .db.sqlite3
 
-/venv
+venv/
