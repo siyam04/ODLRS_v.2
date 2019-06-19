@@ -6,17 +6,18 @@
 
     <div class="welcome text-dark">
         <hr>
+        <strong style="color: red">Home Section</strong>
         <h1>Home Page</h1>
-
-        <hr>
-
+        <br>
         {% if user.is_authenticated %}
-            <h2>Welcome <b>@<a href="{% url 'custom_users:profile' %}" style="color: orangered">{{ user.username }}</a></b></h2>
+            <h4 style="color: blue">**Welcome @<b><a href="{% url 'custom_users:profile' %}" style="color: forestgreen">{{ user.username }}</a></b></h4>
         {% else %}
             <h2><b style="color: red">Logged Out!</b></h2>
         {% endif %}
-        <hr>
-        <p>**Need to add 'Tests' here</p>
+        <br>
+        <h4 style="color: blue">**Need to add 'Tests' here</h4>
+        <br>
+        <strong style="color: red">Home Section</strong>
     </div>
 
 {% endblock content %}

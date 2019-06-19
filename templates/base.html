@@ -25,7 +25,7 @@
 {#    {% endif %}#}
 
     <div>
-      <strong>Menu:</strong>
+      <strong>Base Section Header</strong>
       <ul>
 
       <li><a href="{% url 'home' %}">Home | LOGO</a></li>
@@ -39,7 +39,11 @@
         <li><a href="{% url 'account_signup' %}">SignUp</a></li>
 	{% endif %}
       </ul>
+
+        <strong>Base Section Header</strong>
     </div>
+
+
     {% block content %}
 
     {% endblock %}
@@ -48,6 +52,14 @@
     {% block extra_body %}
 
     {% endblock %}
+
+    <br>
+    <br>
+      <div>
+      <hr>
+      <strong>Base Section Footer</strong><p>**content</p><strong>Base Section Footer</strong>
+      <hr>
+    </div>
 
   </body>
 
