@@ -4,23 +4,60 @@
 
 {% block content %}
     <hr>
-    <h1>All Diagnostic Centers</h1>
-    <hr>
+    <h1>Diagnostic Centers</h1>
     <br>
-    {% for centers in object_list %}
 
-        <h3>Name: <b style="color: orangered">{{ centers.name }}</b></h3>
+    <!-- Search -->
+    <form class="search input-group mt-4" action="" method="GET">
+        <input type="text" name='q' placeholder="type anything...">
+        <button type="submit" class="searchButton"><i class="fa fa-search">SEARCH</i></button>
+    </form>
+    <!-- Search -->
 
-        <img src="{{ centers.image.url }}" alt="image" height="300" width="300">
+    <br>
+    <br>
+    {% for centers in Centers %}
 
-        <h3>ID: <b style="color: orangered">{{ centers.id }}</b></h3>
-        <h3>Email: <b style="color: orangered">{{ centers.email }}</b></h3>
-        <h3>Contact: <b style="color: orangered">{{ centers.contact_no }}</b></h3>
-        <h3>Website: <b style="color: orangered">{{ centers.website }}</b></h3>
-        <h3>Address: <b style="color: orangered">{{ centers.address }}</b></h3>
-        <hr>
-        <hr>
+        <b style="color: orangered">
+            --------------------------------------------------------------------------------
+            --------------------------------------------------------------------------------
+        </b>
+
+        <h4>Name: <b style="color: blue">{{ centers.name }}</b></h4>
+
+        <img src="{{ centers.image.url }}" alt="image" height="300" width="500">
+
+        <h5>ID: <b style="color: red">{{ centers.id }}</b></h5>
+        <h4>Email: <b style="color: blue">{{ centers.email }}</b></h4>
+        <h4>Contact: <b style="color: blue">{{ centers.contact_no }}</b></h4>
+        <h4>Website: <b style="color: blue">{{ centers.website }}</b></h4>
+        <h4>Address: <b style="color: blue">{{ centers.address }}</b></h4>
+
+        <br>
+        <br>
+
     {% endfor %}
+    <br>
+     <!-- Paginator -->
+    <b style="color: red">**Paginator</b>
+        <div class="pagination" style="color: forestgreen">
+            <span class="step-links">
+                {% if Centers.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ Centers.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ Centers.number }} of {{ Centers.paginator.num_pages }}.
+                </span>
+
+                {% if Centers.has_next %}
+                    <a href="?page={{ Centers.next_page_number }}">next</a>
+                    <a href="?page={{ Centers.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+      <!-- Paginator -->
 
 
 {% endblock %}

@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
@@ -23,6 +25,28 @@ class AdminDashboard(TemplateView):
 
 class StaffDashboard(TemplateView):
     template_name = 'diagnostic_centers/staff_dashboard.html'
+
+
+def search_paginator(request):
+    Centers = DiagnosticCenter.objects.all()
+
+    query = request.GET.get('q')
+    if query:
+        Centers = Centers.filter(
+            Q(name__icontains=query) |
+            Q(website__icontains=query)
+        ).distinct() # distinct used for not the duplicate search
+        # print(Centers)
+
+    paginator = Paginator(Centers, 2)
+    page = request.GET.get('page')
+    all_centers = paginator.get_page(page)
+
+    context = {
+        "Centers":all_centers,
+    }
+    template_name = 'diagnostic_centers/all_centers.html'
+    return render(request, template_name, context)
 
 
 def admin_login(request, template_name='diagnostic_centers/admin_login.html'):
