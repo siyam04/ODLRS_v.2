@@ -10,14 +10,7 @@
         <strong style="color: red">Home Section</strong>
         <br>
 
-        <!-- Search -->
-        <br>
-        <form class="search input-group mt-4" method="GET" action="{% url 'home' %}">
-            <input type="text" name='q' placeholder="type anything...">
-            <button type="submit" class="searchButton"><i class="fa fa-search">SEARCH</i></button>
-        </form>
-        <br>
-        <!-- Search -->
+
 
         <h1>Home Page</h1>
         <br>
@@ -31,11 +24,6 @@
         <br>
         <h4 style="color: blue">**Need to add 'Tests' here</h4>
         <br>
-
-        <!-- Paginator -->
-        <p style="color: blue">**Paginator</p>
-        {% include 'paginator/paginator.html' with page=all_centers %}
-        <!-- Paginator -->
 
         <strong style="color: red">Home Section</strong>
     </div>
