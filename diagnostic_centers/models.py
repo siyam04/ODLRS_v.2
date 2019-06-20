@@ -36,6 +36,8 @@ class DiagnosticAdmin(models.Model):
     password = models.CharField(max_length=100, unique=True, blank=False)
 
     center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_admins')
+
+    # ToDo: one Admin --> two Staff (OneToMany)
     staff = models.ManyToManyField(DiagnosticStaff)
 
     class Meta:

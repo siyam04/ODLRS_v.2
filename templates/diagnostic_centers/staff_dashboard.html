@@ -22,28 +22,64 @@
     <hr>
     <h3>Diagnostic Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
     <h3>Staff Name: <b style="color: blue">{{ staff.username }}</b></h3>
+    <hr>
 
-    <h3>Reported To: </h3>
-    <div class="container">
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-{#            <th scope="col">Admin</th>#}
-{#            <th scope="col">Center</th>#}
-        </tr>
-        </thead>
-        <tbody>
-        {% for a in admins %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td style="color: blue">{{ a.username }}</td>
-{#                <td>{{ a.center }}</td>#}
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
     <h2>Staff Task Status</h2>
+<br>
+<button type="submit"><b style="color: red">ADD NEW TEST</b></button>
+<br>
+<br>
+<br>
+    <table style="width: 50%" border="1px">
+        <tr><b style="color: red">Reported To:</b></tr>
+        <tr>
+            <th style="color: forestgreen">Serial</th>
+            <th style="color: forestgreen">Admin Name</th>
+        </tr>
+            {% for a in admins %}
+                <tr>
+                    <th scope="row" style="color: blue">{{ forloop.counter }}</th>
+                    <th style="color: blue">{{ a.username }}</th>
+                </tr>
+            {% endfor %}
+    </table>
+
+<br>
+<br>
+
+    <table style="width: 50%" border="1px">
+        <tr><b style="color: red">Active Orders:</b></tr>
+        <tr>
+            <th style="color: forestgreen">Serial</th>
+            <th style="color: forestgreen">Active Orders</th>
+        </tr>
+        <tr>
+            <th scope="row" style="color: blue">1</th>
+            <th style="color: blue">name</th>
+        </tr>
+    </table>
+
+<br>
+<br>
+
+    <table style="width: 50%" border="1px">
+        <tr><b style="color: red">All Tests:</b></tr>
+        <tr>
+            <th style="color: forestgreen">Serial</th>
+            <th style="color: forestgreen">Test Name</th>
+            <th style="color: forestgreen">Categoy</th>
+            <th style="color: forestgreen">Active Status</th>
+        </tr>
+        <tr>
+            <th scope="row" style="color: blue">1</th>
+            <th style="color: blue">name</th>
+            <th style="color: blue">category</th>
+            <th style="color: blue">status</th>
+        </tr>
+    </table>
+
+<br>
+<hr>
 
 </body>
 </html>

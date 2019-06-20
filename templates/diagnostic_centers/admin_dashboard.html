@@ -23,29 +23,44 @@
     <h3>Diagnostic Center Name: <b style="color: blue">{{ admin.center }}</b></h3>
     <h3>Admin Name: <b style="color: blue">{{ admin.username }}</b></h3>
     <hr>
+
     <h2>Admin Task Status</h2>
     <br>
-    <h4>Staffs Under Admin:</h4>
 
-    <div class="container">
-    <table class="table">
-        <thead class="thead-dark">
+    <table style="width: 50%" border="1px">
+        <tr><b style="color: red">Staffs Under Admin:</b></tr>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-{#            <th scope="col">Center</th>#}
+            <th style="color: forestgreen">Serial</th>
+            <th style="color: forestgreen">Staff Name</th>
         </tr>
-        </thead>
-        <tbody>
-        {% for s in admin.staff.all %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td style="color: blue">{{ s.username }}</td>
-{#                <td>{{ s.center }}</td>#}
-            </tr>
-        {% endfor %}
-        </tbody>
+            {% for s in admin.staff.all %}
+                <tr>
+                    <th scope="row" style="color: blue">{{ forloop.counter }}</th>
+                    <th style="color: blue">{{ s.username }}</th>
+                </tr>
+            {% endfor %}
     </table>
-</div>
+
+<br>
+<br>
+
+    <table style="width: 50%" border="1px">
+        <tr><b style="color: red">Test Status:</b></tr>
+        <tr>
+            <th style="color: forestgreen">Serial</th>
+            <th style="color: forestgreen">Test Status</th>
+            <th style="color: forestgreen">Confirmation</th>
+            <th style="color: forestgreen">Report</th>
+        </tr>
+        <tr>
+            <th scope="row" style="color: blue">1</th>
+            <th style="color: blue">status</th>
+            <th style="color: blue">confirm order</th>
+            <th style="color: blue">report ID</th>
+        </tr>
+    </table>
+<br>
+<hr>
+
 </body>
 </html>
