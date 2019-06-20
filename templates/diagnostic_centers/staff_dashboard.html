@@ -20,10 +20,29 @@
     <hr>
     <button type="submit"><a href="{% url 'diagnostic_centers:staff-logout' %}"><b>Logout</b></a></button>
     <hr>
-    <h3>Diagnostic Center Name: </h3>
-    <h3>Staff Name: </h3>
+    <h3>Diagnostic Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
+    <h3>Staff Name: <b style="color: blue">{{ staff.username }}</b></h3>
+
     <h3>Reported To: </h3>
-    <hr>
+    <div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+{#            <th scope="col">Admin</th>#}
+{#            <th scope="col">Center</th>#}
+        </tr>
+        </thead>
+        <tbody>
+        {% for a in admins %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td style="color: blue">{{ a.username }}</td>
+{#                <td>{{ a.center }}</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
     <h2>Staff Task Status</h2>
 
 </body>

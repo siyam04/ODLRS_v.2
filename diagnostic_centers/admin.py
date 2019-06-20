@@ -22,10 +22,11 @@ class DiagnosticCenterAdmin(admin.ModelAdmin):
 
 
 class DiagnosticAdminAdmin(admin.ModelAdmin):
-    list_display = ['id', 'username', 'password', 'center', 'staff']
+    list_display = ['id', 'username', 'password', 'center']
     list_display_links = ['username']
     list_filter = ['username', 'center']
     search_fields = ['id', 'username', 'center']
+    filter_horizontal = ['staff']
 
 
 class DiagnosticStaffAdmin(admin.ModelAdmin):
