@@ -13,11 +13,31 @@ from django.views.generic import (
 from .models import DiagnosticCenter, DiagnosticAdmin, DiagnosticStaff
 from .forms import AdminLoginForm, StaffLoginForm
 
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
-class AllDiagnosticCenters(ListView):
-    model = DiagnosticCenter
+from django.db.models import Q
+
+
+def search_paginator(request):
+    Centers = DiagnosticCenter.objects.all()
+
+    query = request.GET.get('q')
+    if query:
+        Centers = Centers.filter(
+            Q(name__icontains=query) |
+            Q(website__icontains=query)
+        )
+        print(Centers)
+
+    paginator = Paginator(Centers, 2) 
+    page = request.GET.get('page')
+    all_centers = paginator.get_page(page)
+
+    context = {
+        "Centers":all_centers,
+    }
     template_name = 'diagnostic_centers/all_centers.html'
-
+    return render(request, template_name, context)
 
 class AdminDashboard(TemplateView):
     template_name = 'diagnostic_centers/admin_dashboard.html'
