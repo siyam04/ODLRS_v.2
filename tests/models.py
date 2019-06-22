@@ -6,15 +6,12 @@ from custom_users.models import Profile
 
 
 class TestCategory(models.Model):
-    """Food Category"""
     category_name = models.CharField(max_length=50)
 
     class Meta:
-        """Admin Display Name"""
         verbose_name_plural = 'Test Categories'
 
     def __str__(self):
-        """Returns Name of the Object"""
         return self.category_name
 
 
@@ -29,7 +26,7 @@ class Test(models.Model):
     image = models.ImageField(default='default_test.jpg', upload_to='test_pics')
     category = models.ForeignKey(TestCategory, on_delete=models.CASCADE, related_name='test_category')
     center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='test_center')
-    discount = models.IntegerField(null=True, blank=True)
+    discount = models.FloatField(null=True, blank=True)
     price = models.FloatField(blank=False)
     active_status = models.CharField(max_length=20, choices=ACTIVE_STATUS, default='AVAILABLE')
 
@@ -52,6 +49,7 @@ class TestOrder(models.Model):
     )
 
     client_info = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='test_user_order')
+    contact_no = models.CharField(max_length=20, blank=False, null=True)
     test_info = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='test_order')
     payment_option = models.CharField(max_length=20, choices=PAYMENT_OPTION, blank=False)
     date = models.DateTimeField(default=timezone.now)

@@ -26,11 +26,18 @@
 
     <div>
         <hr>
+        <p>** Separate Later</p>
+        <p><a href="{% url 'diagnostic_centers:admin-login' %}">Diagnostic ADMIN Login</a></p>
+        <p><a href="{% url 'diagnostic_centers:staff-login' %}">Diagnostic STAFF Login</a></p>
+        <p>** Separate Later</p>
+        <hr>
       <strong>Base Section Header</strong>
       <ul>
 
       <li><a href="{% url 'home' %}">Home | LOGO</a></li>
       <li><a href="{% url 'diagnostic_centers:all-centers' %}">Diagnostic Centers</a></li>
+      <li><a href="{% url 'tests:all-tests' %}">All Tests</a></li>
+      <li><a href="{% url 'tests:categories' %}">All Categories</a></li>
 
 	{% if user.is_authenticated %}
         <li><a href="{% url 'custom_users:profile' %}">Profile</a></li>

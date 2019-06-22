@@ -1,46 +1,49 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Order Details | ODLRS{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Order Details | ODLRS</title>
+</head>
 
-{% block content %}
-    <hr>
+<body>
     <h1>Order Details</h1>
+    <hr>
     <br>
-    <br>
-
-    <b style="color: orangered">
-            --------------------------------------------------------------------------------
-            --------------------------------------------------------------------------------
-    </b>
 
     {% if order_details.staff_check == True and order_details.accepted == True %}
 
-        <h4>Pending for Approval...</h4>
+        <b style="color: red">Pending for Approval...</b>
 
     {% elif order_details.staff_check == True and order_details.accepted == False %}
-        <h4>Rejected...</h4>
+
+        <b style="color: red">Rejected...</b>
 
     {% endif %}
 
-    <h4>Client: <b style="color: blue">{{ order_details.client_info }}</b></h4>
-
-    <h4>Test Name: <b style="color: blue">{{ order_details.test_info }}</b></h4>
-
-    <h4>Test Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h4>
-
-    <h5>ID: <b style="color: red">{{ order_details.id }}</b></h5>
-
-    <h4>Category: <b style="color: blue">{{ order_details.payment_option }}</b></h4>
-
-    <h4>Date: <b style="color: blue">{{ order_details.date }}</b></h4>
-
-    <h4>Time: <b style="color: blue">{{ order_details.time }}</b></h4>
-
-    <h4>Price: <b style="color: blue">{{ order_details.staff_check }}</b></h4>
-
-    <h4>Status: <b style="color: blue">{{ order_details.admin_approve }}</b></h4>
     <br>
-    <br>
+
+    <h4>ID: <b style="color: blue">{{ order_details.id }}</b></h4>
+
+    <h3>Client: <b style="color: blue">{{ order_details.client_info }}</b></h3>
+
+    <h3>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h3>
+
+    <h3>Contact No: <b style="color: blue">{{ order_details.contact_no }}</b></h3>
+
+    <h3>Test Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h3>
+
+    <h3>Category: <b style="color: blue">{{ order_details.payment_option }}</b></h3>
+
+    <h3>Date: <b style="color: blue">{{ order_details.date }}</b></h3>
+
+    <h3>Time: <b style="color: blue">{{ order_details.time }}</b></h3>
+
+    <h3>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></h3>
+
+    <h3>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></h3>
+
+{#    <h4>Total Amount: <b style="color: blue">{{ order_details.test_info.price }}</b></h4>#}
 
     {% if request.user.is_authenticated %}
 
@@ -54,5 +57,73 @@
         {% endif %}
     {% endif %}
 
+</body>
 
-{% endblock %}
+</html>
+
+
+
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block title %}{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <hr>#}
+{#    <h1>Order Details</h1>#}
+{#    <br>#}
+{#    <br>#}
+{#    #}
+{#    <b style="color: orangered">#}
+{#            --------------------------------------------------------------------------------#}
+{#            --------------------------------------------------------------------------------#}
+{#    </b>#}
+{##}
+{#    {% if order_details.staff_check == True and order_details.accepted == True %}#}
+{##}
+{#        <h4>Pending for Approval...</h4>#}
+{##}
+{#    {% elif order_details.staff_check == True and order_details.accepted == False %}#}
+{#        <h4>Rejected...</h4>#}
+{##}
+{#    {% endif %}#}
+{##}
+{#    <h5>ID: <b style="color: red">{{ order_details.id }}</b></h5>#}
+{##}
+{#    <h4>Client: <b style="color: blue">{{ order_details.client_info }}</b></h4>#}
+{##}
+{#    <h4>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h4>#}
+{##}
+{#    <h4>Contact No: <b style="color: blue">{{ order_details.contact_no }}</b></h4>#}
+{##}
+{#    <h4>Test Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h4>#}
+{##}
+{#    <h4>Category: <b style="color: blue">{{ order_details.payment_option }}</b></h4>#}
+{##}
+{#    <h4>Date: <b style="color: blue">{{ order_details.date }}</b></h4>#}
+{##}
+{#    <h4>Time: <b style="color: blue">{{ order_details.time }}</b></h4>#}
+{##}
+{#    <h4>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></h4>#}
+{##}
+{#    <h4>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></h4>#}
+{##}
+{#    <h4>Total Amount: <b style="color: blue">{{ order_details.test_info.price }}</b></h4>#}
+{##}
+{#    <h4>Status: <b style="color: blue">{{ order_details.admin_approve }}</b></h4>#}
+{#    <br>#}
+{#    <br>#}
+{##}
+{#    {% if request.user.is_authenticated %}#}
+{##}
+{#    {% else %}#}
+{##}
+{#        {% if order_details.staff_check == False and order_details.accepted == False %}#}
+{##}
+{#            <h3><a href="{% url 'tests:staff-approved' order_details.id %}">Approve</a></h3>#}
+{#            <h3><a href="{% url 'tests:staff-rejected' order_details.id %}">Reject</a></h3>#}
+{##}
+{#        {% endif %}#}
+{#    {% endif %}#}
+{##}
+{##}
+{#{% endblock %}#}

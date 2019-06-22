@@ -1,13 +1,13 @@
 from django import forms
 from django.forms import TextInput, Select, Textarea, NumberInput, SelectDateWidget, TimeInput
 
-from .models import TestOrder
+from .models import TestOrder, Test
 
 
 class TestOrderForm(forms.ModelForm):
     class Meta:
         model = TestOrder
-        fields = ['client_info', 'test_info', 'payment_option', 'date', 'time']
+        fields = ['client_info', 'contact_no', 'test_info', 'payment_option', 'date', 'time']
 
         widgets = {
             'payment_option': Select(),
@@ -18,5 +18,15 @@ class TestOrderForm(forms.ModelForm):
         }
 
 
+class TestAddForm(forms.ModelForm):
+    class Meta:
+        model = Test
+        fields = ['test_name', 'image', 'category', 'center', 'discount', 'price', 'active_status']
+
+        widgets = {
+            'category': Select(),
+            'center': Select(),
+            'active_status': Select(),
+        }
 
 

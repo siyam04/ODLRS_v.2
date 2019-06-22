@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 
 from custom_users.models import Profile
 
 from .models import Test, TestCategory, TestOrder
-from .forms import TestOrderForm
+from .forms import TestOrderForm, TestAddForm
+
+########################################################################################
 
 
 def all_tests(request, template_name='tests/all_tests.html'):
@@ -13,7 +16,43 @@ def all_tests(request, template_name='tests/all_tests.html'):
 
     return render(request, template_name, context)
 
+########################################################################################
 
+
+def test_categories(request, template_name='tests/categories.html'):
+    categories = TestCategory.objects.all()
+
+    context = {'categories': categories}
+
+    return render(request, template_name, context)
+
+########################################################################################
+
+
+def categorise_tests(request, id=None):
+    filtered_tests = Test.objects.filter(category__id=id)
+
+    template = 'tests/categorise_tests.html'
+    context = {'filtered_tests': filtered_tests}
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def test_details(request, id=id):
+    single_test_details = Test.objects.get(id=id)
+
+    template = 'tests/test_details.html'
+    context = {'single_test_details': single_test_details}
+
+    # return redirect('tests:test-details', id)
+    return render(request, template, context)
+
+########################################################################################
+
+
+@login_required
 def test_order(request, id=None):
 
     try:
@@ -46,6 +85,8 @@ def test_order(request, id=None):
 
     return render(request, template, context)
 
+########################################################################################
+
 
 def order_details_info(request, id=None):
     order_details = TestOrder.objects.get(id=id)
@@ -57,6 +98,8 @@ def order_details_info(request, id=None):
     }
 
     return render(request, template, context)
+
+########################################################################################
 
 
 def staff_approved(request, id=None):
@@ -73,6 +116,8 @@ def staff_approved(request, id=None):
 
     return render(request, template, context)
 
+########################################################################################
+
 
 def staff_rejected(request, id=None):
     staff_order_detail = TestOrder.objects.get(id=id)
@@ -88,4 +133,33 @@ def staff_rejected(request, id=None):
 
     return render(request, template, context)
 
+########################################################################################
 
+
+def add_test_by_staff(request):
+    if request.method == 'POST':
+        test_add_form = TestAddForm(request.POST)
+
+        if test_add_form.is_valid():
+            test_add_form.save()
+            return redirect('tests:all-tests-list-staff')
+
+    else:
+        test_add_form = TestAddForm()
+
+    template = 'tests/add_test.html'
+    context = {'test_add_form': test_add_form}
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def all_tests_list_for_staff(request, template_name='tests/all_tests_list_for_staff.html'):
+    all_added_tests = Test.objects.all()
+
+    context = {'all_added_tests': all_added_tests}
+
+    return render(request, template_name, context)
+
+########################################################################################

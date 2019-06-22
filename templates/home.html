@@ -11,8 +11,16 @@
         <br>
 
         <h1>Home Page</h1>
-        <br>
 
+        <!-- Search -->
+        <form class="search input-group mt-4" action="" method="GET">
+            <input type="text" name='q' placeholder="type anything...">
+            <button type="submit" class="searchButton"><i class="fa fa-search">SEARCH</i></button>
+        </form>
+        <!-- Search -->
+
+        <br>
+        <br>
         {% if user.is_authenticated %}
             <h4 style="color: blue">**Welcome @<b><a href="{% url 'custom_users:profile' %}" style="color: forestgreen">{{ user.username }}</a></b></h4>
         {% else %}
@@ -20,7 +28,71 @@
         {% endif %}
 
         <br>
-        <h4 style="color: blue">**Need to add 'Tests' here</h4>
+        <hr>
+        <h2>Categories Tests</h2>
+
+{#        {% include 'tests/all_tests.html' %}#}
+
+        <br>
+
+        {% for filter in all_category %}
+
+            <h5><a href="{% url 'tests:categorise-tests' filter.id %}">{{ filter.category_name }}</a></h5>
+
+        {% endfor %}
+
+        <br>
+
+        <h2>All Tests</h2>
+
+        {% for test in T %}
+
+            <b style="color: orangered">
+                --------------------------------------------------------------------------------
+                --------------------------------------------------------------------------------
+            </b>
+
+            <h4>Name: <b style="color: blue"><a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a></b></h4>
+
+            <img src="{{ test.image.url }}" alt="image" height="300" width="500">
+
+            <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
+
+            <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
+
+            <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
+
+            <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
+
+            <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
+
+            <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
+            <br>
+            <button type="submit"><b><a href="{% url 'tests:order' test.id %}">ORDER</a></b></button>
+            <br>
+            <br>
+    {% endfor %}
+        <hr>
+                <!-- Paginator -->
+            <b style="color: blue">**Paginator</b>
+                <div class="pagination" style="color: forestgreen">
+                    <span class="step-links">
+                        {% if T.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ T.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ T.number }} of {{ T.paginator.num_pages }}.
+                        </span>
+
+                        {% if T.has_next %}
+                            <a href="?page={{ T.next_page_number }}">next</a>
+                            <a href="?page={{ T.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+          <!-- Paginator -->
         <br>
 
         <strong style="color: red">Home Section</strong>
