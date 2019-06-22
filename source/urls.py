@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('diagnostic_centers.urls', namespace='diagnostic_centers')),
 
     # App3 (tests)
-    # path('', include('tests.urls', namespace='tests')),
+    path('', include('tests.urls', namespace='tests')),
 
     # Allauth (built-in)
     path('accounts/', include('allauth.urls')),

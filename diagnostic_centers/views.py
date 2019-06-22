@@ -7,6 +7,8 @@ from django.views.generic import (
     TemplateView,
 )
 
+from tests.models import TestOrder
+
 from .models import DiagnosticCenter, DiagnosticAdmin, DiagnosticStaff
 from .forms import AdminLoginForm, StaffLoginForm
 
@@ -63,7 +65,12 @@ def admin_login(request, template_name='diagnostic_centers/admin_login.html'):
 def admin_dashboard(request, username=None, template_name='diagnostic_centers/admin_dashboard.html'):
     admin = DiagnosticAdmin.objects.get(username=username)
 
-    context = {'admin': admin}
+    pending_staff_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center)
+
+    context = {'admin': admin,
+               'pending_staff_tests': pending_staff_tests,
+
+    }
 
     return render(request, template_name, context)
 
@@ -106,9 +113,12 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
     staff = DiagnosticStaff.objects.get(username=username)
     admins = DiagnosticAdmin.objects.filter(staff=staff)
 
+    pending_tests = TestOrder.objects.filter(test_info__center=staff.center)
+
     context = {
         'staff': staff,
         'admins': admins,
+        'pending_tests': pending_tests,
     }
 
     return render(request, template_name, context)

@@ -8,6 +8,9 @@ class Profile(models.Model):
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     address = models.CharField(max_length=150, blank=True, null=True)
 
+    admin = models.BooleanField(default=False)
+    staff = models.BooleanField(default=False)
+
     class Meta:
         verbose_name_plural = 'Customer Profiles'
 

@@ -22,6 +22,8 @@ class DiagnosticStaff(models.Model):
     username = models.CharField(max_length=20, unique=True, blank=False)
     password = models.CharField(max_length=100, unique=True,  blank=False)
 
+    admin = models.BooleanField(default=False)
+
     center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_staffs')
 
     class Meta:
@@ -35,9 +37,9 @@ class DiagnosticAdmin(models.Model):
     username = models.CharField(max_length=20, unique=True, blank=False)
     password = models.CharField(max_length=100, unique=True, blank=False)
 
-    center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_admins')
+    admin = models.BooleanField(default=True)
 
-    # ToDo: one Admin --> two Staff (OneToMany)
+    center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='center_admins')
     staff = models.ManyToManyField(DiagnosticStaff)
 
     class Meta:

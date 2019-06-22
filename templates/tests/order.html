@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Order | ODLRS{% endblock %}
+
+{% block content %}
+    <hr>
+    <h1>Order</h1>
+    <br>
+    <br>
+
+    <form action="#" method="post">
+        {% csrf_token %}
+        {{ test_order_form.as_p }}
+        <hr>
+        <button type="submit">CONFIRM</button>
+    </form>
+
+{% endblock %}

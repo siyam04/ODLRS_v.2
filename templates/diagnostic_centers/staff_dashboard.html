@@ -25,6 +25,28 @@
     <hr>
 
     <h2>Staff Task Status</h2>
+<hr>
+<div>
+    {% for test in pending_tests %}
+
+        <h3>* <a href="{% url 'tests:order-details' test.id %}">{{ test.test_info.test_name }}</a></h3>
+
+        {% if test.staff_check == True and test.accepted == True %}
+
+            <h4>Pending for Admin Approval...</h4>
+
+        {% elif test.staff_check == True and test.accepted == False %}
+
+            <h4>Rejected...</h4>
+
+        {% endif %}
+
+        <p>---------------------------------------------------------------------------------------------------------</p>
+
+{% endfor %}
+
+</div>
+
 <br>
 <button type="submit"><b style="color: red">ADD NEW TEST</b></button>
 <br>
@@ -61,6 +83,7 @@
 
 <br>
 <br>
+
 
     <table style="width: 50%" border="1px">
         <tr><b style="color: red">All Tests:</b></tr>
