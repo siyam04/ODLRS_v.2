@@ -5,17 +5,60 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block content %}
-{#<h1 style="color: red">{% trans "Sign Out" %}</h1>#}
+
+
+<style>
+	p {
+		margin-bottom: 0;
+		font-size: 14px;
+	}
+
+	.card {
+		margin-top: 150px;
+	}
+
+	.box {
+		min-height: 550px;
+	}
+</style>
+
+
+<div class="container box">
+	<div class="row">
+
+		<div class="col-6 offset-3 my-4">
+			<div class="card text-center py-3">
+				<div class="card-body">
+					<h4>{% trans 'Are you sure you want to sign out?' %}</h4>
+
+					<form method="post" action="{% url 'account_logout' %}">
+						{% csrf_token %}
+						{% if redirect_field_value %}
+						<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+						{% endif %}
+						<h3><button type="submit" class="btn btn-warning btn-sm px-5">{% trans 'OK' %}</button></h3>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
+
+<!-- {#<h1 style="color: red">{% trans "Sign Out" %}</h1>#}
 
 <h1 style="color: orangered">{% trans 'Are you sure you want to sign out?' %}</h1>
 
 <form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <h3><button type="submit">{% trans 'OK' %}</button></h3>
-</form>
+	{% csrf_token %}
+	{% if redirect_field_value %}
+	<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+	{% endif %}
+	<h3><button type="submit">{% trans 'OK' %}</button></h3>
+</form> -->
 
 
 {% endblock %}
