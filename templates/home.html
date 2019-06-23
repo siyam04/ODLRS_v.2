@@ -3,99 +3,163 @@
 {% block title %}Home | ODLRS{% endblock %}
 
 {% block content %}
+<style>
+    p {
+        margin-bottom: 0;
+    }
+</style>
 
-    <div class="welcome text-dark">
-        <hr>
+<div class="welcome container text-dark">
 
-        <strong style="color: red">Home Section</strong>
-        <br>
+    <div class="bg-dark p-5 my-4">
+        <div class="container">
+            <h3 class="text-white mb-4">Search Tests...</h3>
 
-        <h1>Home Page</h1>
+            <!-- Search -->
+            <form class="search" action="" method="GET">
+                <!-- <input type="text" class="form-control" name='q' placeholder="type anything...">
+                <button type="submit" class="btn btn-primary" class="searchButton"><i
+                        class="fa fa-search">SEARCH</i></button> -->
 
-        <!-- Search -->
-        <form class="search input-group mt-4" action="" method="GET">
-            <input type="text" name='q' placeholder="type anything...">
-            <button type="submit" class="searchButton"><i class="fa fa-search">SEARCH</i></button>
-        </form>
-        <!-- Search -->
+                <div class="input-group">
+                    <input type="text" class="form-control" name='q' placeholder="Search Tests..."
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-info" class="searchButton">
+                            <!-- <i class="fa fa-search"></i> -->
+                            SEARCH
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Search -->
 
-        <br>
-        <br>
-        {% if user.is_authenticated %}
-            <h4 style="color: blue">**Welcome @<b><a href="{% url 'custom_users:profile' %}" style="color: forestgreen">{{ user.username }}</a></b></h4>
-        {% else %}
-            <h2><b style="color: forestgreen">Logged Out!</b></h2>
-        {% endif %}
+        </div>
+    </div>
 
-        <br>
-        <hr>
-        <h2>Categories Tests</h2>
 
-{#        {% include 'tests/all_tests.html' %}#}
 
-        <br>
 
-        {% for filter in all_category %}
+    <!-- {% if user.is_authenticated %}
+    <h4 style="color: blue">**Welcome @<b><a href="{% url 'custom_users:profile' %}"
+                style="color: forestgreen">{{ user.username }}</a></b></h4>
+    {% else %}
+    <div class="alert alert-success text-center"> <strong>Logged Out!</strong> </div>
+    <h2><b style="color: forestgreen">Logged Out!</b></h2>
+    {% endif %} -->
 
-            <h5><a href="{% url 'tests:categorise-tests' filter.id %}">{{ filter.category_name }}</a></h5>
+    <!-- <h2>Categories Tests</h2>
 
+    {#        {% include 'tests/all_tests.html' %}#}
+
+    {% for filter in all_category %}
+
+    <h5><a href="{% url 'tests:categorise-tests' filter.id %}">{{ filter.category_name }}</a></h5>
+
+    {% endfor %}
+
+    <br>
+
+    <h2>All Tests</h2> -->
+
+    <div class="row my-4">
+        {% for test in T %}
+        <div class="col-3">
+            <div class="card">
+                <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
+                    <p class="card-text">{{ test.center }}</p>
+                    <!-- <p class="card-text">Discount: {{ test.discount }}</p> -->
+                    <p class="card-text text-danger">Price: {{ test.price }} TK</p>
+                    <p class="card-text">Home Delivery: {{ test.active_status }}</p>
+
+                    <div class="dropdown-divider"></div>
+                    <div class="btn-block text-center">
+                        <a class="btn btn-primary btn-sm m-auto" href="{% url 'tests:order' test.id %}"
+                            type="submit">ORDER</a>
+                    </div>
+                    <!-- <a href="#" class="card-link">Another link</a> -->
+                </div>
+            </div>
+        </div>
         {% endfor %}
 
-        <br>
-
-        <h2>All Tests</h2>
-
-        {% for test in T %}
-
-            <b style="color: orangered">
-                --------------------------------------------------------------------------------
-                --------------------------------------------------------------------------------
-            </b>
-
-            <h4>Name: <b style="color: blue"><a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a></b></h4>
-
-            <img src="{{ test.image.url }}" alt="image" height="300" width="500">
-
-            <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
-
-            <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
-
-            <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
-
-            <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
-
-            <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
-
-            <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
-            <br>
-            <button type="submit"><b><a href="{% url 'tests:order' test.id %}">ORDER</a></b></button>
-            <br>
-            <br>
-    {% endfor %}
-        <hr>
-                <!-- Paginator -->
-            <b style="color: blue">**Paginator</b>
-                <div class="pagination" style="color: forestgreen">
-                    <span class="step-links">
-                        {% if T.has_previous %}
-                            <a href="?page=1">&laquo; first</a>
-                            <a href="?page={{ T.previous_page_number }}">previous</a>
-                        {% endif %}
-
-                        <span class="current">
-                            Page {{ T.number }} of {{ T.paginator.num_pages }}.
-                        </span>
-
-                        {% if T.has_next %}
-                            <a href="?page={{ T.next_page_number }}">next</a>
-                            <a href="?page={{ T.paginator.num_pages }}">last &raquo;</a>
-                        {% endif %}
-                    </span>
-                </div>
-          <!-- Paginator -->
-        <br>
-
-        <strong style="color: red">Home Section</strong>
     </div>
+
+
+
+
+    <!-- {% for test in T %}
+
+    <h4>Name: <b style="color: blue"><a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a></b></h4>
+
+    <img src="{{ test.image.url }}" alt="image" height="300" width="500">
+
+    <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
+
+    <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
+
+    <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
+
+    <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
+
+    <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
+
+    <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
+    <br>
+    <button type="submit"><b><a href="{% url 'tests:order' test.id %}">ORDER</a></b></button>
+    <br>
+    <br>
+    {% endfor %} -->
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                {% if T.has_previous %}
+                <a class="page-link" href="?page=1" aria-label="Previous">
+                    <span aria-hidden="false">&laquo;</span>
+                </a>
+                {% endif %}
+
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Page {{ T.number }} of {{ T.paginator.num_pages }}</a>
+            </li>
+            <li class="page-item">
+                {% if T.has_next %}
+                <a class="page-link" href="?page={{ T.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Paginator -->
+    <!-- <b style="color: blue">**Paginator</b>
+    <div class="pagination" style="color: forestgreen">
+        <span class="step-links">
+            {% if T.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ T.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ T.number }} of {{ T.paginator.num_pages }}.
+            </span>
+
+            {% if T.has_next %}
+            <a href="?page={{ T.next_page_number }}">next</a>
+            <a href="?page={{ T.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div> -->
+    <!-- Paginator -->
+</div>
 
 {% endblock content %}

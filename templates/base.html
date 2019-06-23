@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{% block head_title %}{% endblock %}</title>
 
-    {% block extra_head %} {% endblock %}
+<head>
+  <title>{% block head_title %}{% endblock %}</title>
 
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-  </head>
+  {% block extra_head %} {% endblock %}
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
+    integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 
-  <body>
-    <!-- {% block body %} {# {% if messages %}#} {#
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+  <!-- {% block body %} {# {% if messages %}#} {#
     <div>
       #} {# <strong>Messages:</strong>#} {#
       <ul>
@@ -26,8 +27,8 @@
     </div>
     #} {# {% endif %}#} -->
 
-    <div>
-      <!-- <hr>
+  <div class="">
+    <!-- <hr>
 		<p>** Separate Later</p>
 		<p><a href="{% url 'diagnostic_centers:admin-login' %}">Diagnostic ADMIN Login</a></p>
 		<p><a href="{% url 'diagnostic_centers:staff-login' %}">Diagnostic STAFF Login</a></p>
@@ -35,70 +36,76 @@
 		<hr>
 		<strong>Base Section Header</strong> -->
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">ODRLS</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">ODRLS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="{% url 'diagnostic_centers:all-centers' %}"
-                >Diagnostic Centers</a
-              >
+              <a class="nav-link" href="{% url 'diagnostic_centers:all-centers' %}">Diagnostic Centers</a>
             </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'tests:all-tests' %}">All Tests</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tests:categories' %}">All Categories</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'custom_users:profile' %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">SignUp</a>
+            </li>
+            {% endif %}
+
           </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <ul>
-        <li><a href="{% url 'home' %}">Home | LOGO</a></li>
-        <li>
-          <a href="{% url 'diagnostic_centers:all-centers' %}"
-            >Diagnostic Centers</a
-          >
-        </li>
-        <li><a href="{% url 'tests:all-tests' %}">All Tests</a></li>
-        <li><a href="{% url 'tests:categories' %}">All Categories</a></li>
+    <!-- <ul>
+      <li><a href="{% url 'home' %}">Home | LOGO</a></li>
+      <li>
+        <a href="{% url 'diagnostic_centers:all-centers' %}">Diagnostic Centers</a>
+      </li>
+      <li><a href="{% url 'tests:all-tests' %}">All Tests</a></li>
+      <li><a href="{% url 'tests:categories' %}">All Categories</a></li>
 
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'custom_users:profile' %}">Profile</a></li>
-        <li><a href="{% url 'account_logout' %}">Logout</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">Login</a></li>
-        <li><a href="{% url 'account_signup' %}">SignUp</a></li>
-        {% endif %}
-      </ul>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'custom_users:profile' %}">Profile</a></li>
+      <li><a href="{% url 'account_logout' %}">Logout</a></li>
+      {% else %}
+      <li><a href="{% url 'account_login' %}">Login</a></li>
+      <li><a href="{% url 'account_signup' %}">SignUp</a></li>
+      {% endif %}
+    </ul> -->
 
-      <strong>Base Section Header</strong>
-    </div>
+    <!-- <strong>Base Section Header</strong> -->
+  </div>
 
-	{% block content %} {% endblock %} {% endblock %} {% block extra_body %} 
-	{%endblock %}
+  {% block content %} {% endblock %} {% endblock %} {% block extra_body %} {%endblock %}
 
-    <br />
-    <br />
-    <div>
-      <hr />
-      <strong>Base Section Footer</strong>
-      <p>**content</p>
-      <strong>Base Section Footer</strong>
-      <hr />
-    </div>
-  </body>
+  <div class="footer bg-dark text-white text-center py-2">
+    <p> &copy; Copyrights 2019. All rights reserved. </p>
+  </div>
+
+</body>
+
 </html>
