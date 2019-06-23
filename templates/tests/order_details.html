@@ -23,27 +23,37 @@
 
     <br>
 
-    <h4>ID: <b style="color: blue">{{ order_details.id }}</b></h4>
+    <h4>Order No: <b style="color: blue">{{ order_details.id }}</b></h4>
 
-    <h3>Client: <b style="color: blue">{{ order_details.client_info }}</b></h3>
+    <h3>Client: <b style="color: blue">{{ order_details.client_info }} ({{ order_details.client_info.profile_name }})</b></h3>
 
     <h3>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h3>
 
-    <h3>Contact No: <b style="color: blue">{{ order_details.contact_no }}</b></h3>
+    <h3>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></h3>
 
-    <h3>Test Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h3>
+    <h3>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h3>
 
-    <h3>Category: <b style="color: blue">{{ order_details.payment_option }}</b></h3>
+    <h3>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }} ({{ order_details.test_info.category }})</b></h3>
+
+    <h3>Center: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h3>
+
+    <h3>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></h3>
 
     <h3>Date: <b style="color: blue">{{ order_details.date }}</b></h3>
 
     <h3>Time: <b style="color: blue">{{ order_details.time }}</b></h3>
 
+    <hr>
+
     <h3>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></h3>
 
     <h3>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></h3>
 
-{#    <h4>Total Amount: <b style="color: blue">{{ order_details.test_info.price }}</b></h4>#}
+    <hr>
+
+    <h4>Total Amount: <b style="color: blue"></b></h4>
+
+    <br>
 
     {% if request.user.is_authenticated %}
 
