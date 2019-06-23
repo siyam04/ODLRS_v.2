@@ -6,9 +6,19 @@
 
 {% block content %}
 
-<div class="container text-center">
+<style>
+	p {
+		margin-bottom: 0;
+	}
+
+	.box {
+		min-height: 500px;
+	}
+</style>
+
+<div class="container box">
 	<div class="row my-5">
-		<div class="col-4 offset-4">
+		<div class="col-4 offset-4  text-center">
 			<div class="card">
 				<div class="card-header">
 					<h1>{% trans "Sign Up" %}</h1>

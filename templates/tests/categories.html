@@ -3,16 +3,49 @@
 {% block title %}Categories | ODLRS{% endblock %}
 
 {% block content %}
-    <hr>
 
-    <h1>All Categories</h1>
+<style>
+    .box {
+        min-height: 500px;
+    }
+
+    .box a {
+        text-decoration: none;
+        transition: 0.3s ease;
+        display: block;
+    }
+
+    .box a:hover {
+        transform: scale(1.1);
+    }
+</style>
 
 
-    {% for category in  categories %}
+<div class="container box">
+    <div class="row mt-5">
 
-        <h3 style="color: blue">* <a href="{% url 'tests:categorise-tests' category.id %}">{{ category.category_name }}</a></h3>
+        {% for category in  categories %}
 
-    {% endfor %}
+        <div class="col-3 text-center mb-4">
+            <a class="text-white" href="{% url 'tests:categorise-tests' category.id %}">
+                <div class="card bg-info  py-5">
+                    <h3> {{ category.category_name }} </h3>
+                </div>
+            </a>
+        </div>
 
-    <hr>
+        {% endfor %}
+
+    </div>
+</div>
+
+<!-- <h1>All Categories</h1>
+
+
+{% for category in  categories %}
+
+<h3 style="color: blue">* <a href="{% url 'tests:categorise-tests' category.id %}">{{ category.category_name }}</a></h3>
+
+{% endfor %} -->
+
 {% endblock %}

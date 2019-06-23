@@ -3,35 +3,78 @@
 {% block title %}Single Test | ODLRS{% endblock %}
 
 {% block content %}
-        <hr>
-        <h1>Single Test</h1>
-        <br>
-        <br>
 
-    <b style="color: orangered">
-                --------------------------------------------------------------------------------
-                --------------------------------------------------------------------------------
-    </b>
+<style>
+    p {
+        margin-bottom: 0;
+    }
 
-    <h4>Name: <b style="color: blue">{{ single_test_details.test_name }}</b></h4>
+    p.center {
+        font-size: 14px;
+    }
+</style>
 
-    <img src="{{ single_test_details.image.url }}" alt="image" height="300" width="500">
 
-    <h5>ID: <b style="color: red">{{ single_test_details.id }}</b></h5>
+<div class="container">
+    <div class="row">
 
-    <h4>Category: <b style="color: blue">{{ single_test_details.category }}</b></h4>
+        <div class="col-4 offset-4 my-4">
+            <div class="card">
+                <img src="{{ single_test_details.image.url }}" class="card-img-top" alt="..." width="100%">
 
-    <h4>Diagnostic Center: <b style="color: blue">{{ single_test_details.center }}</b></h4>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a
+                            href="{% url 'tests:test-details' single_test_details.id %}">{{ single_test_details.test_name }}</a>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ single_test_details.category }}</h6>
+                    <p class="card-text center">{{ single_test_details.center }}</p>
+                    <p class="card-text">Discount: {{ single_test_details.discount }}</p>
+                    <p class="card-text text-danger">Price: {{ single_test_details.price }} TK</p>
+                    <p class="card-text">Home Delivery: {{ single_test_details.active_status }}</p>
 
-    <h4>Discount: <b style="color: blue">{{ single_test_details.discount }}</b></h4>
+                    <div class="dropdown-divider"></div>
+                    <div class="btn-block text-center">
+                        <a class="btn btn-primary btn-sm m-auto" href="{% url 'tests:order' single_test_details.id %}"
+                            type="submit">ORDER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h4>Price: <b style="color: blue">{{ single_test_details.price }}</b></h4>
+    </div>
+</div>
 
-    <h4>Status: <b style="color: blue">{{ single_test_details.active_status }}</b></h4>
 
-    <br>
-    <button type="submit"><b><a href="{% url 'tests:order' single_test_details.id %}">ORDER</a></b></button>
-    <br>
+
+<!-- <hr>
+<h1>Single Test</h1>
+<br>
+<br>
+
+<b style="color: orangered">
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+</b>
+
+<h4>Name: <b style="color: blue">{{ single_test_details.test_name }}</b></h4>
+
+<img src="{{ single_test_details.image.url }}" alt="image" height="300" width="500">
+
+<h5>ID: <b style="color: red">{{ single_test_details.id }}</b></h5>
+
+<h4>Category: <b style="color: blue">{{ single_test_details.category }}</b></h4>
+
+<h4>Diagnostic Center: <b style="color: blue">{{ single_test_details.center }}</b></h4>
+
+<h4>Discount: <b style="color: blue">{{ single_test_details.discount }}</b></h4>
+
+<h4>Price: <b style="color: blue">{{ single_test_details.price }}</b></h4>
+
+<h4>Status: <b style="color: blue">{{ single_test_details.active_status }}</b></h4>
+
+<br>
+<button type="submit"><b><a href="{% url 'tests:order' single_test_details.id %}">ORDER</a></b></button>
+<br> -->
 
 {% endblock %}
-
