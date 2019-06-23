@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories | ODLRS{% endblock %}
+
+{% block content %}
+    <hr>
+
+    <h1>All Categories</h1>
+
+
+    {% for category in  categories %}
+
+        <h3 style="color: blue">* <a href="{% url 'tests:categorise-tests' category.id %}">{{ category.category_name }}</a></h3>
+
+    {% endfor %}
+
+    <hr>
+{% endblock %}

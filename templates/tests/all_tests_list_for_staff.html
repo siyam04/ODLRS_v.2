@@ -1,20 +1,22 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Added Test | ODLRS</title>
+</head>
 
-{% block title %}All Tests | ODLRS{% endblock %}
-
-{% block content %}
+<body>
+    <h1>Recently Added Test</h1>
     <hr>
-    <h1>All Tests</h1>
-    <br>
-    <br>
-    {% for test in all_test_list %}
+
+    {% for test in all_added_tests %}
 
         <b style="color: orangered">
             --------------------------------------------------------------------------------
             --------------------------------------------------------------------------------
         </b>
 
-        <h4>Name: <b style="color: blue"><a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a></b></h4>
+        <h4>Name: <b style="color: blue">{{ test.test_name }}</b></h4>
 
         <img src="{{ test.image.url }}" alt="image" height="300" width="500">
 
@@ -25,10 +27,8 @@
         <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
         <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
         <br>
-        <button type="submit"><b><a href="{% url 'tests:order' test.id %}">ORDER</a></b></button>
-        <br>
 
     {% endfor %}
 
-
-{% endblock %}
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Category-wise Tests | ODLRS{% endblock %}
+
+{% block content %}
+
+    {% for test in  filtered_tests %}
+
+        <h3>Test Name: {{ test.test_name }} - {{ test.center.name }}</h3>
+
+    {% endfor %}
+
+{% endblock %}
