@@ -60,6 +60,11 @@ class TestOrder(models.Model):
 
     accepted = models.BooleanField(default=False)
 
+    class Meta:
+        """Meta class for customizing this class"""
+        ordering = ['-id']
+        verbose_name_plural = 'Test Orders'
+
     def __str__(self):
         """Returns Name of the Object"""
         return self.client_info.user.username
