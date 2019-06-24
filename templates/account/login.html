@@ -42,20 +42,6 @@
 					</p>
 
 
-					<!-- <div class="socialaccount_ballot">
-
-					<ul class="socialaccount_providers">
-						Or Login with
-						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
-					</ul>
-					<hr>
-
-					{#  <div class="login-or">{% trans 'or' %}</div>#}
-
-				</div> -->
-
-					{#{% include "socialaccount/snippets/login_extra.html" %}#}
-
 					{% else %}
 					<p>{% blocktrans %}If you have not created an account yet, then please
 						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
@@ -69,8 +55,6 @@
 						<input type="hidden" class="form-control" name="{{ redirect_field_name }}"
 							value="{{ redirect_field_value }}" />
 						{% endif %}
-
-						{#  <a class=" button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>#}
 
 						<button class="btn btn-primary btn-sm primaryAction"
 							type="submit">{% trans "Sign In" %}</button>

@@ -22,7 +22,7 @@
     <div class="bg-dark p-5 my-4">
         <div class="container">
             <h3 class="text-white mb-4">Search Centers...</h3>
-            <!-- Search -->
+
             <form class="search" action="" method="GET">
 
                 <div class="input-group">
@@ -35,8 +35,6 @@
                     </div>
                 </div>
             </form>
-            <!-- Search -->
-
         </div>
     </div>
 
@@ -59,12 +57,6 @@
                         <p class="card-text text-primary">Website: <span>{{ centers.website }}</span> </p>
                         <p class="card-text text-primary">Address: <span>{{ centers.address }}</span> </p>
                     </div>
-
-                    <!-- <h5>ID: <b style="color: red">{{ centers.id }}</b></h5>
-                    <h4>Email: <b style="color: blue">{{ centers.email }}</b></h4>
-                    <h4>Contact: <b style="color: blue">{{ centers.contact_no }}</b></h4>
-                    <h4>Website: <b style="color: blue">{{ centers.website }}</b></h4>
-                    <h4>Address: <b style="color: blue">{{ centers.address }}</b></h4> -->
                 </div>
             </div>
             {% endfor %}
@@ -96,28 +88,6 @@
     </nav>
 
 
-
-
-    <!-- Paginator -->
-    <!-- <b style="color: red">**Paginator</b>
-    <div class="pagination" style="color: forestgreen">
-        <span class="step-links">
-            {% if Centers.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ Centers.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ Centers.number }} of {{ Centers.paginator.num_pages }}.
-            </span>
-
-            {% if Centers.has_next %}
-            <a href="?page={{ Centers.next_page_number }}">next</a>
-            <a href="?page={{ Centers.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div> -->
-    <!-- Paginator -->
 
 </div>
 {% endblock %}

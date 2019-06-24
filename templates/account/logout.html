@@ -45,17 +45,4 @@
 </div>
 
 
-<!-- {#<h1 style="color: red">{% trans "Sign Out" %}</h1>#}
-
-<h1 style="color: orangered">{% trans 'Are you sure you want to sign out?' %}</h1>
-
-<form method="post" action="{% url 'account_logout' %}">
-	{% csrf_token %}
-	{% if redirect_field_value %}
-	<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-	{% endif %}
-	<h3><button type="submit">{% trans 'OK' %}</button></h3>
-</form> -->
-
-
 {% endblock %}
