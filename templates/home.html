@@ -15,25 +15,30 @@
         <div class="container">
             <h3 class="text-white mb-4">Search Tests...</h3>
 
-            <!-- Search -->
             <form class="search" action="" method="GET">
+<<<<<<< HEAD
+=======
+
+>>>>>>> joy_ui
                 <div class="input-group">
                     <input type="text" class="form-control" name='q' placeholder="Search Tests..."
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-info" class="searchButton">
-                            <!-- <i class="fa fa-search"></i> -->
                             SEARCH
                         </button>
                     </div>
                 </div>
             </form>
-            <!-- Search -->
 
         </div>
     </div>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> joy_ui
     <div class="row my-4">
         {% for test in T %}
         <div class="col-3">
@@ -46,7 +51,6 @@
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
                     <p class="card-text">{{ test.center }}</p>
-                    <!-- <p class="card-text">Discount: {{ test.discount }}</p> -->
                     <p class="card-text text-danger">Price: {{ test.price }} TK</p>
                     <p class="card-text">Home Delivery: {{ test.active_status }}</p>
 
@@ -55,7 +59,6 @@
                         <a class="btn btn-primary btn-sm m-auto" href="{% url 'tests:order' test.id %}"
                             type="submit">ORDER</a>
                     </div>
-                    <!-- <a href="#" class="card-link">Another link</a> -->
                 </div>
             </div>
         </div>
