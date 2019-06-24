@@ -65,7 +65,8 @@ def admin_login(request, template_name='diagnostic_centers/admin_login.html'):
 def admin_dashboard(request, username=None, template_name='diagnostic_centers/admin_dashboard.html'):
     admin = DiagnosticAdmin.objects.get(username=username)
 
-    pending_staff_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center)
+    pending_staff_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center).order_by('-id')
+
 
     context = {'admin': admin,
                'pending_staff_tests': pending_staff_tests,
@@ -113,7 +114,7 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
     staff = DiagnosticStaff.objects.get(username=username)
     admins = DiagnosticAdmin.objects.filter(staff=staff)
 
-    pending_tests = TestOrder.objects.filter(test_info__center=staff.center)
+    pending_tests = TestOrder.objects.filter(test_info__center=staff.center).order_by('-id')
 
     context = {
         'staff': staff,

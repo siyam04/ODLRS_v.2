@@ -10,7 +10,7 @@ from .forms import TestOrderForm, TestAddForm
 
 
 def all_tests(request, template_name='tests/all_tests.html'):
-    all_test_list = Test.objects.all().order_by('-id')
+    all_test_list = Test.objects.all()
 
     context = {'all_test_list': all_test_list}
 
@@ -20,7 +20,7 @@ def all_tests(request, template_name='tests/all_tests.html'):
 
 
 def test_categories(request, template_name='tests/categories.html'):
-    categories = TestCategory.objects.all().order_by('-id')
+    categories = TestCategory.objects.all()
 
     context = {'categories': categories}
 
@@ -156,7 +156,7 @@ def add_test_by_staff(request):
 
 
 def all_tests_list_for_staff(request, template_name='tests/all_tests_list_for_staff.html'):
-    all_added_tests = Test.objects.all().order_by('-id')
+    all_added_tests = Test.objects.all()
 
     context = {'all_added_tests': all_added_tests}
 
