@@ -57,7 +57,7 @@ def test_order(request, id=None):
 
     try:
         current_profile = Profile.objects.get(user=request.user)
-        current_test = Test.objects.get(id=id)
+        current_test = Test.objects.get(id=id).order_by('-id')
 
         initial_data = {
             'client_info': current_profile,

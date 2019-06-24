@@ -23,7 +23,7 @@ def home(request):
     if query:
         T = T.filter(Q(test_name__icontains=query)).distinct()
 
-    paginator = Paginator(T, 2)
+    paginator = Paginator(T, 4)
     page = request.GET.get('page')
 
     all_tests = paginator.get_page(page)

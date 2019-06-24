@@ -20,40 +20,45 @@
     <hr>
     <button type="submit"><a href="{% url 'diagnostic_centers:staff-logout' %}"><b>Logout</b></a></button>
     <button type="submit"><b style="color: red"><a href="{% url 'tests:add-test' %}">ADD NEW TEST</a></b></button>
+<br>
+<br>
+    <button type="submit"><a href="{% url 'tests:all-tests-list-staff' %}"><b>Newly Added Test By Staff</b></a></button>
+
     <hr>
     <h3>Diagnostic Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
     <h3>Staff Name: <b style="color: blue">{{ staff.username }}</b></h3>
     <hr>
 
-    <h2>Staff Task Status</h2>
+    <h2 style="color: orangered">Current Orders</h2>
 
 <div>
     {% for test in pending_tests %}
-
-        <li><a href="{% url 'tests:order-details' test.id %}">{{ test.test_info.test_name }}</a></li>
+        <hr>
+        <p><a href="{% url 'tests:order-details' test.id %}">~ {{ test.test_info.test_name }}</a></p>
 
         {% if test.staff_check == True and test.accepted == True %}
 
-            <p>Pending for Admin Approval...</p>
+            <h6 style="color: forestgreen">* Accepted...</h6>
+
 
         {% elif test.staff_check == True and test.accepted == False %}
 
-            <p>Rejected...</p>
+            <h6 style="color: red"> * Rejected...</h6>
 
         {% endif %}
 
-
-{% endfor %}
+    {% endfor %}
+        <hr>
 
 </div>
 <br>
-<hr>
-    <button type="submit"><a href="{% url 'tests:all-tests-list-staff' %}"><b>Newly Added Test By Staff</b></a></button>
-<hr>
+{#<hr>#}
+{#    <button type="submit"><a href="{% url 'tests:all-tests-list-staff' %}"><b>Newly Added Test By Staff</b></a></button>#}
+{#<hr>#}
 <br>
 
     <table style="width: 50%" border="1px">
-        <tr><b style="color: red">Reported To:</b></tr>
+        <tr><b style="color: blue">Reported To:</b></tr>
         <tr>
             <th style="color: forestgreen">Serial</th>
             <th style="color: forestgreen">Admin Name</th>
