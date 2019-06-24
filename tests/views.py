@@ -6,6 +6,7 @@ from .models import Test, TestCategory, TestOrder
 from .forms import TestOrderForm
 
 
+
 def all_tests(request, template_name='tests/all_tests.html'):
     all_test_list = Test.objects.all()
 

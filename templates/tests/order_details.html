@@ -22,11 +22,13 @@
 
     {% endif %}
 
-    <h4>Client: <b style="color: blue">{{ order_details.client_info }}</b></h4>
+    <h4>Client: <b style="color: blue">{{ order_details.client_info.profile_name }}</b></h4>
 
     <h4>Test Name: <b style="color: blue">{{ order_details.test_info }}</b></h4>
 
-    <h4>Test Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h4>
+    <h4>Center  Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h4>
+
+
 
     <h5>ID: <b style="color: red">{{ order_details.id }}</b></h5>
 
