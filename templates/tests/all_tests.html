@@ -14,13 +14,12 @@
     }
 </style>
 
-<!-- {% for test in all_test_list %} -->
 
-<div class="container">
+<div class="container mt-4">
     <div class="row">
 
         {% for test in all_test_list %}
-        <div class="col-3 mt-4">
+        <div class="col-3 mb-4">
             <div class="card">
                 <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
 
@@ -46,22 +45,5 @@
 
     </div>
 </div>
-
-<!-- <h4>Name: <b style="color: blue"><a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a></b></h4>
-
-<img src="{{ test.image.url }}" alt="image" height="300" width="500">
-
-<h5>ID: <b style="color: red">{{ test.id }}</b></h5>
-<h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
-<h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
-<h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
-<h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
-<h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
-<br>
-<button type="submit"><b><a href="{% url 'tests:order' test.id %}">ORDER</a></b></button>
-<br> -->
-
-<!-- {% endfor %} -->
-
 
 {% endblock %}

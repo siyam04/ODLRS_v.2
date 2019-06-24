@@ -12,29 +12,13 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
 </head>
 
 <body>
-  <!-- {% block body %} {# {% if messages %}#} {#
-    <div>
-      #} {# <strong>Messages:</strong>#} {#
-      <ul>
-        #} {# {% for message in messages %}#} {#
-        <li>{{ message }}</li>
-        #} {# {% endfor %}#} {#
-      </ul>
-      #} {#
-    </div>
-    #} {# {% endif %}#} -->
+
 
   <div class="">
-    <!-- <hr>
-		<p>** Separate Later</p>
-		<p><a href="{% url 'diagnostic_centers:admin-login' %}">Diagnostic ADMIN Login</a></p>
-		<p><a href="{% url 'diagnostic_centers:staff-login' %}">Diagnostic STAFF Login</a></p>
-		<p>** Separate Later</p>
-		<hr>
-		<strong>Base Section Header</strong> -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
@@ -80,30 +64,12 @@
       </div>
     </nav>
 
-    <!-- <ul>
-      <li><a href="{% url 'home' %}">Home | LOGO</a></li>
-      <li>
-        <a href="{% url 'diagnostic_centers:all-centers' %}">Diagnostic Centers</a>
-      </li>
-      <li><a href="{% url 'tests:all-tests' %}">All Tests</a></li>
-      <li><a href="{% url 'tests:categories' %}">All Categories</a></li>
-
-      {% if user.is_authenticated %}
-      <li><a href="{% url 'custom_users:profile' %}">Profile</a></li>
-      <li><a href="{% url 'account_logout' %}">Logout</a></li>
-      {% else %}
-      <li><a href="{% url 'account_login' %}">Login</a></li>
-      <li><a href="{% url 'account_signup' %}">SignUp</a></li>
-      {% endif %}
-    </ul> -->
-
-    <!-- <strong>Base Section Header</strong> -->
   </div>
 
   {% block content %} {% endblock %} {% endblock %} {% block extra_body %} {%endblock %}
 
   <div class="footer bg-dark text-white text-center py-2">
-    <p> &copy; Copyrights 2019. All rights reserved. </p>
+    <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
   </div>
 
 </body>
