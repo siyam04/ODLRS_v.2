@@ -17,10 +17,6 @@
 
             <!-- Search -->
             <form class="search" action="" method="GET">
-                <!-- <input type="text" class="form-control" name='q' placeholder="type anything...">
-                <button type="submit" class="btn btn-primary" class="searchButton"><i
-                        class="fa fa-search">SEARCH</i></button> -->
-
                 <div class="input-group">
                     <input type="text" class="form-control" name='q' placeholder="Search Tests..."
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -37,30 +33,6 @@
         </div>
     </div>
 
-
-
-
-    <!-- {% if user.is_authenticated %}
-    <h4 style="color: blue">**Welcome @<b><a href="{% url 'custom_users:profile' %}"
-                style="color: forestgreen">{{ user.username }}</a></b></h4>
-    {% else %}
-    <div class="alert alert-success text-center"> <strong>Logged Out!</strong> </div>
-    <h2><b style="color: forestgreen">Logged Out!</b></h2>
-    {% endif %} -->
-
-    <!-- <h2>Categories Tests</h2>
-
-    {#        {% include 'tests/all_tests.html' %}#}
-
-    {% for filter in all_category %}
-
-    <h5><a href="{% url 'tests:categorise-tests' filter.id %}">{{ filter.category_name }}</a></h5>
-
-    {% endfor %}
-
-    <br>
-
-    <h2>All Tests</h2> -->
 
     <div class="row my-4">
         {% for test in T %}
@@ -92,31 +64,6 @@
     </div>
 
 
-
-
-    <!-- {% for test in T %}
-
-    <h4>Name: <b style="color: blue"><a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a></b></h4>
-
-    <img src="{{ test.image.url }}" alt="image" height="300" width="500">
-
-    <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
-
-    <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
-
-    <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
-
-    <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
-
-    <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
-
-    <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
-    <br>
-    <button type="submit"><b><a href="{% url 'tests:order' test.id %}">ORDER</a></b></button>
-    <br>
-    <br>
-    {% endfor %} -->
-
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
@@ -140,26 +87,6 @@
         </ul>
     </nav>
 
-    <!-- Paginator -->
-    <!-- <b style="color: blue">**Paginator</b>
-    <div class="pagination" style="color: forestgreen">
-        <span class="step-links">
-            {% if T.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ T.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ T.number }} of {{ T.paginator.num_pages }}.
-            </span>
-
-            {% if T.has_next %}
-            <a href="?page={{ T.next_page_number }}">next</a>
-            <a href="?page={{ T.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div> -->
-    <!-- Paginator -->
 </div>
 
 {% endblock content %}
