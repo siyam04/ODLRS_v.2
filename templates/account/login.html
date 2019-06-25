@@ -22,7 +22,7 @@
 		<div class="col-sm-4 offset-4 text-center">
 
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header bg-warning">
 					<h1>{% trans "Sign In" %}</h1>
 				</div>
 
@@ -56,8 +56,8 @@
 							value="{{ redirect_field_value }}" />
 						{% endif %}
 
-						<button class="btn btn-primary btn-sm primaryAction"
-							type="submit">{% trans "Sign In" %}</button>
+						<button class="btn btn-warning btn-s my-4 primaryAction" type="submit"
+							style="width: 80%">{% trans "Sign In" %}</button>
 					</form>
 				</div>
 			</div>
