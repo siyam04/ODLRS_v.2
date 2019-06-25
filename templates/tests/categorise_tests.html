@@ -19,8 +19,11 @@
                 <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
 
                 <div class="card-body">
-                    <p class="text-primary">Test Name: <span class="text-dark">{{ test.test_name }}</span></p>
-                    <p class="text-primary">Center: <span class="text-dark">{{ test.center.name }}</span></p>
+                    <h5>
+                        <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
+                    </h5>
+                    <!-- <p>{{ test.test_name }}</p> -->
+                    <p>{{ test.center.name }}</p>
                 </div>
             </div>
         </div>
