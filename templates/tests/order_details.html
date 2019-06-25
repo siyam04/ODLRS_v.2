@@ -3,6 +3,16 @@
 {% block title %}Order Details | ODLRS{% endblock %}
 
 {% block content %}
+
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div{% if messages.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
     <hr>
     <h1>Order Details</h1>
     <br>
@@ -22,15 +32,18 @@
 
     {% endif %}
 
+     
+    <h5>ID: <b style="color: red">{{ order_details.id }}</b></h5>
+    
     <h4>Client: <b style="color: blue">{{ order_details.client_info.profile_name }}</b></h4>
 
     <h4>Test Name: <b style="color: blue">{{ order_details.test_info }}</b></h4>
 
     <h4>Center  Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h4>
 
-
-
-    <h5>ID: <b style="color: red">{{ order_details.id }}</b></h5>
+    <h4>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h4>
+    <h4>Eamil: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h4>
+   
 
     <h4>Category: <b style="color: blue">{{ order_details.payment_option }}</b></h4>
 
@@ -46,6 +59,8 @@
 
     {% if request.user.is_authenticated %}
 
+<a href="{% url 'tests:payment_method' id=order_details.id %}"><button type="submit">Payment</button></a>
+      
     {% else %}
 
         {% if order_details.staff_check == False and order_details.accepted == False %}

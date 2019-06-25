@@ -5,6 +5,7 @@ from custom_users.models import Profile
 from .models import Test, TestCategory, TestOrder
 from .forms import TestOrderForm
 
+from django.contrib.auth.models import User
 
 
 def all_tests(request, template_name='tests/all_tests.html'):
@@ -15,7 +16,7 @@ def all_tests(request, template_name='tests/all_tests.html'):
     return render(request, template_name, context)
 
 
-def test_order(request, id=None):
+def test_order(request, id=id):
 
     try:
         current_profile = Profile.objects.get(user=request.user)
@@ -58,6 +59,32 @@ def order_details_info(request, id=None):
     }
 
     return render(request, template, context)
+
+
+def payment_method(request,template="tests/paynent_method.html",id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    context = {
+        'order_details': order_details,
+    }
+
+    return render(request,template,context)
+
+
+def confirm_prement(request, id = None):
+
+    messages.success(request, "Payment Successfull")
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect("tests:order-details", id=order_details.id)
+
+def reject_prement(request, id = None):
+    
+    messages.error(request, "Order Reject")
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect("tests:order-details", id=order_details.id)
 
 
 def staff_approved(request, id=None):
