@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Test | ODLRS</title>
+</head>
+
+<body>
+
+    <h1>Add Test</h1>
+    <hr>
+    <b>Managed by Staff</b>
+    <hr>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ test_add_form.as_p }}
+
+        <button type="submit">ADD</button>
+    </form>
+
+</body>
+</html>

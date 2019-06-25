@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Categorise Tests | ODLRS{% endblock %}
+
+{% block content %}
+
+    {% for test in  filtered_tests %}
+
+        <h4>Test Name: <strong style="color: blue">{{ test.test_name }}</strong></h4>
+        <h4>Center: <strong style="color: blue">{{ test.center.name }}</strong></h4>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

@@ -22,8 +22,9 @@ class TestAdmin(admin.ModelAdmin):
 
 
 class TestOrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'client_info', 'test_info', 'payment_option', 'date', 'staff_check', 'admin_approve']
-    list_display_links = ['test_info']
+    list_display = ['id', 'client_info', 'test_info', 'contact_no', 'email', 'address', 'payment_option',
+                    'date', 'time', 'staff_check']
+    list_display_links = ['client_info', 'test_info']
     list_filter = ['client_info', 'test_info']
     search_fields = ['id', 'client_info', 'test_info']
 

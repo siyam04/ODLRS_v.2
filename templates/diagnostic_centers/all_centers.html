@@ -3,61 +3,91 @@
 {% block title %}All Centers | ODLRS{% endblock %}
 
 {% block content %}
-    <hr>
-    <h1>Diagnostic Centers</h1>
-    <br>
 
-    <!-- Search -->
-    <form class="search input-group mt-4" action="" method="GET">
-        <input type="text" name='q' placeholder="type anything...">
-        <button type="submit" class="searchButton"><i class="fa fa-search">SEARCH</i></button>
-    </form>
-    <!-- Search -->
+<style>
+    p {
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
 
-    <br>
-    <br>
-    {% for centers in Centers %}
+    span {
+        color: black;
+        font-weight: normal;
+    }
+</style>
 
-        <b style="color: orangered">
-            --------------------------------------------------------------------------------
-            --------------------------------------------------------------------------------
-        </b>
+<div class="container">
 
-        <h4>Name: <b style="color: blue">{{ centers.name }}</b></h4>
+    <div class="bg-dark p-5 my-4">
+        <div class="container">
+            <h3 class="text-white mb-4">Search Centers</h3>
 
-        <img src="{{ centers.image.url }}" alt="image" height="300" width="500">
+            <form class="search" action="" method="GET">
 
-        <h5>ID: <b style="color: red">{{ centers.id }}</b></h5>
-        <h4>Email: <b style="color: blue">{{ centers.email }}</b></h4>
-        <h4>Contact: <b style="color: blue">{{ centers.contact_no }}</b></h4>
-        <h4>Website: <b style="color: blue">{{ centers.website }}</b></h4>
-        <h4>Address: <b style="color: blue">{{ centers.address }}</b></h4>
-
-        <br>
-        <br>
-
-    {% endfor %}
-    <br>
-     <!-- Paginator -->
-    <b style="color: red">**Paginator</b>
-        <div class="pagination" style="color: forestgreen">
-            <span class="step-links">
-                {% if Centers.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ Centers.previous_page_number }}">previous</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ Centers.number }} of {{ Centers.paginator.num_pages }}.
-                </span>
-
-                {% if Centers.has_next %}
-                    <a href="?page={{ Centers.next_page_number }}">next</a>
-                    <a href="?page={{ Centers.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
+                <div class="input-group">
+                    <input type="text" class="form-control" name='q' placeholder="search centers..."
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-info" class="searchButton">
+                            SEARCH
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-      <!-- Paginator -->
+    </div>
 
 
+    <div class="center-lists my-4">
+        <div class="row">
+
+            {% for centers in Centers %}
+            <div class="col-3">
+                <div class="card">
+                    <img src="{{ centers.image.url }}" class="card-img-top" alt="..." width="100%">
+
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ centers.name }}
+                        </h5>
+
+                        <p class="card-text text-primary">Email: <span>{{ centers.email }}</span></p>
+                        <p class="card-text text-primary">Contact: <span>{{ centers.contact_no }}</span></p>
+                        <p class="card-text text-primary">Website: <span>{{ centers.website }}</span> </p>
+                        <p class="card-text text-primary">Address: <span>{{ centers.address }}</span> </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <ul class="pagination">
+        <li class="page-item">
+            {% if Centers.has_previous %}
+            <a class="page-link" href="?page={{ Centers.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="false">&laquo;</span>
+            </a>
+            {% endif %}
+
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">Page {{ Centers.number }} of {{ Centers.paginator.num_pages }}.</a>
+        </li>
+        <li class="page-item">
+            {% if Centers.has_next %}
+            <a class="page-link" href="?page={{ Centers.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            {% endif %}
+        </li>
+    </ul>
+    </nav>
+
+
+
+</div>
 {% endblock %}

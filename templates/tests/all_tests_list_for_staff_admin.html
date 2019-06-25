@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Added Test | ODLRS</title>
+</head>
+
+<body>
+    <h1>Recently Added Test</h1>
+    <hr>
+
+    {% for test in all_added_tests %}
+
+        <b style="color: orangered">
+            --------------------------------------------------------------------------------
+            --------------------------------------------------------------------------------
+        </b>
+
+        <h4>Name: <b style="color: blue">{{ test.test_name }}</b></h4>
+
+        <img src="{{ test.image.url }}" alt="image" height="300" width="500">
+
+        <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
+        <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
+        <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
+        <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
+        <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
+        <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
+        <br>
+
+    {% endfor %}
+
+</body>
+</html>

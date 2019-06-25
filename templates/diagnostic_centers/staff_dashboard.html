@@ -1,108 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Staff Dashboard | ODLRS</title>
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
+        integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
 </head>
 
 <body>
-{#    {% include 'diagnostic_centers/messages.html' %}#}
-{#{% if messages %}#}
-{#    <strong>Messages:</strong>#}
-{#    <ul>#}
-{#	    {% for message in messages %}#}
-{#	        <li>{{message}}</li>#}
-{#	    {% endfor %}#}
-{#    </ul>#}
-{#{% endif %}#}
 
     <h1>Staff Dashboard</h1>
     <hr>
+    <button type="submit"><a href="{% url 'tests:all-tests-list-staff-admin' %}"><b>Newly Added Tests</b></a></button>
+<br>
+<br>
     <button type="submit"><a href="{% url 'diagnostic_centers:staff-logout' %}"><b>Logout</b></a></button>
+
     <hr>
-    <h3>Diagnostic Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
+    <h3>Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
     <h3>Staff Name: <b style="color: blue">{{ staff.username }}</b></h3>
     <hr>
 
-    <h2>Staff Task Status</h2>
-<hr>
+        <table style="width: 50%" border="1px">
+        <tr><b style="color: forestgreen">Reported To:</b></tr>
+        <tr>
+            <th>#</th>
+            <th>Admin</th>
+        </tr>
+            {% for a in admins %}
+            <tr>
+                <th scope="row" style="color: blue">{{ forloop.counter }}</th>
+                <th style="color: blue">{{ a.username }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    <hr>
+
+    <h2 style="color: orangered">Current Orders</h2>
+
 <div>
     {% for test in pending_tests %}
-
-        <h3>* <a href="{% url 'tests:order-details' test.id %}">{{ test.test_info.test_name }}</a></h3>
+        <hr>
+        <p><a href="{% url 'tests:order-details' test.id %}">~ {{ test.test_info.test_name }}</a></p>
 
         {% if test.staff_check == True and test.accepted == True %}
 
-            <h4>Pending for Admin Approval...</h4>
+            <h6 style="color: forestgreen">* Accepted...</h6>
 
-        {% elif test.staff_check == True and test.accepted == False %}
 
-            <h4>Rejected...</h4>
+            {% elif test.staff_check == True and test.accepted == False %}
 
-        {% endif %}
+            <h6 style="color: red"> * Rejected...</h6>
 
-        <p>---------------------------------------------------------------------------------------------------------</p>
+            {% endif %}
 
-{% endfor %}
+    {% endfor %}
+        <hr>
 
 </div>
-
-<br>
-<button type="submit"><b style="color: red">ADD NEW TEST</b></button>
 <br>
 <br>
-<br>
-    <table style="width: 50%" border="1px">
-        <tr><b style="color: red">Reported To:</b></tr>
-        <tr>
-            <th style="color: forestgreen">Serial</th>
-            <th style="color: forestgreen">Admin Name</th>
-        </tr>
-            {% for a in admins %}
-                <tr>
-                    <th scope="row" style="color: blue">{{ forloop.counter }}</th>
-                    <th style="color: blue">{{ a.username }}</th>
-                </tr>
-            {% endfor %}
-    </table>
-
-<br>
-<br>
-
-    <table style="width: 50%" border="1px">
-        <tr><b style="color: red">Active Orders:</b></tr>
-        <tr>
-            <th style="color: forestgreen">Serial</th>
-            <th style="color: forestgreen">Active Orders</th>
-        </tr>
-        <tr>
-            <th scope="row" style="color: blue">1</th>
-            <th style="color: blue">name</th>
-        </tr>
-    </table>
-
-<br>
-<br>
-
-
-    <table style="width: 50%" border="1px">
-        <tr><b style="color: red">All Tests:</b></tr>
-        <tr>
-            <th style="color: forestgreen">Serial</th>
-            <th style="color: forestgreen">Test Name</th>
-            <th style="color: forestgreen">Categoy</th>
-            <th style="color: forestgreen">Active Status</th>
-        </tr>
-        <tr>
-            <th scope="row" style="color: blue">1</th>
-            <th style="color: blue">name</th>
-            <th style="color: blue">category</th>
-            <th style="color: blue">status</th>
-        </tr>
-    </table>
-
-<br>
-<hr>
 
 </body>
+
 </html>

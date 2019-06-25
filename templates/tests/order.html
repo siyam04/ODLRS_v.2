@@ -3,16 +3,28 @@
 {% block title %}Order | ODLRS{% endblock %}
 
 {% block content %}
-    <hr>
-    <h1>Order</h1>
-    <br>
-    <br>
 
-    <form action="#" method="post">
-        {% csrf_token %}
-        {{ test_order_form.as_p }}
-        <hr>
-        <button type="submit">CONFIRM</button>
-    </form>
+<div class="container">
+    <div class="row my-5">
+        <div class="col-4 offset-4 text-cente">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Order</h1>
+                </div>
+                <div class="card-body">
+                    <form action="#" method="post">
+                        {% csrf_token %}
+
+                        {{ test_order_form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-sm">CONFIRM</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock %}

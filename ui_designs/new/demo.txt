@@ -1,1 +1,0 @@
-Copy templates from the 'original' folder and design here.
