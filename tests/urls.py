@@ -14,8 +14,8 @@ from .views import (
     staff_approved,
     staff_rejected,
 
-    add_test_by_staff,
-    all_tests_list_for_staff,
+    add_test_by_admin,
+    all_tests_list_for_staff_admin,
 
 )
 
@@ -40,8 +40,8 @@ urlpatterns = [
 
     path('staff-rejected/<int:id>/', staff_rejected, name='staff-rejected'),
 
-    path('add-test/', add_test_by_staff, name='add-test'),
+    path('add-test/', add_test_by_admin, name='add-test'),
 
-    path('all-tests-list-staff/', all_tests_list_for_staff, name='all-tests-list-staff'),
+    path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
 
 ]

@@ -10,16 +10,33 @@
 
     <h1>Admin Dashboard</h1>
     <hr>
+    <button type="submit"><b style="color: red"><a href="{% url 'tests:add-test' %}">Add New Test</a></b></button>
+    <br><br>
+    <button type="submit"><a href="{% url 'tests:all-tests-list-staff-admin' %}"><b>Newly Added Tests</b></a></button>
+    <br><br>
     <button type="submit"><a href="{% url 'diagnostic_centers:admin-logout' %}"><b>Logout</b></a></button>
-    <button type="submit"><a href="{% url 'tests:all-tests-list-staff' %}"><b>Newly Added Test By Staff</b></a></button>
     <hr>
-    <h3>Diagnostic Center Name: <b style="color: blue">{{ admin.center }}</b></h3>
+    <h3>Center Name: <b style="color: blue">{{ admin.center }}</b></h3>
     <h3>Admin Name: <b style="color: blue">{{ admin.username }}</b></h3>
     <hr>
 
-    <h2 style="color: blue">Admin Task Status</h2>
     <br>
 
+            <table style="width: 50%" border="1px">
+                <tr><b style="color: forestgreen">Staffs:</b></tr>
+                <tr>
+                    <th>#</th>
+                    <th>Staff</th>
+                </tr>
+            {% for s in admin.staff.all %}
+                <tr>
+                    <th scope="row" style="color: blue">{{ forloop.counter }}</th>
+                    <th style="color: blue">{{ s.username }}</th>
+                </tr>
+                {% endfor %}
+        </table>
+    <br>
+    <hr>
     <h3 style="color: forestgreen">Active Orders</h3>
 
     {% for test in pending_staff_tests %}
@@ -30,40 +47,7 @@
 
     <hr>
 
-    <table style="width: 50%" border="1px">
-        <tr><b style="color: red">Staffs Under Admin:</b></tr>
-        <tr>
-            <th style="color: forestgreen">Serial</th>
-            <th style="color: forestgreen">Staff Name</th>
-        </tr>
-        {% for s in admin.staff.all %}
-        <tr>
-            <th scope="row" style="color: blue">{{ forloop.counter }}</th>
-            <th style="color: blue">{{ s.username }}</th>
-        </tr>
-        {% endfor %}
-    </table>
-
     <br>
-    <br>
-
-    <table style="width: 50%" border="1px">
-        <tr><b style="color: red">Test Status:</b></tr>
-        <tr>
-            <th style="color: forestgreen">Serial</th>
-            <th style="color: forestgreen">Test Status</th>
-            <th style="color: forestgreen">Confirmation</th>
-            <th style="color: forestgreen">Report</th>
-        </tr>
-        <tr>
-            <th scope="row" style="color: blue">1</th>
-            <th style="color: blue">status</th>
-            <th style="color: blue">confirm order</th>
-            <th style="color: blue">report ID</th>
-        </tr>
-    </table>
-    <br>
-    <hr>
 
 </body>
 

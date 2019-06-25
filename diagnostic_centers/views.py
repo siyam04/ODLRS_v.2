@@ -26,7 +26,7 @@ def search_paginator(request):
         )
         print(Centers)
 
-    paginator = Paginator(Centers, 2) 
+    paginator = Paginator(Centers, 8)
     page = request.GET.get('page')
     all_centers = paginator.get_page(page)
 
@@ -48,7 +48,7 @@ def admin_login(request, template_name='diagnostic_centers/admin_login.html'):
 
         try:
             DiagnosticAdmin.objects.get(username=username, password=password)
-            messages.success(request, 'Login Successful for {}'.format(username), extra_tags='html_safe')
+            # messages.success(request, 'Login Successful for {}'.format(username), extra_tags='html_safe')
             return redirect('diagnostic_centers:admin-dashboard', username)
 
         except DiagnosticAdmin.DoesNotExist:
@@ -67,10 +67,9 @@ def admin_dashboard(request, username=None, template_name='diagnostic_centers/ad
 
     pending_staff_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center).order_by('-id')
 
-
-    context = {'admin': admin,
-               'pending_staff_tests': pending_staff_tests,
-
+    context = {
+        'admin': admin,
+        'pending_staff_tests': pending_staff_tests,
     }
 
     return render(request, template_name, context)
@@ -96,7 +95,7 @@ def staff_login(request, template_name='diagnostic_centers/staff_login.html'):
 
         try:
             DiagnosticStaff.objects.get(username=username, password=password)
-            messages.success(request, 'Login Successful for {}'.format(username), extra_tags='html_safe')
+            # messages.success(request, 'Login Successful for {}'.format(username), extra_tags='html_safe')
             return redirect('diagnostic_centers:staff-dashboard', username)
 
         except DiagnosticStaff.DoesNotExist:

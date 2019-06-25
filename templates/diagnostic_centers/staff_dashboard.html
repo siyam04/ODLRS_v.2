@@ -17,69 +17,24 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">Staff Dashboard</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <h1>Staff Dashboard</h1>
+    <hr>
+    <button type="submit"><a href="{% url 'tests:all-tests-list-staff-admin' %}"><b>Newly Added Tests</b></a></button>
+<br>
+<br>
+    <button type="submit"><a href="{% url 'diagnostic_centers:staff-logout' %}"><b>Logout</b></a></button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#"> Report Lists </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-
-        <h1>Staff Dashboard</h1>
-        <hr>
-        <button type="submit"><a href="{% url 'diagnostic_centers:staff-logout' %}"><b>Logout</b></a></button>
-        <button type="submit"><b style="color: red"><a href="{% url 'tests:add-test' %}">ADD NEW TEST</a></b></button>
-        <hr>
-        <h3>Diagnostic Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
-        <h3>Staff Name: <b style="color: blue">{{ staff.username }}</b></h3>
-        <hr>
-
-        <h2>Staff Task Status</h2>
-
-        <div>
-            {% for test in pending_tests %}
-
-            <li><a href="{% url 'tests:order-details' test.id %}">{{ test.test_info.test_name }}</a></li>
-
-            {% if test.staff_check == True and test.accepted == True %}
-
-            <p>Pending for Admin Approval...</p>
-
-            {% elif test.staff_check == True and test.accepted == False %}
-
-            <p>Rejected...</p>
-
-            {% endif %}
-
-
-            {% endfor %}
-
-        </div>
-        <hr>
-        <button type="submit"><a href="{% url 'tests:all-tests-list-staff' %}"><b>Newly Added Test By
-                    Staff</b></a></button>
-        <hr>
+    <hr>
+    <h3>Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
+    <h3>Staff Name: <b style="color: blue">{{ staff.username }}</b></h3>
+    <hr>
 
         <table style="width: 50%" border="1px">
-            <tr><b style="color: red">Reported To:</b></tr>
-            <tr>
-                <th style="color: forestgreen">Serial</th>
-                <th style="color: forestgreen">Admin Name</th>
-            </tr>
+        <tr><b style="color: forestgreen">Reported To:</b></tr>
+        <tr>
+            <th>#</th>
+            <th>Admin</th>
+        </tr>
             {% for a in admins %}
             <tr>
                 <th scope="row" style="color: blue">{{ forloop.counter }}</th>
@@ -87,8 +42,32 @@
             </tr>
             {% endfor %}
         </table>
+    <hr>
 
-    </div>
+    <h2 style="color: orangered">Current Orders</h2>
+
+<div>
+    {% for test in pending_tests %}
+        <hr>
+        <p><a href="{% url 'tests:order-details' test.id %}">~ {{ test.test_info.test_name }}</a></p>
+
+        {% if test.staff_check == True and test.accepted == True %}
+
+            <h6 style="color: forestgreen">* Accepted...</h6>
+
+
+            {% elif test.staff_check == True and test.accepted == False %}
+
+            <h6 style="color: red"> * Rejected...</h6>
+
+            {% endif %}
+
+    {% endfor %}
+        <hr>
+
+</div>
+<br>
+<br>
 
 </body>
 

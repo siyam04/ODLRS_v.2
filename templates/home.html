@@ -13,12 +13,11 @@
 
     <div class="bg-dark p-5 my-4">
         <div class="container">
-            <h3 class="text-white mb-4">Search Tests...</h3>
+            <h3 class="text-white mb-4">Search Tests</h3>
 
             <form class="search" action="" method="GET">
-
                 <div class="input-group">
-                    <input type="text" class="form-control" name='q' placeholder="Search Tests..."
+                    <input type="text" class="form-control" name='q' placeholder="search tests..."
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-info" class="searchButton">
@@ -32,9 +31,8 @@
     </div>
 
 
-
     <div class="row my-4">
-        {% for test in T %}
+        {% for test in paginator_dataset %}
         <div class="col-3">
             <div class="card">
                 <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
@@ -45,8 +43,13 @@
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
                     <p class="card-text">{{ test.center }}</p>
+
+                    {% if test.discount %}
+                        <p class="card-text">Discount: {{ test.discount }}</p>
+                    {% endif %}
+
                     <p class="card-text text-danger">Price: {{ test.price }} TK</p>
-                    <p class="card-text">Home Delivery: {{ test.active_status }}</p>
+                    <p class="card-text">{{ test.active_status }}</p>
 
                     <div class="dropdown-divider"></div>
                     <div class="btn-block text-center">
@@ -64,7 +67,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                {% if T.has_previous %}
+                {% if paginator_dataset.has_previous %}
                 <a class="page-link" href="?page=1" aria-label="Previous">
                     <span aria-hidden="false">&laquo;</span>
                 </a>
@@ -72,11 +75,11 @@
 
             </li>
             <li class="page-item">
-                <a class="page-link" href="#">Page {{ T.number }} of {{ T.paginator.num_pages }}</a>
+                <a class="page-link" href="#">Page {{ paginator_dataset.number }} of {{ paginator_dataset.paginator.num_pages }}</a>
             </li>
             <li class="page-item">
-                {% if T.has_next %}
-                <a class="page-link" href="?page={{ T.next_page_number }}" aria-label="Next">
+                {% if paginator_dataset.has_next %}
+                <a class="page-link" href="?page={{ paginator_dataset.next_page_number }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
                 {% endif %}

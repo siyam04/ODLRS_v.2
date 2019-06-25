@@ -1,5 +1,6 @@
 # Online Diagnostic Lab Reporting System (ODLRS)
-* Developed by Django Web Framework.
+
+![home](https://user-images.githubusercontent.com/23103980/60100828-5a67c600-977c-11e9-94d6-4291dd9661f0.png)
 
 ## OS support: Windows-10, Linux & MAC.
 * Some commands may differ depending on OS. Just google it.
