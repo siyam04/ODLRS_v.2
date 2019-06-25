@@ -53,13 +53,9 @@ def test_details(request, id=id):
 
 ########################################################################################
 
-<<<<<<< HEAD
-def test_order(request, id=id):
-=======
 
 @login_required
 def test_order(request, id=None):
->>>>>>> master
 
     try:
         current_profile = Profile.objects.get(user=request.user)

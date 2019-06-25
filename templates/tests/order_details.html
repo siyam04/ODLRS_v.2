@@ -3,76 +3,6 @@
 {% block title %}Order Details | ODLRS{% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
-
-
-{% if messages %}
-<div class="messages">
-    {% for message in messages %}
-    <div{% if messages.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-    {% endfor %}
-</div>
-{% endif %}
-
-    <hr>
-    <h1>Order Details</h1>
-    <br>
-    <br>
-
-    <b style="color: orangered">
-            --------------------------------------------------------------------------------
-            --------------------------------------------------------------------------------
-    </b>
-
-    {% if order_details.staff_check == True and order_details.accepted == True %}
-
-        <h4>Pending for Approval...</h4>
-
-    {% elif order_details.staff_check == True and order_details.accepted == False %}
-        <h4>Rejected...</h4>
-
-    {% endif %}
-
-     
-    <h5>ID: <b style="color: red">{{ order_details.id }}</b></h5>
-    
-    <h4>Client: <b style="color: blue">{{ order_details.client_info.profile_name }}</b></h4>
-
-    <h4>Test Name: <b style="color: blue">{{ order_details.test_info }}</b></h4>
-
-    <h4>Center  Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></h4>
-
-    <h4>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h4>
-    <h4>Eamil: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h4>
-   
-
-    <h4>Category: <b style="color: blue">{{ order_details.payment_option }}</b></h4>
-
-    <h4>Date: <b style="color: blue">{{ order_details.date }}</b></h4>
-
-    <h4>Time: <b style="color: blue">{{ order_details.time }}</b></h4>
-
-    <h4>Price: <b style="color: blue">{{ order_details.staff_check }}</b></h4>
-
-    <h4>Status: <b style="color: blue">{{ order_details.admin_approve }}</b></h4>
-    <br>
-    <br>
-
-    {% if request.user.is_authenticated %}
-
-<a href="{% url 'tests:payment_method' id=order_details.id %}"><button type="submit">Payment</button></a>
-      
-    {% else %}
-
-        {% if order_details.staff_check == False and order_details.accepted == False %}
-
-            <h3><a href="{% url 'tests:staff-approved' order_details.id %}">Approve</a></h3>
-            <h3><a href="{% url 'tests:staff-rejected' order_details.id %}">Reject</a></h3>
-
-        {% endif %}
-    {% endif %}
-=======
-
 <style>
     .card p {
         margin-bottom: 0;
@@ -132,10 +62,9 @@
 
                     <p style="color: forestgreen">Total Price: <b style="color: blue"> </b></p>
                     <hr>
-                    <button type="submit">PAYMENT</button>
-
                     {% if request.user.is_authenticated %}
-
+                    <a href="{% url 'tests:payment_method' id=order_details.id %}"> <button type="submit">PAYMENT</button> </a>
+                  
                     {% else %}
 
                     {% if order_details.staff_check == False and order_details.accepted == False %}
@@ -150,7 +79,7 @@
         </div>
     </div>
 </div>
->>>>>>> master
+
 
 
 {% endblock %}

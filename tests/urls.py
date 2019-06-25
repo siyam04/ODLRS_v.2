@@ -1,8 +1,5 @@
 from django.urls import path
 
-<<<<<<< HEAD
-from .views import all_tests, test_order, order_details_info, staff_approved, staff_rejected,payment_method,confirm_prement,reject_prement
-=======
 from .views import (
 
     all_tests,
@@ -20,8 +17,12 @@ from .views import (
     add_test_by_admin,
     all_tests_list_for_staff_admin,
 
+    payment_method,
+    confirm_prement,
+    reject_prement,
+
 )
->>>>>>> master
+
 
 
 app_name = 'tests'
@@ -46,8 +47,7 @@ urlpatterns = [
 
     path('add-test/', add_test_by_admin, name='add-test'),
 
-<<<<<<< HEAD
-    path('staff-rejected/<int:id>', staff_rejected, name='staff-rejected'),
+    path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
     
     path('payment_method/<int:id>',payment_method,name="payment_method"),
 
@@ -56,8 +56,6 @@ urlpatterns = [
     path('reject_prement/<int:id>',reject_prement,name="reject_prement")
 
 
-=======
-    path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
->>>>>>> master
+
 
 ]
