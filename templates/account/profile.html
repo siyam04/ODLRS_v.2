@@ -3,27 +3,47 @@
 {% block title %}Profile | ODLRS{% endblock %}
 
 {% block content %}
-    <div class="welcome text-dark">
 
-        <div class="alert alert-success text-center">Your Profile</div>
-        <div class="row">
+<style>
+    p {
+        margin-bottom: 0;
+    }
+
+    .btn {
+        width: 100%;
+    }
+</style>
+
+<div class="container">
+
+    <div class="row my-4">
         <div class="col-md-5">
             <div class="card p-3">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                    Profile Name: <h2 class="text-success text-center">{{ user.customer_profile.profile_name }}</h2>
+                        Profile Name:
+                        <h2 class="text-success">{{ user.customer_profile.profile_name }}
+                        </h2>
 
                         <img src="{{ user.customer_profile.image.url }}" alt="" class="rounded-circle mx-auto d-block"
-                             height="200" width="200">
+                            height="200" width="200">
                     </li>
+
                     <li class="list-group-item">
-                        Username: <h3 class="text-success text-center">{{ user.username }}</h3>
-                        Email: <p class="text-success text-center">{{ user.email }}</p>
-                        Address: <p class="text-success text-center">{{ user.customer_profile.address }}</p>
+                        Username: <p class="text-success">{{ user.username }}</p>
                     </li>
+
+                    <li class="list-group-item">
+                        Email: <p class="text-success">{{ user.email }}</p>
+                    </li>
+
+                    <li class="list-group-item">
+                        Address: <p class="text-success">{{ user.customer_profile.address }}</p>
+                    </li>
+
                     {% if user.email %}
                     <li class="list-group-item">
-{#                        <p>{{ user.email }}</p>#}
+                        {# <p>{{ user.email }}</p>#}
                     </li>
                     {% endif %}
                 </ul>
@@ -31,14 +51,51 @@
         </div>
         <div class="col-md-7">
             <div class="card p-3">
-{#                <a href="{% url 'account_change_password' %}">Change your password</a>#}
-                <button><b><a href="{% url 'custom_users:profile-edit' %}">Edit Profile</a></b></button>
-                <br>
-                <button><b><a href="#">Reports / Notifications</a></b></button>
+
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-info btn-s" href="{% url 'custom_users:profile-edit' %}">Edit Profile</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-info btn-s" href="#">Reports / Notifications</a>
+                    </div>
+                </div>
 
             </div>
-        </div>
-        </div>
 
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h2 class="mb-0"> Notifications </h2>
+                </div>
+
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item border- px-0">
+                            <a class="nav-link px-" href="#"> Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                Quia!
+                            </a>
+                        </li>
+                        <li class="list-group-item border- px-0">
+                            <a class="nav-link px-" href="#"> Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                Quia!
+                            </a>
+                        </li>
+                        <li class="list-group-item border- px-0">
+                            <a class="nav-link px-" href="#"> Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                Quia!
+                            </a>
+                        </li>
+                        <li class="list-group-item border- px-0">
+                            <a class="nav-link px-" href="#"> Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                Quia!
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+
+</div>
+
 {% endblock content %}
