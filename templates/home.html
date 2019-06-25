@@ -31,10 +31,10 @@
     </div>
 
 
-    <div class="row my-4">
+    <div class="row mt-4">
         {% for test in paginator_dataset %}
         <div class="col-3">
-            <div class="card">
+            <div class="card mb-4">
                 <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
 
                 <div class="card-body">
@@ -45,7 +45,7 @@
                     <p class="card-text">{{ test.center }}</p>
 
                     {% if test.discount %}
-                        <p class="card-text">Discount: {{ test.discount }}</p>
+                    <p class="card-text">Discount: {{ test.discount }}</p>
                     {% endif %}
 
                     <p class="card-text text-danger">Price: {{ test.price }} TK</p>
@@ -75,7 +75,8 @@
 
             </li>
             <li class="page-item">
-                <a class="page-link" href="#">Page {{ paginator_dataset.number }} of {{ paginator_dataset.paginator.num_pages }}</a>
+                <a class="page-link" href="#">Page {{ paginator_dataset.number }} of
+                    {{ paginator_dataset.paginator.num_pages }}</a>
             </li>
             <li class="page-item">
                 {% if paginator_dataset.has_next %}
