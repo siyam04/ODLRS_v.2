@@ -1,3 +1,9 @@
+.idea/
+.vscode/
+# venv/
+db.sqlite3
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -55,7 +61,7 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-#db.sqlite3
+
 
 # Flask stuff:
 instance/
@@ -90,7 +96,7 @@ celerybeat-schedule
 .env
 .venv
 env/
-#venv/
+
 ENV/
 env.bak/
 venv.bak/
@@ -113,5 +119,3 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.idea/
-.vscode/

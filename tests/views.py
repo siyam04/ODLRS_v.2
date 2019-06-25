@@ -10,7 +10,7 @@ from .forms import TestOrderForm, TestAddForm
 
 
 def all_tests(request, template_name='tests/all_tests.html'):
-    all_test_list = Test.objects.all()
+    all_test_list = Test.objects.all().order_by('-id')
 
     context = {'all_test_list': all_test_list}
 
@@ -20,7 +20,7 @@ def all_tests(request, template_name='tests/all_tests.html'):
 
 
 def test_categories(request, template_name='tests/categories.html'):
-    categories = TestCategory.objects.all()
+    categories = TestCategory.objects.all().order_by('-id')
 
     context = {'categories': categories}
 
@@ -57,7 +57,7 @@ def test_order(request, id=None):
 
     try:
         current_profile = Profile.objects.get(user=request.user)
-        current_test = Test.objects.get(id=id).order_by('-id')
+        current_test = Test.objects.get(id=id)
 
         initial_data = {
             'client_info': current_profile,
@@ -136,13 +136,13 @@ def staff_rejected(request, id=None):
 ########################################################################################
 
 
-def add_test_by_staff(request):
+def add_test_by_admin(request):
     if request.method == 'POST':
         test_add_form = TestAddForm(request.POST)
 
         if test_add_form.is_valid():
             test_add_form.save()
-            return redirect('tests:all-tests-list-staff')
+            return redirect('tests:all-tests-list-staff-admin')
 
     else:
         test_add_form = TestAddForm()
@@ -155,8 +155,8 @@ def add_test_by_staff(request):
 ########################################################################################
 
 
-def all_tests_list_for_staff(request, template_name='tests/all_tests_list_for_staff.html'):
-    all_added_tests = Test.objects.all()
+def all_tests_list_for_staff_admin(request, template_name='tests/all_tests_list_for_staff_admin.html'):
+    all_added_tests = Test.objects.all().order_by('-id')
 
     context = {'all_added_tests': all_added_tests}
 

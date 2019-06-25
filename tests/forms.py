@@ -7,14 +7,12 @@ from .models import TestOrder, Test
 class TestOrderForm(forms.ModelForm):
     class Meta:
         model = TestOrder
-        fields = ['client_info', 'contact_no', 'test_info', 'payment_option', 'date', 'time']
+        fields = ['client_info', 'contact_no', 'email', 'address', 'test_info', 'payment_option', 'date', 'time']
 
         widgets = {
-            'payment_option': Select(),
-            'date': SelectDateWidget(),
+            'payment_option': Select(attrs={'class': 'form-control'}),
+            'date': SelectDateWidget(attrs={'class': 'form-control'}),
             'time': TimeInput(format='%H:%M', attrs={'type': 'time'}),
-
-            # 'time': TimeInput(format='%H:%M', attrs={'placeholder': 'Select a time', 'type': 'time'})
         }
 
 
@@ -24,9 +22,7 @@ class TestAddForm(forms.ModelForm):
         fields = ['test_name', 'image', 'category', 'center', 'discount', 'price', 'active_status']
 
         widgets = {
-            'category': Select(),
-            'center': Select(),
-            'active_status': Select(),
+            'active_status': Select(attrs={'class': 'form-control'}),
         }
 
 

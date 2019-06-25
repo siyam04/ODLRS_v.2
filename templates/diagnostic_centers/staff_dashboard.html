@@ -16,27 +16,32 @@
 </head>
 
 <body>
-{#    {% include 'diagnostic_centers/messages.html' %}#}
-{#{% if messages %}#}
-{#    <strong>Messages:</strong>#}
-{#    <ul>#}
-{#	    {% for message in messages %}#}
-{#	        <li>{{message}}</li>#}
-{#	    {% endfor %}#}
-{#    </ul>#}
-{#{% endif %}#}
 
     <h1>Staff Dashboard</h1>
     <hr>
+    <button type="submit"><a href="{% url 'tests:all-tests-list-staff-admin' %}"><b>Newly Added Tests</b></a></button>
+<br>
+<br>
     <button type="submit"><a href="{% url 'diagnostic_centers:staff-logout' %}"><b>Logout</b></a></button>
-    <button type="submit"><b style="color: red"><a href="{% url 'tests:add-test' %}">ADD NEW TEST</a></b></button>
-<br>
-<br>
-    <button type="submit"><a href="{% url 'tests:all-tests-list-staff' %}"><b>Newly Added Test By Staff</b></a></button>
 
     <hr>
-    <h3>Diagnostic Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
+    <h3>Center Name: <b style="color: blue">{{ staff.center }}</b></h3>
     <h3>Staff Name: <b style="color: blue">{{ staff.username }}</b></h3>
+    <hr>
+
+        <table style="width: 50%" border="1px">
+        <tr><b style="color: forestgreen">Reported To:</b></tr>
+        <tr>
+            <th>#</th>
+            <th>Admin</th>
+        </tr>
+            {% for a in admins %}
+            <tr>
+                <th scope="row" style="color: blue">{{ forloop.counter }}</th>
+                <th style="color: blue">{{ a.username }}</th>
+            </tr>
+            {% endfor %}
+        </table>
     <hr>
 
     <h2 style="color: orangered">Current Orders</h2>
@@ -62,26 +67,7 @@
 
 </div>
 <br>
-{#<hr>#}
-{#    <button type="submit"><a href="{% url 'tests:all-tests-list-staff' %}"><b>Newly Added Test By Staff</b></a></button>#}
-{#<hr>#}
 <br>
-
-    <table style="width: 50%" border="1px">
-        <tr><b style="color: blue">Reported To:</b></tr>
-        <tr>
-            <th style="color: forestgreen">Serial</th>
-            <th style="color: forestgreen">Admin Name</th>
-        </tr>
-            {% for a in admins %}
-            <tr>
-                <th scope="row" style="color: blue">{{ forloop.counter }}</th>
-                <th style="color: blue">{{ a.username }}</th>
-            </tr>
-            {% endfor %}
-        </table>
-
-    </div>
 
 </body>
 

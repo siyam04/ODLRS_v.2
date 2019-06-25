@@ -33,75 +33,37 @@
                 <div class="card-body">
                     {% if order_details.staff_check == True and order_details.accepted == True %}
 
-<<<<<<< HEAD
-                    <b style="color: forestgreen">* Confirmed !</b>
-=======
-                    <b style="color: red"> * Confirmed...</b>
->>>>>>> joy_ui
+                    <b style="color: forestgreen">*Confirmed...</b>
+
                     <hr>
                     {% elif order_details.staff_check == True and order_details.accepted == False %}
 
-                    <b style="color: red">* Rejected...</b>
+                    <b style="color: red">*Rejected...</b>
                     <hr>
                     {% endif %}
 
                     <p>Order No: <b style="color: blue">{{ order_details.id }}</b></p>
-
-<<<<<<< HEAD
                     <p>Client: <b style="color: blue">{{ order_details.client_info }} ({{ order_details.client_info.profile_name }})</b></p>
-
                     <p>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></p>
-
                     <p>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></p>
-
                     <p>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></p>
                     <hr>
-                    <p>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }} ({{ order_details.test_info.category }})</b></p>
-
-                    <p>Center: <b style="color: blue">{{ order_details.test_info.center.name }}</b></p>
-
-                    <p>Booking Date & Time: <b style="color: blue">{{ order_details.date }}</b></p>
-
-                    <p>Booking Time: <b style="color: blue">{{ order_details.time }}</b></p>
-
-                    <p>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></p>
-=======
-                    <p>Order No: <b style="color: blue">{{ order_details.id }}</b></p>
-
-                    <p>Client: <b style="color: blue">{{ order_details.client_info }}
-                            ({{ order_details.client_info.profile_name }})</b> </p>
-
-                    <p>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></p>
-
-                    <p>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></p>
-
-                    <p>Contact No: <b style="color: blue">{{ order_details.contact_no }}</b></p>
 
                     <p>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }}</b></p>
-
                     <p>Category: <b style="color: blue">{{ order_details.test_info.category }}</b></p>
-
-                    <!-- <p>Category: <b style="color: blue">{{ order_details.test_info.category }}</b></p> -->
-
-                    <p>Center Name: <b style="color: blue">{{ order_details.test_info.center.name }}</b></p>
-
-                    <p>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></p>
-
+                    <p>Center: <b style="color: blue">{{ order_details.test_info.center.name }}</b></p>
                     <p>Booking Date: <b style="color: blue">{{ order_details.date }}</b></p>
-
                     <p>Booking Time: <b style="color: blue">{{ order_details.time }}</b></p>
-
->>>>>>> joy_ui
+                    <p>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></p>
                     <hr>
-                    <p>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></p>
 
+                    <p>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></p>
                     <p>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></p>
                     <hr>
-                    <p>Total Price:</p>
 
+                    <p style="color: forestgreen">Total Price: <b style="color: blue"> </b></p>
                     <hr>
-                    <p>Total Price: <b style="color: blue"> </b></p>
-
+                    <button type="submit">PAYMENT</button>
 
                     {% if request.user.is_authenticated %}
 
