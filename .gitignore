@@ -1,7 +1,6 @@
 .idea/
 .vscode/
 # venv/
-*db.sqlite3
 
 
 # Byte-compiled / optimized / DLL files
