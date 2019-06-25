@@ -4,11 +4,34 @@
 
 {% block content %}
 
-    {% for test in  filtered_tests %}
+<style>
+    p {
+        margin-bottom: 0;
+    }
+</style>
 
-        <h4>Test Name: <strong style="color: blue">{{ test.test_name }}</strong></h4>
-        <h4>Center: <strong style="color: blue">{{ test.center.name }}</strong></h4>
-        <hr>
-    {% endfor %}
+<div class="container">
+    <div class="row mt-4">
+        {% for test in  filtered_tests %}
+
+        <div class="col-3">
+            <div class="card mb-4">
+                <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+
+                <div class="card-body">
+                    <h5>
+                        <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
+                    </h5>
+                    <!-- <p>{{ test.test_name }}</p> -->
+                    <p>{{ test.center.name }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
 
 {% endblock %}
