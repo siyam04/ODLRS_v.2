@@ -93,10 +93,13 @@ def test_order(request, id=None):
 def order_details_info(request, id=None):
     order_details = TestOrder.objects.get(id=id)
 
+    total_price = order_details.test_info.price - order_details.test_info.discount
+
     template = 'tests/order_details.html'
 
     context = {
         'order_details': order_details,
+        'total_price':total_price
     }
 
     return render(request, template, context)
