@@ -4,23 +4,44 @@
 
 {% block content %}
 
-    <h1>Edit Your Profile</h1>
+<style>
+    img {
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card text-center my-4">
+
+                <div class="card-header">
+                    <h3 class="mb-0">Edit Your Profile</h3>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <img src="{{ existing_profile.image.url }}" alt="image" height="200" width="200">
+
+                        {{profile_form.as_p}}
+
+                        <hr>
+                        <button type="submit" class="btn btn-dark my-2">Update</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
 
-        <img src="{{ existing_profile.image.url }}" alt="image" height="200" width="200">
 
-        <br>{{profile_form.as_p}}
-
-{#        <li>Change E-mail: <a href="{% url 'account_email' %}">{{ existing_profile.user.email }}</a></li>#}
-{#        <li><a href="{% url 'account_change_password' %}">Change Password</a></li>#}
-{#        <li><a href="{% url 'account_reset_password' %}">Reset Password</a></li>#}
-        <hr>
-        <button type="submit" class="btn btn-dark my-2">Update</button>
-        <hr>
-    </form>
 
 {% endblock %}

@@ -1,34 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Added Test | ODLRS</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <style>
+        p {
+            margin-bottom: 0;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1>Recently Added Test</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand text-warning" href="{% url 'home' %}"><b>ODLRS</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"> Report Lists </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently
+                            Added
+                            Tests</a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-warning"
+                            href="http://localhost:8000/staff-dashboard/labaid_staff_1">Staff
+                            Dashboard</a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>
+                        <!-- </button> -->
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+
+            {% for test in all_added_tests %}
+            <div class="col-3">
+                <div class="card mb-4">
+                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
+                        <p class="card-text center">{{ test.center }}</p>
+                        <p class="card-text">Discount: {{ test.discount }}</p>
+                        <p class="card-text text-danger">Price: {{ test.price }} TK</p>
+                        <p class="card-text">{{ test.active_status }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <div class="footer bg-dark text-white text-center py-2">
+        <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
+    </div>
+
+
+    <!-- <h1>Recently Added Test</h1>
     <hr>
 
     {% for test in all_added_tests %}
+    <h4>Name: <b style="color: blue">{{ test.test_name }}</b></h4>
 
-        <b style="color: orangered">
-            --------------------------------------------------------------------------------
-            --------------------------------------------------------------------------------
-        </b>
+    <img src="{{ test.image.url }}" alt="image" height="300" width="500">
 
-        <h4>Name: <b style="color: blue">{{ test.test_name }}</b></h4>
+    <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
+    <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
+    <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
+    <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
+    <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
+    <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
+    <br>
 
-        <img src="{{ test.image.url }}" alt="image" height="300" width="500">
-
-        <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
-        <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
-        <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
-        <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
-        <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
-        <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
-        <br>
-
-    {% endfor %}
+    {% endfor %} -->
 
 </body>
+
 </html>
