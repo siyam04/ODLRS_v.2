@@ -62,8 +62,10 @@ def test_order(request, id=None):
         current_test = Test.objects.get(id=id)
 
         initial_data = {
-            'client_info': current_profile,
+            # 'client_info': current_profile,
             'test_info': current_test,
+            'email': request.user.email,
+            'address': current_profile.address
         }
 
     except:
@@ -79,7 +81,7 @@ def test_order(request, id=None):
 
     context = {
         'test_order_form': TestOrderForm(initial=initial_data),
-        'test_name': Test.objects.get(id=id).test_name
+        'test_name': current_test.test_name
     }
 
     template = 'tests/order.html'
