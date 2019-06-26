@@ -60,7 +60,7 @@
                     <p>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></p>
                     <hr>
 
-                    <p style="color: forestgreen">Total Price: <b style="color: blue"> </b></p>
+                    <p style="color: forestgreen">Total Price:<b style="color: blue"> {{ total_price }}</b></p>
                     <hr>
                     {% if request.user.is_authenticated %}
                     <a href="{% url 'tests:payment_method' id=order_details.id %}"> <button type="submit">PAYMENT</button> </a>
