@@ -8,6 +8,8 @@ from .forms import TestOrderForm, TestAddForm
 
 ########################################################################################
 
+from django.contrib.auth.models import User
+
 
 def all_tests(request, template_name='tests/all_tests.html'):
     all_test_list = Test.objects.all().order_by('-id')
@@ -100,6 +102,32 @@ def order_details_info(request, id=None):
     return render(request, template, context)
 
 ########################################################################################
+
+
+def payment_method(request,template="tests/paynent_method.html",id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    context = {
+        'order_details': order_details,
+    }
+
+    return render(request,template,context)
+
+
+def confirm_prement(request, id = None):
+
+    messages.success(request, "Payment Successfull")
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect("tests:order-details", id=order_details.id)
+
+def reject_prement(request, id = None):
+    
+    messages.error(request, "Order Reject")
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect("tests:order-details", id=order_details.id)
 
 
 def staff_approved(request, id=None):
