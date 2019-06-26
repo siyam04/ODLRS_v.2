@@ -79,6 +79,7 @@ def test_order(request, id=None):
 
     context = {
         'test_order_form': TestOrderForm(initial=initial_data),
+        'test_name': Test.objects.get(id=id).test_name
     }
 
     template = 'tests/order.html'

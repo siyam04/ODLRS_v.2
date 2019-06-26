@@ -7,14 +7,14 @@ from .models import TestOrder, Test
 class TestOrderForm(forms.ModelForm):
     class Meta:
         model = TestOrder
-        fields = ['client_info', 'contact_no', 'email', 'address', 'test_info', 'payment_option', 'date', 'time']
+        fields = ['contact_no', 'email', 'address', 'payment_option', 'date', 'time']
 
         widgets = {
-            'client_info': Select(attrs={'class': 'form-control'}),
+            # 'client_info': Select(attrs={'class': 'form-control'}),
             'contact_no': TextInput(attrs={'class': 'form-control'}),
             'email': TextInput(attrs={'class': 'form-control'}),
             'address': TextInput(attrs={'class': 'form-control'}),
-            'test_info': Select(attrs={'class': 'form-control'}),
+            # 'test_info': Select(attrs={'class': 'form-control'}),
             'payment_option': Select(attrs={'class': 'form-control'}),
             'date': SelectDateWidget(attrs={'class': 'form-control'}),
             'time': TimeInput(format='%H:%M', attrs={'type': 'time', 'class': 'form-control'}),
