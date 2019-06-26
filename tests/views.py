@@ -60,10 +60,14 @@ def test_order(request, id=None):
     try:
         current_profile = Profile.objects.get(user=request.user)
         current_test = Test.objects.get(id=id)
-
+        email = current_profile.user.email
+        address = current_profile.address
         initial_data = {
             'client_info': current_profile,
             'test_info': current_test,
+            'email':email,
+            'address':address
+
         }
 
     except:
