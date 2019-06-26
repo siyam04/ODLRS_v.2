@@ -96,7 +96,8 @@
                             <tr>
                                 <th>{{ forloop.counter }}</th>
                                 <th>
-                                    <a href="{% url 'tests:order-details' test.id %}">{{ test.test_info.test_name }}</a>
+                                    <a href="{% url 'tests:confirm-payment-message' test.id %}">{{ test.test_info.test_name }}</a>
+                                    <li style="color: purple">See Report (PDF)</li>
                                 </th>
                             </tr>
                             {% endfor %}

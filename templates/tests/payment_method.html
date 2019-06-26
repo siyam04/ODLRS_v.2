@@ -4,6 +4,8 @@
 
 {% block content %}
     <br>
+    <h2 style="color: blue">Please select a Payment method</h2>
+    <hr>
 <select>
 
     <option value="volvo">Bkash</option>
@@ -13,8 +15,14 @@
 </select>
     <br>
     <br>
-<a href="{% url 'tests:order-details' id=order_details.id %}"><button type="submit">Confirm</button></a>
-<a href="{% url 'tests:order-details' id=order_details.id %}"><button type="submit">Reject</button></a>
+<a href="{% url 'tests:confirm-payment-message' id=order_details.id %}">
+    <button type="button" class="btn btn-success">Confirm</button>
+</a>
+
+<a href="{% url 'tests:order-details' id=order_details.id %}">
+    <button type="button" class="btn btn-danger">Cancel</button>
+</a>
+
     <hr>
 {% endblock %}
 

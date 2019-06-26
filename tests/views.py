@@ -105,36 +105,14 @@ def order_details_info(request, id=None):
 ########################################################################################
 
 
-def payment_method(request, template="tests/payment_method.html", id=None):
-
-    order_details = TestOrder.objects.get(id=id)
-
-    context = {'order_details': order_details}
-
-    return render(request, template, context)
-
-
-def confirm_payment(request, id=None):
-
-    order_details = TestOrder.objects.get(id=id)
-
-    return redirect('tests:order-details', id=order_details.id)
-
-
-def reject_payment(request, id=None):
-
-    order_details = TestOrder.objects.get(id=id)
-
-    return redirect('tests:order-details', id=order_details.id)
-
-
 def staff_approved(request, id=None):
     staff_order_detail = TestOrder.objects.get(id=id)
     staff_order_detail.accepted = True
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
-    template = 'tests/order_details.html'
+    # template = 'tests/order_details.html'
+    template = 'tests/confirm_payment_message.html'
 
     context = {
         'order_details': staff_order_detail,
@@ -151,7 +129,8 @@ def staff_rejected(request, id=None):
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
-    template = 'tests/order_details.html'
+    # template = 'tests/order_details.html'
+    template = 'tests/confirm_payment_message.html'
 
     context = {
         'order_details': staff_order_detail,
@@ -189,3 +168,50 @@ def all_tests_list_for_staff_admin(request, template_name='tests/all_tests_list_
     return render(request, template_name, context)
 
 ########################################################################################
+
+
+def payment_method(request, template="tests/payment_method.html", id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    context = {'order_details': order_details}
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def confirm_payment(request, id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect('tests:confirm-payment-message', id=order_details.id)
+
+########################################################################################
+
+
+def reject_payment(request, id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect('tests:order-details', id=order_details.id)
+
+########################################################################################
+
+
+def confirm_payment_message(request, id=None):
+    order_details = TestOrder.objects.get(id=id)
+
+    total_price = int(order_details.test_info.price - order_details.test_info.discount)
+
+    template = 'tests/confirm_payment_message.html'
+    context = {
+        'order_details': order_details,
+        'total_price': total_price,
+    }
+
+    return render(request, template, context)
+
+########################################################################################
+
+
