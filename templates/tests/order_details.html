@@ -42,10 +42,10 @@
                     {% endif %}
 
                     <p>Order No: <b style="color: blue">{{ order_details.id }}</b></p>
-                    <p>Client: <b style="color: blue">{{ order_details.client_info }} ({{ order_details.client_info.profile_name }})</b></p>
+                    <p>Client: <b style="color: blue">{{ order_details.client_info }} ({{ order_details.client_info.profile_name|default:"Name not provided" }})</b></p>
                     <p>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></p>
                     <p>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></p>
-                    <p>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></p>
+                    <p>Address: <b style="color: blue">{{ order_details.client_info.address|default_if_none:"Address not provided" }}</b></p>
                     <hr>
 
                     <p>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }}</b></p>
