@@ -18,8 +18,8 @@ from .views import (
     all_tests_list_for_staff_admin,
 
     payment_method,
-    confirm_prement,
-    reject_prement,
+    confirm_payment,
+    reject_payment,
 
 )
 
@@ -49,11 +49,11 @@ urlpatterns = [
 
     path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
     
-    path('payment_method/<int:id>',payment_method,name="payment_method"),
+    path('payment-method/<int:id>', payment_method, name='payment_method'),
 
-    path('confirm_prement/<int:id>',confirm_prement,name="confirm_prement"),
+    path('confirm-payment/<int:id>', confirm_payment, name='confirm-payment'),
 
-    path('reject_prement/<int:id>',reject_prement,name="reject_prement")
+    path('reject-payment/<int:id>', reject_payment, name='reject-payment')
 
 
 

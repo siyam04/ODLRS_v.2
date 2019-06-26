@@ -26,8 +26,8 @@ class Test(models.Model):
     image = models.ImageField(default='default_test.jpg', upload_to='test_pics')
     category = models.ForeignKey(TestCategory, on_delete=models.CASCADE, related_name='test_category')
     center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='test_center')
-    discount = models.FloatField(null=True, blank=True)
-    price = models.FloatField(blank=False)
+    discount = models.PositiveIntegerField(null=True, blank=True)
+    price = models.PositiveIntegerField(null=True, blank=True)
     active_status = models.CharField(max_length=20, choices=ACTIVE_STATUS, default='AVAILABLE')
 
     class Meta:
@@ -41,9 +41,8 @@ class Test(models.Model):
 class TestOrder(models.Model):
 
     PAYMENT_OPTION = (
-        ('Full Payment', 'FULL'),
-        ('Half Payment', 'HALF'),
-        ('On Spot', 'SPOT'),
+        ('Full Payment', 'Full Payment'),
+        ('Half Payment', 'Half Payment'),
     )
 
     client_info = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='test_user_order')

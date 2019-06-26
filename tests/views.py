@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from custom_users.models import Profile
 
@@ -48,7 +49,6 @@ def test_details(request, id=id):
     template = 'tests/test_details.html'
     context = {'single_test_details': single_test_details}
 
-    # return redirect('tests:test-details', id)
     return render(request, template, context)
 
 ########################################################################################
@@ -74,8 +74,6 @@ def test_order(request, id=None):
 
         if test_order_form.is_valid():
             order = test_order_form.save(commit=False)
-            # order.client_info = current_profile
-            # order.test_info = current_test
             order.save()
             return redirect('tests:order-details', id=order.id)
 
@@ -93,13 +91,13 @@ def test_order(request, id=None):
 def order_details_info(request, id=None):
     order_details = TestOrder.objects.get(id=id)
 
-    total_price = order_details.test_info.price - order_details.test_info.discount
+    total_price = int(order_details.test_info.price - order_details.test_info.discount)
 
     template = 'tests/order_details.html'
 
     context = {
         'order_details': order_details,
-        'total_price':total_price
+        'total_price': total_price,
     }
 
     return render(request, template, context)
@@ -107,30 +105,27 @@ def order_details_info(request, id=None):
 ########################################################################################
 
 
-def payment_method(request,template="tests/paynent_method.html",id=None):
+def payment_method(request, template="tests/payment_method.html", id=None):
 
     order_details = TestOrder.objects.get(id=id)
 
-    context = {
-        'order_details': order_details,
-    }
+    context = {'order_details': order_details}
 
-    return render(request,template,context)
+    return render(request, template, context)
 
 
-def confirm_prement(request, id = None):
+def confirm_payment(request, id=None):
 
-    messages.success(request, "Payment Successfull")
     order_details = TestOrder.objects.get(id=id)
 
-    return redirect("tests:order-details", id=order_details.id)
+    return redirect('tests:order-details', id=order_details.id)
 
-def reject_prement(request, id = None):
-    
-    messages.error(request, "Order Reject")
+
+def reject_payment(request, id=None):
+
     order_details = TestOrder.objects.get(id=id)
 
-    return redirect("tests:order-details", id=order_details.id)
+    return redirect('tests:order-details', id=order_details.id)
 
 
 def staff_approved(request, id=None):

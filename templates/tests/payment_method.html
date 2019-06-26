@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %} Payment Method {% endblock %}
+{% block title %}Payment Method | ODLRS{% endblock %}
 
 {% block content %}
- 
-<select><h1>
+    <br>
+<select>
+
     <option value="volvo">Bkash</option>
     <option value="saab">Cradit Card</option>
-   
-  </select>
-</h1>
+    <option value="saab">On Spot</option>
+
+</select>
+    <br>
+    <br>
 <a href="{% url 'tests:order-details' id=order_details.id %}"><button type="submit">Confirm</button></a>
 <a href="{% url 'tests:order-details' id=order_details.id %}"><button type="submit">Reject</button></a>
-
+    <hr>
 {% endblock %}
+
