@@ -45,7 +45,7 @@
 
           {% if user.is_authenticated %}
           <li class="nav-item ">
-            <a class="nav-link text-warning" href="{% url 'custom_users:profile' %}">Profile</a>
+            <a class="nav-link text-warning" href="{% url 'tests:user_orders' %}">Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -64,7 +64,7 @@
     </div>
   </nav>
 
-  {% block content %} {% endblock %} {% block extra_body %} {%endblock %}
+  {% block content %} {% endblock %} {% block extra_body %} {% endblock %}
 
   <div class="footer bg-dark text-white text-center py-2">
     <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>

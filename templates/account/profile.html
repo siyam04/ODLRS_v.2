@@ -67,29 +67,12 @@
                 <div class="card-header">
                     <h2 class="mb-0"> Orders by this User </h2>
                 </div>
+                {% block orders %}
 
-                <div class="card-body">
-                    <ul class="list-group">
-                        <!-- {% for order in orders%} -->
-                        <li class="list-group-item border- px-0">
-                            <a class="nav-link px-" href="#"> Order 1
-                            </a>
-                            <!-- {% endfor%} -->
-                        </li>
-                        <li class="list-group-item border- px-0">
-                            <a class="nav-link px-" href="#"> Order 2
-                            </a>
-                        </li>
-                        <li class="list-group-item border- px-0">
-                            <a class="nav-link px-" href="#"> Order 3
-                            </a>
-                        </li>
-                        <li class="list-group-item border- px-0">
-                            <a class="nav-link px-" href="#"> Order 4
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
+                {% endblock %}
+                
+               
             </div>
         </div>
     </div>

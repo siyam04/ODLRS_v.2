@@ -21,6 +21,7 @@ from .views import (
     confirm_payment,
     reject_payment,
     confirm_payment_message,
+    getprofiel
 
 )
 
@@ -56,6 +57,8 @@ urlpatterns = [
 
     path('reject-payment/<int:id>', reject_payment, name='reject-payment'),
 
-    path('confirm-payment-message/<int:id>', confirm_payment_message, name='confirm-payment-message')
+    path('confirm-payment-message/<int:id>', confirm_payment_message, name='confirm-payment-message'),
+    
+    path('user/', getprofiel, name="user_orders") 
 
 ]

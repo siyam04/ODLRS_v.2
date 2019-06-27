@@ -7,10 +7,27 @@ from custom_users.models import Profile
 from .models import Test, TestCategory, TestOrder
 from .forms import TestOrderForm, TestAddForm
 
-########################################################################################
-
 from django.contrib.auth.models import User
 
+
+
+def getprofiel(request):
+    if request.user.is_authenticated:
+        user = get_object_or_404(User,id=request.user.id)
+        author_profle= Profile.objects.filter(user=user.id)
+
+        if author_profle:
+            author_user = get_object_or_404(Profile,user=request.user.id)
+            orders = TestOrder.objects.filter(client_info=author_user.id)
+            context = {
+                "author_user":author_user,
+                "orders":orders
+            }
+            template = 'tests/user_order_list.html'
+        return render(request,template,context)
+
+
+########################################################################################
 
 def all_tests(request, template_name='tests/all_tests.html'):
     all_test_list = Test.objects.all().order_by('-id')
