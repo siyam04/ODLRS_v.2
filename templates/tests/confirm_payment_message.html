@@ -49,6 +49,7 @@
 {#    <br>#}
 {##}
 {#    {% if request.user.is_authenticated %}#}
+
 {##}
 {##}
 {#    {% else %}#}
@@ -60,11 +61,14 @@
 {#            <a href="{% url 'tests:staff-rejected' order_details.id %}"><button style="color: red">Reject</button></a>#}
 {#            <hr>#}
 {#        {% endif %}#}
+
 {##}
 {##}
 {#    {% endif %}#}
 {##}
 {#{% endblock %}#}
+
+
 
 {% load staticfiles %}
 
