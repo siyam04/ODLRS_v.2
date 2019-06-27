@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from custom_users.models import Profile
 
 from .models import Test, TestCategory, TestOrder
 from .forms import TestOrderForm, TestAddForm
+
 
 ########################################################################################
 
@@ -46,7 +48,6 @@ def test_details(request, id=id):
     template = 'tests/test_details.html'
     context = {'single_test_details': single_test_details}
 
-    # return redirect('tests:test-details', id)
     return render(request, template, context)
 
 ########################################################################################
@@ -58,10 +59,14 @@ def test_order(request, id=None):
     try:
         current_profile = Profile.objects.get(user=request.user)
         current_test = Test.objects.get(id=id)
-
+        email = current_profile.user.email
+        address = current_profile.address
         initial_data = {
             'client_info': current_profile,
             'test_info': current_test,
+            'email':email,
+            'address':address
+
         }
 
     except:
@@ -72,8 +77,6 @@ def test_order(request, id=None):
 
         if test_order_form.is_valid():
             order = test_order_form.save(commit=False)
-            # order.client_info = current_profile
-            # order.test_info = current_test
             order.save()
             return redirect('tests:order-details', id=order.id)
 
@@ -91,10 +94,13 @@ def test_order(request, id=None):
 def order_details_info(request, id=None):
     order_details = TestOrder.objects.get(id=id)
 
+    total_price = int(order_details.test_info.price - order_details.test_info.discount)
+
     template = 'tests/order_details.html'
 
     context = {
         'order_details': order_details,
+        'total_price': total_price,
     }
 
     return render(request, template, context)
@@ -108,7 +114,8 @@ def staff_approved(request, id=None):
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
-    template = 'tests/order_details.html'
+    # template = 'tests/order_details.html'
+    template = 'tests/confirm_payment_message.html'
 
     context = {
         'order_details': staff_order_detail,
@@ -125,7 +132,8 @@ def staff_rejected(request, id=None):
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
-    template = 'tests/order_details.html'
+    # template = 'tests/order_details.html'
+    template = 'tests/confirm_payment_message.html'
 
     context = {
         'order_details': staff_order_detail,
@@ -163,3 +171,50 @@ def all_tests_list_for_staff_admin(request, template_name='tests/all_tests_list_
     return render(request, template_name, context)
 
 ########################################################################################
+
+
+def payment_method(request, template="tests/payment_method.html", id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    context = {'order_details': order_details}
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def confirm_payment(request, id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect('tests:confirm-payment-message', id=order_details.id)
+
+########################################################################################
+
+
+def reject_payment(request, id=None):
+
+    order_details = TestOrder.objects.get(id=id)
+
+    return redirect('tests:order-details', id=order_details.id)
+
+########################################################################################
+
+
+def confirm_payment_message(request, id=None):
+    order_details = TestOrder.objects.get(id=id)
+
+    total_price = int(order_details.test_info.price - order_details.test_info.discount)
+
+    template = 'tests/confirm_payment_message.html'
+    context = {
+        'order_details': order_details,
+        'total_price': total_price,
+    }
+
+    return render(request, template, context)
+
+########################################################################################
+
+

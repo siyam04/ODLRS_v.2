@@ -65,11 +65,16 @@ def admin_login(request, template_name='diagnostic_centers/admin_login.html'):
 def admin_dashboard(request, username=None, template_name='diagnostic_centers/admin_dashboard.html'):
     admin = DiagnosticAdmin.objects.get(username=username)
 
-    pending_staff_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center).order_by('-id')
+    # pending_staff_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center).order_by('-id')
+    confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center).order_by('-id')
+
+    paginator = Paginator(confirmed_tests, 5)
+    page = request.GET.get('page')
+    paginator_data = paginator.get_page(page)
 
     context = {
         'admin': admin,
-        'pending_staff_tests': pending_staff_tests,
+        'confirmed_tests': paginator_data,
     }
 
     return render(request, template_name, context)
@@ -115,10 +120,25 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
 
     pending_tests = TestOrder.objects.filter(test_info__center=staff.center).order_by('-id')
 
+    # for active tests like admin_dashboard
+    confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center).order_by('-id')
+    ##
+
+    # Pending Orders Paginator
+    paginator = Paginator(pending_tests, 5)
+    page = request.GET.get('page')
+    pending_paginator_data = paginator.get_page(page)
+
+    # Confirmed Orders Paginator
+    paginator = Paginator(confirmed_tests, 5)
+    page = request.GET.get('page')
+    confirmed_paginator_data = paginator.get_page(page)
+
     context = {
         'staff': staff,
         'admins': admins,
-        'pending_tests': pending_tests,
+        'pending_tests': pending_paginator_data,
+        'confirmed_tests': confirmed_paginator_data,
     }
 
     return render(request, template_name, context)

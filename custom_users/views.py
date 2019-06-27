@@ -1,11 +1,15 @@
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # allauth decorator @verified_email_required
 from allauth.account.decorators import verified_email_required
 from allauth.account.views import SignupView, LoginView, PasswordResetView
+
+from tests.models import TestOrder
 
 from .models import Profile
 from .forms import ProfileUpdateForm
@@ -28,12 +32,14 @@ from .forms import ProfileUpdateForm
 
 
 @login_required()
-def profile(request, template_name='account/profile.html'):
+def profile(request, template_name='account/custom_users/profile.html'):
     return render(request, template_name)
+
+########################################################################################
 
 
 @login_required()
-def profile_edit(request, template_name='account/profile_edit.html'):
+def profile_edit(request, template_name='account/custom_users/profile_edit.html'):
 
     existing_profile = get_object_or_404(Profile, user=request.user)
     profile_form = ProfileUpdateForm(instance=existing_profile)
@@ -54,6 +60,32 @@ def profile_edit(request, template_name='account/profile_edit.html'):
         }
 
     return render(request, template_name, context)
+
+########################################################################################
+
+
+def orders_by_user(request):
+    if request.user.is_authenticated:
+        user = get_object_or_404(User, id=request.user.id)
+        user_profile = Profile.objects.filter(user=user.id)
+
+        if user_profile:
+            profile = get_object_or_404(Profile, user=request.user.id)
+
+            orders = TestOrder.objects.filter(client_info=profile.id).order_by('-id')
+
+            paginator = Paginator(orders, 5)
+            page = request.GET.get('page')
+            paginator_data = paginator.get_page(page)
+
+            template = 'account/custom_users/orders_by_user.html'
+            context = {'orders': paginator_data}
+
+            return render(request, template, context)
+
+########################################################################################
+
+
 
 
 
