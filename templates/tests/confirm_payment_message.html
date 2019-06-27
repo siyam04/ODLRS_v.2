@@ -126,7 +126,10 @@
     <h6>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h6>
     <br>
 
+
     {% if request.user.is_authenticated %}
+
+        <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Back to Home</button></a>
 
     {% else %}
 

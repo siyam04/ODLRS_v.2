@@ -172,7 +172,7 @@
 
                                     {% if test.staff_check == True and test.accepted == True %}
 
-                                    <a href="{% url 'tests:order-details' test.id %}">
+                                    <a href="{% url 'tests:confirm-payment-message' test.id %}">
                                         {{ test.test_info.test_name }}
                                     </a>
                                         <li style="color: purple">Send Report (PDF from Local Machine)</li>
