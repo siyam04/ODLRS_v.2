@@ -50,7 +50,7 @@ class TestOrder(models.Model):
     email = models.EmailField(blank=True, null=True)
     address = models.CharField(max_length=150, blank=True, null=True)
     test_info = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='test_order')
-    payment_option = models.CharField(max_length=20, choices=PAYMENT_OPTION, blank=False)
+    payment_type = models.CharField(max_length=20, choices=PAYMENT_OPTION, blank=False)
     date = models.DateTimeField(default=timezone.now)
     time = models.TimeField(default=timezone.now)
 
