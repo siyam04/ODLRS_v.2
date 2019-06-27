@@ -32,14 +32,14 @@ from .forms import ProfileUpdateForm
 
 
 @login_required()
-def profile(request, template_name='account/profile.html'):
+def profile(request, template_name='account/custom_users/profile.html'):
     return render(request, template_name)
 
 ########################################################################################
 
 
 @login_required()
-def profile_edit(request, template_name='account/profile_edit.html'):
+def profile_edit(request, template_name='account/custom_users/profile_edit.html'):
 
     existing_profile = get_object_or_404(Profile, user=request.user)
     profile_form = ProfileUpdateForm(instance=existing_profile)
@@ -78,35 +78,14 @@ def orders_by_user(request):
             page = request.GET.get('page')
             paginator_data = paginator.get_page(page)
 
-            template = 'account/user_order_list.html'
-            context = {
-                'orders': paginator_data,
-                # 'paginator_data': paginator_data,
-            }
+            template = 'account/custom_users/orders_by_user.html'
+            context = {'orders': paginator_data}
 
             return render(request, template, context)
 
 ########################################################################################
 
 
-# def search_paginator(request):
-#     Centers = DiagnosticCenter.objects.all()
-#
-#     query = request.GET.get('q')
-#     if query:
-#         Centers = Centers.filter(
-#             Q(name__icontains=query) |
-#             Q(website__icontains=query)
-#         )
-#         print(Centers)
-#
-#     paginator = Paginator(Centers, 8)
-#     page = request.GET.get('page')
-#     all_centers = paginator.get_page(page)
-#
-#     context = {"Centers": all_centers,}
-#     template_name = 'diagnostic_centers/all_centers.html'
-#
-#     return render(request, template_name, context)
+
 
 
