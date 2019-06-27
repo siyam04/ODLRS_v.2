@@ -74,7 +74,6 @@ def admin_dashboard(request, username=None, template_name='diagnostic_centers/ad
     context = {
         'admin': admin,
         'pending_staff_tests': paginator_data,
-        # 'pending_staff_tests': pending_staff_tests,
     }
 
     return render(request, template_name, context)
@@ -120,10 +119,14 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
 
     pending_tests = TestOrder.objects.filter(test_info__center=staff.center).order_by('-id')
 
+    paginator = Paginator(pending_tests, 5)
+    page = request.GET.get('page')
+    paginator_data = paginator.get_page(page)
+
     context = {
         'staff': staff,
         'admins': admins,
-        'pending_tests': pending_tests,
+        'pending_tests': paginator_data,
     }
 
     return render(request, template_name, context)
