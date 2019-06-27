@@ -72,28 +72,28 @@
 <html>
 
 <head>
-  <title>Payment Confirmed | ODLRS</title>
+    <title>Payment Confirmed | ODLRS</title>
 
     <!-- fontawesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
-    integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
+        integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
 </head>
 
 <body>
-<br>
+    <br>
     <h1 style="color: forestgreen">Order Status</h1>
     <hr>
 
     {% if order_details.staff_check == True and order_details.accepted == True %}
-        <b style="color: limegreen">*Order Confirmed by Staff</b>
-        <hr>
+    <b style="color: limegreen">*Order Confirmed by Staff</b>
+    <hr>
     {% elif order_details.staff_check == True and order_details.accepted == False %}
-        <b style="color: red">*Rejected By Staff</b>
-        <hr>
+    <b style="color: red">*Rejected By Staff</b>
+    <hr>
     {% endif %}
 
     <h6>Payment By: <b style="color: orangered">#show the selected method here...</b></h6>
@@ -114,9 +114,11 @@
     <br>
 
     <h6>Client: <b style="color: blue">
-        <a href="{% url 'custom_users:profile' %}">
-            {{ order_details.client_info }} ({{ order_details.client_info.profile_name }})
-        </a></b>
+            <span>
+                {{ order_details.client_info }} ({{ order_details.client_info.profile_name }})
+
+            </span>
+        </b>
     </h6>
 
     <h6>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h6>
@@ -129,26 +131,25 @@
 
     {% if request.user.is_authenticated %}
 
-{#        <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Back to Home</button></a>#}
-        <h3>Test</h3>
-        <hr>
+    <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Back to Home</button></a>
 
     {% else %}
 
-        {% if order_details.staff_check == False and order_details.accepted == False %}
+    {% if order_details.staff_check == False and order_details.accepted == False %}
 
-            <a href="{% url 'tests:staff-approved' order_details.id %}">
-                <button type="button" class="btn btn-success">Approve</button>
-            </a>
+    <a href="{% url 'tests:staff-approved' order_details.id %}">
+        <button type="button" class="btn btn-success">Approve</button>
+    </a>
 
-            <a href="{% url 'tests:staff-rejected' order_details.id %}">
-                <button type="button" class="btn btn-danger">Reject</button>
-            </a>
+    <a href="{% url 'tests:staff-rejected' order_details.id %}">
+        <button type="button" class="btn btn-danger">Reject</button>
+    </a>
 
-            <hr>
-        {% endif %}
+    <hr>
+    {% endif %}
 
     {% endif %}
 
 </body>
+
 </html>
