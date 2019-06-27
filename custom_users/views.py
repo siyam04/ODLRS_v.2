@@ -2,10 +2,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # allauth decorator @verified_email_required
 from allauth.account.decorators import verified_email_required
 from allauth.account.views import SignupView, LoginView, PasswordResetView
+
+from tests.models import TestOrder
 
 from .models import Profile
 from .forms import ProfileUpdateForm
@@ -31,6 +34,8 @@ from .forms import ProfileUpdateForm
 def profile(request, template_name='account/profile.html'):
     return render(request, template_name)
 
+########################################################################################
+
 
 @login_required()
 def profile_edit(request, template_name='account/profile_edit.html'):
@@ -55,5 +60,23 @@ def profile_edit(request, template_name='account/profile_edit.html'):
 
     return render(request, template_name, context)
 
+########################################################################################
+
+
+def orders_by_user(request):
+    if request.user.is_authenticated:
+        user = get_object_or_404(User, id=request.user.id)
+        user_profile = Profile.objects.filter(user=user.id)
+
+        if user_profile:
+            profile = get_object_or_404(Profile, user=request.user.id)
+            orders = TestOrder.objects.filter(client_info=profile.id)
+
+            template = 'account/user_order_list.html'
+            context = {'orders': orders}
+
+        return render(request, template, context)
+
+########################################################################################
 
 
