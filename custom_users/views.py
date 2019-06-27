@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -70,13 +71,42 @@ def orders_by_user(request):
 
         if user_profile:
             profile = get_object_or_404(Profile, user=request.user.id)
-            orders = TestOrder.objects.filter(client_info=profile.id)
+
+            orders = TestOrder.objects.filter(client_info=profile.id).order_by('-id')
+
+            paginator = Paginator(orders, 5)
+            page = request.GET.get('page')
+            paginator_data = paginator.get_page(page)
 
             template = 'account/user_order_list.html'
-            context = {'orders': orders}
+            context = {
+                'orders': paginator_data,
+                # 'paginator_data': paginator_data,
+            }
 
-        return render(request, template, context)
+            return render(request, template, context)
 
 ########################################################################################
+
+
+# def search_paginator(request):
+#     Centers = DiagnosticCenter.objects.all()
+#
+#     query = request.GET.get('q')
+#     if query:
+#         Centers = Centers.filter(
+#             Q(name__icontains=query) |
+#             Q(website__icontains=query)
+#         )
+#         print(Centers)
+#
+#     paginator = Paginator(Centers, 8)
+#     page = request.GET.get('page')
+#     all_centers = paginator.get_page(page)
+#
+#     context = {"Centers": all_centers,}
+#     template_name = 'diagnostic_centers/all_centers.html'
+#
+#     return render(request, template_name, context)
 
 
