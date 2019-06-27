@@ -92,7 +92,7 @@
 
                         <tbody>
 
-                            {% for test in pending_staff_tests %}
+                            {% for test in confirmed_tests %}
                             <tr>
                                 <th>{{ forloop.counter }}</th>
                                 <th>
@@ -109,21 +109,21 @@
                     <ul class="pagination">
                         <li class="page-item">
 
-                            {% if pending_staff_tests.has_previous %}
-                                <a class="page-link" href="?page={{ pending_staff_tests.previous_page_number }}" aria-label="Previous">
+                            {% if confirmed_tests.has_previous %}
+                                <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}" aria-label="Previous">
                                     <span aria-hidden="false">&laquo;</span>
                                 </a>
                             {% endif %}
 
                         </li>
                             <li class="page-item">
-                                <a class="page-link" href="#">Page {{ pending_staff_tests.number }} of {{ pending_staff_tests.paginator.num_pages }}.</a>
+                                <a class="page-link" href="#">Page {{ confirmed_tests.number }} of {{ confirmed_tests.paginator.num_pages }}.</a>
                             </li>
                             <li class="page-item">
 
-                                {% if pending_staff_tests.has_next %}
+                                {% if confirmed_tests.has_next %}
 
-                                <a class="page-link" href="?page={{ pending_staff_tests.next_page_number }}" aria-label="Next">
+                                <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                                 {% endif %}
@@ -202,7 +202,7 @@
     <hr>
     <h3 style="color: forestgreen">Active Orders</h3>
 
-    {% for test in pending_staff_tests %}
+    {% for test in confirmed_tests %}
 
     <li><a href="{% url 'tests:order-details' test.id %}">{{ test.test_info.test_name }}</a></li><br>
 
