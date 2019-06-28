@@ -72,21 +72,21 @@
 
             <div class="row mt-4 mx-4 py-3 bg-warning text-dark">
                 <div class="col">
-                    <h5 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong> {{ staff.center }}
-                    </h5>
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong> {{ staff.center }}
+                    </h6>
                 </div>
                 <div class="col">
-                    <h5 class="text-white mb-0"> <strong class="text-dark">Staff Name:</strong> {{ staff.username }}
-                    </h5>
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Staff Name:</strong> {{ staff.username }}
+                    </h6>
                 </div>
                 <div class="col">
-                    <h5 class="text-white mb-0"> <strong class="text-dark">Reported To:</strong>
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Reported To:</strong>
 
                         {% for a in admins %}
                         {{ a.username }}
                         {% endfor %}
 
-                    </h5>
+                    </h6>
                 </div>
             </div>
 
@@ -155,6 +155,12 @@
                     <!-- Pending Paginator -->
 
 
+
+                </div>
+
+
+                <div class="col">
+
                     <table class="table table-striped table-bordered table-hover mb-4">
                         <thead>
                             <tr class="bg-success text-white">
@@ -217,109 +223,6 @@
                     </ul>
                     <!-- Confirmed Paginator -->
 
-
-
-
-                    <!-- <div>
-                        <h2 style="color: orangered">Current Orders</h2>
-                        <hr>
-                        {% for test in pending_tests %}
-                        <hr>
-
-                        <p><a href="{% url 'tests:order-details' test.id %}">~ {{ test.test_info.test_name }}</a></p>
-                        {% endfor %}
-
-                        {% for test in pending_tests %}
-
-                        {% if test.staff_check == True and test.accepted == True %}
-
-                        <h6 style="color: forestgreen">*
-                            Accepted...
-                            <p><a href="{% url 'tests:order-details' test.id %}">~ {{ test.test_info.test_name }}</a>
-                            </p>
-
-                        </h6>
-                        {% endif %}
-
-                        {% endfor %}
-
-                        {% for test in pending_tests %}
-
-                        {% if test.staff_check == True and test.accepted == False %}
-
-                        <h6 style="color: red">
-                            * Rejected...
-                            <p><a href="{% url 'tests:order-details' test.id %}">~ {{ test.test_info.test_name }}</a>
-                            </p>
-                        </h6>
-
-                        {% endif %}
-
-                        {% endfor %}
-                        <hr>
-
-                    </div> -->
-
-                </div>
-
-
-                <div class="col">
-
-                    {#                    <table class="table table-striped table-bordered table-hover mb-4">#}
-                    {#                        <thead>#}
-                    {#                            <tr class="bg-danger text-white">#}
-                    {#                                <th colspan="2"> Rejected Orders </th>#}
-                    {#                            </tr>#}
-                    {#                            <tr>#}
-                    {#                                <th>SL NO.</th>#}
-                    {#                                <th> Test Names </th>#}
-                    {#                            </tr>#}
-                    {#                        </thead>#}
-                    {##}
-                    {#                        <tbody>#}
-                    {##}
-                    {#                            {% for test in pending_tests %}#}
-                    {#                            <tr>#}
-                    {#                                <td> {{ forloop.counter }} </td>#}
-                    {#                                <td>#}
-                    {##}
-                    {#                                    {% if test.staff_check == True and test.accepted == False %}#}
-                    {##}
-                    {#                                    <a href="{% url 'tests:order-details' test.id %}">#}
-                    {#                                        {{ test.test_info.test_name }}#}
-                    {#                                    </a>#}
-                    {##}
-                    {#                                    {% endif %}#}
-                    {##}
-                    {#                                </td>#}
-                    {#                            </tr>#}
-                    {#                            {% endfor %}#}
-                    {##}
-                    {#                        </tbody>#}
-                    {#                    </table>#}
-
-                    <table class="table table-striped table-bordered table-hover mb-4">
-                        <thead>
-                            <tr class="text-center bg-info text-white">
-                                <th colspan="2">
-                                    Reported To:
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>SL No.</th>
-                                <th>Admin</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {% for a in admins %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ a.username }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

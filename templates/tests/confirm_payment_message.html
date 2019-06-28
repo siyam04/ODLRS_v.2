@@ -9,12 +9,12 @@
 {##}
 {#    {% if order_details.staff_check == True and order_details.accepted == True %}#}
 {##}
-{#        <b style="color: purple">*Order Confirmed by Staff</b>#}
+{#        <b style="color: purple">Order Confirmed by Staff</b>#}
 {##}
 {#        <hr>#}
 {#    {% elif order_details.staff_check == True and order_details.accepted == False %}#}
 {##}
-{#        <b style="color: red">*Rejected By Staff</b>#}
+{#        <b style="color: red">Rejected By Staff</b>#}
 {#        <hr>#}
 {#    {% endif %}#}
 {##}
@@ -73,14 +73,13 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Payment Confirmed | ODLRS</title>
-
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
-        integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
@@ -88,71 +87,85 @@
 </head>
 
 <body>
-    <br>
-    <h1 style="color: forestgreen">Order Status</h1>
-    <hr>
 
-    {% if order_details.staff_check == True and order_details.accepted == True %}
-    <b style="color: limegreen">*Order Confirmed by Staff</b>
-    <hr>
-    {% elif order_details.staff_check == True and order_details.accepted == False %}
-    <b style="color: red">*Rejected By Staff</b>
-    <hr>
-    {% endif %}
+    <div class="container">
 
-    <h6>Payment By: <b style="color: orangered">#show the selected method here...</b></h6>
-    <br>
+        <div class="row my-5">
+            <div class="col-6 offset-3 text-cente">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Order Status</h3>
+                    </div>
 
-    <h6>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></h6>
-    <h6>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></h6>
-    <h6>Total Price: <b style="color: blue">{{ total_price}}</b></h6>
-    <h6>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></h6>
-    <br>
+                    <div class="card-body">
+                        {% if order_details.staff_check == True and order_details.accepted == True %}
+                        <div class="alert alert-success"> <strong>Order Confirmed by Staff</strong> </div>
+                        <!-- <b style="color: limegreen"></b> -->
+                        <!-- <hr> -->
+                        {% elif order_details.staff_check == True and order_details.accepted == False %}
+                        <div class="alert alert-danger"> <strong>Rejected By Staff</strong> </div>
+                        <!-- <b style="color: red"></b> -->
+                        <!-- <hr> -->
+                        {% endif %}
 
-    <h6>Order No: <b style="color: blue">{{ order_details.id }}</b></h6>
-    <h6>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }}</b></h6>
-    <h6>Category: <b style="color: blue">{{ order_details.test_info.category }}</b></h6>
-    <h6>Center: <b style="color: blue">{{ order_details.test_info.center.name  }}</b></h6>
-    <h6>Booking Date: <b style="color: blue">{{ order_details.date }}</b></h6>
-    <h6>Booking Time: <b style="color: blue">{{ order_details.time }}</b></h6>
-    <br>
+                        <h6>Payment By: <b style="color: orangered">#show the selected method here...</b></h6>
+                        <br>
 
-    <h6>Client: <b style="color: blue">
-            <span>
-                {{ order_details.client_info }} ({{ order_details.client_info.profile_name }})
+                        <h6>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></h6>
+                        <h6>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></h6>
+                        <h6>Total Price: <b style="color: blue">{{ total_price}}</b></h6>
+                        <h6>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></h6>
+                        <br>
 
-            </span>
-        </b>
-    </h6>
+                        <h6>Order No: <b style="color: blue">{{ order_details.id }}</b></h6>
+                        <h6>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }}</b></h6>
+                        <h6>Category: <b style="color: blue">{{ order_details.test_info.category }}</b></h6>
+                        <h6>Center: <b style="color: blue">{{ order_details.test_info.center.name  }}</b></h6>
+                        <h6>Booking Date: <b style="color: blue">{{ order_details.date }}</b></h6>
+                        <h6>Booking Time: <b style="color: blue">{{ order_details.time }}</b></h6>
+                        <br>
 
-    <h6>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h6>
+                        <h6>Client: <b style="color: blue">
+                                <span>
+                                    {{ order_details.client_info }} ({{ order_details.client_info.profile_name }})
+                                </span>
+                            </b>
+                        </h6>
 
-    <h6>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></h6>
+                        <h6>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h6>
 
-    <h6>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h6>
-    <br>
+                        <h6>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></h6>
+
+                        <h6>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h6>
+                        <br>
 
 
-    {% if request.user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
 
-    <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Back to Home</button></a>
+                        <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Back to
+                                Home</button></a>
 
-    {% else %}
+                        {% else %}
 
-    {% if order_details.staff_check == False and order_details.accepted == False %}
+                        {% if order_details.staff_check == False and order_details.accepted == False %}
 
-    <a href="{% url 'tests:staff-approved' order_details.id %}">
-        <button type="button" class="btn btn-success">Approve</button>
-    </a>
+                        <a href="{% url 'tests:staff-approved' order_details.id %}">
+                            <button type="button" class="btn btn-success">Approve</button>
+                        </a>
 
-    <a href="{% url 'tests:staff-rejected' order_details.id %}">
-        <button type="button" class="btn btn-danger">Reject</button>
-    </a>
+                        <a href="{% url 'tests:staff-rejected' order_details.id %}">
+                            <button type="button" class="btn btn-danger">Reject</button>
+                        </a>
 
-    <hr>
-    {% endif %}
+                        <hr>
+                        {% endif %}
 
-    {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

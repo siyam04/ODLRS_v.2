@@ -2,26 +2,47 @@
 
 {% block title %} Payment Confirmation {% endblock %}
 {% block content %}
-    <br>
-    <h2 style="color: blue">Please select a Payment method</h2>
-    <hr>
-<select>
 
-    <option value="volvo">Bkash</option>
-    <option value="saab">Cradit Card</option>
-    <option value="saab">On Spot</option>
+<style>
+    .box {
+        min-height: 480px;
+    }
 
-</select>
-    <br>
-    <br>
-<a href="{% url 'tests:confirm-payment-message' id=order_details.id %}">
-    <button type="button" class="btn btn-success">Confirm</button>
-</a>
+    .card-body {
+        /* min-height: 200px; */
+    }
+</style>
 
-<a href="{% url 'tests:order-details' id=order_details.id %}">
-    <button type="button" class="btn btn-danger">Cancel</button>
-</a>
 
-    <hr>
+<div class="container box">
+
+    <div class="row my-5">
+        <div class="col-6 offset-3 text-cente">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Please select a Payment method</h3>
+                </div>
+
+                <div class="card-body py-5">
+                    <select>
+                        <option value="volvo">Bkash</option>
+                        <option value="saab">Cradit Card</option>
+                        <option value="saab">On Spot</option>
+
+                    </select>
+                    <br>
+                    <br>
+                    <a href="{% url 'tests:confirm-payment-message' id=order_details.id %}">
+                        <button type="button" class="btn btn-success">Confirm</button>
+                    </a>
+
+                    <a href="{% url 'tests:order-details' id=order_details.id %}">
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
-
