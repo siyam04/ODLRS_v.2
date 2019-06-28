@@ -14,25 +14,25 @@
         <hr>
         <!-- Paginator -->
         <ul class="pagination">
-        <li class="page-item">
+            <li class="page-item">
 
-            {% if orders.has_previous %}
-            <a class="page-link" href="?page={{ orders.previous_page_number }}" aria-label="Previous">
-                <span aria-hidden="false">&laquo;</span>
-            </a>
-            {% endif %}
+                {% if orders.has_previous %}
+                <a class="page-link" href="?page={{ orders.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="false">&laquo;</span>
+                </a>
+                {% endif %}
 
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">Page {{ orders.number }} of {{ orders.paginator.num_pages }}.</a>
-        </li>
-        <li class="page-item">
-            {% if orders.has_next %}
-            <a class="page-link" href="?page={{ orders.next_page_number }}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-            {% endif %}
-        </li>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Page {{ orders.number }} of {{ orders.paginator.num_pages }}.</a>
+            </li>
+            <li class="page-item">
+                {% if orders.has_next %}
+                <a class="page-link" href="?page={{ orders.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                {% endif %}
+            </li>
         </ul>
         <!-- Paginator -->
 

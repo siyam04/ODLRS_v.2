@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-
 {% block title %}Order Details | ODLRS{% endblock %}
-
 {% block content %}
 <style>
     .card p {
@@ -11,63 +9,92 @@
     }
 
     .card p b {
-        font-weight: normal
-    }
-
-    .box {
-        min-height: 500px;
+        font-weight: normal;
     }
 </style>
-
 
 <div class="container box">
     <div class="row my-5">
         <div class="col-6 offset-3 text-cente">
             <div class="card">
-
-                <div class="card-header">
-                    <h1>Order Details</h1>
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Order Details</h3>
                 </div>
 
                 <div class="card-body">
+                    <p>
+                        Order No: <b style="color: blue">{{ order_details.id }}</b>
+                    </p>
+                    <br />
+                    <p>
+                        Client:
+                        <b style="color: blue">
+                            {{ order_details.client_info }}
+                            ({{ order_details.client_info.profile_name }})</b>
+                    </p>
+                    <p>
+                        Email:
+                        <b style="color: blue">{{ order_details.client_info.user.email }}</b>
+                    </p>
+                    <p>
+                        Contact: <b style="color: blue">{{ order_details.contact_no }}</b>
+                    </p>
+                    <p>
+                        Address:
+                        <b style="color: blue">{{ order_details.client_info.address }}</b>
+                    </p>
+                    <hr />
 
-                    <p>Order No: <b style="color: blue">{{ order_details.id }}</b></p>
-                    <br>
-                    <p>Client: <b style="color: blue">{{ order_details.client_info }} ({{ order_details.client_info.profile_name }})</b></p>
-                    <p>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></p>
-                    <p>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></p>
-                    <p>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></p>
-                    <hr>
+                    <p>
+                        Test Name:
+                        <b style="color: blue">{{ order_details.test_info.test_name }}</b>
+                    </p>
+                    <p>
+                        Category:
+                        <b style="color: blue">{{ order_details.test_info.category }}</b>
+                    </p>
+                    <p>
+                        Center:
+                        <b style="color: blue">{{ order_details.test_info.center.name }}</b>
+                    </p>
+                    <p>
+                        Booking Date: <b style="color: blue">{{ order_details.date }}</b>
+                    </p>
+                    <p>
+                        Booking Time: <b style="color: blue">{{ order_details.time }}</b>
+                    </p>
+                    <p>
+                        Payment Status:
+                        <b style="color: blue">{{ order_details.payment_option }}</b>
+                    </p>
+                    <hr />
 
-                    <p>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }}</b></p>
-                    <p>Category: <b style="color: blue">{{ order_details.test_info.category }}</b></p>
-                    <p>Center: <b style="color: blue">{{ order_details.test_info.center.name }}</b></p>
-                    <p>Booking Date: <b style="color: blue">{{ order_details.date }}</b></p>
-                    <p>Booking Time: <b style="color: blue">{{ order_details.time }}</b></p>
-                    <p>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></p>
-                    <hr>
+                    <p>
+                        Discount:
+                        <b style="color: blue"> {{ order_details.test_info.discount }}</b>
+                    </p>
+                    <p>
+                        Test Price:
+                        <b style="color: blue"> {{ order_details.test_info.price }}</b>
+                    </p>
+                    <hr />
 
-                    <p>Discount: <b style="color: blue"> {{ order_details.test_info.discount }}</b></p>
-                    <p>Test Price: <b style="color: blue"> {{ order_details.test_info.price }}</b></p>
-                    <hr>
+                    <p style="color: forestgreen">
+                        Total Price: <b style="color: blue"> {{ total_price }} </b>
+                    </p>
 
-                    <p style="color: forestgreen">Total Price: <b style="color: blue"> {{ total_price }} </b></p>
-
-                    <hr>
+                    <hr />
                     {% if request.user.is_authenticated %}
 
-                        <a href="{% url 'tests:payment_method' id=order_details.id %}">
-                            <button type="button" class="btn btn-primary">PAYMENT</button>
-                        </a>
+                    <a href="{% url 'tests:payment_method' id=order_details.id %}">
+                        <button type="button" class="btn btn-primary">PAYMENT</button>
+                    </a>
 
                     {% endif %}
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}
