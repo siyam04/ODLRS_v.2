@@ -22,14 +22,17 @@ class TestAdmin(admin.ModelAdmin):
 
 
 class TestOrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'client_info', 'test_info', 'contact_no', 'email', 'address', 'payment_type',
-                    'date', 'time', 'staff_check']
+    list_display = ['id', 'client_info', 'test_info', 'contact_no', 'email', 'address', 'payment_type', 'payment_method',
+                    'booked_time_slot', 'booked_date', 'order_created_at', 'staff_check', 'accepted']
+
     list_display_links = ['client_info', 'test_info']
     # list_filter = ['client_info', 'test_info']
-    search_fields = ['id', 'client_info', 'test_info']
+    search_fields = ['id', 'client_info', 'test_info', 'contact_no']
 
 
 # Registering databases
 admin.site.register(TestCategory, TestCategoryAdmin)
 admin.site.register(Test, TestAdmin)
 admin.site.register(TestOrder, TestOrderAdmin)
+
+

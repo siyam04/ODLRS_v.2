@@ -130,7 +130,7 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
     pending_paginator_data = paginator.get_page(page)
 
     # Confirmed Orders Paginator
-    paginator = Paginator(confirmed_tests, 5)
+    paginator = Paginator(confirmed_tests, 3)
     page = request.GET.get('page')
     confirmed_paginator_data = paginator.get_page(page)
 

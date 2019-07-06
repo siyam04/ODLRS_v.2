@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Order | ODLRS{% endblock %}
+{% block title %}Order Form | ODLRS{% endblock %}
 {% block content %}
 
 <div class="container">
@@ -15,8 +15,9 @@
                         {% csrf_token %}
 
                         {{ test_order_form.as_p }}
+                        <br>
                         <button type="submit" class="btn btn-primary btn-sm">
-                            CONFIRM
+                            ORDER
                         </button>
                     </form>
 

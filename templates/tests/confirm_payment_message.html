@@ -1,75 +1,3 @@
-{#{% extends 'base.html' %}#}
-{##}
-{#{% block title %}Payment Confirmed | ODLRS{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#    <br>#}
-{#    <h1 style="color: forestgreen">Payment Confirmed!</h1>#}
-{#    <hr>#}
-{##}
-{#    {% if order_details.staff_check == True and order_details.accepted == True %}#}
-{##}
-{#        <b style="color: purple">Order Confirmed by Staff</b>#}
-{##}
-{#        <hr>#}
-{#    {% elif order_details.staff_check == True and order_details.accepted == False %}#}
-{##}
-{#        <b style="color: red">Rejected By Staff</b>#}
-{#        <hr>#}
-{#    {% endif %}#}
-{##}
-{#    <h5>Payment By: <b style="color: orangered">#show the selected method here...</b></h5>#}
-{#    <br>#}
-{##}
-{#    <h6>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></h6>#}
-{#    <h6>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></h6>#}
-{#    <h6>Total Price: <b style="color: blue">{{ total_price}}</b></h6>#}
-{#    <h6>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></h6>#}
-{#    <br>#}
-{##}
-{#    <h6>Order No: <b style="color: blue">{{ order_details.id }}</b></h6>#}
-{#    <h6>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }}</b></h6>#}
-{#    <h6>Category: <b style="color: blue">{{ order_details.test_info.category }}</b></h6>#}
-{#    <h6>Center: <b style="color: blue">{{ order_details.test_info.center.name  }}</b></h6>#}
-{#    <h6>Booking Date: <b style="color: blue">{{ order_details.date }}</b></h6>#}
-{#    <h6>Booking Time: <b style="color: blue">{{ order_details.time }}</b></h6>#}
-{#    <br>#}
-{##}
-{#    <h6>Client: <b style="color: blue">#}
-{#        <a href="{% url 'custom_users:profile' %}">#}
-{#            {{ order_details.client_info }} ({{ order_details.client_info.profile_name }})#}
-{#        </a></b>#}
-{#    </h6>#}
-{##}
-{#    <h6>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h6>#}
-{##}
-{#    <h6>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></h6>#}
-{##}
-{#    <h6>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h6>#}
-{#    <br>#}
-{##}
-{#    {% if request.user.is_authenticated %}#}
-
-{##}
-{##}
-{#    {% else %}#}
-{##}
-{#        {% if order_details.staff_check == False and order_details.accepted == False %}#}
-{#            <hr>#}
-{#            <a href="{% url 'tests:staff-approved' order_details.id %}"><button style="color: forestgreen">Approve</button></a>#}
-{##}
-{#            <a href="{% url 'tests:staff-rejected' order_details.id %}"><button style="color: red">Reject</button></a>#}
-{#            <hr>#}
-{#        {% endif %}#}
-
-{##}
-{##}
-{#    {% endif %}#}
-{##}
-{#{% endblock %}#}
-
-
-
 {% load staticfiles %}
 
 <!DOCTYPE html>
@@ -79,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Payment Confirmed | ODLRS</title>
+    <title>Confirmation | ODLRS</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
@@ -94,7 +22,7 @@
             <div class="col-6 offset-3 text-cente">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        <h3 class="mb-0">Order Status</h3>
+                        <h3 class="mb-0">Confirmation Voucher</h3>
                     </div>
 
                     <div class="card-body">
@@ -108,36 +36,25 @@
                         <!-- <hr> -->
                         {% endif %}
 
-                        <h6>Payment By: <b style="color: orangered">#show the selected method here...</b></h6>
-                        <br>
+                        <h6>Serial No: <b style="color: red">{{ order_details.id }}</b></h6>
+                        <h6>Total Price: <b style="color: deeppink">{{ total_price}}</b></h6>
+                        <h6>Payment Status: <b style="color: orangered">{{ order_details.payment_type }}</b></h6>
+                        <h6>Payment By: <b style="color: green">{{ order_details.payment_method }}</b></h6>
+                        <hr>
 
-                        <h6>Discount: <b style="color: blue">{{ order_details.test_info.discount }}</b></h6>
-                        <h6>Test Price: <b style="color: blue">{{ order_details.test_info.price }}</b></h6>
-                        <h6>Total Price: <b style="color: blue">{{ total_price}}</b></h6>
-                        <h6>Payment Status: <b style="color: blue">{{ order_details.payment_option }}</b></h6>
-                        <br>
-
-                        <h6>Order No: <b style="color: blue">{{ order_details.id }}</b></h6>
                         <h6>Test Name: <b style="color: blue">{{ order_details.test_info.test_name }}</b></h6>
-                        <h6>Category: <b style="color: blue">{{ order_details.test_info.category }}</b></h6>
+                        <h6>Booked Time Slot: <b style="color: blue">{{ order_details.booked_time_slot }}</b></h6>
+                        <h6>Booked Date: <b style="color: blue">{{ order_details.booked_date }}</b></h6>
                         <h6>Center: <b style="color: blue">{{ order_details.test_info.center.name  }}</b></h6>
-                        <h6>Booking Date: <b style="color: blue">{{ order_details.date }}</b></h6>
-                        <h6>Booking Time: <b style="color: blue">{{ order_details.time }}</b></h6>
-                        <br>
+                        <hr>
 
-                        <h6>Client: <b style="color: blue">
-                                <span>
-                                    {{ order_details.client_info }} ({{ order_details.client_info.profile_name }})
-                                </span>
-                            </b>
+                        <h6>Client:
+                            <b style="color: blue">{{ order_details.client_info }} ({{ order_details.client_info.profile_name }})</b>
                         </h6>
-
                         <h6>Email: <b style="color: blue">{{ order_details.client_info.user.email }}</b></h6>
-
                         <h6>Contact: <b style="color: blue">{{ order_details.contact_no }}</b></h6>
-
                         <h6>Address: <b style="color: blue">{{ order_details.client_info.address }}</b></h6>
-                        <br>
+                        <hr>
 
 
                         {% if request.user.is_authenticated %}

@@ -61,12 +61,14 @@ def test_order(request, id=None):
         current_test = Test.objects.get(id=id)
 
         email = current_profile.user.email
+        contact_no = current_profile.contact_no
         address = current_profile.address
 
         initial_data = {
             'client_info': current_profile,
             'test_info': current_test,
             'email':email,
+            'contact_no': contact_no,
             'address':address
 
         }
@@ -175,35 +177,6 @@ def all_tests_list_for_staff_admin(request, template_name='tests/all_tests_list_
 ########################################################################################
 
 
-def payment_method(request, template="tests/payment_method.html", id=None):
-
-    order_details = TestOrder.objects.get(id=id)
-
-    context = {'order_details': order_details}
-
-    return render(request, template, context)
-
-########################################################################################
-
-
-def confirm_payment(request, id=None):
-
-    order_details = TestOrder.objects.get(id=id)
-
-    return redirect('tests:confirm-payment-message', id=order_details.id)
-
-########################################################################################
-
-
-def reject_payment(request, id=None):
-
-    order_details = TestOrder.objects.get(id=id)
-
-    return redirect('tests:order-details', id=order_details.id)
-
-########################################################################################
-
-
 def confirm_payment_message(request, id=None):
     order_details = TestOrder.objects.get(id=id)
 
@@ -216,6 +189,35 @@ def confirm_payment_message(request, id=None):
     }
 
     return render(request, template, context)
+
+########################################################################################
+
+
+# def payment_method(request, template="tests/payment_method.html", id=None):
+#
+#     order_details = TestOrder.objects.get(id=id)
+#
+#     context = {'order_details': order_details}
+#
+#     return render(request, template, context)
+
+########################################################################################
+
+
+# def confirm_payment(request, id=None):
+#
+#     order_details = TestOrder.objects.get(id=id)
+#
+#     return redirect('tests:confirm-payment-message', id=order_details.id)
+
+########################################################################################
+
+
+# def reject_payment(request, id=None):
+#
+#     order_details = TestOrder.objects.get(id=id)
+#
+#     return redirect('tests:order-details', id=order_details.id)
 
 ########################################################################################
 

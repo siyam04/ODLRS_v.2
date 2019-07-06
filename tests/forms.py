@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, Select, SelectDateWidget, TimeInput
+from django.forms import TextInput, Select, SelectDateWidget, TimeInput, DateInput
 
 from .models import TestOrder, Test
 
@@ -7,7 +7,8 @@ from .models import TestOrder, Test
 class TestOrderForm(forms.ModelForm):
     class Meta:
         model = TestOrder
-        fields = ['client_info', 'contact_no', 'email', 'address', 'test_info', 'payment_type', 'date', 'time']
+        fields = ['client_info', 'contact_no', 'email', 'address', 'test_info', 'payment_type', 'payment_method',
+                  'booked_time_slot', 'booked_date']
 
         widgets = {
             'client_info': Select(attrs={'class': 'form-control'}),
@@ -16,8 +17,12 @@ class TestOrderForm(forms.ModelForm):
             'address': TextInput(attrs={'class': 'form-control'}),
             'test_info': Select(attrs={'class': 'form-control'}),
             'payment_type': Select(attrs={'class': 'form-control'}),
-            'date': SelectDateWidget(attrs={'class': 'form-control'}),
-            'time': TimeInput(format='%H:%M', attrs={'type': 'time', 'class': 'form-control'}),
+            'payment_method': Select(attrs={'class': 'form-control'}),
+            'booked_time_slot': Select(attrs={'class': 'form-control'}),
+            'booked_date': SelectDateWidget(attrs={'class': 'form-control'}),
+
+            # 'time': TimeInput(format='%H:%M', attrs={'type': 'time', 'class': 'form-control'}),
+            # 'date': SelectDateWidget(attrs={'class': 'form-control'}),
         }
 
 
