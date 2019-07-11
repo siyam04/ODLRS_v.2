@@ -116,7 +116,7 @@
                                 <td>
                                     {#                                    <a href="{% url 'tests:order-details' test.id %}">#}
                                     <a href="{% url 'tests:confirm-payment-message' test.id %}">
-                                        {{ test.test_info.test_name }}
+                                        <strong>{{ test.test_info.test_name }}</strong>
                                     </a>
                                 </td>
                             </tr>
@@ -182,10 +182,10 @@
                                     {% if test.staff_check == True and test.accepted == True %}
 
                                     <a href="{% url 'tests:confirm-payment-message' test.id %}">
-                                        {{ test.test_info.test_name }}
+                                        <strong>{{ test.test_info.test_name }}</strong>
                                     </a>
-                                    <li style="color: purple">Send Report (PDF from Local Machine)</li>
-                                    <li style="color: red">Report Status (Sent / Not Sent)</li>
+{#                                    <li style="color: purple">Send Report (PDF from Local Machine)</li>#}
+{#                                    <li style="color: red">Report Status (Sent / Not Sent)</li>#}
 
                                     {% endif %}
                                 </td>
@@ -222,8 +222,75 @@
                         </li>
                     </ul>
                     <!-- Confirmed Paginator -->
-
                 </div>
+
+
+                <div class="col">
+
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th colspan="2"> Orders Validation and Finalize </th>
+                            </tr>
+                            <tr>
+                                <th>SL NO.</th>
+                                <th> Test Names </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for test in confirmed_tests %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+                                <td>
+
+                                    {% if test.staff_check == True and test.accepted == True %}
+
+                                    <a href="{% url 'tests:confirm-payment-message' test.id %}">
+                                        <strong>{{ test.test_info.test_name }}</strong>
+                                    </a>
+                                    <li style="color: crimson">Payment Clearance (CheckBox)</li>
+                                    <li style="color: crimson">Report Upload (CheckBox)</li>
+                                    <li style="color: crimson">Send Report (CheckBox)</li>
+
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- Finalize Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_previous %}
+                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of
+                                {{ confirmed_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- Finalize Paginator -->
+                </div>
+
             </div>
         </div>
 

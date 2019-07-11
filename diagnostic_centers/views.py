@@ -122,10 +122,9 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
 
     # for active tests like admin_dashboard
     confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center).order_by('-id')
-    ##
 
     # Pending Orders Paginator
-    paginator = Paginator(pending_tests, 5)
+    paginator = Paginator(pending_tests, 8)
     page = request.GET.get('page')
     pending_paginator_data = paginator.get_page(page)
 

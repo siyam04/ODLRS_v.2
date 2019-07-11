@@ -59,25 +59,26 @@
 
                         {% if request.user.is_authenticated %}
 
-                        <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Back to
-                                Home</button></a>
+                            <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">
+                                Back to Home</button>
+                            </a>
 
                         {% else %}
 
-                        {% if order_details.staff_check == False and order_details.accepted == False %}
+                            {% if order_details.staff_check == False and order_details.accepted == False %}
 
-                        <a href="{% url 'tests:staff-approved' order_details.id %}">
-                            <button type="button" class="btn btn-success">Approve</button>
-                        </a>
+                            <a href="{% url 'tests:staff-approved' order_details.id %}">
+                                <button type="button" class="btn btn-success">Approve</button>
+                            </a>
 
-                        <a href="{% url 'tests:staff-rejected' order_details.id %}">
-                            <button type="button" class="btn btn-danger">Reject</button>
-                        </a>
+                            <a href="{% url 'tests:staff-rejected' order_details.id %}">
+                                <button type="button" class="btn btn-danger">Reject</button>
+                            </a>
+                            <hr>
+                            {% endif %}
 
-                        <hr>
                         {% endif %}
 
-                        {% endif %}
                     </div>
                 </div>
             </div>

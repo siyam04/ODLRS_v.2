@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'custom_users.apps.CustomUsersConfig',
     'diagnostic_centers',
     'tests',
+    'reports',
 
     # allauth
     'allauth',

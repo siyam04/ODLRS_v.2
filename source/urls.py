@@ -26,6 +26,9 @@ urlpatterns = [
     # App3 (tests)
     path('', include('tests.urls', namespace='tests')),
 
+    # App4 (reports)
+    # path('', include('reports.urls', namespace='reports')),
+
     # Allauth (built-in)
     path('accounts/', include('allauth.urls')),
 

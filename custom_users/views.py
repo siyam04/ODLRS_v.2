@@ -52,7 +52,9 @@ def profile_edit(request, template_name='account/custom_users/profile_edit.html'
             profile.user = request.user
             profile.save()
             messages.success(request, 'Profile Updated for {}'.format(request.user.username), extra_tags='html_safe')
-            return redirect('custom_users:profile')
+            # return redirect('custom_users:profile')
+            return redirect('custom_users:orders-by-user')
+
 
     context = {
         'profile_form': profile_form,
