@@ -4,15 +4,19 @@
 <html>
 
 <head>
-  <title>{% block title %}{% endblock %}</title>
+	<title>{% block title %}{% endblock %}</title>
 
-  <!-- fontawesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
-    integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
+		integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -20,56 +24,84 @@
 
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand text-warning" href="{% url 'home' %}"><b>ODLRS</b></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand text-warning" href="{% url 'home' %}"><b>ODLRS</b></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'diagnostic_centers:all-centers' %}">Centers</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="{% url 'tests:all-tests' %}">Tests</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'tests:categories' %}">Categories</a>
-          </li>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item ">
+						<a class="nav-link" href="{% url 'home' %}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'diagnostic_centers:all-centers' %}">Centers</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="{% url 'tests:all-tests' %}">Tests</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'tests:categories' %}">Categories</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link slide-left" href="#">
+							<i class="fas fa-cart-plus"></i>
+						</a>
+					</li>
 
-          {% if user.is_authenticated %}
-          <li class="nav-item ">
-            <a class="nav-link text-warning" href="{% url 'custom_users:orders-by-user' %}">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-          </li>
-          {% else %}
-          <li class="nav-item ">
-            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_signup' %}">SignUp</a>
-          </li>
-          {% endif %}
+					{% if user.is_authenticated %}
+					<li class="nav-item ">
+						<a class="nav-link text-warning" href="{% url 'custom_users:orders-by-user' %}">Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+					</li>
+					{% else %}
+					<li class="nav-item ">
+						<a class="nav-link" href="{% url 'account_login' %}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'account_signup' %}">SignUp</a>
+					</li>
+					{% endif %}
 
-        </ul>
-      </div>
-    </div>
-  </nav>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-  {% block content %} {% endblock %} {% block extra_body %} {% endblock %}
+	<div class="add-to-cart-box" id="add-to-cart">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title float-left">Lorem, ipsum dolor.</h5>
+				<!-- <button class="btn btn-danger btn-sm slide-right"> Close </button> -->
+				<button type="button" class="close  slide-right">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="card-body p-4">
 
-  <div class="footer bg-dark text-white text-center py-2">
-    <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
-  </div>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere distinctio officia magni quisquam
+				veritatis iusto numquam sed vitae, ipsam, esse est expedita, dicta voluptatem repudiandae omnis
+				obcaecati enim quaerat earum.
+			</div>
+		</div>
+	</div>
 
+	{% block content %} {% endblock %} {% block extra_body %} {% endblock %}
+
+	<div class="footer bg-dark text-white text-center py-2">
+		<p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
+	</div>
+
+
+	<script src="{% static 'js/main.js' %}"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
 </body>
 
 </html>

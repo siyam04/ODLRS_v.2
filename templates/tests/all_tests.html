@@ -5,10 +5,6 @@
 {% block content %}
 
 <style>
-    p {
-        margin-bottom: 0;
-    }
-
     p.center {
         font-size: 14px;
     }
@@ -33,11 +29,18 @@
                     <p class="card-text text-danger">Price: {{ test.price }} TK</p>
                     <p class="card-text">{{ test.active_status }}</p>
 
-                    <div class="dropdown-divider"></div>
+                    <!-- <div class="dropdown-divider"></div>
                     <div class="btn-block text-center">
                         <a class="btn btn-primary btn-sm m-auto" href="{% url 'tests:order' test.id %}"
                             type="submit">ORDER</a>
-                    </div>
+                    </div> -->
+                </div>
+                <div class="btn-block text-center">
+                    <p class="btn-group">
+                        <button class="btn btn-warning btn-sm" id="cart-btn"> Add to cart </button>
+                        <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}"
+                            type="submit">ORDER</a>
+                    </p>
                 </div>
             </div>
         </div>

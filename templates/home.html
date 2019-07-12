@@ -3,12 +3,6 @@
 {% block title %}Home | ODLRS{% endblock %}
 
 {% block content %}
-<style>
-    p {
-        margin-bottom: 0;
-    }
-</style>
-
 <div class="welcome container text-dark">
 
     <div class="bg-dark p-5 my-4">
@@ -34,7 +28,7 @@
     <div class="row mt-4">
         {% for test in paginator_dataset %}
         <div class="col-3">
-            <div class="card mb-4">
+            <div class="card">
                 <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
 
                 <div class="card-body">
@@ -51,18 +45,21 @@
                     <p class="card-text text-danger">Price: {{ test.price }} TK</p>
                     <p class="card-text">{{ test.active_status }}</p>
 
-                    <div class="dropdown-divider"></div>
-                    <div class="btn-block text-center">
-                        <a class="btn btn-primary btn-sm m-auto" href="{% url 'tests:order' test.id %}"
-                            type="submit">ORDER</a>
-                    </div>
                 </div>
+
+                <div class="btn-block text-center">
+                    <p class="btn-group">
+                        <button class="btn btn-warning btn-sm" id="cart-btn"> Add to cart </button>
+                        <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}"
+                            type="submit">ORDER</a>
+                    </p>
+                </div>
+
             </div>
         </div>
         {% endfor %}
 
     </div>
-
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -89,5 +86,20 @@
     </nav>
 
 </div>
+
+
+
+<!-- 
+<script>
+    const cartBtn = document.getElementById('cart-btn');
+    const cart = document.getElementById('add-to-cart');
+
+    cartBtn.addEventListener("click", function addItem() {
+        cart.style.display = 'block'
+    });
+</script> -->
+
+
+
 
 {% endblock content %}
