@@ -7,7 +7,7 @@ from django.views.generic import (
     TemplateView,
 )
 
-from tests.models import TestOrder
+from tests.models import TestOrder, Test
 
 from .models import DiagnosticCenter, DiagnosticAdmin, DiagnosticStaff
 from .forms import AdminLoginForm, StaffLoginForm
@@ -124,7 +124,7 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
     confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center).order_by('-id')
 
     # Pending Orders Paginator
-    paginator = Paginator(pending_tests, 8)
+    paginator = Paginator(pending_tests, 3)
     page = request.GET.get('page')
     pending_paginator_data = paginator.get_page(page)
 
@@ -149,5 +149,22 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
 def staff_logout(request):
     # messages.success(request, 'Logged Out.', extra_tags='html_safe')
     return redirect('diagnostic_centers:staff-login')
+
+########################################################################################################################
+
+
+def center_details(request, id=id):
+    single_center = DiagnosticCenter.objects.get(id=id)
+    tests_by_center = Test.objects.filter(center__id=id)
+
+    template = 'diagnostic_centers/center_details.html'
+    context = {
+        'tests_by_center': tests_by_center,
+        'single_center': single_center,
+    }
+
+    return render(request, template, context)
+
+########################################################################################################################
 
 

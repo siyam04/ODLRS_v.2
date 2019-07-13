@@ -49,7 +49,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title">
-                            {{ centers.name }}
+                            <a href="{% url 'diagnostic_centers:center-details' centers.id %}">{{ centers.name }}</a>
                         </h5>
 
                         <p class="card-text text-primary">Email: <span>{{ centers.email }}</span></p>
