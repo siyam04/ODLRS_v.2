@@ -1,36 +1,16 @@
-# from django.contrib import admin
-#
-# from .models import (
-#
-#     TestCategory,
-#     Test,
-#     TestOrder,
-# )
-#
-#
-# class TestCategoryAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'category_name']
-#     list_filter = ['category_name']
-#     search_fields = ['id', 'category_name']
-#
-#
-# class TestAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'test_name', 'category', 'center', 'discount', 'price', 'active_status', 'image']
-#     list_display_links = ['test_name']
-#     list_filter = ['test_name', 'category']
-#     search_fields = ['id', 'test_name', 'center', 'category']
-#
-#
-# class TestOrderAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'client_info', 'test_info', 'contact_no', 'email', 'address', 'payment_type', 'payment_method',
-#                     'booked_time_slot', 'booked_date', 'order_created_at', 'staff_check', 'accepted']
-#
-#     list_display_links = ['client_info', 'test_info']
-#     # list_filter = ['client_info', 'test_info']
-#     search_fields = ['id', 'client_info', 'test_info', 'contact_no']
-#
-#
-# # Registering databases
-# admin.site.register(TestCategory, TestCategoryAdmin)
-# admin.site.register(Test, TestAdmin)
-# admin.site.register(TestOrder, TestOrderAdmin)
+from django.contrib import admin
+
+from .models import OrderValidation
+
+
+class OrderValidationAdmin(admin.ModelAdmin):
+    list_display = ['id', 'approved_orders', 'payment_status', 'confirmed_by_staff', 'confirmation_datetime']
+    list_display_links = ['approved_orders']
+    # list_filter = ['approved_orders', 'confirmed_by_staff']
+    search_fields = ['id', 'approved_orders', 'confirmed_by_staff']
+    list_editable = ['confirmed_by_staff']
+
+
+# Registering databases
+admin.site.register(OrderValidation, OrderValidationAdmin)
+
