@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+}
+
+nav.navbar {
+  background: transparent;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.header-image {
+  background: url(../images/bg-image.jpg);
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  .header-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    text-transform: uppercase;
+
+    h2 {
+      font-size: 80px;
+      font-weight: bold;
+    }
+
+    h5 {
+      margin-left: 5px;
+    }
+
+    a.btn {
+      color: white;
+      background: linear-gradient(to left, #3ebec7, #328691);
+      padding: 10px 20px;
+      margin-top: 2rem;
+      border: none;
+      border-radius: 0;
+      font-weight: bold;
+      border: 600;
+    }
+  }
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.card {
+  margin-bottom: 3rem;
+}
+
+.add-to-cart-box {
+  position: fixed;
+  top: 20%;
+  right: -350px;
+  width: 350px;
+  height: 400px;
+  z-index: 1111;
+  display: block;
+}
+
+.welcome .card-body {
+  min-height: 190px;
+}
+
+.btn-block {
+  /* margin: auto; */
+  margin-bottom: -15px;
+}
+
+/* .btn-block button{} */

@@ -3,7 +3,20 @@
 {% block title %}Home | ODLRS{% endblock %}
 
 {% block content %}
-<div class="welcome container text-dark">
+
+<div class="header-image">
+    <div class="container">
+        <div class="header-content">
+            <h1>ONLINE TEST</h1>
+            <h2>booking</h2>
+            <h5>book now any kind of tests</h5>
+
+            <a href="#welcome" class="btn"> get started </a>
+        </div>
+    </div>
+</div>
+
+<div class="welcome container text-dark" id="welcome">
 
     <div class="bg-dark p-5 my-4">
         <div class="container">
@@ -42,14 +55,16 @@
                     <p class="card-text">Discount: {{ test.discount }}</p>
                     {% endif %}
 
-                    <p class="card-text text-danger">Price: {{ test.price }} TK</p>
+                    <p class="card-text text-danger">Price: <span id="price">{{ test.price }}</span> TK</p>
                     <p class="card-text">{{ test.active_status }}</p>
 
                 </div>
 
                 <div class="btn-block text-center">
                     <p class="btn-group">
-                        <button class="btn btn-warning btn-sm" id="cart-btn"> Add to cart </button>
+                        <button class="btn btn-warning btn-sm" id="cart-btn" data-slug="{{ test.test_name }}"> Add to
+                            cart
+                        </button>
                         <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}"
                             type="submit">ORDER</a>
                     </p>
