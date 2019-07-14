@@ -49,7 +49,8 @@
 
                 <div class="btn-block text-center">
                     <p class="btn-group">
-                        <button class="btn btn-warning btn-sm cart-btn" id="cart-btn"> Add to cart </button>
+                        <button class="btn btn-warning btn-sm cart-btn" id="cart-btn" data-price="{{ test.id }}">
+                            Add to cart </button>
                         <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}"
                             type="submit">ORDER</a>
                     </p>
