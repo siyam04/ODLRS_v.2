@@ -13,3 +13,15 @@ $(document).ready(function () {
         });
     });
 });
+
+
+const cartBtn = document.getElementsByClassName('cart-btn');
+const price = document.getElementsByClassName('price');
+
+for (var i = 0; i < cartBtn.length; i++) {
+    var addItem = cartBtn[i];
+
+    addItem.addEventListener('click', function () {
+        console.log(cartBtn)
+    });
+}

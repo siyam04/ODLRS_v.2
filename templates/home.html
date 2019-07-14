@@ -42,14 +42,14 @@
                     <p class="card-text">Discount: {{ test.discount }}</p>
                     {% endif %}
 
-                    <p class="card-text text-danger">Price: {{ test.price }} TK</p>
+                    <p class="card-text text-danger price">Price: <span id="price">{{ test.price }}</span> TK</p>
                     <p class="card-text">{{ test.active_status }}</p>
 
                 </div>
 
                 <div class="btn-block text-center">
                     <p class="btn-group">
-                        <button class="btn btn-warning btn-sm" id="cart-btn"> Add to cart </button>
+                        <button class="btn btn-warning btn-sm cart-btn" id="cart-btn"> Add to cart </button>
                         <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}"
                             type="submit">ORDER</a>
                     </p>
