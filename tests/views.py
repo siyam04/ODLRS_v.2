@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from custom_users.models import Profile
+from diagnostic_centers.models import DiagnosticAdmin, DiagnosticStaff, DiagnosticCenter
 
 from .models import Test, TestCategory, TestOrder
 from .forms import TestOrderForm, TestAddForm
@@ -58,15 +59,14 @@ def test_order(request, id=None):
 
     try:
         current_profile = Profile.objects.get(user=request.user)
-        current_test = Test.objects.get(id=id)
 
         email = current_profile.user.email
         contact_no = current_profile.contact_no
         address = current_profile.address
 
         initial_data = {
-            'client_info': current_profile,
-            'test_info': current_test,
+            # 'client_info': current_profile,
+            # 'test_info': current_test,
             'email':email,
             'contact_no': contact_no,
             'address':address
@@ -81,11 +81,18 @@ def test_order(request, id=None):
 
         if test_order_form.is_valid():
             order = test_order_form.save(commit=False)
+
+            order.client_info = Profile.objects.get(user=request.user)
+            order.test_info = Test.objects.get(id=id)
+
+            # ToDo: 'Object' is saving before 'confirm'
             order.save()
+
             return redirect('tests:order-details', id=order.id)
 
     context = {
         'test_order_form': TestOrderForm(initial=initial_data),
+        'test_id': id,
     }
 
     template = 'tests/order.html'
@@ -118,14 +125,6 @@ def staff_approved(request, id=None, username=None):
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
-    # template = 'tests/order_details.html'
-    # template = 'tests/confirm_payment_message.html'
-    #
-    # context = {
-    #     'order_details': staff_order_detail,
-    # }
-
-    # return render(request, template, context)
     return redirect('diagnostic_centers:staff-dashboard', username=username)
 
 ########################################################################################
@@ -137,25 +136,24 @@ def staff_rejected(request, id=None, username=None):
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
-    # template = 'tests/order_details.html'
-    # template = 'tests/confirm_payment_message.html'
-    #
-    # context = {
-    #     'order_details': staff_order_detail,
-    # }
-
     return redirect('diagnostic_centers:staff-dashboard', username=username)
 
 
 ########################################################################################
 
 
-def add_test_by_admin(request):
+def add_test_by_admin(request, username=None):
     if request.method == 'POST':
         test_add_form = TestAddForm(request.POST)
 
         if test_add_form.is_valid():
-            test_add_form.save()
+            add_test = test_add_form.save(commit=False)
+
+            admin = DiagnosticAdmin.objects.get(username=username)
+            add_test.center = DiagnosticCenter.objects.get(id=admin.center.id)
+
+            add_test.save()
+
             return redirect('tests:all-tests-list-staff-admin')
 
     else:
@@ -169,12 +167,13 @@ def add_test_by_admin(request):
 ########################################################################################
 
 
-def all_tests_list_for_staff_admin(request, template_name='tests/all_tests_list_for_staff_admin.html'):
+def all_tests_list_for_staff_admin(request):
     all_added_tests = Test.objects.all().order_by('-id')
 
+    template = 'tests/all_tests_list_for_staff_admin.html'
     context = {'all_added_tests': all_added_tests}
 
-    return render(request, template_name, context)
+    return render(request, template, context)
 
 ########################################################################################
 
@@ -194,34 +193,4 @@ def confirm_payment_message(request, id=None, username=None):
     return render(request, template, context)
 
 ########################################################################################
-
-
-# def payment_method(request, template="tests/payment_method.html", id=None):
-#
-#     order_details = TestOrder.objects.get(id=id)
-#
-#     context = {'order_details': order_details}
-#
-#     return render(request, template, context)
-
-########################################################################################
-
-
-# def confirm_payment(request, id=None):
-#
-#     order_details = TestOrder.objects.get(id=id)
-#
-#     return redirect('tests:confirm-payment-message', id=order_details.id)
-
-########################################################################################
-
-
-# def reject_payment(request, id=None):
-#
-#     order_details = TestOrder.objects.get(id=id)
-#
-#     return redirect('tests:order-details', id=order_details.id)
-
-########################################################################################
-
 

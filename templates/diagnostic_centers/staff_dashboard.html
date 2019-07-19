@@ -72,18 +72,20 @@
 
             <div class="row mt-4 mx-4 py-3 bg-warning text-dark">
                 <div class="col">
-                    <h6 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong> {{ staff.center }}
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong>
+                        <b style="color: orangered">{{ staff.center }}</b>
                     </h6>
                 </div>
                 <div class="col">
-                    <h6 class="text-white mb-0"> <strong class="text-dark">Staff Name:</strong> {{ staff.username }}
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Staff Name:</strong>
+                        <b style="color: orangered">{{ staff.username }}</b>
                     </h6>
                 </div>
                 <div class="col">
                     <h6 class="text-white mb-0"> <strong class="text-dark">Reported To:</strong>
 
                         {% for a in admins %}
-                        {{ a.username }}
+                        <b style="color: orangered">{{ a.username }}</b>
                         {% endfor %}
 
                     </h6>
@@ -195,7 +197,7 @@
                         </tbody>
                     </table>
 
-                    <!-- Confirmed Paginator -->
+                    <!-- Approved Paginator -->
                     <ul class="pagination">
                         <li class="page-item">
 
@@ -221,7 +223,7 @@
                             {% endif %}
                         </li>
                     </ul>
-                    <!-- Confirmed Paginator -->
+                    <!-- Approved Paginator -->
                 </div>
 
 
@@ -230,10 +232,10 @@
                     <table class="table table-striped table-bordered table-hover mb-4">
                         <thead>
                             <tr class="bg-info text-white">
-                                <th colspan="2"> Reporting Process </th>
+                                <th colspan="2"> Verification Status </th>
                             </tr>
                             <tr>
-                                <th>SL NO.</th>
+                                <th>SL.</th>
                                 <th> Test Names </th>
                             </tr>
                         </thead>
@@ -246,17 +248,31 @@
                                 <td>
 
                                     {% if test.staff_check == True and test.accepted == True %}
+                                        <a href="{% url 'tests:confirm-payment-message' test.id %}">
+                                            <strong>{{ test.test_info.test_name }}</strong><br><br>
+                                        </a>
 
-                                    <a href="{% url 'tests:confirm-payment-message' test.id %}">
-                                        <strong>{{ test.test_info.test_name }}</strong><br><br>
-                                    </a>
-                                    <li style="color: crimson">
-                                        <a href="{% url 'reports:order-validation-form' test.id %}">Verify Order</a><br>
-                                        <br>
-                                    </li>
-                                        <input type="checkbox" name="Order" value="Verified"> Verified<br>
+                                        <li style="color: purple"><b>{{ test.payment_type }}</b></li>
 
-                                        <input type="checkbox" name="Report" value="Sent"> Report Send Complete
+                                        {% if test.payment_type == 'Full Payment' and test.validation == False %}
+                                            <form action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
+                                                  method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                {{ payment_form.as_p }}
+                                                <button class="btn btn-success" type="submit">SEND</button>
+                                            </form>
+
+                                        {% elif test.payment_type == 'Full Payment' and test.validation == True %}
+                                            <li style="color: green"><b>Verified!</b></li>
+
+                                        {% elif test.payment_type == 'Half Payment' and test.accepted == True %}
+                                            <li style="color: red"><b>NOT Verified</b></li>
+                                            <li style="color: black">
+                                                Send Notification For FULL Payment<br>with #BKash_No and #Bank_ACC_NO
+                                            </li>
+
+                                        {% endif %}
+
                                     {% endif %}
                                 </td>
                             </tr>
@@ -265,7 +281,7 @@
                         </tbody>
                     </table>
 
-                    <!-- Finalize Paginator -->
+                    <!-- Reporting Paginator -->
                     <ul class="pagination">
                         <li class="page-item">
 
@@ -291,7 +307,7 @@
                             {% endif %}
                         </li>
                     </ul>
-                    <!-- Finalize Paginator -->
+                    <!-- Reporting Paginator -->
                 </div>
 
             </div>

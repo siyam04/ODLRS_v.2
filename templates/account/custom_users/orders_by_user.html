@@ -7,11 +7,28 @@
         {% for order in orders %}
         <li class="list-group-item border- px-0">
             <a class="nav-link px-" href="{% url 'tests:confirm-payment-message' order.id %}">
-                {{order.test_info.test_name}}
+                <strong>{{order.test_info.test_name}}</strong>
             </a>
-        </li>
+
+{#                {% if order.accepted == True and order.valiadation == True %}#}
+{#                    <li>Approved and Verified !</li>#}
+{#                {% endif %}#}
+
+            {% if order.accepted == True %}
+                <p style="color: green">Verified</p>
+
+            {% elif order.accepted == False and order.staff_check == True %}
+                <p style="color: red">Rejected</p>
+
+            {% elif order.accepted == False and order.staff_check == False %}
+                <p style="color: purple">Pending...</p>
+
+            {% endif %}
+
         {% endfor%}
+        </li>
         <hr>
+
         <!-- Paginator -->
         <ul class="pagination">
             <li class="page-item">

@@ -27,11 +27,11 @@
 
                     <div class="card-body">
                         {% if order_details.staff_check == True and order_details.accepted == True %}
-                        <div class="alert alert-success"> <strong>Order Confirmed by Staff</strong> </div>
+                        <div class="alert alert-success"> <strong>Order Approved</strong> </div>
                         <!-- <b style="color: limegreen"></b> -->
                         <!-- <hr> -->
                         {% elif order_details.staff_check == True and order_details.accepted == False %}
-                        <div class="alert alert-danger"> <strong>Rejected By Staff</strong> </div>
+                        <div class="alert alert-danger"> <strong>Rejected... Try Again</strong> </div>
                         <!-- <b style="color: red"></b> -->
                         <!-- <hr> -->
                         {% endif %}

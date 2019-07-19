@@ -27,7 +27,7 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link text-warning" href="{% url 'tests:add-test' %}">Add New Test</a>
+                        <a class="nav-link text-warning" href="{% url 'tests:add-test' admin.username %}">Add New Test</a>
                     </li>
 
                     <li class="nav-item">
@@ -65,11 +65,13 @@
 
             <div class="row mt-4 mx-4 py-3 bg-warning text-dark">
                 <div class="col">
-                    <h6 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong> {{ admin.center }}
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong>
+                        <b style="color: orangered">{{ admin.center }}</b>
                     </h6>
                 </div>
                 <div class="col">
-                    <h6 class="text-white mb-0"> <strong class="text-dark">Admin Name:</strong> {{ admin.username }}
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Admin Name:</strong>
+                        <b style="color: orangered">{{ admin.username }}</b>
                     </h6>
                 </div>
             </div>
@@ -99,7 +101,7 @@
                                     <a href="{% url 'tests:confirm-payment-message' test.id %}">
                                         <strong>{{ test.test_info.test_name }}</strong>
                                     </a>
-                                    <li style="color: crimson">See Report (PDF)</li>
+                                    <li style="color: green">Verified</li>
                                 </th>
                             </tr>
                             {% endfor %}
@@ -138,7 +140,7 @@
 
                 </div>
 
-                <div class="col-6">
+                <div class="col-12">
                     <table class="table table-striped table-bordered table-hover mb-4">
                         <thead>
                             <tr class="bg-info text-white">
@@ -177,7 +179,7 @@
 
     <!-- <h1>Admin Dashboard</h1>
     <hr>
-    <button type="submit"><b style="color: red"><a href="{% url 'tests:add-test' %}">Add New Test</a></b></button>
+{#    <button type="submit"><b style="color: red"><a href="{% url 'tests:add-test' %}">Add New Test</a></b></button>#}
     <br><br>
     <button type="submit"><a href="{% url 'tests:all-tests-list-staff-admin' %}"><b>Newly Added Tests</b></a></button>
     <br><br>

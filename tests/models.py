@@ -59,20 +59,18 @@ class TestOrder(models.Model):
         ('8:00 PM - 10:00 PM', '8:00 PM - 10:00 PM'),
     )
 
-    client_info = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='test_user_order')
+    client_info = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='test_user_order')
 
     contact_no = models.CharField(max_length=20, blank=False, null=True)
     email = models.EmailField(blank=True, null=True)
     address = models.CharField(max_length=150, blank=True, null=True)
 
-    test_info = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='test_order')
+    test_info = models.ForeignKey(Test, on_delete=models.SET_NULL, null=True, related_name='test_order')
 
     payment_type = models.CharField(max_length=20, choices=PAYMENT_TYPE, blank=True, null=True)
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD, blank=True, null=True)
     booked_time_slot = models.CharField(max_length=20, choices=TIME_SLOT, blank=True, null=True)
     booked_date = models.DateField(blank=True, null=True)
-
-    # booked_date = models.DateTimeField(default=timezone.now, blank=False)
 
     order_created_at = models.TimeField(auto_now=True)
 
@@ -81,12 +79,14 @@ class TestOrder(models.Model):
 
     accepted = models.BooleanField(default=False)
 
+    validation = models.BooleanField(default=False)
+
     class Meta:
         ordering = ['-id']
         verbose_name_plural = 'Test Orders'
 
-    def __str__(self):
-        return self.client_info.user.username
+    # def __str__(self):
+    #     return self.test_info.test_name
 
 
 

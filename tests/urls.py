@@ -47,7 +47,7 @@ urlpatterns = [
 
     path('staff-rejected/<int:id>/<username>/', staff_rejected, name='staff-rejected'),
 
-    path('add-test/', add_test_by_admin, name='add-test'),
+    path('add-test/<username>/', add_test_by_admin, name='add-test'),
 
     path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
 

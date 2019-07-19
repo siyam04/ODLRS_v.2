@@ -23,7 +23,7 @@ class TestAdmin(admin.ModelAdmin):
 
 class TestOrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'client_info', 'test_info', 'contact_no', 'email', 'address', 'payment_type', 'payment_method',
-                    'booked_time_slot', 'booked_date', 'order_created_at', 'staff_check', 'accepted']
+                    'booked_time_slot', 'booked_date', 'order_created_at', 'staff_check', 'accepted', 'validation']
 
     list_display_links = ['client_info', 'test_info']
     # list_filter = ['client_info', 'test_info']
