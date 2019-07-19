@@ -43,16 +43,17 @@ urlpatterns = [
 
     path('order-details/<int:id>/', order_details_info, name='order-details'),
 
-    path('staff-approved/<int:id>/', staff_approved, name='staff-approved'),
+    path('staff-approved/<int:id>/<username>/', staff_approved, name='staff-approved'),
 
-    path('staff-rejected/<int:id>/', staff_rejected, name='staff-rejected'),
+    path('staff-rejected/<int:id>/<username>/', staff_rejected, name='staff-rejected'),
 
     path('add-test/', add_test_by_admin, name='add-test'),
 
     path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
 
-    path('confirm-payment-message/<int:id>', confirm_payment_message, name='confirm-payment-message'),
+    path('confirm-payment-message/<int:id>/', confirm_payment_message, name='confirm-payment-message'),
 
+    path('staff-confirm-payment-message/<int:id>/<username>/', confirm_payment_message, name='staff-confirm-payment-message'),
 
     # path('payment-method/<int:id>', payment_method, name='payment_method'),
     #

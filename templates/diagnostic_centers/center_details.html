@@ -3,14 +3,14 @@
 {% block title %}Center Details | ODLRS{% endblock %}
 
 {% block content %}
-    <hr>
-    <h3 style="color: blue">{{ single_center.name }}</h3>
-    <br>
-    <img src="{{ single_center.image.url }}" width="400px" height="300px">
-    <br><h4>Email: <b style="color: blue">{{ single_center.email }}</b></h4>
-    <h4>Contact: <b style="color: blue">{{ single_center.contact_no }}</b></h4>
-    <h4>Website: <b style="color: blue">{{ single_center.website }}</b></h4>
-    <h4>Address: <b style="color: blue">{{ single_center.address }}</b></h4>
+{#    <hr>#}
+{#    <h3 style="color: blue">{{ single_center.name }}</h3>#}
+{#    <br>#}
+{#    <img src="{{ single_center.image.url }}" width="400px" height="300px">#}
+{#    <br><h4>Email: <b style="color: blue">{{ single_center.email }}</b></h4>#}
+{#    <h4>Contact: <b style="color: blue">{{ single_center.contact_no }}</b></h4>#}
+{#    <h4>Website: <b style="color: blue">{{ single_center.website }}</b></h4>#}
+{#    <h4>Address: <b style="color: blue">{{ single_center.address }}</b></h4>#}
 
     <hr>
     <h3 style="color: orangered"><b>All Tests Of This Center</b></h3>
@@ -18,7 +18,7 @@
 
     {% for test in tests_by_center %}
 
-        <li>* <a href="{% url 'tests:test-details' test.id %}"><strong>{{ test.test_name }}</strong></a></li>
+        <li><a href="{% url 'tests:test-details' test.id %}"><strong>{{ test.test_name }}</strong></a></li>
 
     {% endfor %}
     <br>

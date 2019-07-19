@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valid Order Details | ODLRS</title>
+</head>
+
+<body>
+    <h1>Valid Order Details</h1>
+    <hr>
+    <h3 style="color: orangered">Order History: <a href="{% url 'tests:confirm-payment-message' valid_order.id %}">
+        {{ valid_order.id }}</a>
+    </h3>
+    <hr>
+
+    <h3>Confirmed By Staff: <b style="color: blue">{{ valid_order.confirmed_by_staff }}</b></h3>
+    <h3>Payment Status: <b style="color: blue">{{ valid_order.payment_status }}</b></h3>
+    <h3>Confirmation DateTime: <b style="color: blue">{{ valid_order.confirmation_datetime }}</b></h3>
+    <hr>
+
+    <h3>Client: <b style="color: blue">{{ this_client }}</b></h3>
+    <h3>Test: <b style="color: blue">{{ this_test }}</b></h3>
+    <hr>
+
+    <button class="btn btn-success" style="width: 10%" type="submit">Upload Report</button>
+    <button class="btn btn-primary" style="width: 10%" type="submit">Send Report</button>
+
+</body>
+</html>

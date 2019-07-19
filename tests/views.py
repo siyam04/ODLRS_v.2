@@ -112,38 +112,40 @@ def order_details_info(request, id=None):
 ########################################################################################
 
 
-def staff_approved(request, id=None):
+def staff_approved(request, id=None, username=None):
     staff_order_detail = TestOrder.objects.get(id=id)
     staff_order_detail.accepted = True
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
     # template = 'tests/order_details.html'
-    template = 'tests/confirm_payment_message.html'
+    # template = 'tests/confirm_payment_message.html'
+    #
+    # context = {
+    #     'order_details': staff_order_detail,
+    # }
 
-    context = {
-        'order_details': staff_order_detail,
-    }
-
-    return render(request, template, context)
+    # return render(request, template, context)
+    return redirect('diagnostic_centers:staff-dashboard', username=username)
 
 ########################################################################################
 
 
-def staff_rejected(request, id=None):
+def staff_rejected(request, id=None, username=None):
     staff_order_detail = TestOrder.objects.get(id=id)
     staff_order_detail.accepted = False
     staff_order_detail.staff_check = True
     staff_order_detail.save()
 
     # template = 'tests/order_details.html'
-    template = 'tests/confirm_payment_message.html'
+    # template = 'tests/confirm_payment_message.html'
+    #
+    # context = {
+    #     'order_details': staff_order_detail,
+    # }
 
-    context = {
-        'order_details': staff_order_detail,
-    }
+    return redirect('diagnostic_centers:staff-dashboard', username=username)
 
-    return render(request, template, context)
 
 ########################################################################################
 
@@ -177,7 +179,7 @@ def all_tests_list_for_staff_admin(request, template_name='tests/all_tests_list_
 ########################################################################################
 
 
-def confirm_payment_message(request, id=None):
+def confirm_payment_message(request, id=None, username=None):
     order_details = TestOrder.objects.get(id=id)
 
     total_price = int(order_details.test_info.price - order_details.test_info.discount)
@@ -186,6 +188,7 @@ def confirm_payment_message(request, id=None):
     context = {
         'order_details': order_details,
         'total_price': total_price,
+        'staff_username': username,
     }
 
     return render(request, template, context)

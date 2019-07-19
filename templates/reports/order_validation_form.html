@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Validation | ODLRS</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+<br>
+<div class="card-body">
+    <form method="post">
+        {% csrf_token %}
+
+        {{ final_order_validation_form.as_p }}
+        <hr>
+        <button class="btn btn-dark" style="width: 10%" type="submit">Complete</button>
+    </form>
+</div>
+</body>
+</html>

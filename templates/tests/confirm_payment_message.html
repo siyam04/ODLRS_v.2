@@ -67,11 +67,11 @@
 
                             {% if order_details.staff_check == False and order_details.accepted == False %}
 
-                            <a href="{% url 'tests:staff-approved' order_details.id %}">
+                            <a href="{% url 'tests:staff-approved' order_details.id staff_username %}">
                                 <button type="button" class="btn btn-success">Approve</button>
                             </a>
 
-                            <a href="{% url 'tests:staff-rejected' order_details.id %}">
+                            <a href="{% url 'tests:staff-rejected' order_details.id staff_username %}">
                                 <button type="button" class="btn btn-danger">Reject</button>
                             </a>
                             <hr>

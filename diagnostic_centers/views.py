@@ -118,18 +118,18 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
     staff = DiagnosticStaff.objects.get(username=username)
     admins = DiagnosticAdmin.objects.filter(staff=staff)
 
-    pending_tests = TestOrder.objects.filter(test_info__center=staff.center).order_by('-id')
+    pending_tests = TestOrder.objects.filter(accepted=False, staff_check=False, test_info__center=staff.center)
 
     # for active tests like admin_dashboard
-    confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center).order_by('-id')
+    confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center)
 
     # Pending Orders Paginator
-    paginator = Paginator(pending_tests, 3)
+    paginator = Paginator(pending_tests, 10)
     page = request.GET.get('page')
     pending_paginator_data = paginator.get_page(page)
 
     # Confirmed Orders Paginator
-    paginator = Paginator(confirmed_tests, 3)
+    paginator = Paginator(confirmed_tests, 20)
     page = request.GET.get('page')
     confirmed_paginator_data = paginator.get_page(page)
 
@@ -138,6 +138,7 @@ def staff_dashboard(request, username=None, template_name='diagnostic_centers/st
         'admins': admins,
         'pending_tests': pending_paginator_data,
         'confirmed_tests': confirmed_paginator_data,
+        'staff_username': username,
     }
 
     return render(request, template_name, context)

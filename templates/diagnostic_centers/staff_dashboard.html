@@ -115,7 +115,7 @@
                                 <td> {{ forloop.counter }} </td>
                                 <td>
                                     {#                                    <a href="{% url 'tests:order-details' test.id %}">#}
-                                    <a href="{% url 'tests:confirm-payment-message' test.id %}">
+                                    <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
                                         <strong>{{ test.test_info.test_name }}</strong>
                                     </a>
                                 </td>
@@ -248,12 +248,15 @@
                                     {% if test.staff_check == True and test.accepted == True %}
 
                                     <a href="{% url 'tests:confirm-payment-message' test.id %}">
-                                        <strong>{{ test.test_info.test_name }}</strong>
+                                        <strong>{{ test.test_info.test_name }}</strong><br><br>
                                     </a>
-                                    <li style="color: crimson">Payment Clearance (CheckBox)</li>
-                                    <li style="color: crimson">Report Upload (CheckBox)</li>
-                                    <li style="color: crimson">Send Report (CheckBox)</li>
+                                    <li style="color: crimson">
+                                        <a href="{% url 'reports:order-validation-form' test.id %}">Verify Order</a><br>
+                                        <br>
+                                    </li>
+                                        <input type="checkbox" name="Order" value="Verified"> Verified<br>
 
+                                        <input type="checkbox" name="Report" value="Sent"> Report Send Complete
                                     {% endif %}
                                 </td>
                             </tr>
