@@ -77,6 +77,8 @@ class TestOrder(models.Model):
     staff_check = models.BooleanField(default=False)
     admin_approve = models.BooleanField(default=False)
 
+    order_confirmed = models.BooleanField(default=False)
+
     accepted = models.BooleanField(default=False)
 
     validation = models.BooleanField(default=False)
@@ -85,6 +87,7 @@ class TestOrder(models.Model):
         ordering = ['-id']
         verbose_name_plural = 'Test Orders'
 
+    # ToDo: Solve object name ERROR (linked to 'PaymentValidation' model)
     # def __str__(self):
     #     return self.test_info.test_name
 

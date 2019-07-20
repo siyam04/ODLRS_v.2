@@ -129,10 +129,11 @@ def staff_dashboard(request, id=None, username=None):
     admins = DiagnosticAdmin.objects.filter(staff=staff)
 
     # Pending orders
-    pending_tests = TestOrder.objects.filter(accepted=False, staff_check=False, test_info__center=staff.center)
+    pending_tests = TestOrder.objects.filter(accepted=False, order_confirmed=True, staff_check=False,
+                                             test_info__center=staff.center)
 
     # Approved orders
-    confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center)
+    confirmed_tests = TestOrder.objects.filter(accepted=True, order_confirmed=True, test_info__center=staff.center)
 
     # Pending Orders Paginator
     paginator = Paginator(pending_tests, 5)

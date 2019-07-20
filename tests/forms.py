@@ -13,7 +13,8 @@ class TestOrderForm(forms.ModelForm):
 
         fields = '__all__'
 
-        exclude = ['client_info', 'test_info', 'order_created_at', 'staff_check', 'admin_approve', 'accepted', 'validation']
+        exclude = ['client_info', 'test_info', 'order_created_at', 'staff_check', 'admin_approve',
+                   'accepted', 'validation', 'order_confirmed']
 
         widgets = {
             'client_info': Select(attrs={'class': 'form-control'}),

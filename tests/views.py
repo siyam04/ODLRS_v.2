@@ -85,7 +85,6 @@ def test_order(request, id=None):
             order.client_info = Profile.objects.get(user=request.user)
             order.test_info = Test.objects.get(id=id)
 
-            # ToDo: 'Object' is saving before 'confirm'
             order.save()
 
             return redirect('tests:order-details', id=order.id)
@@ -180,6 +179,9 @@ def all_tests_list_for_staff_admin(request):
 
 def confirm_payment_message(request, id=None, username=None):
     order_details = TestOrder.objects.get(id=id)
+
+    order_details.order_confirmed = True
+    order_details.save()
 
     total_price = int(order_details.test_info.price - order_details.test_info.discount)
 
