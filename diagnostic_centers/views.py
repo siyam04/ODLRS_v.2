@@ -8,6 +8,7 @@ from django.views.generic import (
 )
 
 from tests.models import TestOrder, Test
+from report_processing.models import PaymentValidation
 from report_processing.forms import PaymentValidationForm
 
 from .models import DiagnosticCenter, DiagnosticAdmin, DiagnosticStaff
@@ -196,5 +197,7 @@ def center_details(request, id=id):
     return render(request, template, context)
 
 ########################################################################################################################
+
+
 
 

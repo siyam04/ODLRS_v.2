@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('tests.urls', namespace='tests')),
 
     # App3 (report_processing)
-    # path('', include('report_processing.urls', namespace='report_processing')),
+    path('', include('report_processing.urls', namespace='report_processing')),
 
     # Allauth (built-in)
     path('accounts/', include('allauth.urls')),

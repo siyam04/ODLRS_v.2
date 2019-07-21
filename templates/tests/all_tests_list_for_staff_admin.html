@@ -36,13 +36,13 @@
                         <a class="nav-link text-white" href="#"> Report Lists </a>
                     </li>
 
-                    <li class="nav-item">
-                        <!-- <button type="submit"> -->
-                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently
-                            Added
-                            Tests</a>
-                        <!-- </button> -->
-                    </li>
+{#                    <li class="nav-item">#}
+{#                        <!-- <button type="submit"> -->#}
+{#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently#}
+{#                            Added#}
+{#                            Tests</a>#}
+{#                        <!-- </button> -->#}
+{#                    </li>#}
 
 {#                    <li class="nav-item">#}
 {#                        <!-- <button type="submit"> -->#}
@@ -52,11 +52,11 @@
 {#                        <!-- </button> -->#}
 {#                    </li>#}
 
-                    <li class="nav-item">
-                        <!-- <button type="submit"> -->
-                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>
-                        <!-- </button> -->
-                    </li>
+{#                    <li class="nav-item">#}
+{#                        <!-- <button type="submit"> -->#}
+{#                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>#}
+{#                        <!-- </button> -->#}
+{#                    </li>#}
 
                 </ul>
             </div>
@@ -85,6 +85,34 @@
             </div>
             {% endfor %}
 
+            <!-- All added tests Paginator -->
+            <ul class="pagination">
+                <li class="page-item">
+
+                    {% if all_added_tests.has_previous %}
+                        <a class="page-link" href="?page={{ all_added_tests.previous_page_number }}"
+                           aria-label="Previous">
+                            <span aria-hidden="false">&laquo;</span>
+                        </a>
+                    {% endif %}
+
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Page {{ all_added_tests.number }} of
+                        {{ all_added_tests.paginator.num_pages }}.</a>
+                </li>
+                <li class="page-item">
+
+                    {% if all_added_tests.has_next %}
+
+                        <a class="page-link" href="?page={{ all_added_tests.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+            <!-- All added tests Paginator -->
+
         </div>
     </div>
 
@@ -92,25 +120,6 @@
     <div class="footer bg-dark text-white text-center py-2">
         <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
     </div>
-
-
-    <!-- <h1>Recently Added Test</h1>
-    <hr>
-
-    {% for test in all_added_tests %}
-    <h4>Name: <b style="color: blue">{{ test.test_name }}</b></h4>
-
-    <img src="{{ test.image.url }}" alt="image" height="300" width="500">
-
-    <h5>ID: <b style="color: red">{{ test.id }}</b></h5>
-    <h4>Category: <b style="color: blue">{{ test.category }}</b></h4>
-    <h4>Diagnostic Center: <b style="color: blue">{{ test.center }}</b></h4>
-    <h4>Discount: <b style="color: blue">{{ test.discount }}</b></h4>
-    <h4>Price: <b style="color: blue">{{ test.price }}</b></h4>
-    <h4>Status: <b style="color: blue">{{ test.active_status }}</b></h4>
-    <br>
-
-    {% endfor %} -->
 
 </body>
 

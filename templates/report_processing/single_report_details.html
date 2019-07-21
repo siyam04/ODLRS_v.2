@@ -1,0 +1,90 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Report Details | ODLRS</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row my-5">
+            <div class="col-8 offset-2 text-cente">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Verified Order Details</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                        <h5 style="color: orangered">Order History:</h5>
+{#                        <hr>#}
+                        <li>Test Name: <b style="color: forestgreen">{{ report_details.approved_order.test_info.test_name }}</b></li>
+                        <li>Booked Time Slot: <b style="color: forestgreen">{{ report_details.approved_order.booked_time_slot }}</b></li>
+                        <li>Booked Date: <b style="color: forestgreen">{{ report_details.approved_order.booked_date }}</b></li>
+                        <li>Payment Status: <b style="color: forestgreen">{{ report_details.approved_order.payment_type }}</b></li>
+                        <li>Payment Method: <b style="color: forestgreen">{{ report_details.approved_order.payment_method }}</b></li>
+                        <br>
+                        <li>Client: <b style="color: forestgreen">
+                            {{ report_details.approved_order.client_info.user.username }}
+                            ({{ report_details.approved_order.client_info.user.customer_profile.profile_name }})
+                        </b></li>
+                        <li>Contact: <b style="color: forestgreen">{{ report_details.approved_order.client_info.user.customer_profile.contact_no }}</b></li>
+                        <li>Email: <b style="color: forestgreen">{{ report_details.approved_order.client_info.user.email }}</b></li>
+                        <br>
+                        <hr>
+
+                        <h5 style="color: orangered">Verification Record for Office:</h5>
+{#                        <hr>#}
+                        <li>Verified ID: <b style="color: purple">{{ report_details.id }}</b></li>
+                        <li>Payment Status: <b style="color: forestgreen">
+                            {{ report_details.approved_order.payment_type }} ({{ report_details.approved_order.payment_method}})
+
+                        </b></li>
+                        <li>Validation DateTime: <b style="color: deeppink">{{ report_details.datetime }}</b></li>
+                        <br>
+                        <li>See Report: <b style="color: blue">{{ report_details.upload_report }}</b></li>
+                        <hr>
+
+
+                        {% if request.user.is_authenticated %}
+
+                            <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">
+                                Back to Home</button>
+                            </a>
+
+{#                        {% else %}#}
+{##}
+{#                            {% if order_details.staff_check == False and order_details.accepted == False %}#}
+{##}
+{#                            <a href="{% url 'tests:staff-approved' order_details.id staff_username %}">#}
+{#                                <button type="button" class="btn btn-success">Approve</button>#}
+{#                            </a>#}
+{##}
+{#                            <a href="{% url 'tests:staff-rejected' order_details.id staff_username %}">#}
+{#                                <button type="button" class="btn btn-danger">Reject</button>#}
+{#                            </a>#}
+{#                            <hr>#}
+{#                            {% endif %}#}
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

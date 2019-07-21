@@ -60,9 +60,22 @@
                     <div class="col">
                         <a class="btn btn-info btn-s" href="{% url 'custom_users:profile-edit' %}">Edit Profile</a>
                     </div>
+
                     <div class="col">
-                        <a class="btn btn-info btn-s" href="#">Reports | Notifications</a>
+                        <a class="btn btn-info btn-s" href="{% url 'custom_users:filtered-reports-by-user' user.id %}">
+                            Reports
+                        </a>
                     </div>
+
+{#                    {% for report in filtered_report %}#}
+{#                    <div class="col">#}
+{##}
+{#                        <a class="btn btn-info btn-s" href="{% url 'custom_users:filtered-reports-by-user' report.id %}">#}
+{#                            Reports#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+
                 </div>
 
             </div>

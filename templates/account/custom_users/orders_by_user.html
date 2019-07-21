@@ -10,18 +10,21 @@
                 <strong>{{order.test_info.test_name}}</strong>
             </a>
 
-{#                {% if order.accepted == True and order.valiadation == True %}#}
-{#                    <li>Approved and Verified !</li>#}
-{#                {% endif %}#}
+{#            {{ order.valiadation }}#}
+{##}
+{#            {% if order.valiadation == True %}#}
+{#          {% if order.accepted == True and order.valiadation == True %}#}
+{#                <li>Verified Testing...</li>#}
+{#            {% endif %}#}
 
             {% if order.accepted == True %}
-                <p style="color: green">Verified</p>
+                <p style="color: green">* Approved and Verified</p>
 
             {% elif order.accepted == False and order.staff_check == True %}
-                <p style="color: red">Rejected</p>
+                <p style="color: red">* Rejected</p>
 
             {% elif order.accepted == False and order.staff_check == False %}
-                <p style="color: purple">Pending...</p>
+                <p style="color: purple">* Pending...</p>
 
             {% endif %}
 

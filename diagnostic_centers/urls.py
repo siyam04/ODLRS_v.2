@@ -13,6 +13,7 @@ from .views import (
     staff_dashboard,
 
     center_details,
+
 )
 
 
@@ -32,5 +33,6 @@ urlpatterns = [
     path('staff-dashboard/<int:id>/<username>/', staff_dashboard, name='staff-dashboards'),
 
     path('center-details/<int:id>/', center_details, name='center-details'),
+
 
 ]

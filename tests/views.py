@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.contrib import messages
 
 from custom_users.models import Profile
@@ -169,8 +170,13 @@ def add_test_by_admin(request, username=None):
 def all_tests_list_for_staff_admin(request):
     all_added_tests = Test.objects.all().order_by('-id')
 
+    # All added tests Paginator
+    paginator = Paginator(all_added_tests, 8)
+    page = request.GET.get('page')
+    all_added_tests_paginator_data = paginator.get_page(page)
+
     template = 'tests/all_tests_list_for_staff_admin.html'
-    context = {'all_added_tests': all_added_tests}
+    context = {'all_added_tests': all_added_tests_paginator_data}
 
     return render(request, template, context)
 

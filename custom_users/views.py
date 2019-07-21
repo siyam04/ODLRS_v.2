@@ -10,6 +10,7 @@ from allauth.account.decorators import verified_email_required
 from allauth.account.views import SignupView, LoginView, PasswordResetView
 
 from tests.models import TestOrder
+from report_processing.models import PaymentValidation
 
 from .models import Profile
 from .forms import ProfileUpdateForm
@@ -88,6 +89,21 @@ def orders_by_user(request):
 ########################################################################################
 
 
+def filtered_report(request, id=None):
+    user = get_object_or_404(User, id=id)
 
+    filtered_reports = PaymentValidation.objects.filter(approved_order__client_info__user=user)
 
+    # Filtered reports Paginator
+    paginator = Paginator(filtered_reports, 5)
+    page = request.GET.get('page')
+    filtered_reports_paginator = paginator.get_page(page)
+
+    template = 'custom_users/filtered_reports.html'
+
+    context = {'filtered_reports': filtered_reports_paginator}
+
+    return render(request, template, context)
+
+########################################################################################
 

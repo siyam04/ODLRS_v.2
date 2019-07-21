@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Filtered Reports | ODLRS{% endblock %}
+
+{% block content %}
+
+    <table class="table table-striped table-bordered table-hover mb-4">
+        <thead>
+        <tr class="bg-primary text-white">
+            <th colspan="6"> Your Reports </th>
+        </tr>
+
+        <tr style="background-color: forestgreen">
+            <th>SL NO.</th>
+            <th> Test Names </th>
+            <th> Validation DateTime </th>
+            <th> Reports </th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for report in filtered_reports %}
+
+            <tr>
+                <td> {{ forloop.counter }} </td>
+                <td><a href="{% url 'report_processing:single-report-details' report.id %}"><b style="color: green">
+                    {{ report.approved_order.test_info.test_name }}
+                </b></a></td>
+                <td><b style="color: deeppink">{{ report.datetime }}</b></td>
+                <td><b style="color: blue">{{ report.upload_report }}</b></td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <!-- All reports Paginator -->
+    <ul class="pagination">
+        <li class="page-item">
+
+            {% if filtered_reports.has_previous %}
+                <a class="page-link" href="?page={{ filtered_reports.previous_page_number }}"
+                   aria-label="Previous">
+                    <span aria-hidden="false">&laquo;</span>
+                </a>
+            {% endif %}
+
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">Page {{ filtered_reports.number }} of
+                {{ filtered_reports.paginator.num_pages }}.</a>
+        </li>
+        <li class="page-item">
+
+            {% if filtered_reports.has_next %}
+
+                <a class="page-link" href="?page={{ filtered_reports.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            {% endif %}
+        </li>
+    </ul>
+    <!-- All reports Paginator -->
+
+{#    {% for report in filtered_reports %}#}
+{##}
+{#        <h3>Test Name: {{ report.approved_order.test_info.test_name }}</h3>#}
+{##}
+{#    {% endfor %}#}
+
+{% endblock %}
