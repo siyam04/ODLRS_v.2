@@ -62,11 +62,13 @@
 
                 <div class="btn-block text-center">
                     <p class="btn-group">
-                        <button class="btn btn-warning btn-sm" id="cart-btn" data-slug="{{ test.test_name }}"> Add to
-                            cart
+                        <button class="btn btn-warning btn-sm cart-btn" id="cart-btn" data-slug="{{ test.id }}">
+                            Add to cart
                         </button>
-                        <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}"
-                            type="submit">ORDER</a>
+
+                        <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}" type="submit">
+                            ORDER
+                        </a>
                     </p>
                 </div>
 
@@ -118,3 +120,8 @@
 
 
 {% endblock content %}
+
+<!-- 
+123797
+1412794537 
+-->

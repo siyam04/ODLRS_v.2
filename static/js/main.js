@@ -14,19 +14,20 @@ $(document).ready(function () {
     });
 
     ///////////////////////////
-    const itemPrice = $("#itemPrice");
-    const cartBtn = $("#cart-btn");
+});
 
-    $('#cart-btn').click(function () {
+const itemPrice = $("#itemPrice");
 
-        const slug = $(this).attr('data-slug');
-        let price = $('#price').text();
+const cartBtn = document.getElementsByClassName('cart-btn');
+const slug = document.getElementsByTagName('span').getAttribute('data-price');
 
-        for (let i = 0; i < cartBtn.length; i++) {
-            const cbtn = cartBtn[i];
-            console.log('clicked')
-        }
 
-        // console.log(price);
-    });
+cartBtn.addEventListener('click', function () {
+
+    for (let i = 0; i < cartBtn.length; i++) {
+        const element = cartBtn[i];
+
+        console.log('clicked')
+    }
+
 });
