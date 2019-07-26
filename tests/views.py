@@ -202,3 +202,13 @@ def confirm_payment_message(request, id=None, username=None):
 
 ########################################################################################
 
+
+def came_for_test(request, id=None, username=None):
+    staff_order_detail = TestOrder.objects.get(id=id)
+    staff_order_detail.came_for_test = True
+    staff_order_detail.save()
+
+    return redirect('diagnostic_centers:staff-dashboard', username=username)
+
+########################################################################################
+

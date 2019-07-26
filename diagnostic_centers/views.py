@@ -74,6 +74,13 @@ def admin_dashboard(request, username=None):
 
     validated_orders = TestOrder.objects.filter(accepted=True, validation=True, test_info__center=admin.center)
 
+    all_reports_query = PaymentValidation.objects.all()
+
+    # All reports Paginator
+    paginator = Paginator(all_reports_query, 5)
+    page = request.GET.get('page')
+    all_reports_paginator = paginator.get_page(page)
+
     paginator = Paginator(validated_orders, 5)
     page = request.GET.get('page')
     paginator_data = paginator.get_page(page)
@@ -83,6 +90,7 @@ def admin_dashboard(request, username=None):
     context = {
         'admin': admin,
         'confirmed_tests': paginator_data,
+        'all_reports_query': all_reports_paginator
     }
 
     return render(request, template, context)
@@ -132,9 +140,18 @@ def staff_dashboard(request, id=None, username=None):
     # Pending orders
     pending_tests = TestOrder.objects.filter(accepted=False, order_confirmed=True, staff_check=False,
                                              test_info__center=staff.center)
-
     # Approved orders
     confirmed_tests = TestOrder.objects.filter(accepted=True, order_confirmed=True, test_info__center=staff.center)
+
+    # Came for test
+    came_for_tests = TestOrder.objects.filter(accepted=True, came_for_test=True, test_info__center=staff.center)
+
+    all_reports_query = PaymentValidation.objects.all()
+
+    # All reports Paginator
+    paginator = Paginator(all_reports_query, 5)
+    page = request.GET.get('page')
+    all_reports_paginator = paginator.get_page(page)
 
     # Pending Orders Paginator
     paginator = Paginator(pending_tests, 5)
@@ -168,6 +185,8 @@ def staff_dashboard(request, id=None, username=None):
         'confirmed_tests': confirmed_paginator_data,
         'staff_username': username,
         'payment_form': PaymentValidationForm(),
+        'came_for_tests': came_for_tests,
+        'all_reports_query': all_reports_paginator
     }
 
     return render(request, template, context)

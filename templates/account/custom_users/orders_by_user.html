@@ -18,13 +18,13 @@
 {#            {% endif %}#}
 
             {% if order.accepted == True %}
-                <p style="color: green">* Approved</p>
+                <p style="color: green">* Order Confirmed. Ready For Test.</p>
 
             {% elif order.accepted == False and order.staff_check == True %}
-                <p style="color: red">* Rejected</p>
+                <p style="color: red">* Order Rejected</p>
 
             {% elif order.accepted == False and order.staff_check == False %}
-                <p style="color: purple">* Pending...</p>
+                <p style="color: purple">* Order Pending...</p>
 
             {% endif %}
 

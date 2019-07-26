@@ -24,9 +24,9 @@ class TestAdmin(admin.ModelAdmin):
 class TestOrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'client_info', 'test_info', 'contact_no', 'email', 'address', 'payment_type', 'payment_method',
                     'booked_time_slot', 'booked_date', 'order_created_at', 'order_confirmed', 'staff_check', 'accepted',
-                    'validation']
+                    'validation', 'came_for_test']
 
-    list_editable = ['order_confirmed']
+    list_editable = ['order_confirmed', 'came_for_test']
 
     list_display_links = ['client_info', 'test_info']
     # list_filter = ['client_info', 'test_info']

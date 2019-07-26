@@ -60,28 +60,32 @@ class TestOrder(models.Model):
     )
 
     client_info = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='test_user_order')
-
     contact_no = models.CharField(max_length=20, blank=False, null=True)
     email = models.EmailField(blank=True, null=True)
     address = models.CharField(max_length=150, blank=True, null=True)
-
     test_info = models.ForeignKey(Test, on_delete=models.SET_NULL, null=True, related_name='test_order')
 
+    # Step 3
     payment_type = models.CharField(max_length=20, choices=PAYMENT_TYPE, blank=True, null=True)
+
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD, blank=True, null=True)
     booked_time_slot = models.CharField(max_length=20, choices=TIME_SLOT, blank=True, null=True)
     booked_date = models.DateField(blank=True, null=True)
-
     order_created_at = models.TimeField(auto_now=True)
 
+    # Step 1
     staff_check = models.BooleanField(default=False)
-    admin_approve = models.BooleanField(default=False)
 
+    admin_approve = models.BooleanField(default=False)
     order_confirmed = models.BooleanField(default=False)
 
+    # Step 0
     accepted = models.BooleanField(default=False)
 
     validation = models.BooleanField(default=False)
+
+    # Step 2
+    came_for_test = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-id']
