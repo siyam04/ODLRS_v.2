@@ -10,14 +10,16 @@ class PaymentValidation(models.Model):
 
     upload_report = models.FileField(upload_to='reports_PDF')
 
+    send_message = models.CharField(max_length=250)
+
     datetime = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-id']
 
     # ToDo: Solve object name ERROR (linked to 'TestOrder' model)
-    def __str__(self):
-        return self.approved_order.test_info.test_name
+    # def __str__(self):
+    #     return self.approved_order.test_info.test_name
 
 
 

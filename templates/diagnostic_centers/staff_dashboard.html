@@ -338,11 +338,11 @@
                                         <li>STEP-3: <b style="color: green">Checked</b></li>
                                         <li>Payment Status: <b style="color: red">{{ test.payment_type }}</b></li><br>
 
-                                        {% if test.payment_type == 'Half Payment' and test.validation == False and test.came_for_test == True %}
+                                        {% if test.payment_type == 'Half Payment' and test.validation == False %}
                                             <form action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
                                                   method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
-                                                {{ payment_form.as_p }}
+                                                {{ send_message_form.as_p }}
                                                 <button class="btn btn-primary" type="submit">SEND MESSAGE</button>
                                             </form>
 

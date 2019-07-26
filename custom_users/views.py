@@ -99,7 +99,7 @@ def filtered_report(request, id=None):
     page = request.GET.get('page')
     filtered_reports_paginator = paginator.get_page(page)
 
-    template = 'custom_users/filtered_reports.html'
+    template = 'account/custom_users/filtered_reports.html'
 
     context = {'filtered_reports': filtered_reports_paginator}
 

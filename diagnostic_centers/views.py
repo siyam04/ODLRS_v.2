@@ -9,7 +9,7 @@ from django.views.generic import (
 
 from tests.models import TestOrder, Test
 from report_processing.models import PaymentValidation
-from report_processing.forms import PaymentValidationForm
+from report_processing.forms import PaymentValidationForm, SendMessageForm
 
 from .models import DiagnosticCenter, DiagnosticAdmin, DiagnosticStaff
 from .forms import AdminLoginForm, StaffLoginForm
@@ -166,7 +166,20 @@ def staff_dashboard(request, id=None, username=None):
     if request.method == 'POST':
         form = PaymentValidationForm(request.POST, request.FILES)
 
+        #
+        message_form = SendMessageForm(request.POST, request.FILES)
+
+        #
+        if message_form.is_valid():
+            send_message_form = message_form.save(commit=False)
+            order = TestOrder.objects.get(id=id)
+            order.validation = True
+            order.save()
+            send_message_form.send_message = order
+            send_message_form.save()
+
         if form.is_valid():
+
             payment_form = form.save(commit=False)
 
             order = TestOrder.objects.get(id=id)
@@ -185,6 +198,9 @@ def staff_dashboard(request, id=None, username=None):
         'confirmed_tests': confirmed_paginator_data,
         'staff_username': username,
         'payment_form': PaymentValidationForm(),
+        #
+        'send_message_form': SendMessageForm(),
+
         'came_for_tests': came_for_tests,
         'all_reports_query': all_reports_paginator
     }
