@@ -77,7 +77,7 @@ def orders_by_user(request):
 
             orders = TestOrder.objects.filter(client_info=profile.id).order_by('-id')
 
-            paginator = Paginator(orders, 10)
+            paginator = Paginator(orders, 5)
             page = request.GET.get('page')
             paginator_data = paginator.get_page(page)
 

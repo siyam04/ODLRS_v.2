@@ -144,7 +144,7 @@ def staff_dashboard(request, id=None, username=None):
     confirmed_tests = TestOrder.objects.filter(accepted=True, order_confirmed=True, test_info__center=staff.center)
 
     # Came for test
-    came_for_tests = TestOrder.objects.filter(accepted=True, came_for_test=True, test_info__center=staff.center)
+    came_for_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center)
 
     all_reports_query = PaymentValidation.objects.all()
 

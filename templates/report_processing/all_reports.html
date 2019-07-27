@@ -74,6 +74,7 @@
             <th> Test Names </th>
             <th> Validation DateTime </th>
             <th> Reports </th>
+            <th> Messages </th>
 
         </tr>
         </thead>
@@ -89,6 +90,7 @@
                 </b></a></td>
                 <td><b style="color: deeppink">{{ report.datetime }}</b></td>
                 <td><a href="/media/reports_PDF/report_demo.pdf"><b style="color: blue">{{ report.upload_report }}</b></a></td>
+                <td><b style="color: blue">{{ report.send_message }}</b></td>
             </tr>
 
         {% endfor %}
