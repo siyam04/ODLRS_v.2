@@ -146,22 +146,28 @@ def staff_dashboard(request, id=None, username=None):
     # Came for test
     came_for_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center)
 
+    # Completed orders
     all_reports_query = PaymentValidation.objects.all()
 
-    # All reports Paginator
-    paginator = Paginator(all_reports_query, 5)
-    page = request.GET.get('page')
-    all_reports_paginator = paginator.get_page(page)
-
     # Pending Orders Paginator
-    paginator = Paginator(pending_tests, 5)
+    paginator = Paginator(pending_tests, 3)
     page = request.GET.get('page')
     pending_paginator_data = paginator.get_page(page)
 
-    # Approved Orders Paginator
-    paginator = Paginator(confirmed_tests, 5)
+    # Confirmed Orders Paginator
+    paginator = Paginator(confirmed_tests, 3)
     page = request.GET.get('page')
     confirmed_paginator_data = paginator.get_page(page)
+
+    # Came for test Paginator
+    paginator = Paginator(came_for_tests, 3)
+    page = request.GET.get('page')
+    came_for_paginator_data = paginator.get_page(page)
+
+    # Completed orders Paginator
+    paginator = Paginator(all_reports_query, 5)
+    page = request.GET.get('page')
+    all_reports_paginator_data = paginator.get_page(page)
 
     if request.method == 'POST':
         form = PaymentValidationForm(request.POST, request.FILES)
@@ -194,15 +200,18 @@ def staff_dashboard(request, id=None, username=None):
     context = {
         'staff': staff,
         'admins': admins,
+
         'pending_tests': pending_paginator_data,
         'confirmed_tests': confirmed_paginator_data,
+        'came_for_tests': came_for_paginator_data,
+        'all_reports_query': all_reports_paginator_data,
+
         'staff_username': username,
         'payment_form': PaymentValidationForm(),
         #
         'send_message_form': SendMessageForm(),
 
-        'came_for_tests': came_for_tests,
-        'all_reports_query': all_reports_paginator
+        # 'came_for_tests': came_for_tests,
     }
 
     return render(request, template, context)

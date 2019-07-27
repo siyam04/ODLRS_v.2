@@ -79,7 +79,7 @@
 
                             {% if order_details.staff_check == True and order_details.accepted == True and order_details.came_for_test == False %}
                                 <a href="{% url 'tests:came-for-test' order_details.id staff_username %}">
-                                    <button type="button" class="btn btn-danger">Came for test</button>
+                                    <button type="button" class="btn btn-success">Came for test</button>
                                 </a>
                             {% endif %}
 

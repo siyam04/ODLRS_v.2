@@ -129,7 +129,7 @@
                         </tbody>
                     </table>
 
-                    <!-- Pending Paginator -->
+                    <!-- step-0 Paginator -->
                     <ul class="pagination">
                         <li class="page-item">
 
@@ -155,9 +155,9 @@
                             {% endif %}
                         </li>
                     </ul>
-                    <!-- Pending Paginator -->
+                    <!-- step-0 Paginator end -->
                 </div>
-                <!-- Step 0 Pending -->
+                <!-- Step 0 Pending End -->
 
                 <!-- Step 1 Confirmed -->
                 <div class="col-md-6">
@@ -196,7 +196,7 @@
                         </tbody>
                     </table>
 
-                    <!-- Confirmed Paginator -->
+                    <!-- step-1 Paginator -->
                     <ul class="pagination">
                         <li class="page-item">
 
@@ -222,7 +222,7 @@
                             {% endif %}
                         </li>
                     </ul>
-                    <!-- Confirmed Paginator -->
+                    <!-- step-1 Paginator end -->
                 </div>
                 <!-- Step 1 End -->
 
@@ -264,6 +264,35 @@
 
                         </tbody>
                     </table>
+
+                    <!-- step-2 Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_previous %}
+                            <a class="page-link" href="?page={{ came_for_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ came_for_tests.number }} of
+                                {{ came_for_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ came_for_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-2 Paginator end -->
+
                 </div>
                 <!-- Step 2 End -->
 
@@ -287,16 +316,12 @@
                                 <td> {{ forloop.counter }} </td>
                                 <td>
                                     {% if test.staff_check == True and test.accepted == True and test.came_for_test == True %}
-                                        <a href="{% url 'tests:confirm-payment-message' test.id %}">
+                                        <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
                                             <strong>{{ test.test_info.test_name }}</strong><br><br>
                                         </a>
                                         <li>STEP-2: <b style="color: green">{{ test.came_for_test }}</b></li>
                                         <li>Payment Status: <b style="color: green">{{ test.payment_type }}</b></li>
                                         <li>Verified: <b style="color: green">{{ test.accepted }}</b></li>
-
-{#                                        {% if test.came_for_test == True %}#}
-{#                                            <li>STEP-2: <b style="color: green">Checked</b></li>#}
-{#                                        {% endif %}#}
                                     {% endif %}
 
                                 </td>
@@ -304,6 +329,35 @@
                         {% endfor %}
                         </tbody>
                     </table>
+
+                    <!-- step-3 Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_previous %}
+                            <a class="page-link" href="?page={{ came_for_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ came_for_tests.number }} of
+                                {{ came_for_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ came_for_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-3 Paginator end -->
+
                     </div>
                 <!-- Step 3 End -->
 
