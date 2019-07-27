@@ -16,6 +16,7 @@ from .views import (
 
     add_test_by_admin,
     all_tests_list_for_staff_admin,
+    delete_test,
 
     confirm_payment_message,
 
@@ -48,6 +49,8 @@ urlpatterns = [
     path('add-test/<username>/', add_test_by_admin, name='add-test'),
 
     path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
+
+    path('delete-test/<int:id>/', delete_test, name='delete_test'),
 
     path('confirm-payment-message/<int:id>/', confirm_payment_message, name='confirm-payment-message'),
 

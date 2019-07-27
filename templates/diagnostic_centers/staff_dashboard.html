@@ -393,20 +393,21 @@
 
 {#                                        {% if test.payment_type == 'Half Payment' and test.validation == False %}#}
                                         {% if test.validation == False %}
-
+                                        <!----------------------------- ERROR ------------------------------------->
                                             <form action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
                                                   method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 {{ send_message_form.as_p }}
                                                 <button class="btn btn-primary" type="submit">SEND MESSAGE</button>
                                             </form>
+                                        <!----------------------------- ERROR ------------------------------------->
 
 {#                                        {% elif test.payment_type == 'Full Payment' and test.validation == True %}#}
 {#                                            <li>Status: <b style="color: green">Ready For Delivery Report</b></li>#}
 
 {#                                        {% elif test.payment_type == 'Half Payment' and test.validation == True %}#}
                                         {% elif test.validation == True %}
-                                            <li><b style="color: orangered">Message Sent</b></li>
+                                            <li><b style="color: green">Message Sent</b></li>
 
 {#                                            <li style="color: black">#}
 {#                                                Send Notification For FULL Payment<br>with #BKash_No and #Bank_ACC_NO#}
@@ -423,31 +424,31 @@
                     </table>
 
                     <!-- step-4 Paginator -->
-{#                    <ul class="pagination">#}
-{#                        <li class="page-item">#}
-{##}
-{#                            {% if confirmed_tests.has_previous %}#}
-{#                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"#}
-{#                                aria-label="Previous">#}
-{#                                <span aria-hidden="false">&laquo;</span>#}
-{#                            </a>#}
-{#                            {% endif %}#}
-{##}
-{#                        </li>#}
-{#                        <li class="page-item">#}
-{#                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of#}
-{#                                {{ confirmed_tests.paginator.num_pages }}.</a>#}
-{#                        </li>#}
-{#                        <li class="page-item">#}
-{##}
-{#                            {% if confirmed_tests.has_next %}#}
-{##}
-{#                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">#}
-{#                                <span aria-hidden="true">&raquo;</span>#}
-{#                            </a>#}
-{#                            {% endif %}#}
-{#                        </li>#}
-{#                    </ul>#}
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_previous %}
+                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of
+                                {{ confirmed_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
                     <!-- step-4 Paginator end -->
 
                 </div>
@@ -493,7 +494,7 @@
                                             </form>
 
                                         {% elif test.validation == True %}
-                                            <li>Status: <b style="color: deeppink">Report Delivered</b></li>
+                                            <li>Status: <b style="color: green">Report Delivered</b></li>
 
                                         {% endif %}
 
@@ -506,31 +507,31 @@
                     </table>
 
                     <!-- step 5+6 Paginator -->
-{#                    <ul class="pagination">#}
-{#                        <li class="page-item">#}
-{##}
-{#                            {% if confirmed_tests.has_previous %}#}
-{#                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"#}
-{#                                aria-label="Previous">#}
-{#                                <span aria-hidden="false">&laquo;</span>#}
-{#                            </a>#}
-{#                            {% endif %}#}
-{##}
-{#                        </li>#}
-{#                        <li class="page-item">#}
-{#                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of#}
-{#                                {{ confirmed_tests.paginator.num_pages }}.</a>#}
-{#                        </li>#}
-{#                        <li class="page-item">#}
-{##}
-{#                            {% if confirmed_tests.has_next %}#}
-{##}
-{#                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">#}
-{#                                <span aria-hidden="true">&raquo;</span>#}
-{#                            </a>#}
-{#                            {% endif %}#}
-{#                        </li>#}
-{#                    </ul>#}
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_previous %}
+                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of
+                                {{ confirmed_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
                     <!-- step 5+6 Paginator end -->
 
                 </div>
@@ -555,18 +556,18 @@
 
                         <tbody>
 
-                            {% for report in all_reports_query %}
+                            {% for report in completed_orders %}
                             <tr>
                                 <td> {{ forloop.counter }} </td>
 
                                 <td><a href="{% url 'report_processing:single-report-details' report.id %}">
-                                    <b style="color: deeppink">{{ report.approved_order.test_info.test_name }}</b></a>
+                                    <b style="color: green">{{ report.approved_order.test_info.test_name }}</b></a>
                                 </td>
 
-                                <td><b style="color: green">{{ report.datetime }}</b></td>
-
+                                <td>{{ report.datetime }}</td>
                                 <td>{{ report.upload_report }}</td>
                                 <td>{{ report.send_message }}</td>
+
 {#                                <td><a href="/media/reports_PDF/report_demo.pdf"><b style="color: blue">#}
 {#                                    {{ report.upload_report }}</b></a>#}
 {#                                </td>#}
@@ -576,12 +577,12 @@
                         </tbody>
                     </table>
 
-                    <!-- completed Paginator -->
+                    <!-- step-7 Paginator -->
                     <ul class="pagination">
                         <li class="page-item">
 
-                            {% if all_reports_query.has_previous %}
-                            <a class="page-link" href="?page={{ all_reports_query.previous_page_number }}"
+                            {% if completed_orders.has_previous %}
+                            <a class="page-link" href="?page={{ completed_orders.previous_page_number }}"
                                 aria-label="Previous">
                                 <span aria-hidden="false">&laquo;</span>
                             </a>
@@ -589,20 +590,20 @@
 
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="#">Page {{ all_reports_query.number }} of
-                                {{ all_reports_query.paginator.num_pages }}.</a>
+                            <a class="page-link" href="#">Page {{ completed_orders.number }} of
+                                {{ completed_orders.paginator.num_pages }}.</a>
                         </li>
                         <li class="page-item">
 
-                            {% if all_reports_query.has_next %}
+                            {% if completed_orders.has_next %}
 
-                            <a class="page-link" href="?page={{ all_reports_query.next_page_number }}" aria-label="Next">
+                            <a class="page-link" href="?page={{ completed_orders.next_page_number }}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                             {% endif %}
                         </li>
                     </ul>
-                    <!-- completed Paginator -->
+                    <!-- step-7 Paginator end -->
 
                 </div>
                 <!-- Step 7 End -->
@@ -626,7 +627,7 @@
 
                         <tbody>
 
-                            {% for report in all_reports_query %}
+                            {% for report in sent_message_orders %}
                             <tr>
                                 <td> {{ forloop.counter }} </td>
 
@@ -647,33 +648,33 @@
                         </tbody>
                     </table>
 
-                    <!-- completed Paginator -->
-{#                    <ul class="pagination">#}
-{#                        <li class="page-item">#}
-{##}
-{#                            {% if all_reports_query.has_previous %}#}
-{#                            <a class="page-link" href="?page={{ all_reports_query.previous_page_number }}"#}
-{#                                aria-label="Previous">#}
-{#                                <span aria-hidden="false">&laquo;</span>#}
-{#                            </a>#}
-{#                            {% endif %}#}
-{##}
-{#                        </li>#}
-{#                        <li class="page-item">#}
-{#                            <a class="page-link" href="#">Page {{ all_reports_query.number }} of#}
-{#                                {{ all_reports_query.paginator.num_pages }}.</a>#}
-{#                        </li>#}
-{#                        <li class="page-item">#}
-{##}
-{#                            {% if all_reports_query.has_next %}#}
-{##}
-{#                            <a class="page-link" href="?page={{ all_reports_query.next_page_number }}" aria-label="Next">#}
-{#                                <span aria-hidden="true">&raquo;</span>#}
-{#                            </a>#}
-{#                            {% endif %}#}
-{#                        </li>#}
-{#                    </ul>#}
-                    <!-- completed Paginator -->
+                    <!-- step-8 Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if sent_message_orders.has_previous %}
+                            <a class="page-link" href="?page={{ sent_message_orders.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ sent_message_orders.number }} of
+                                {{ sent_message_orders.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if sent_message_orders.has_next %}
+
+                            <a class="page-link" href="?page={{ sent_message_orders.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-8 Paginator end -->
                     <br><br>
                 </div>
                 <!-- Step 8 End -->

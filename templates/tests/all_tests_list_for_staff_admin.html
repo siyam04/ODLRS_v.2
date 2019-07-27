@@ -81,9 +81,13 @@
                         <p class="card-text text-danger">Price: {{ test.price }} TK</p>
                         <p class="card-text">{{ test.active_status }}</p>
                     </div>
+                        <a href="{% url 'tests:delete_test' test.id %}"><button type="submit" class="btn btn-danger">
+                            DELETE</button>
+                        </a>
                 </div>
             </div>
             {% endfor %}
+            <br><br>
 
             <!-- All added tests Paginator -->
             <ul class="pagination">

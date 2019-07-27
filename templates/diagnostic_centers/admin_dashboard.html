@@ -171,7 +171,7 @@
 
                         <tbody>
 
-                            {% for report in all_reports_query %}
+                            {% for report in completed_orders %}
                             <tr>
                                 <td> {{ forloop.counter }} </td>
 
@@ -195,8 +195,8 @@
                     <ul class="pagination">
                         <li class="page-item">
 
-                            {% if all_reports_query.has_previous %}
-                            <a class="page-link" href="?page={{ all_reports_query.previous_page_number }}"
+                            {% if completed_orders.has_previous %}
+                            <a class="page-link" href="?page={{ completed_orders.previous_page_number }}"
                                 aria-label="Previous">
                                 <span aria-hidden="false">&laquo;</span>
                             </a>
@@ -204,14 +204,14 @@
 
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="#">Page {{ all_reports_query.number }} of
-                                {{ all_reports_query.paginator.num_pages }}.</a>
+                            <a class="page-link" href="#">Page {{ completed_orders.number }} of
+                                {{ completed_orders.paginator.num_pages }}.</a>
                         </li>
                         <li class="page-item">
 
-                            {% if all_reports_query.has_next %}
+                            {% if completed_orders.has_next %}
 
-                            <a class="page-link" href="?page={{ all_reports_query.next_page_number }}" aria-label="Next">
+                            <a class="page-link" href="?page={{ completed_orders.next_page_number }}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                             {% endif %}

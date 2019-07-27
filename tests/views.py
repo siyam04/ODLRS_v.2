@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -179,6 +180,14 @@ def all_tests_list_for_staff_admin(request):
     context = {'all_added_tests': all_added_tests_paginator_data}
 
     return render(request, template, context)
+
+########################################################################################
+
+
+def delete_test(request, id=None):
+    test_object = Test.objects.get(id=id)
+    test_object.delete()
+    return redirect('tests:all-tests-list-staff-admin')
 
 ########################################################################################
 
