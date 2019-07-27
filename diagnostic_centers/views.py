@@ -137,16 +137,23 @@ def staff_dashboard(request, id=None, username=None):
     staff = DiagnosticStaff.objects.get(username=username)
     admins = DiagnosticAdmin.objects.filter(staff=staff)
 
-    # Pending orders
+    # Step 0
     pending_tests = TestOrder.objects.filter(accepted=False, order_confirmed=True, staff_check=False,
                                              test_info__center=staff.center)
-    # Approved orders
+    # Step 1 + 4
     confirmed_tests = TestOrder.objects.filter(accepted=True, order_confirmed=True, test_info__center=staff.center)
 
-    # Came for test
+    # Step 4
+    half_payment_orders = TestOrder.objects.filter(accepted=True, order_confirmed=True, payment_type='Half Payment',
+                                                   test_info__center=staff.center)
+
+    # Step 2 + 3
     came_for_tests = TestOrder.objects.filter(accepted=True, test_info__center=staff.center)
 
-    # Completed orders
+    # Step 5 + 6
+    full_payment_orders = TestOrder.objects.filter(accepted=True, order_confirmed=True, payment_type='Full Payment',
+                                                   test_info__center=staff.center)
+    # Step 7
     all_reports_query = PaymentValidation.objects.all()
 
     # Pending Orders Paginator
@@ -178,10 +185,12 @@ def staff_dashboard(request, id=None, username=None):
         #
         if message_form.is_valid():
             send_message_form = message_form.save(commit=False)
+            # order = TestOrder.objects.get(id=id)
             order = TestOrder.objects.get(id=id)
-            order.validation = True
+            order.payment_type = 'Half Payment'
             order.save()
-            send_message_form.send_message = order
+            # send_message_form.approved_order = order.test_info.test_name
+            send_message_form.send_message = order.payment_type
             send_message_form.save()
 
         if form.is_valid():
@@ -211,7 +220,8 @@ def staff_dashboard(request, id=None, username=None):
         #
         'send_message_form': SendMessageForm(),
 
-        # 'came_for_tests': came_for_tests,
+        'half_payment_orders': half_payment_orders,
+        'full_payment_orders': full_payment_orders,
     }
 
     return render(request, template, context)

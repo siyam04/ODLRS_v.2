@@ -367,7 +367,7 @@
                     <table class="table table-striped table-bordered table-hover mb-4">
                         <thead>
                             <tr class="bg-warning text-dark">
-                                <th colspan="2">STEP-4:<br>Sending Message</th>
+                                <th colspan="2">STEP-4:<br>Sending Message For Half Payment</th>
                             </tr>
                             <tr>
                                 <th>SL.</th>
@@ -377,20 +377,23 @@
 
                         <tbody>
 
-                            {% for test in confirmed_tests %}
+                            {% for test in half_payment_orders %}
                             <tr>
                                 <td> {{ forloop.counter }} </td>
                                 <td>
 
-                                    {% if test.staff_check == True and test.accepted == True %}
-                                        <a href="{% url 'tests:confirm-payment-message' test.id %}">
+{#                                    {% if test.staff_check == True and test.accepted == True %}#}
+                                    {% if test.staff_check == True and test.accepted == True and test.payment_type == 'Half Payment' %}
+                                        <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
                                             <strong>{{ test.test_info.test_name }}</strong><br><br>
                                         </a>
 
-                                        <li>STEP-3: <b style="color: green">Checked</b></li>
+                                        <li>STEP-3: <b style="color: green">{{ test.accepted }}</b></li>
                                         <li>Payment Status: <b style="color: green">{{ test.payment_type }}</b></li><br>
 
-                                        {% if test.payment_type == 'Half Payment' and test.validation == False %}
+{#                                        {% if test.payment_type == 'Half Payment' and test.validation == False %}#}
+                                        {% if test.validation == False %}
+
                                             <form action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
                                                   method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
@@ -398,10 +401,11 @@
                                                 <button class="btn btn-primary" type="submit">SEND MESSAGE</button>
                                             </form>
 
-                                        {% elif test.payment_type == 'Full Payment' and test.validation == True %}
-                                            <li>Status: <b style="color: green">Ready to Delivery Report</b></li>
+{#                                        {% elif test.payment_type == 'Full Payment' and test.validation == True %}#}
+{#                                            <li>Status: <b style="color: green">Ready For Delivery Report</b></li>#}
 
-                                        {% elif test.payment_type == 'Half Payment' and test.validation == True %}
+{#                                        {% elif test.payment_type == 'Half Payment' and test.validation == True %}#}
+                                        {% elif test.validation == True %}
                                             <li><b style="color: orangered">Message Sent</b></li>
 
 {#                                            <li style="color: black">#}
@@ -418,33 +422,34 @@
                         </tbody>
                     </table>
 
-                    <!-- processing Paginator -->
-                    <ul class="pagination">
-                        <li class="page-item">
+                    <!-- step-4 Paginator -->
+{#                    <ul class="pagination">#}
+{#                        <li class="page-item">#}
+{##}
+{#                            {% if confirmed_tests.has_previous %}#}
+{#                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"#}
+{#                                aria-label="Previous">#}
+{#                                <span aria-hidden="false">&laquo;</span>#}
+{#                            </a>#}
+{#                            {% endif %}#}
+{##}
+{#                        </li>#}
+{#                        <li class="page-item">#}
+{#                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of#}
+{#                                {{ confirmed_tests.paginator.num_pages }}.</a>#}
+{#                        </li>#}
+{#                        <li class="page-item">#}
+{##}
+{#                            {% if confirmed_tests.has_next %}#}
+{##}
+{#                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">#}
+{#                                <span aria-hidden="true">&raquo;</span>#}
+{#                            </a>#}
+{#                            {% endif %}#}
+{#                        </li>#}
+{#                    </ul>#}
+                    <!-- step-4 Paginator end -->
 
-                            {% if confirmed_tests.has_previous %}
-                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"
-                                aria-label="Previous">
-                                <span aria-hidden="false">&laquo;</span>
-                            </a>
-                            {% endif %}
-
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of
-                                {{ confirmed_tests.paginator.num_pages }}.</a>
-                        </li>
-                        <li class="page-item">
-
-                            {% if confirmed_tests.has_next %}
-
-                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                    <!-- processing Paginator -->
                 </div>
                 <!-- Step 4 End -->
 
@@ -454,7 +459,7 @@
                     <table class="table table-striped table-bordered table-hover mb-4">
                         <thead>
                             <tr class="bg-dark text-white">
-                                <th colspan="2">STEP-5 + 6:<br>Report Delivery</th>
+                                <th colspan="2">STEP-5 + 6:<br>Report Delivery For Full Payment</th>
                             </tr>
                             <tr>
                                 <th>SL.</th>
@@ -464,20 +469,21 @@
 
                         <tbody>
 
-                            {% for test in confirmed_tests %}
+                            {% for test in full_payment_orders %}
                             <tr>
                                 <td> {{ forloop.counter }} </td>
                                 <td>
 
-                                    {% if test.staff_check == True and test.accepted == True %}
-                                        <a href="{% url 'tests:confirm-payment-message' test.id %}">
+                                    {% if test.staff_check == True and test.accepted == True and test.payment_type == 'Full Payment' %}
+
+                                        <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
                                             <strong>{{ test.test_info.test_name }}</strong><br><br>
                                         </a>
 
-                                        <li>STEP-4: <b style="color: green">Checked</b></li>
+                                        <li>STEP-4: <b style="color: green">{{ test.accepted }}</b></li>
                                         <li>Payment Status: <b style="color: green">{{ test.payment_type }}</b></li><br>
 
-                                        {% if test.payment_type == 'Full Payment' and test.validation == False %}
+                                        {% if test.validation == False %}
 
                                             <form action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
                                                   method="post" enctype="multipart/form-data">
@@ -486,14 +492,8 @@
                                                 <button class="btn btn-success" type="submit">SEND REPORT</button>
                                             </form>
 
-                                        {% elif test.payment_type == 'Full Payment' and test.validation == True %}
+                                        {% elif test.validation == True %}
                                             <li>Status: <b style="color: deeppink">Report Delivered</b></li>
-
-{#                                        {% elif test.payment_type == 'Half Payment' and test.accepted == True %}#}
-{#                                            <li style="color: red"><b>NOT Verified</b></li>#}
-{#                                            <li style="color: black">#}
-{#                                                Send Notification For FULL Payment<br>with #BKash_No and #Bank_ACC_NO#}
-{#                                            </li>#}
 
                                         {% endif %}
 
@@ -505,33 +505,34 @@
                         </tbody>
                     </table>
 
-                    <!-- processing Paginator -->
-                    <ul class="pagination">
-                        <li class="page-item">
+                    <!-- step 5+6 Paginator -->
+{#                    <ul class="pagination">#}
+{#                        <li class="page-item">#}
+{##}
+{#                            {% if confirmed_tests.has_previous %}#}
+{#                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"#}
+{#                                aria-label="Previous">#}
+{#                                <span aria-hidden="false">&laquo;</span>#}
+{#                            </a>#}
+{#                            {% endif %}#}
+{##}
+{#                        </li>#}
+{#                        <li class="page-item">#}
+{#                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of#}
+{#                                {{ confirmed_tests.paginator.num_pages }}.</a>#}
+{#                        </li>#}
+{#                        <li class="page-item">#}
+{##}
+{#                            {% if confirmed_tests.has_next %}#}
+{##}
+{#                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">#}
+{#                                <span aria-hidden="true">&raquo;</span>#}
+{#                            </a>#}
+{#                            {% endif %}#}
+{#                        </li>#}
+{#                    </ul>#}
+                    <!-- step 5+6 Paginator end -->
 
-                            {% if confirmed_tests.has_previous %}
-                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"
-                                aria-label="Previous">
-                                <span aria-hidden="false">&laquo;</span>
-                            </a>
-                            {% endif %}
-
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of
-                                {{ confirmed_tests.paginator.num_pages }}.</a>
-                        </li>
-                        <li class="page-item">
-
-                            {% if confirmed_tests.has_next %}
-
-                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                    <!-- processing Paginator -->
                 </div>
                 <!-- Step 5 + 6 End -->
 

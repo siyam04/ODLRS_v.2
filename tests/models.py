@@ -65,7 +65,7 @@ class TestOrder(models.Model):
     address = models.CharField(max_length=150, blank=True, null=True)
     test_info = models.ForeignKey(Test, on_delete=models.SET_NULL, null=True, related_name='test_order')
 
-    # Step 3
+    # Step 3+4+5+6
     payment_type = models.CharField(max_length=20, choices=PAYMENT_TYPE, blank=True, null=True)
 
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD, blank=True, null=True)
@@ -73,15 +73,16 @@ class TestOrder(models.Model):
     booked_date = models.DateField(blank=True, null=True)
     order_created_at = models.TimeField(auto_now=True)
 
-    # Step 1
+    # for all steps
     staff_check = models.BooleanField(default=False)
 
     admin_approve = models.BooleanField(default=False)
     order_confirmed = models.BooleanField(default=False)
 
-    # Step 0
+    # for all steps
     accepted = models.BooleanField(default=False)
 
+    # Step 4+5+6
     validation = models.BooleanField(default=False)
 
     # Step 2
