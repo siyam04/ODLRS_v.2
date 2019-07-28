@@ -95,11 +95,12 @@ def filtered_report(request, id=None):
     filtered_reports = PaymentValidation.objects.filter(approved_order__client_info__user=user)
 
     # Filtered reports Paginator
-    paginator = Paginator(filtered_reports, 5)
+    paginator = Paginator(filtered_reports, 20)
     page = request.GET.get('page')
     filtered_reports_paginator = paginator.get_page(page)
 
     template = 'account/custom_users/filtered_reports.html'
+    # template = 'account/custom_users/orders_by_user.html'
 
     context = {'filtered_reports': filtered_reports_paginator}
 

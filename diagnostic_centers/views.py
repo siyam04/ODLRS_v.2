@@ -9,7 +9,7 @@ from django.views.generic import (
 
 from tests.models import TestOrder, Test
 from report_processing.models import PaymentValidation
-from report_processing.forms import PaymentValidationForm, SendMessageForm
+from report_processing.forms import PaymentValidationForm
 
 from .models import DiagnosticCenter, DiagnosticAdmin, DiagnosticStaff
 from .forms import AdminLoginForm, StaffLoginForm
@@ -77,19 +77,19 @@ def admin_dashboard(request, username=None):
     completed_orders = PaymentValidation.objects.filter(approved_order__payment_type='Full Payment')
 
     # Completed Paginator
-    paginator = Paginator(completed_orders, 5)
+    paginator = Paginator(completed_orders, 10)
     page = request.GET.get('page')
     completed_orders_paginator_data = paginator.get_page(page)
 
-    paginator = Paginator(validated_orders, 5)
-    page = request.GET.get('page')
-    paginator_data = paginator.get_page(page)
+    # paginator = Paginator(validated_orders, 5)
+    # page = request.GET.get('page')
+    # paginator_data = paginator.get_page(page)
 
     template = 'diagnostic_centers/admin_dashboard.html'
 
     context = {
         'admin': admin,
-        'confirmed_tests': paginator_data,
+        # 'confirmed_tests': paginator_data,
         'completed_orders': completed_orders_paginator_data
     }
 
@@ -153,44 +153,49 @@ def staff_dashboard(request, id=None, username=None):
     full_payment_orders = TestOrder.objects.filter(accepted=True, order_confirmed=True, payment_type='Full Payment',
                                                    test_info__center=staff.center)
     # Step 7
-    # all_reports_query = PaymentValidation.objects.all()
+    # all_orders = PaymentValidation.objects.all()
     completed_orders = PaymentValidation.objects.filter(approved_order__payment_type='Full Payment')
 
     # Step 8
     sent_message_orders = PaymentValidation.objects.filter(approved_order__payment_type='Half Payment')
 
     # Pending Orders Paginator
-    paginator = Paginator(pending_tests, 3)
+    paginator = Paginator(pending_tests, 5)
     page = request.GET.get('page')
     pending_paginator_data = paginator.get_page(page)
 
     # Confirmed Orders Paginator
-    paginator = Paginator(confirmed_tests, 3)
+    paginator = Paginator(confirmed_tests, 5)
     page = request.GET.get('page')
     confirmed_paginator_data = paginator.get_page(page)
 
     # Half payment Orders Paginator
-    paginator = Paginator(half_payment_orders, 2)
+    paginator = Paginator(half_payment_orders, 5)
     page = request.GET.get('page')
     half_payment_paginator_data = paginator.get_page(page)
 
     # Came for test Paginator
-    paginator = Paginator(came_for_tests, 3)
+    paginator = Paginator(came_for_tests, 5)
     page = request.GET.get('page')
     came_for_paginator_data = paginator.get_page(page)
 
     # Full payment Paginator
-    paginator = Paginator(full_payment_orders, 3)
+    paginator = Paginator(full_payment_orders, 5)
     page = request.GET.get('page')
     full_payment_paginator_data = paginator.get_page(page)
 
     # Completed orders Paginator
-    paginator = Paginator(completed_orders, 5)
+    paginator = Paginator(completed_orders, 10)
     page = request.GET.get('page')
     completed_orders_paginator_data = paginator.get_page(page)
 
+    # All orders Paginator
+    # paginator = Paginator(all_orders, 20)
+    # page = request.GET.get('page')
+    # all_orders_paginator_data = paginator.get_page(page)
+
     # Sent message orders Paginator
-    paginator = Paginator(sent_message_orders, 5)
+    paginator = Paginator(sent_message_orders, 10)
     page = request.GET.get('page')
     sent_message_orders_paginator_data = paginator.get_page(page)
 
@@ -198,17 +203,17 @@ def staff_dashboard(request, id=None, username=None):
         form = PaymentValidationForm(request.POST, request.FILES)
 
         # <!----------------------------- ERROR ------------------------------------->
-        message_form = SendMessageForm(request.POST, request.FILES)
-
-        if message_form.is_valid():
-            send_message_form = message_form.save(commit=False)
-            # order = TestOrder.objects.get(id=id)
-            order = TestOrder.objects.get(id=id)
-            order.payment_type = 'Half Payment'
-            order.save()
-            # send_message_form.approved_order = order.test_info.test_name
-            send_message_form.send_message = order.payment_type
-            send_message_form.save()
+        # message_form = SendMessageForm(request.POST, request.FILES)
+        #
+        # if message_form.is_valid():
+        #     send_message_form = message_form.save(commit=False)
+        #     # order = TestOrder.objects.get(id=id)
+        #     order = TestOrder.objects.get(id=id)
+        #     order.payment_type = 'Half Payment'
+        #     order.save()
+        #     # send_message_form.approved_order = order.test_info.test_name
+        #     send_message_form.send_message = order.payment_type
+        #     send_message_form.save()
         # <!----------------------------- ERROR ------------------------------------->
 
         if form.is_valid():
@@ -234,13 +239,14 @@ def staff_dashboard(request, id=None, username=None):
         'came_for_tests': came_for_paginator_data,
         'full_payment_orders': full_payment_paginator_data,
         'completed_orders': completed_orders_paginator_data,
+        # 'all_orders': all_orders_paginator_data,
         'sent_message_orders': sent_message_orders_paginator_data,
 
         'staff_username': username,
         'payment_form': PaymentValidationForm(),
 
     # <!----------------------------- ERROR ------------------------------------->
-        'send_message_form': SendMessageForm(),
+    #     'send_message_form': SendMessageForm(),
     # <!----------------------------- ERROR ------------------------------------->
 
     }

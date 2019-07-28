@@ -15,6 +15,7 @@
             <th> Test Names </th>
             <th> Validation DateTime </th>
             <th> Reports </th>
+            <th> Status </th>
 
         </tr>
         </thead>
@@ -25,11 +26,29 @@
 
             <tr>
                 <td> {{ forloop.counter }} </td>
-                <td><a href="{% url 'report_processing:single-report-details' report.id %}"><b style="color: green">
-                    {{ report.approved_order.test_info.test_name }}
-                </b></a></td>
-                <td><b style="color: deeppink">{{ report.datetime }}</b></td>
-                <td><a href="/media/reports_PDF/report_demo.pdf"><b style="color: blue">{{ report.upload_report }}</b></a></td>
+
+                {% if report.approved_order.payment_type == 'Full Payment'  %}
+
+                    <td><a href="{% url 'report_processing:single-report-details' report.id %}">
+                        <b style="color: green">{{ report.approved_order.test_info.test_name }}</b></a>
+                    </td>
+                    <td style="color: green">{{ report.datetime }}</td>
+                    <td><a href="/media/reports_PDF/report_demo.pdf">{{ report.upload_report }}</a></td>
+                    <td><b style="color: green">{{ report.send_message }}</b></td>
+
+                {% else %}
+
+                    <td><a href="{% url 'report_processing:single-report-details' report.id %}">
+                        <b style="color: red">{{ report.approved_order.test_info.test_name }}</b></a>
+                    </td>
+                    <td style="color: red">{{ report.datetime }}</td>
+                    <td><a href="/media/reports_PDF/report_demo.pdf">{{ report.upload_report }}</a></td>
+                    <td style="color: red">{{ report.send_message }}</td>
+
+                {% endif %}
+
+{#                <td><a href="/media/reports_PDF/report_demo.pdf">{{ report.upload_report }}</a></td>#}
+
             </tr>
 
         {% endfor %}

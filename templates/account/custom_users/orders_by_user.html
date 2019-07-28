@@ -20,7 +20,7 @@
 {#            {% endif %}#}
 
             {% if order.accepted == True %}
-                <p style="color: green">* Order Confirmed. Ready For Test.</p>
+                <p style="color: green">* Order Confirmed. You are Ready For Test.</p>
 
             {% elif order.accepted == False and order.staff_check == True %}
                 <p style="color: red">* Order Rejected</p>
@@ -31,7 +31,7 @@
             {% endif %}
 
         {% endfor%}
-        </li>
+{#        </li>#}
         <hr>
 
         <!-- Paginator -->
@@ -62,5 +62,11 @@
 </div>
     <!-- Your Orders End -->
 
+
+    <hr>
+    <hr>
+<div>
+    <h1>Add Reports Table Here</h1>
+</div>
 
 {% endblock %}
