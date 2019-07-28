@@ -11,7 +11,7 @@
             <h2>booking</h2>
             <h5>book now any kind of tests</h5>
 
-            <a href="#welcome" class="btn"> get started </a>
+            <a href="#welcome" class="btn"> get started <i class="fa fa-arrow-right pl-2"></i> </a>
         </div>
     </div>
 </div>
@@ -19,6 +19,7 @@
 <div class="welcome container text-dark" id="welcome">
 
     <div class="bg-dark p-5 my-4">
+
         <div class="container">
             <h3 class="text-white mb-4">Search Tests</h3>
 
@@ -42,35 +43,43 @@
         {% for test in paginator_dataset %}
         <div class="col-3">
             <div class="card">
-                <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
-
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
-                    <p class="card-text">{{ test.center }}</p>
-
-                    {% if test.discount %}
+                <div class="card-title">
+                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+                    <!-- {% if test.discount %}
                     <p class="card-text">Discount: {{ test.discount }}</p>
-                    {% endif %}
-
-                    <p class="card-text text-danger">Price: <span id="price">{{ test.price }}</span> TK</p>
-                    <p class="card-text">{{ test.active_status }}</p>
-
+                    {% endif %} -->
                 </div>
 
-                <div class="btn-block text-center">
+                <div class="card-body">
+                    <p class="card-subtitle mb-2 text-muted">{{ test.category }}</p>
+
+                    <h6 class="">
+                        <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
+                    </h6>
+
+                    <p class="card-text">{{ test.center }}</p>
+
+
+                    <p class="card-text text-dange price">Price: <span id="price">{{ test.price }}</span> TK</p>
+                    <!-- <p class="card-text">{{ test.active_status }}</p> -->
+
+                    <a class="btn btn-sm order-btn text-center" href="{% url 'tests:order' test.id %}" type="submit">
+                        ORDER
+                    </a>
+                </div>
+
+                <!-- <div class="btn-block text-center">
                     <p class="btn-group">
                         <button class="btn btn-warning btn-sm cart-btn" id="cart-btn" data-slug="{{ test.id }}">
                             Add to cart
                         </button>
 
-                        <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}" type="submit">
+                        <a class="btn btn-sm order-btn" href="{% url 'tests:order' test.id %}" type="submit">
                             ORDER
                         </a>
+
                     </p>
-                </div>
+                </div> -->
 
             </div>
         </div>
