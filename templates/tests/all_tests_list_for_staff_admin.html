@@ -81,9 +81,12 @@
                         <p class="card-text text-danger">Price: {{ test.price }} TK</p>
                         <p class="card-text">{{ test.active_status }}</p>
                     </div>
-                        <a href="{% url 'tests:delete_test' test.id %}"><button type="submit" class="btn btn-danger">
-                            DELETE</button>
-                        </a>
+{#                        <a href="{% url 'tests:delete_test' test.id %}"><button type="submit" class="btn btn-danger">#}
+{#                            DELETE</button>#}
+{#                            <br><br>#}
+{#                        </a><a href="{% url 'tests:edit-test' test.id %}"><button type="submit" class="btn btn-warning">#}
+{#                            EDIT</button>#}
+{#                        </a>#}
                 </div>
             </div>
             {% endfor %}

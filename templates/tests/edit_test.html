@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Test | ODLRS</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand text-warning" href="#"><b>ODLRS</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+{#                        <a class="nav-link text-warning" href="{% url 'tests:add-test' %}">Add New Test</a>#}
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently
+                            Added
+                            Tests</a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-warning"
+                            href="http://localhost:8000/admin-dashboard/labaid_admin_1">Admin
+                            Dashboard</a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:admin-logout' %}">Logout</a>
+                        <!-- </button> -->
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="card my-4">
+
+                    <div class="card-header bg-dark text-white text-center">
+                        <h2 class="">Edit Test</h2>
+                        <h6 class="mb-0">Managed by Admin</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+
+                            <button class="btn btn-dark" style="width: 100%" type="submit">EDIT</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer bg-dark text-white text-center py-2">
+        <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
+    </div>
+</body>
+
+</html>

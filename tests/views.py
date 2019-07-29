@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -188,6 +188,29 @@ def delete_test(request, id=None):
     test_object = Test.objects.get(id=id)
     test_object.delete()
     return redirect('tests:all-tests-list-staff-admin')
+
+########################################################################################
+
+
+def edit_test(request, id=None):
+    instance = Test.objects.get(id=id)
+    form = TestAddForm(request.POST or None, request.FILES or None, instance=instance)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            # instance = form.save(commit=False)
+            instance.save()
+            return redirect('tests:test-details', id)
+    else:
+        raise Http404
+
+    template = 'tests/edit_test.html'
+    context = {
+        'form': form,
+        'instance': instance,
+    }
+
+    return render(request, template, context)
 
 ########################################################################################
 
