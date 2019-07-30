@@ -1,9 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600i,700|Roboto:300,400,500,700&display=swap");
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -12,16 +13,26 @@ body {
   background: #f8f8f8;
 }
 
+.btn:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 nav.navbar {
   background: transparent;
-  position: absolute;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 99999;
   width: 100%;
+  background: #328691;
+  border-bottom: 3px solid white;
 }
 
 nav.navbar ul li a {
-  color: #328691;
+  color: #fff;
 }
 
 .header-image {
@@ -43,6 +54,7 @@ nav.navbar ul li a {
   -o-transform: translateY(-50%);
   color: white;
   text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
 }
 
 .header-image .header-content h2 {
@@ -83,11 +95,15 @@ nav.navbar ul li a {
   -o-transform: rotate(90deg);
 }
 
+.inner-content {
+  padding-top: 5rem;
+}
+
 p {
   margin-bottom: 0;
 }
 
-.card {
+.test-box {
   width: 100%;
   height: auto;
   background: none;
@@ -95,11 +111,18 @@ p {
   /* .btn-block button{} */
 }
 
-.card .card-title {
+.test-box .card-title {
   margin-bottom: 0;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
-.card .card-title img {
+.test-box .card-title img {
   border-radius: 10px;
   min-height: 200px;
   -webkit-border-radius: 10px;
@@ -108,7 +131,7 @@ p {
   -o-border-radius: 10px;
 }
 
-.card .card-body {
+.test-box .card-body {
   width: 90%;
   min-height: 150px;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -125,26 +148,26 @@ p {
   padding-bottom: 0;
 }
 
-.card .card-body p {
+.test-box .card-body p {
   font-size: 14px;
   color: #969696;
 }
 
-.card .card-body p.price {
+.test-box .card-body p.price {
   margin-top: 10px;
 }
 
-.card .card-body h6 {
+.test-box .card-body h6 {
   font-size: 18px;
   margin-bottom: 0;
 }
 
-.card .card-body h6 a {
+.test-box .card-body h6 a {
   color: #3ec1c9;
   text-decoration: none;
 }
 
-.card a.order-btn {
+.test-box a.order-btn {
   position: relative;
   bottom: -32px;
   left: 50%;
@@ -169,7 +192,7 @@ p {
   -o-transform: translate(-50%, -50%);
 }
 
-.card .add-to-cart-box {
+.add-to-cart-box {
   position: fixed;
   top: 20%;
   right: -350px;
@@ -177,5 +200,106 @@ p {
   height: 400px;
   z-index: 1111;
   display: block;
+}
+
+.login-bg {
+  background: linear-gradient(45deg, #63D5DA, #8962F0, #E839F4);
+  width: 100%;
+  min-height: 91.5vh;
+}
+
+.login-bg .log-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-bg .log-box .card-body {
+  padding: 2rem;
+}
+
+.login-bg .log-box h3 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #328691;
+}
+
+.login-bg .log-box h2,
+.login-bg .log-box h6 {
+  color: #328691;
+}
+
+.login-bg .log-box .login label {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #328691;
+}
+
+.login-bg .log-box .login p:nth-child(4) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.login-bg .log-box .login p:nth-child(4) input {
+  width: auto;
+  margin-top: 1px !important;
+  margin-left: 6px !important;
+  cursor: pointer;
+}
+
+.login-bg .log-box .login input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid lightblue;
+  width: 100%;
+  line-height: 30px;
+  margin-bottom: 1rem;
+}
+
+.login-bg .log-box .login input:focus {
+  background: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
+.login-bg .log-box .login .form-control {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  padding: 0;
+}
+
+.login-btn {
+  color: white;
+  background: linear-gradient(45deg, #63D5DA, #8962F0, #E839F4);
+  border: 0;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  -webkit-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  background: #328691;
 }
 /*# sourceMappingURL=style.css.map */

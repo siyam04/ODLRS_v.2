@@ -42,7 +42,7 @@
     <div class="row mt-4">
         {% for test in paginator_dataset %}
         <div class="col-3">
-            <div class="card">
+            <div class="card test-box">
                 <div class="card-title">
                     <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
                     <!-- {% if test.discount %}
@@ -126,6 +126,21 @@
 </script> -->
 
 
-
+<!-- ///////////////////////////////// -->
+<!-- <a href="#" id="seeMore">Show More</a>
+    <script>
+        $(document).ready(function () {
+            $("div").slice(0, 3).show();
+            $("#seeMore").click(function (e) {
+                e.preventDefault();
+                $("div:hidden").slice(0, 3).fadeIn("slow");
+                
+                if ($("div:hidden").length == 0) {
+                    $("#seeMore").fadeOut("slow");
+                }
+            });
+        })
+    </script> -->
+<!-- ///////////////////////////////// -->
 
 {% endblock content %}

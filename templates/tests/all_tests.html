@@ -4,44 +4,50 @@
 
 {% block content %}
 
-<style>
-    p.center {
-        font-size: 14px;
-    }
-</style>
-
-
-<div class="container mt-4">
+<div class="container inner-content">
     <div class="row">
 
         {% for test in all_test_list %}
-        <div class="col-3 mb-4">
-            <div class="card">
-                <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+        <div class="col-3">
+            <div class="card test-box">
+                <div class="card-title">
+                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+                    <!-- {% if test.discount %}
+                    <p class="card-text">Discount: {{ test.discount }}</p>
+                    {% endif %} -->
+                </div>
 
                 <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
-                    <p class="card-text center">{{ test.center }}</p>
-                    <p class="card-text">Discount: {{ test.discount }}</p>
-                    <p class="card-text text-danger">Price: {{ test.price }} TK</p>
-                    <p class="card-text">{{ test.active_status }}</p>
+                    <p class="card-subtitle mb-2 text-muted">{{ test.category }}</p>
 
-                    <!-- <div class="dropdown-divider"></div>
-                    <div class="btn-block text-center">
-                        <a class="btn btn-primary btn-sm m-auto" href="{% url 'tests:order' test.id %}"
-                            type="submit">ORDER</a>
-                    </div> -->
+                    <h6 class="">
+                        <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
+                    </h6>
+
+                    <p class="card-text">{{ test.center }}</p>
+
+
+                    <p class="card-text text-dange price">Price: <span id="price">{{ test.price }}</span> TK</p>
+                    <!-- <p class="card-text">{{ test.active_status }}</p> -->
+
+                    <a class="btn btn-sm order-btn text-center" href="{% url 'tests:order' test.id %}" type="submit">
+                        ORDER
+                    </a>
                 </div>
-                <div class="btn-block text-center">
+
+                <!-- <div class="btn-block text-center">
                     <p class="btn-group">
-                        <button class="btn btn-warning btn-sm" id="cart-btn"> Add to cart </button>
-                        <a class="btn btn-primary btn-sm " href="{% url 'tests:order' test.id %}"
-                            type="submit">ORDER</a>
+                        <button class="btn btn-warning btn-sm cart-btn" id="cart-btn" data-slug="{{ test.id }}">
+                            Add to cart
+                        </button>
+
+                        <a class="btn btn-sm order-btn" href="{% url 'tests:order' test.id %}" type="submit">
+                            ORDER
+                        </a>
+
                     </p>
-                </div>
+                </div> -->
+
             </div>
         </div>
         {% endfor %}

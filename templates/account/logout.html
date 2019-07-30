@@ -6,43 +6,23 @@
 
 {% block content %}
 
-<style>
-	p {
-		margin-bottom: 0;
-		font-size: 14px;
-	}
+<div class="containe box login-bg">
+	<div class="cotainer">
+		<div class="card log-box text-center py-2 px-5">
+			<div class="card-body">
+				<h4 class="text-uppercase">{% trans 'Are you sure you want to sign out?' %}</h4>
 
-	.card {
-		margin-top: 150px;
-	}
+				<form method="post" action="{% url 'account_logout' %}" class="login">
+					{% csrf_token %}
+					{% if redirect_field_value %}
+					<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+					{% endif %}
+					<button type="submit" class="btn login-btn btn-s px-5 mt-3">{% trans 'YES' %}</button>
+				</form>
 
-	.box {
-		min-height: 550px;
-	}
-</style>
-
-
-<div class="container box">
-	<div class="row">
-
-		<div class="col-6 offset-3 my-4">
-			<div class="card text-center py-3">
-				<div class="card-body">
-					<h4>{% trans 'Are you sure you want to sign out?' %}</h4>
-
-					<form method="post" action="{% url 'account_logout' %}">
-						{% csrf_token %}
-						{% if redirect_field_value %}
-						<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-						{% endif %}
-						<h3><button type="submit" class="btn btn-warning btn-sm px-5">{% trans 'OK' %}</button></h3>
-					</form>
-				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
-
 
 {% endblock %}

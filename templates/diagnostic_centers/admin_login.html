@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,40 +10,62 @@
 
     <title>Admin Login | ODLRS</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <style>
+        .login-bg {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .log-box {
+            width: 350px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-4 offset-4">
-                <div class="card text-cente my-5">
+    <div class="login-bg">
+        <div class="container ">
 
-                    <div class="card-header bg-success text-white py-3">
-                        <h2 class="mb-">Admin Login</h2>
-                        <h6 class="mb-0">Login for your Diagnostic Center</h6>
-                    </div>
+            <div class="card log-box text-cente my-">
 
-                    <div class="card-body py-4">
-                        <form method="post">
-                            {% csrf_token %}
+                <!-- <div class="card-header bg-success text-white py-3">
+                </div> -->
 
-                            {{ admin_login_form.as_p }}
+                <div class="card-body py-4">
 
-                            <button class="btn btn-success mt-3" type="submit" style="width: 100%">
-                                LOGIN
-                            </button>
-                        </form>
-                    </div>
+                    <h3 class="mb-0">Admin Login</h3>
+                    <h6 class="mb-4 text-center">Login for your Diagnostic Center</h6>
 
+                    <form method="post" class="login">
+                        {% csrf_token %}
+
+                        {{ admin_login_form.as_p }}
+
+                        <button class="btn login-btn my-3" type="submit" style="width: 100%">
+                            LOGIN
+                        </button>
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
 
+
+    <script src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script>
+        $.fakeLoader();
+    </script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
