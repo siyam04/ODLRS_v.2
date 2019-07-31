@@ -1,6 +1,6 @@
 # Online Diagnostic Lab Reporting System (ODLRS)
 
-![home](https://user-images.githubusercontent.com/23103980/60100828-5a67c600-977c-11e9-94d6-4291dd9661f0.png)
+![ODLRS_UI](https://user-images.githubusercontent.com/23103980/62161674-8f95a400-b338-11e9-968d-a2c43fa8f9ba.jpg)
 
 ## OS support: Windows-10, Linux & MAC.
 * Some commands may differ depending on OS. Just google it.
