@@ -193,22 +193,17 @@ def delete_test(request, id=None):
 
 
 def edit_test(request, id=None):
-    instance = Test.objects.get(id=id)
-    form = TestAddForm(request.POST or None, request.FILES or None, instance=instance)
+    test_query = Test.objects.get(id=id)
+    edit_form = TestAddForm(request.POST or None, instance=test_query)
 
     if request.method == 'POST':
-        if form.is_valid():
-            # instance = form.save(commit=False)
-            instance.save()
-            return redirect('tests:test-details', id)
-    else:
-        raise Http404
+        if edit_form.is_valid():
+            edit_form.save()
 
+            return all_tests_list_for_staff_admin(request)
+
+    context = {'edit_form': edit_form}
     template = 'tests/edit_test.html'
-    context = {
-        'form': form,
-        'instance': instance,
-    }
 
     return render(request, template, context)
 
