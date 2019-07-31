@@ -67,6 +67,42 @@
   {% block content %} {% endblock %} {% block extra_body %} {% endblock %}
 
   <div class="footer bg-dark text-white text-center py-2">
+
+    <!-- categories -->
+      <div class="col-3">
+        <h5 style="text-align: left">Categories</h5>
+        <hr>
+            {% for category in all_category %}
+                <li style="text-align: left"><a href="{% url 'tests:categorise-tests' category.id %}">
+                    {{ category.category_name }}</a>
+                </li>
+            {% endfor %}
+        <hr>
+      </div>
+    <!-- categories end -->
+
+    <!-- all tests -->
+    <div class="col-3">
+        <h5 style="text-align: center">All Tests</h5>
+        <hr>
+            {% for test in all_tests %}
+                <li style="text-align: center"><a href="{% url 'tests:test-details' test.id %}">
+                    {{ test.test_name }}</a>
+                </li>
+            {% endfor %}
+        <hr>
+    </div>
+    <!-- all tests end -->
+
+    <!-- Contact -->
+    <div class="col-md-3" style="text-align: right">
+        <h5>Contact</h5>
+        <p>Lorem Ipsum</p>
+        <p>Lorem Ipsum</p>
+        <p>Lorem Ipsum</p>
+    </div>
+    <!-- Contact end -->
+      <br><br>
     <p class="mb-0"> &copy; Online Diagnostic LAB Reporting System (ODLRS) </p>
   </div>
 

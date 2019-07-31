@@ -22,6 +22,7 @@ def home(request):
     template = 'home.html'
 
     context = {
+        'all_tests': all_tests,
         'all_tests_paginator_data': all_tests_paginator_data,
         'all_category': all_category,
     }
