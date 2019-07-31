@@ -11,6 +11,7 @@
 
 <div class="welcome container text-dark">
 
+    <!-- search -->
     <div class="bg-dark p-5 my-4">
         <div class="container">
             <h3 class="text-white mb-4">Search Tests</h3>
@@ -29,10 +30,21 @@
 
         </div>
     </div>
+    <!-- search end -->
 
+    <!-- categories -->
+    <h1>Categories</h1>
+    <hr>
+        {% for category in all_category %}
+            <li><a href="{% url 'tests:categorise-tests' category.id %}">{{ category.category_name }}</a></li>
+        {% endfor %}
 
+    <hr>
+    <!-- categories end -->
+
+    <!-- all tests -->
     <div class="row mt-4">
-        {% for test in paginator_dataset %}
+        {% for test in all_tests_paginator_data %}
         <div class="col-3">
             <div class="card mb-4">
                 <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
@@ -63,11 +75,11 @@
 
     </div>
 
-
+    <!-- all tests paginator -->
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                {% if paginator_dataset.has_previous %}
+                {% if all_tests_paginator_data.has_previous %}
                 <a class="page-link" href="?page=1" aria-label="Previous">
                     <span aria-hidden="false">&laquo;</span>
                 </a>
@@ -75,19 +87,20 @@
 
             </li>
             <li class="page-item">
-                <a class="page-link" href="#">Page {{ paginator_dataset.number }} of
-                    {{ paginator_dataset.paginator.num_pages }}</a>
+                <a class="page-link" href="#">Page {{ all_tests_paginator_data.number }} of
+                    {{ all_tests_paginator_data.paginator.num_pages }}</a>
             </li>
             <li class="page-item">
-                {% if paginator_dataset.has_next %}
-                <a class="page-link" href="?page={{ paginator_dataset.next_page_number }}" aria-label="Next">
+                {% if all_tests_paginator_data.has_next %}
+                <a class="page-link" href="?page={{ all_tests_paginator_data.next_page_number }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
                 {% endif %}
             </li>
         </ul>
     </nav>
-
+    <!-- all tests paginator end -->
+    <!-- all tests end -->
 </div>
 
 {% endblock content %}

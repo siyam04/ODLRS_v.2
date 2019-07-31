@@ -7,25 +7,28 @@ from tests.models import Test, TestCategory
 
 
 def home(request):
-    paginator_dataset = Test.objects.all()
-    all_category = TestCategory.objects.all()
+    all_tests = Test.objects.all()
+    all_category = TestCategory.objects.all().order_by('-id')
 
     query = request.GET.get('q')
 
     if query:
-        paginator_dataset = paginator_dataset.filter(Q(test_name__icontains=query)).distinct()
+        all_tests = all_tests.filter(Q(test_name__icontains=query)).distinct()
 
-    paginator = Paginator(paginator_dataset, 8)
+    paginator = Paginator(all_tests, 8)
     page = request.GET.get('page')
+    all_tests_paginator_data = paginator.get_page(page)
 
-    all_tests = paginator.get_page(page)
+    template = 'home.html'
 
     context = {
-        'paginator_dataset': all_tests,
+        'all_tests_paginator_data': all_tests_paginator_data,
         'all_category': all_category,
     }
 
-    template_name = 'home.html'
+    return render(request, template, context)
 
-    return render(request, template_name, context)
+########################################################################################
+
+
 
