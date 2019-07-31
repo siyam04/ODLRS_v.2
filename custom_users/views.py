@@ -17,9 +17,9 @@ from .forms import ProfileUpdateForm
 
 
 # class MySignupView(SignupView):
-#     template_name = 'account/signup.html'
-#
-#
+#     template_name = 'account/custom_users/custom_signup.html'
+
+
 # class MyLoginView(LoginView):
 #     template_name = 'account/login.html'
 #

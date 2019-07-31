@@ -27,25 +27,25 @@
 				</div>
 
 				<div class="card-body">
-					{% get_providers as socialaccount_providers %}
-
-					{% if socialaccount_providers %}
-					<p>
-						{% blocktrans with site.name as site_name %}
-						Not registered yet? <a href="{{ signup_url }}">sign up</a>
-						{% endblocktrans %}
-					</p>
-
-					<p>
-						or login with <br>
-						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
-					</p>
-
-
-					{% else %}
-					<p>{% blocktrans %}If you have not created an account yet, then please
-						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-					{% endif %}
+{#					{% get_providers as socialaccount_providers %}#}
+{##}
+{#					{% if socialaccount_providers %}#}
+{#					<p>#}
+{#						{% blocktrans with site.name as site_name %}#}
+{#						Not registered yet? <a href="{{ signup_url }}">sign up</a>#}
+{#						{% endblocktrans %}#}
+{#					</p>#}
+{##}
+{#					<p>#}
+{#						or login with <br>#}
+{#						{% include "socialaccount/snippets/provider_list.html" with process="login" %}#}
+{#					</p>#}
+{##}
+{##}
+{#					{% else %}#}
+{#					<p>{% blocktrans %}If you have not created an account yet, then please#}
+{#						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>#}
+{#					{% endif %}#}
 
 					<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
 						{% csrf_token %}
@@ -60,6 +60,33 @@
 							style="width: 80%">{% trans "Sign In" %}</button>
 					</form>
 				</div>
+
+                <!-- Login with Google section starts from here -->
+                {% get_providers as socialaccount_providers %}
+
+                {% if socialaccount_providers %}
+
+                    <p>
+						{% blocktrans with site.name as site_name %}
+						Not registered yet? <a href="{{ signup_url }}">sign up</a>
+						{% endblocktrans %}
+					</p>
+
+					<p>
+						or login with <br>
+						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+					</p>
+
+
+                {% else %}
+
+                    <p>{% blocktrans %}If you have not created an account yet, then please
+						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+                    </p>
+
+                {% endif %}
+                <!-- Login with Google section Ends -->
+
 			</div>
 
 		</div>

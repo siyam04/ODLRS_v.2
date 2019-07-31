@@ -199,7 +199,6 @@ def edit_test(request, id=None):
     if request.method == 'POST':
         if edit_form.is_valid():
             edit_form.save()
-
             return all_tests_list_for_staff_admin(request)
 
     context = {'edit_form': edit_form}
