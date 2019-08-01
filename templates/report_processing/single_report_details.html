@@ -22,46 +22,147 @@
             <div class="col-8 offset-2 text-cente">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
-                        <h3 class="mb-0">Verified Order Details</h3>
+                        <h3 class="mb-0">Completed Order Details</h3>
                     </div>
 
+
+                    <!-- Flag -->
+                    <hr>
+                        {% if report_details.approved_order.payment_type == 'Half Payment' %}
+                            <h4><b style="color: red">*Payment Due {{ due_price }} Taka</b></h4>
+                        {% else %}
+                            <h4><b style="color: green">*Full Payment Complete</b></h4>
+                        {% endif %}
+                    <hr>
+                    <!-- Flag -->
+
+
+                    <!-- Order History -->
                     <div class="card-body">
 
-                        <h5 style="color: orangered">Order History:</h5>
+                        <h5 style="color: black">Order History:</h5>
 {#                        <hr>#}
-                        <li>Test Name: <b style="color: forestgreen">{{ report_details.approved_order.test_info.test_name }}</b></li>
-                        <li>Booked Time Slot: <b style="color: forestgreen">{{ report_details.approved_order.booked_time_slot }}</b></li>
-                        <li>Booked Date: <b style="color: forestgreen">{{ report_details.approved_order.booked_date }}</b></li>
-                        <li>Payment Status: <b style="color: forestgreen">{{ report_details.approved_order.payment_type }}</b></li>
-                        <li>Payment Method: <b style="color: forestgreen">{{ report_details.approved_order.payment_method }}</b></li>
-                        <br>
-                        <li>Client: <b style="color: forestgreen">
+                        <li>Test Name: <b style="color: blue">{{ report_details.approved_order.test_info.test_name }}</b></li>
+
+                        <li>Booked DateTime:
+                            <b style="color: blue">
+                                {{ report_details.approved_order.booked_date }} ({{ report_details.approved_order.booked_time_slot }})
+                            </b>
+                        </li>
+
+                        {% if report_details.approved_order.payment_type == 'Half Payment' %}
+
+                            <li>Total Price: <b style="color: red">{{ total_price }}</b></li>
+
+                            <li>Payment Status: <b style="color: red">
+                                {{ report_details.approved_order.payment_type }} ({{ report_details.approved_order.payment_method}})
+                            </b></li>
+
+                        {% else %}
+
+                            <li>Total Price: <b style="color: green">{{ total_price }}</b></li>
+
+                            <li>Payment Status: <b style="color: green">
+                                {{ report_details.approved_order.payment_type }} ({{ report_details.approved_order.payment_method}})
+                            </b></li>
+
+                        {% endif %}
+
+                        <li>Client: <b style="color: blue">
                             {{ report_details.approved_order.client_info.user.username }}
                             ({{ report_details.approved_order.client_info.user.customer_profile.profile_name }})
                         </b></li>
-                        <li>Contact: <b style="color: forestgreen">{{ report_details.approved_order.client_info.user.customer_profile.contact_no }}</b></li>
-                        <li>Email: <b style="color: forestgreen">{{ report_details.approved_order.client_info.user.email }}</b></li>
-                        <br>
-                        <hr>
 
-                        <h5 style="color: orangered">Verification Record for Office:</h5>
-{#                        <hr>#}
+                        <li>Contact:
+                            <b style="color: blue">
+                                {{ report_details.approved_order.client_info.user.customer_profile.contact_no }}
+                            </b>
+                        </li>
+
+                        <li>Email:
+                            <b style="color: blue">
+                                {{ report_details.approved_order.client_info.user.email }}
+                            </b>
+                        </li>
+                        <hr>
+                        <!-- Order History -->
+
+
+                        <!-- Office -->
+                        <hr>
+                        <h5 style="color: black">Record for Office:</h5>
+
 {#                        <li>Verified ID: <b style="color: purple">{{ report_details.id }}</b></li>#}
-                        <li>Payment Status: <b style="color: forestgreen">
-                            {{ report_details.approved_order.payment_type }} ({{ report_details.approved_order.payment_method}})
 
+                        <li>Client: <b style="color: green">
+                            {{ report_details.approved_order.client_info.user.username }}
+                            ({{ report_details.approved_order.client_info.user.customer_profile.profile_name }})
                         </b></li>
-                        <li>Validation DateTime: <b style="color: deeppink">{{ report_details.datetime }}</b></li>
-                        <br>
-                        <li>Download Report: <a href="/media/reports_PDF/report_demo.pdf"><b>{{ report_details.upload_report }}</b></a></li>
+
+                        <li>Contact:
+                            <b style="color: green">
+                                {{ report_details.approved_order.client_info.user.customer_profile.contact_no }}
+                            </b>
+                        </li>
+
+                        <li>Email:
+                            <b style="color: green">
+                                {{ report_details.approved_order.client_info.user.email }}
+                            </b>
+                        </li>
+
+                        <li>Test Name: <b style="color: green">{{ report_details.approved_order.test_info.test_name }}</b></li>
+
+                        <li>Booked DateTime:
+                            <b style="color: green">
+                                {{ report_details.approved_order.booked_date }} ({{ report_details.approved_order.booked_time_slot }})
+                            </b>
+                        </li>
+
+                        {% if report_details.approved_order.payment_type == 'Half Payment' %}
+
+                            <li>Total Received Payment: <b style="color: red">{{ total_price }}</b></li>
+
+                            <li>Due: <b style="color: red">{{ due_price }}</b></li>
+
+                            <li>Payment Status: <b style="color: red">
+                                {{ report_details.approved_order.payment_type }} ({{ report_details.approved_order.payment_method}})</b>
+                            </li>
+
+                        {% else %}
+
+                            <li>Total Received Payment: <b style="color: green">{{ total_price }}</b></li>
+
+                            <li>Payment Status: <b style="color: green">
+                                {{ report_details.approved_order.payment_type }} ({{ report_details.approved_order.payment_method}})</b>
+                            </li>
+
+                        {% endif %}
+
+                        <li>Validation DateTime: <b style="color: green">{{ report_details.datetime }}</b></li>
+
+                        <li>Download Report: <a href="/media/reports_PDF/report_demo.pdf">{{ report_details.upload_report }}</a></li>
                         <hr>
+                        <!-- Office -->
 
 
+                        <!-- Button -->
                         {% if request.user.is_authenticated %}
 
-                            <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">
+                            <a href="{% url 'home' %}"><button type="button" class="btn btn-warning">
                                 Back to Home</button>
                             </a>
+                        {% endif %}
+
+                        {% if report_details.approved_order.payment_type == 'Half Payment' %}
+                            <a href="#">
+                                <button type="button" class="btn btn-success">Complete Payment</button>
+                            </a>
+                        {% endif %}
+                        <!-- Button -->
+
+
+
 
 {#                        {% else %}#}
 {##}
@@ -77,7 +178,7 @@
 {#                            <hr>#}
 {#                            {% endif %}#}
 
-                        {% endif %}
+{#                        {% endif %}#}
 
                     </div>
                 </div>
