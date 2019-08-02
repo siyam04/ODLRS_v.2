@@ -397,8 +397,9 @@
                                             <form action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
                                                   method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
-                                                {{ payment_form.as_p }}
-                                                <button class="btn btn-primary" type="submit">SEND</button>
+                                                {{ payment_form.send_message }}
+                                                <br>
+                                                <button class="btn btn-warning" type="submit">SEND MESSAGE</button>
                                             </form>
                                         <!----------------------------- Form ------------------------------------->
 
@@ -490,7 +491,7 @@
                                                   method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 {{ payment_form.as_p }}
-                                                <button class="btn btn-primary" type="submit">SEND</button>
+                                                <button class="btn btn-success" type="submit">SEND REPORT</button>
                                             </form>
 
                                         {% elif test.validation == True %}
