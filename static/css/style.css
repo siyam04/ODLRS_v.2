@@ -4,7 +4,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -33,6 +33,9 @@ nav.navbar {
 
 nav.navbar ul li a {
   color: #fff;
+  text-transform: uppercase;
+  font-size: 15px;
+  outline: none;
 }
 
 .header-image {
@@ -54,7 +57,7 @@ nav.navbar ul li a {
   -o-transform: translateY(-50%);
   color: white;
   text-transform: uppercase;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .header-image .header-content h2 {
@@ -203,7 +206,7 @@ p {
 }
 
 .login-bg {
-  background: linear-gradient(45deg, #63D5DA, #8962F0, #E839F4);
+  background: linear-gradient(45deg, #63d5da, #8962f0, #e839f4);
   width: 100%;
   min-height: 91.5vh;
 }
@@ -254,7 +257,7 @@ p {
   display: flex;
 }
 
-.login-bg .log-box .login p:nth-child(4) input {
+.login-bg .log-box .login p:nth-child(4) input#id_remember {
   width: auto;
   margin-top: 1px !important;
   margin-left: 6px !important;
@@ -286,9 +289,40 @@ p {
   padding: 0;
 }
 
+.login-bg .log-box .signup label {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #328691;
+}
+
+.login-bg .log-box .signup input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid lightblue;
+  width: 100%;
+  line-height: 30px;
+  margin-bottom: 1rem;
+}
+
+.login-bg .log-box .signup input:focus {
+  background: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
+.login-bg .log-box .signup .form-control {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  padding: 0;
+}
+
 .login-btn {
   color: white;
-  background: linear-gradient(45deg, #63D5DA, #8962F0, #E839F4);
+  background: linear-gradient(45deg, #63d5da, #8962f0, #e839f4);
   border: 0;
   border-radius: 30px;
   -webkit-border-radius: 30px;

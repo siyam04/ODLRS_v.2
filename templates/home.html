@@ -56,9 +56,6 @@
             <div class="card test-box">
                 <div class="card-title">
                     <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
-                    <!-- {% if test.discount %}
-                    <p class="card-text">Discount: {{ test.discount }}</p>
-                    {% endif %} -->
                 </div>
 
                 <div class="card-body">
@@ -78,24 +75,9 @@
                         ORDER
                     </a>
                 </div>
-
-                <!-- <div class="btn-block text-center">
-                    <p class="btn-group">
-                        <button class="btn btn-warning btn-sm cart-btn" id="cart-btn" data-slug="{{ test.id }}">
-                            Add to cart
-                        </button>
-
-                        <a class="btn btn-sm order-btn" href="{% url 'tests:order' test.id %}" type="submit">
-                            ORDER
-                        </a>
-
-                    </p>
-                </div> -->
-
             </div>
         </div>
         {% endfor %}
-
     </div>
 
     <nav aria-label="Page navigation example">
