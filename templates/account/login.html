@@ -6,95 +6,69 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-<style>
-	p {
-		margin-bottom: 0;
-	}
 
-	.box {
-		min-height: 500px;
-	}
-</style>
 
-<div class="container box">
+<div class="box login-bg">
 
-	<div class="row my-5">
-		<div class="col-sm-4 offset-4 text-center">
+	<div class="container">
 
-			<div class="card">
-				<div class="card-header bg-warning">
-					<h1>{% trans "Sign In" %}</h1>
-				</div>
+		<div class="card log-box">
 
-				<div class="card-body">
-{#					{% get_providers as socialaccount_providers %}#}
-{##}
-{#					{% if socialaccount_providers %}#}
-{#					<p>#}
-{#						{% blocktrans with site.name as site_name %}#}
-{#						Not registered yet? <a href="{{ signup_url }}">sign up</a>#}
-{#						{% endblocktrans %}#}
-{#					</p>#}
-{##}
-{#					<p>#}
-{#						or login with <br>#}
-{#						{% include "socialaccount/snippets/provider_list.html" with process="login" %}#}
-{#					</p>#}
-{##}
-{##}
-{#					{% else %}#}
-{#					<p>{% blocktrans %}If you have not created an account yet, then please#}
-{#						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>#}
-{#					{% endif %}#}
+			<div class="card-body">
+				<h3 class="mb-0"> sign in </h3>
 
-					<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
-						{% csrf_token %}
-						{{ form.as_p }}
+				<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
+					{% csrf_token %}
+					{{ form.as_p }}
 
-						{% if redirect_field_value %}
-						<input type="hidden" class="form-control" name="{{ redirect_field_name }}"
-							value="{{ redirect_field_value }}" />
-						{% endif %}
+					{% if redirect_field_value %}
+					<input type="hidden" class="form-control" name="{{ redirect_field_name }}"
+						value="{{ redirect_field_value }}" />
+					{% endif %}
 
-						<button class="btn btn-warning btn-s my-4 primaryAction" type="submit"
-							style="width: 80%">{% trans "Sign In" %}</button>
-					</form>
-				</div>
+					<button class="btn w-100 my-4 login-btn primaryAction text-uppercase" type="submit"
+						style="width: 80%">{% trans "Sign In" %}</button>
 
-                <!-- Login with Google section starts from here -->
-                {% get_providers as socialaccount_providers %}
+				</form>
 
-                {% if socialaccount_providers %}
+				<p class="text-center mb-2"> Not registered yet? </p>
 
-                    <p>
+				<div class="social-sign-up text-center d-flex justify-content-center text-uppercase">
+					<!-- Login with Google section starts from here -->
+					{% get_providers as socialaccount_providers %}
+
+					{% if socialaccount_providers %}
+
+					<div>
 						{% blocktrans with site.name as site_name %}
-						Not registered yet? <a href="{{ signup_url }}">sign up</a>
+						<a href="{{ signup_url }}" class="">sign up</a>
 						{% endblocktrans %}
-					</p>
+					</div>
 
-					<p>
-						or login with <br>
+					<div class="px-2">or</div>
+
+					<div>
 						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
-					</p>
+					</div>
 
+					<!-- {% else %}
 
-                {% else %}
+					<div>
+						If you have not created an account yet, then please
+						{% blocktrans %}
+						<a href="{{ signup_url }}">sign up</a> first.
+						{% endblocktrans %}
+					</div> -->
 
-                    <p>{% blocktrans %}If you have not created an account yet, then please
-						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-                    </p>
-
-                {% endif %}
-                <!-- Login with Google section Ends -->
-
+					{% endif %}
+					<!-- Login with Google section Ends -->
+				</div>
 			</div>
 
 		</div>
+
 	</div>
 
 </div>
-
-
-
 
 {% endblock %}

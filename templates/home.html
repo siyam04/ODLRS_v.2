@@ -3,16 +3,24 @@
 {% block title %}Home | ODLRS{% endblock %}
 
 {% block content %}
-<style>
-    p {
-        margin-bottom: 0;
-    }
-</style>
 
-<div class="welcome container text-dark">
+<div class="header-image">
+    <div class="container">
+        <div class="header-content">
+            <h1>ONLINE TEST</h1>
+            <h2>booking</h2>
+            <h5>book now any kind of tests</h5>
+
+            <a href="#welcome" class="btn"> get started <i class="fa fa-arrow-right pl-2"></i> </a>
+        </div>
+    </div>
+</div>
+
+<div class="welcome container text-dark" id="welcome">
 
     <!-- search -->
     <div class="bg-dark p-5 my-4">
+
         <div class="container">
             <h3 class="text-white mb-4">Search Tests</h3>
 
@@ -35,9 +43,9 @@
     <!-- categories -->
     <h1>Categories</h1>
     <hr>
-        {% for category in all_category %}
-            <li><a href="{% url 'tests:categorise-tests' category.id %}">{{ category.category_name }}</a></li>
-        {% endfor %}
+    {% for category in all_category %}
+    <li><a href="{% url 'tests:categorise-tests' category.id %}">{{ category.category_name }}</a></li>
+    {% endfor %}
     <hr>
     <!-- categories end -->
 
@@ -45,36 +53,51 @@
     <div class="row mt-4">
         {% for test in all_tests_paginator_data %}
         <div class="col-3">
-            <div class="card mb-4">
-                <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+            <div class="card test-box">
+                <div class="card-title">
+                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+                    <!-- {% if test.discount %}
+                    <p class="card-text">Discount: {{ test.discount }}</p>
+                    {% endif %} -->
+                </div>
 
                 <div class="card-body">
-                    <h5 class="card-title">
+                    <p class="card-subtitle mb-2 text-muted">{{ test.category }}</p>
+
+                    <h6 class="">
                         <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
+                    </h6>
+
                     <p class="card-text">{{ test.center }}</p>
 
-                    {% if test.discount %}
-                    <p class="card-text">Discount: {{ test.discount }}</p>
-                    {% endif %}
 
-                    <p class="card-text text-danger">Price: {{ test.price }} TK</p>
-                    <p class="card-text">{{ test.active_status }}</p>
+                    <p class="card-text text-dange price">Price: <span id="price">{{ test.price }}</span> TK</p>
+                    <!-- <p class="card-text">{{ test.active_status }}</p> -->
 
-                    <div class="dropdown-divider"></div>
-                    <div class="btn-block text-center">
-                        <a class="btn btn-primary btn-sm m-auto" href="{% url 'tests:order' test.id %}"
-                            type="submit">ORDER</a>
-                    </div>
+                    <a class="btn btn-sm order-btn text-center" href="{% url 'tests:order' test.id %}" type="submit">
+                        ORDER
+                    </a>
                 </div>
+
+                <!-- <div class="btn-block text-center">
+                    <p class="btn-group">
+                        <button class="btn btn-warning btn-sm cart-btn" id="cart-btn" data-slug="{{ test.id }}">
+                            Add to cart
+                        </button>
+
+                        <a class="btn btn-sm order-btn" href="{% url 'tests:order' test.id %}" type="submit">
+                            ORDER
+                        </a>
+
+                    </p>
+                </div> -->
+
             </div>
         </div>
         {% endfor %}
 
     </div>
 
-    <!-- all tests paginator -->
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
@@ -101,5 +124,35 @@
     <!-- all tests paginator end -->
     <!-- all tests end -->
 </div>
+
+
+
+<!--
+<script>
+    const cartBtn = document.getElementById('cart-btn');
+    const cart = document.getElementById('add-to-cart');
+
+    cartBtn.addEventListener("click", function addItem() {
+        cart.style.display = 'block'
+    });
+</script> -->
+
+
+<!-- ///////////////////////////////// -->
+<!-- <a href="#" id="seeMore">Show More</a>
+    <script>
+        $(document).ready(function () {
+            $("div").slice(0, 3).show();
+            $("#seeMore").click(function (e) {
+                e.preventDefault();
+                $("div:hidden").slice(0, 3).fadeIn("slow");
+
+                if ($("div:hidden").length == 0) {
+                    $("#seeMore").fadeOut("slow");
+                }
+            });
+        })
+    </script> -->
+<!-- ///////////////////////////////// -->
 
 {% endblock content %}

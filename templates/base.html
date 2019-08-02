@@ -4,108 +4,113 @@
 <html>
 
 <head>
-  <title>{% block title %}{% endblock %}</title>
+	<title>{% block title %}{% endblock %}</title>
 
-  <!-- fontawesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
-    integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
+		integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
 
 </head>
 
 <body>
 
+	<!-- loader -->
+	<div class="fakeLoader"></div>
+	<!-- loader -->
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand text-warning" href="{% url 'home' %}"><b>ODLRS</b></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+	<nav class="navbar navbar-expand-lg">
+		<div class="container">
+			<a class="navbar-brand text-white" href="{% url 'home' %}"><b>ODLRS</b></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'diagnostic_centers:all-centers' %}">Centers</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="{% url 'tests:all-tests' %}">Tests</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'tests:categories' %}">Categories</a>
-          </li>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item ">
+						<a class="nav-link" href="{% url 'home' %}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'diagnostic_centers:all-centers' %}">Centers</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="{% url 'tests:all-tests' %}">Tests</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'tests:categories' %}">Categories</a>
+					</li>
+					<!-- <li class="nav-item">
+						<a class="nav-link slide-left" href="#">
+							<i class="fas fa-cart-plus"></i>
+						</a>
+					</li> -->
 
-          {% if user.is_authenticated %}
-          <li class="nav-item ">
-            <a class="nav-link text-warning" href="{% url 'custom_users:orders-by-user' %}">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-          </li>
-          {% else %}
-          <li class="nav-item ">
-            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_signup' %}">SignUp</a>
-          </li>
-          {% endif %}
+					{% if user.is_authenticated %}
+					<li class="nav-item ">
+						<a class="nav-link text-warnin" href="{% url 'custom_users:profile' %}">Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+					</li>
+					{% else %}
+					<li class="nav-item ">
+						<a class="nav-link" href="{% url 'account_login' %}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'account_signup' %}">SignUp</a>
+					</li>
+					{% endif %}
 
-        </ul>
-      </div>
-    </div>
-  </nav>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-  {% block content %} {% endblock %} {% block extra_body %} {% endblock %}
+	<!-- <div class="add-to-cart-box" id="add-to-cart">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title float-left">Lorem, ipsum dolor.</h5>
+				<button type="button" class="close  slide-right">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="card-body p-4">
 
-  <div class="footer bg-dark text-white text-center py-2">
+				<p class="item-price"> <span id="itemPrice"></span> BDT </p>
 
-    <!-- categories -->
-      <div class="col-3">
-        <h5 style="text-align: left">Categories</h5>
-        <hr>
-            {% for category in all_category %}
-                <li style="text-align: left"><a href="{% url 'tests:categorise-tests' category.id %}">
-                    {{ category.category_name }}</a>
-                </li>
-            {% endfor %}
-        <hr>
-      </div>
-    <!-- categories end -->
+			</div>
+		</div>
+	</div> -->
 
-    <!-- all tests -->
-    <div class="col-3">
-        <h5 style="text-align: center">All Tests</h5>
-        <hr>
-            {% for test in all_tests %}
-                <li style="text-align: center"><a href="{% url 'tests:test-details' test.id %}">
-                    {{ test.test_name }}</a>
-                </li>
-            {% endfor %}
-        <hr>
-    </div>
-    <!-- all tests end -->
+	{% block content %} {% endblock %} {% block extra_body %} {% endblock %}
 
-    <!-- Contact -->
-    <div class="col-md-3" style="text-align: right">
-        <h5>Contact</h5>
-        <p>Lorem Ipsum</p>
-        <p>Lorem Ipsum</p>
-        <p>Lorem Ipsum</p>
-    </div>
-    <!-- Contact end -->
-      <br><br>
-    <p class="mb-0"> &copy; Online Diagnostic LAB Reporting System (ODLRS) </p>
-  </div>
+	<div class="footer text-white text-center py-3">
+		<p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
+	</div>
 
+
+
+
+
+
+
+
+	<script src="{% static 'js/fakeLoader.min.js' %}"></script>
+	<script>
+		$.fakeLoader();
+	</script>
+
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
