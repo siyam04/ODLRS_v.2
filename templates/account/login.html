@@ -11,11 +11,35 @@
 <div class="box login-bg">
 
 	<div class="container">
+		<!-- <div class="row my-">
+			<div class="col-sm-4 offset-4 text-cente"> -->
 
 		<div class="card log-box">
+			<!-- <div class="card-header bg-warnin">
+					</div> -->
 
 			<div class="card-body">
-				<h3 class="mb-0"> sign in </h3>
+				<h3>{% trans "Sign In" %}</h3>
+
+				<!-- {% get_providers as socialaccount_providers %}
+
+						{% if socialaccount_providers %}
+						<p>
+							{% blocktrans with site.name as site_name %}
+							Not registered yet? <a href="{{ signup_url }}">sign up</a>
+							{% endblocktrans %}
+						</p>
+
+						<p>
+							or login with <br>
+							{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+						</p> -->
+
+
+				{% else %}
+				<p>{% blocktrans %}If you have not created an account yet, then please
+					<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+				{% endif %}
 
 				<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
 					{% csrf_token %}
@@ -26,49 +50,19 @@
 						value="{{ redirect_field_value }}" />
 					{% endif %}
 
-					<button class="btn w-100 my-4 login-btn primaryAction text-uppercase" type="submit"
+					<button class="btn w-100 my-4 login-btn primaryAction" type="submit"
 						style="width: 80%">{% trans "Sign In" %}</button>
-
 				</form>
-
-				<p class="text-center mb-2"> Not registered yet? </p>
-
-				<div class="social-sign-up text-center d-flex justify-content-center text-uppercase">
-					<!-- Login with Google section starts from here -->
-					{% get_providers as socialaccount_providers %}
-
-					{% if socialaccount_providers %}
-
-					<div>
-						{% blocktrans with site.name as site_name %}
-						<a href="{{ signup_url }}" class="">sign up</a>
-						{% endblocktrans %}
-					</div>
-
-					<div class="px-2">or</div>
-
-					<div>
-						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
-					</div>
-
-					<!-- {% else %}
-
-					<div>
-						If you have not created an account yet, then please
-						{% blocktrans %}
-						<a href="{{ signup_url }}">sign up</a> first.
-						{% endblocktrans %}
-					</div> -->
-
-					{% endif %}
-					<!-- Login with Google section Ends -->
-				</div>
 			</div>
-
 		</div>
 
+		<!-- </div>
+		</div> -->
 	</div>
 
 </div>
+
+
+
 
 {% endblock %}

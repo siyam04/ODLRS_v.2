@@ -4,26 +4,24 @@
 
 {% block content %}
 
-<style>
-    p {
-        margin-bottom: 0;
-    }
-</style>
-
 <div class="container inner-content">
-    <div class="row mt-4">
+    <div class="row mt-2">
         {% for test in  filtered_tests %}
 
         <div class="col-3">
-            <div class="card mb-4">
-                <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+            <div class="card test-box">
+                <div class="card-title">
+                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+                </div>
 
-                <div class="card-body">
-                    <h5>
+                <div class="card-body" style="min-height: 90px">
+
+                    <h6 class="mb-2">
                         <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
-                    </h5>
-                    <!-- <p>{{ test.test_name }}</p> -->
+                    </h6>
+
                     <p>{{ test.center.name }}</p>
+
                 </div>
             </div>
         </div>

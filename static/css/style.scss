@@ -35,8 +35,8 @@ nav.navbar {
   ul li a {
     color: #fff;
     text-transform: uppercase;
-	font-size: 15px;
-	outline: none;
+    font-size: 15px;
+    outline: none;
   }
 }
 
@@ -100,7 +100,8 @@ nav.navbar {
 }
 
 .inner-content {
-  padding-top: 5rem;
+  padding-top: 5.5rem;
+  min-height: 90vh;
 }
 
 p {
