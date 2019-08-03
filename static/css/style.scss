@@ -12,6 +12,21 @@ $darkgreen: #328691;
 $lightgreen: #3ebec7;
 $overlightgreen: #3ec1c9;
 
+.custom-btn {
+  background: $lightgreen;
+  color: white;
+  font-weight: 600;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+
+  &:hover {
+    background: $darkgreen;
+  }
+}
+
 html,
 body {
   background: #f8f8f8;
@@ -212,27 +227,13 @@ p {
 }
 
 .login-bg {
-  // background: url(../images/hospital.jpg) no-repeat;
-  // background-size: cover;
-  // background-position: center;
-  // width: 100%;
-  // height: 100%;
-  // display: table;
-  // box-sizing: border-box;
-
-  // &::before {
-  // 	content: '';
-  // 	background: #000;
-  // 	position: absolute;
-  // 	top: 0;
-  // 	left: 0;
-  // 	z-index: 1;
-  // 	opacity: 0.5;
-  // }
-
   background: linear-gradient(45deg, #63d5da, #8962f0, #e839f4);
   width: 100%;
   min-height: 91.5vh;
+
+  .card {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  }
 
   .log-box {
     position: absolute;
@@ -249,8 +250,6 @@ p {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 
     .card-body {
       padding: 2rem;
@@ -299,6 +298,10 @@ p {
           box-shadow: none;
           outline: none;
         }
+
+        &::placeholder {
+          display: none;
+        }
       }
 
       .form-control {
@@ -340,6 +343,111 @@ p {
         -ms-border-radius: 0;
         -o-border-radius: 0;
         padding: 0;
+      }
+    }
+  }
+
+  .card-form {
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+      color: $darkgreen;
+      margin-bottom: 2rem;
+    }
+    label {
+      text-transform: uppercase;
+      font-size: 12px;
+      color: $darkgreen;
+    }
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid lightblue;
+      width: 100%;
+      // color: white;
+      line-height: 30px;
+      margin-bottom: 1rem;
+
+      &:focus {
+        background: transparent;
+        box-shadow: none;
+        outline: none;
+      }
+
+      &::placeholder {
+        display: none;
+      }
+    }
+    .custom-select {
+      border: none;
+      border-bottom: 1px solid lightblue;
+      width: 100%;
+      line-height: 30px;
+      margin-bottom: 1rem;
+      padding-left: 5px;
+      padding-right: 5px;
+      cursor: pointer;
+
+      &:focus {
+        box-shadow: none;
+        outline: none;
+      }
+    }
+
+    option {
+      font-size: 14px;
+    }
+
+    .form-control,
+    .custom-select {
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      padding: 0;
+    }
+
+    .card-body {
+      .for-date-time {
+        p:nth-child(8) {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-gap: 10px;
+
+          label {
+            grid-column-start: 1;
+            grid-column-end: 4;
+          }
+
+          .custom-select {
+            border-left: 1px solid lightblue;
+            padding-left: 5px;
+            padding-right: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .order-form {
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+      color: $darkgreen;
+      margin-bottom: 2rem;
+    }
+    p {
+      //   color: #969696;
+
+      span:first-child {
+        color: #21707a;
+        font-weight: 500;
+        padding-right: 15px;
+      }
+      span:last-child {
+        color: #62626b;
       }
     }
   }

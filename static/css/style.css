@@ -8,6 +8,21 @@
   scroll-behavior: smooth;
 }
 
+.custom-btn {
+  background: #3ebec7;
+  color: white;
+  font-weight: 600;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.custom-btn:hover {
+  background: #328691;
+}
+
 html,
 body {
   background: #f8f8f8;
@@ -212,6 +227,11 @@ p {
   min-height: 91.5vh;
 }
 
+.login-bg .card {
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
 .login-bg .log-box {
   position: absolute;
   top: 50%;
@@ -227,8 +247,6 @@ p {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-bg .log-box .card-body {
@@ -281,6 +299,22 @@ p {
   outline: none;
 }
 
+.login-bg .log-box .login input::-webkit-input-placeholder {
+  display: none;
+}
+
+.login-bg .log-box .login input:-ms-input-placeholder {
+  display: none;
+}
+
+.login-bg .log-box .login input::-ms-input-placeholder {
+  display: none;
+}
+
+.login-bg .log-box .login input::placeholder {
+  display: none;
+}
+
 .login-bg .log-box .login .form-control {
   border-radius: 0;
   -webkit-border-radius: 0;
@@ -319,6 +353,120 @@ p {
   -ms-border-radius: 0;
   -o-border-radius: 0;
   padding: 0;
+}
+
+.login-bg .card-form h3 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #328691;
+  margin-bottom: 2rem;
+}
+
+.login-bg .card-form label {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #328691;
+}
+
+.login-bg .card-form input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid lightblue;
+  width: 100%;
+  line-height: 30px;
+  margin-bottom: 1rem;
+}
+
+.login-bg .card-form input:focus {
+  background: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
+.login-bg .card-form input::-webkit-input-placeholder {
+  display: none;
+}
+
+.login-bg .card-form input:-ms-input-placeholder {
+  display: none;
+}
+
+.login-bg .card-form input::-ms-input-placeholder {
+  display: none;
+}
+
+.login-bg .card-form input::placeholder {
+  display: none;
+}
+
+.login-bg .card-form .custom-select {
+  border: none;
+  border-bottom: 1px solid lightblue;
+  width: 100%;
+  line-height: 30px;
+  margin-bottom: 1rem;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.login-bg .card-form .custom-select:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
+.login-bg .card-form option {
+  font-size: 14px;
+}
+
+.login-bg .card-form .form-control,
+.login-bg .card-form .custom-select {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  padding: 0;
+}
+
+.login-bg .card-form .card-body .for-date-time p:nth-child(8) {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.login-bg .card-form .card-body .for-date-time p:nth-child(8) label {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.login-bg .card-form .card-body .for-date-time p:nth-child(8) .custom-select {
+  border-left: 1px solid lightblue;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.login-bg .order-form h3 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #328691;
+  margin-bottom: 2rem;
+}
+
+.login-bg .order-form p span:first-child {
+  color: #21707a;
+  font-weight: 500;
+  padding-right: 15px;
+}
+
+.login-bg .order-form p span:last-child {
+  color: #62626b;
 }
 
 .login-btn {

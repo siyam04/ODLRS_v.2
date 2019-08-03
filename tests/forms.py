@@ -22,29 +22,25 @@ class TestOrderForm(forms.ModelForm):
             'email': TextInput(attrs={'class': 'form-control'}),
             'address': TextInput(attrs={'class': 'form-control'}),
             'test_info': Select(attrs={'class': 'form-control'}),
-            'payment_type': Select(attrs={'class': 'form-control'}),
-            'payment_method': Select(attrs={'class': 'form-control'}),
-            'booked_time_slot': Select(attrs={'class': 'form-control'}),
-            'booked_date': SelectDateWidget(attrs={'class': 'form-control'}),
-
-            # 'time': TimeInput(format='%H:%M', attrs={'type': 'time', 'class': 'form-control'}),
-            # 'date': SelectDateWidget(attrs={'class': 'form-control'}),
+            'payment_type': Select(attrs={'class': 'custom-select'}),
+            'payment_method': Select(attrs={'class': 'custom-select'}),
+            'booked_time_slot': Select(attrs={'class': 'custom-select'}),
+            'booked_date': SelectDateWidget(attrs={'class': 'custom-select'})
         }
 
 
 class TestAddForm(forms.ModelForm):
     class Meta:
         model = Test
-        fields = ['test_name', 'image', 'category', 'discount', 'price', 'active_status']
+        fields = ['test_name', 'image', 'category',
+                  'discount', 'price', 'active_status']
         exclude = ['center', ]
 
         widgets = {
             'test_name': TextInput(attrs={'class': 'form-control'}),
-            'category': Select(attrs={'class': 'form-control'}),
+            'category': Select(attrs={'class': 'custom-select'}),
             # 'center': Select(attrs={'class': 'form-control'}),
             'discount': TextInput(attrs={'class': 'form-control'}),
             'price': TextInput(attrs={'class': 'form-control'}),
             'active_status': Select(attrs={'class': 'form-control'}),
         }
-
-
