@@ -4,22 +4,43 @@
 
 {% block content %}
 
-<style>
-    p {
-        margin-bottom: 0;
-    }
-
-    p.center {
-        font-size: 14px;
-    }
-</style>
-
-
-<div class="container">
+<div class="container inner-content">
     <div class="row">
 
-        <div class="col-4 offset-4 my-4">
-            <div class="card">
+        <div class="col-4 offset-4">
+            <div class="card test-box mt-4">
+                <div class="card-title">
+                    <img src="{{ single_test_details.image.url }}" class="card-img-top" alt="..." width="100%">
+                </div>
+
+                <div class="card-body" style="min-height: 210px">
+                    <p class="card-subtitle mb-2 text-muted">{{ single_test_details.category }}</p>
+
+                    <h6 class="">
+                        <a href="{% url 'tests:test-details' single_test_details.id %}">
+                            {{ single_test_details.test_name }}
+                        </a>
+                    </h6>
+
+                    <p class="card-text">{{ single_test_details.center }}</p>
+                    <p class="card-text">Discount: {{ single_test_details.discount }}</p>
+                    <p class="card-text">{{ single_test_details.active_status }}</p>
+
+
+                    <p class="card-text text-dange price">Price: <span id="price">{{ single_test_details.price }}</span>
+                        TK</p>
+                    <!-- <p class="card-text">{{ single_test_details.active_status }}</p> -->
+
+                    <a class="btn btn-sm order-btn text-center" href="{% url 'tests:order' single_test_details.id %}"
+                        type="submit" style="bottom: -49px">
+                        ORDER
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-4 offset-4 my-">
+            <div class="card card-box">
                 <img src="{{ single_test_details.image.url }}" class="card-img-top" alt="..." width="100%">
 
                 <div class="card-body">
@@ -40,7 +61,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

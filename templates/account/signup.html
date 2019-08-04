@@ -6,46 +6,36 @@
 
 {% block content %}
 
-<style>
-	p {
-		margin-bottom: 0;
-	}
 
-	.box {
-		min-height: 500px;
-	}
-</style>
+<div class="login-bg box">
+	<div class="container">
 
-<div class="container box">
-	<div class="row my-5">
-		<div class="col-4 offset-4  text-center">
-			<div class="card">
-				<div class="card-header">
-					<h1>{% trans "Sign Up" %}</h1>
+		<div class="card log-box">
+
+			<div class="card-body">
+
+				<h3>{% trans "Sign Up" %}</h3>
+
+				<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+					{% csrf_token %}
+					{{ form.as_p }}
+
+					{% if redirect_field_value %}
+					<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+					{% endif %}
+
+					<button type="submit" class="btn w-100 my-2 login-btn text-uppercase">{% trans "Sign Up" %}</button>
+				</form>
+
+				<div class="text-center text-uppercase mt-2">
+					{% blocktrans %}Already have an account?
+					<a href="{{ login_url }}">sign in</a>
+					{% endblocktrans %}
 				</div>
-				<div class="card-body">
-					<form class="signup mb-3" id="signup_form" method="post" action="{% url 'account_signup' %}">
-						{% csrf_token %}
-						{{ form.as_p }}
 
-						{% if redirect_field_value %}
-						<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-						{% endif %}
-						<button type="submit" class="btn btn-primary btn-sm">{% trans "Sign Up" %}</button>
-
-					</form>
-
-					<p>{% blocktrans %}Already have an account? <a href="{{ login_url }}">sign
-							in</a>.{% endblocktrans %}</p>
-
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-
 
 {% endblock %}

@@ -3,24 +3,55 @@
 {% block title %}Center Details | ODLRS{% endblock %}
 
 {% block content %}
-{#    <hr>#}
-{#    <h3 style="color: blue">{{ single_center.name }}</h3>#}
-{#    <br>#}
-{#    <img src="{{ single_center.image.url }}" width="400px" height="300px">#}
-{#    <br><h4>Email: <b style="color: blue">{{ single_center.email }}</b></h4>#}
-{#    <h4>Contact: <b style="color: blue">{{ single_center.contact_no }}</b></h4>#}
-{#    <h4>Website: <b style="color: blue">{{ single_center.website }}</b></h4>#}
-{#    <h4>Address: <b style="color: blue">{{ single_center.address }}</b></h4>#}
 
-    <hr>
-    <h3 style="color: orangered"><b>All Tests Of This Center</b></h3>
-    <hr>
 
-    {% for test in tests_by_center %}
+<div class="inner-content">
+    <div class="container">
+
+        <!-- all tests -->
+        <div class="row">
+            {% for test in tests_by_center %}
+            <div class="col-3">
+                <div class="card test-box">
+                    <div class="card-title">
+                        <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-subtitle mb-2 text-muted">{{ test.category }}</p>
+
+                        <h6 class="">
+                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>
+                        </h6>
+
+                        <p class="card-text">{{ test.center }}</p>
+
+
+                        <p class="card-text text-dange price">Price: <span id="price">{{ test.price }}</span> TK</p>
+                        <!-- <p class="card-text">{{ test.active_status }}</p> -->
+
+                        <a class="btn btn-sm order-btn text-center" href="{% url 'tests:order' test.id %}"
+                            type="submit">
+                            ORDER
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- <hr>
+        <h3 style="color: orangered"><b>All Tests Of This Center</b></h3>
+        <hr> -->
+
+        <!-- {% for test in tests_by_center %}
 
         <li><a href="{% url 'tests:test-details' test.id %}"><strong>{{ test.test_name }}</strong></a></li>
 
-    {% endfor %}
-    <br>
+        {% endfor %}
+        <br> -->
+    </div>
+
+</div>
 
 {% endblock %}

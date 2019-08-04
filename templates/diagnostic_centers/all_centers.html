@@ -4,22 +4,10 @@
 
 {% block content %}
 
-<style>
-    p {
-        margin-bottom: 0;
-        font-size: 14px;
-        font-weight: bold;
-    }
 
-    span {
-        color: black;
-        font-weight: normal;
-    }
-</style>
+<div class="container inner-content">
 
-<div class="container">
-
-    <div class="bg-dark p-5 my-4">
+    <div class="bg-dark p-5 my-">
         <div class="container">
             <h3 class="text-white mb-4">Search Centers</h3>
 
@@ -39,23 +27,23 @@
     </div>
 
 
-    <div class="center-lists mt-4">
+    <div class="center-lists mt-">
         <div class="row">
 
             {% for centers in Centers %}
             <div class="col-3">
-                <div class="card mb-4">
-                    <img src="{{ centers.image.url }}" class="card-img-top" alt="..." width="100%">
+                <div class="card test-box mt-4 mb-0">
+                    <div class="card-title">
+                        <img src="{{ centers.image.url }}" class="card-img-top" alt="..." width="100%">
+                    </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="{% url 'diagnostic_centers:center-details' centers.id %}">{{ centers.name }}</a>
-                        </h5>
+                        <a href="{% url 'diagnostic_centers:center-details' centers.id %}">{{ centers.name }}</a>
 
-                        <p class="card-text text-primary">Email: <span>{{ centers.email }}</span></p>
-                        <p class="card-text text-primary">Contact: <span>{{ centers.contact_no }}</span></p>
-                        <p class="card-text text-primary">Website: <span>{{ centers.website }}</span> </p>
-                        <p class="card-text text-primary">Address: <span>{{ centers.address }}</span> </p>
+                        <p class="">Email: <span>{{ centers.email }}</span></p>
+                        <p class="">Contact: <span>{{ centers.contact_no }}</span></p>
+                        <p class="">Website: <span>{{ centers.website }}</span> </p>
+                        <p class="">Address: <span>{{ centers.address }}</span> </p>
                     </div>
                 </div>
             </div>

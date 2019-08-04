@@ -6,90 +6,58 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-<style>
-	p {
-		margin-bottom: 0;
-	}
-
-	.box {
-		min-height: 500px;
-	}
-</style>
-
-<div class="container box">
-
-	<div class="row my-5">
-		<div class="col-sm-4 offset-4 text-center">
-
-			<div class="card">
-				<div class="card-header bg-warning">
-					<h1>{% trans "Sign In" %}</h1>
-				</div>
-
-				<div class="card-body">
-{#					{% get_providers as socialaccount_providers %}#}
-{##}
-{#					{% if socialaccount_providers %}#}
-{#					<p>#}
-{#						{% blocktrans with site.name as site_name %}#}
-{#						Not registered yet? <a href="{{ signup_url }}">sign up</a>#}
-{#						{% endblocktrans %}#}
-{#					</p>#}
-{##}
-{#					<p>#}
-{#						or login with <br>#}
-{#						{% include "socialaccount/snippets/provider_list.html" with process="login" %}#}
-{#					</p>#}
-{##}
-{##}
-{#					{% else %}#}
-{#					<p>{% blocktrans %}If you have not created an account yet, then please#}
-{#						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>#}
-{#					{% endif %}#}
-
-					<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
-						{% csrf_token %}
-						{{ form.as_p }}
-
-						{% if redirect_field_value %}
-						<input type="hidden" class="form-control" name="{{ redirect_field_name }}"
-							value="{{ redirect_field_value }}" />
-						{% endif %}
-
-						<button class="btn btn-warning btn-s my-4 primaryAction" type="submit"
-							style="width: 80%">{% trans "Sign In" %}</button>
-					</form>
-				</div>
-
-                <!-- Login with Google section starts from here -->
-                {% get_providers as socialaccount_providers %}
-
-                {% if socialaccount_providers %}
-
-                    <p>
-						{% blocktrans with site.name as site_name %}
-						Not registered yet? <a href="{{ signup_url }}">sign up</a>
-						{% endblocktrans %}
-					</p>
-
-					<p>
-						or login with <br>
-						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
-					</p>
 
 
-                {% else %}
+<div class="box login-bg">
 
-                    <p>{% blocktrans %}If you have not created an account yet, then please
-						<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-                    </p>
+	<div class="container">
+		<!-- <div class="row my-">
+			<div class="col-sm-4 offset-4 text-cente"> -->
 
-                {% endif %}
-                <!-- Login with Google section Ends -->
+		<div class="card log-box">
+			<!-- <div class="card-header bg-warnin">
+					</div> -->
 
+			<div class="card-body">
+				<h3>{% trans "Sign In" %}</h3>
+
+				<!-- {% get_providers as socialaccount_providers %}
+
+						{% if socialaccount_providers %}
+						<p>
+							{% blocktrans with site.name as site_name %}
+							Not registered yet? <a href="{{ signup_url }}">sign up</a>
+							{% endblocktrans %}
+						</p>
+
+						<p>
+							or login with <br>
+							{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+						</p> -->
+
+
+				{% else %}
+				<p>{% blocktrans %}If you have not created an account yet, then please
+					<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+				{% endif %}
+
+				<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
+					{% csrf_token %}
+					{{ form.as_p }}
+
+					{% if redirect_field_value %}
+					<input type="hidden" class="form-control" name="{{ redirect_field_name }}"
+						value="{{ redirect_field_value }}" />
+					{% endif %}
+
+					<button class="btn w-100 my-4 login-btn primaryAction" type="submit"
+						style="width: 80%">{% trans "Sign In" %}</button>
+				</form>
 			</div>
-
 		</div>
+
+		<!-- </div>
+		</div> -->
 	</div>
 
 </div>

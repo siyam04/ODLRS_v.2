@@ -3,102 +3,96 @@
 {% block title %}Order Details | ODLRS{% endblock %}
 
 {% block content %}
-<style>
-    .card p {
-        margin-bottom: 0;
-        font-weight: bold;
-        line-height: 30px;
-    }
 
-    .card p b {
-        font-weight: normal;
-    }
-</style>
+<div class="box inner-content login-bg">
+    <div class="container">
+        <div class="row my-">
+            <div class="col-6 offset-3 text-cente">
+                <div class="card order-form mb-4">
 
-<div class="container box">
-    <div class="row my-5">
-        <div class="col-6 offset-3 text-cente">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Order Details</h3>
-                </div>
+                    <div class="card-body">
+                        <h3 class="mb-">Order Details</h3>
 
-                <div class="card-body">
-                    <p>
-                        Order No: <b style="color: blue">{{ order_details.id }}</b>
-                    </p>
-{#                    <br />#}
-                    <hr>
-                    <p>
-                        Client:
-                        <b style="color: blue">
-                            {{ order_details.client_info }}
-                            ({{ order_details.client_info.profile_name }})</b>
-                    </p>
-                    <p>
-                        Email:
-                        <b style="color: blue">{{ order_details.client_info.user.email }}</b>
-                    </p>
-                    <p>
-                        Contact: <b style="color: blue">{{ order_details.contact_no }}</b>
-                    </p>
-                    <p>
-                        Address:
-                        <b style="color: blue">{{ order_details.client_info.address }}</b>
-                    </p>
-                    <hr />
+                        <!-- <p>
+                            <span>Order No: </span>
+                            <span>{{ order_details.id }}</span>
+                        </!-->
+                        <p>
+                            <span>Client:</span>
+                            <span>
+                                {{ order_details.client_info }}
+                                ({{ order_details.client_info.profile_name }})
+                            </span>
+                        </p>
+                        <p>
+                            <span>Email:</span>
+                            <span>{{ order_details.client_info.user.email }}</sp>
+                        </p>
+                        <p>
+                            <span>Contact: </span>
+                            <span>{{ order_details.contact_no }}</span>
+                        </p>
+                        <p>
+                            <span>Address:</span>
+                            <span>{{ order_details.client_info.address }}</span>
+                        </p>
+                        <hr />
 
-                    <p>
-                        Test Name:
-                        <b style="color: blue">{{ order_details.test_info.test_name }}</b>
-                    </p>
-                    <p>
-                        Category:
-                        <b style="color: blue">{{ order_details.test_info.category }}</b>
-                    </p>
-                    <p>
-                        Center:
-                        <b style="color: blue">{{ order_details.test_info.center.name }}</b>
-                    </p>
-                    <p>
-                        Booked Time Slot: <b style="color: blue">{{ order_details.booked_time_slot }}</b>
-                    </p>
-                    <p>
-                        Booked Date: <b style="color: blue">{{ order_details.booked_date }}</b>
-                    </p>
-                    <hr>
-                    <p>
-                        Payment Type:
-                        <b style="color: blue">{{ order_details.payment_type }}</b>
-                    </p>
-                    <p>
-                        Payment Method:
-                        <b style="color: blue">{{ order_details.payment_method }}</b>
-                    </p>
-                    <hr />
+                        <p>
+                            <span>Test Name:</span>
+                            <span>{{ order_details.test_info.test_name }}</span>
+                        </p>
+                        <p>
+                            <span>Category:</span>
+                            <span>{{ order_details.test_info.category }}</span>
+                        </p>
+                        <p>
+                            <span>Center:</span>
+                            <span>{{ order_details.test_info.center.name }}</span>
+                        </p>
+                        <p>
+                            <span>Booked Time Slot: </span>
+                            <span>{{ order_details.booked_time_slot }}</span>
+                        </p>
+                        <p>
+                            <span>Booked Date: </span>
+                            <span>{{ order_details.booked_date }}</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span>Payment Type:</span>
+                            <span>{{ order_details.payment_type }}</span>
+                        </p>
+                        <p>
+                            <span>Payment Method:</span>
+                            <span>{{ order_details.payment_method }}</span>
+                        </p>
+                        <hr />
 
-                    <p>
-                        Discount:
-                        <b style="color: blue"> {{ order_details.test_info.discount }}</b>
-                    </p>
-                    <p>
-                        Test Price:
-                        <b style="color: blue"> {{ order_details.test_info.price }}</b>
-                    </p>
-                    <hr />
+                        <p>
+                            <span>Discount:</span>
+                            <span> {{ order_details.test_info.discount }}</span>
+                        </p>
+                        <p>
+                            <span>Test Price:</span>
+                            <span> {{ order_details.test_info.price }}</span>
+                        </p>
+                        <hr />
 
-                    <p>
-                        Total Price: <strong style="color: red"> {{ total_price }} </strong>
-                    </p>
+                        <p>
+                            <span>Total Price: </span>
+                            <span style="color: red"> {{ total_price }} </span>
+                        </p>
 
-                    <hr />
-                    {% if request.user.is_authenticated %}
+                        <hr />
+                        {% if request.user.is_authenticated %}
 
-                    <a href="{% url 'tests:confirm-payment-message' id=order_details.id %}">
-                        <button type="button" class="btn btn-success">CONFIRM</button>
-                    </a>
+                        <a href="{% url 'tests:confirm-payment-message' id=order_details.id %}">
+                            <button type="button" class="btn custom-btn w-100">CONFIRM</button>
+                        </a>
 
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

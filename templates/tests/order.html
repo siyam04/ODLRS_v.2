@@ -2,25 +2,26 @@
 {% block title %}Order Form | ODLRS{% endblock %}
 {% block content %}
 
-<div class="container">
-    <div class="row my-5">
-        <div class="col-6 offset-3 text-cente">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Order</h3>
-                </div>
-                <div class="card-body">
+<div class="containe inner-content login-bg">
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 offset-3 text-cente">
+                <div class="card card-form mb-5">
 
-                    <form action="{% url 'tests:order' test_id %}" method="post">
-                        {% csrf_token %}
+                    <div class="card-body">
+                        <h3 class="">Order</h3>
 
-                        {{ test_order_form.as_p }}
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            ORDER
-                        </button>
-                    </form>
+                        <form action="{% url 'tests:order' test_id %}" method="post" class="for-date-time">
+                            {% csrf_token %}
 
+                            {{ test_order_form.as_p }}
+
+                            <button type="submit" class="btn custom-btn my-2 w-100 bt-sm">
+                                ORDER
+                            </button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
