@@ -49,3 +49,30 @@ def single_report_details(request, id=None):
 ########################################################################################################################
 
 
+# def complete_due_payment(request, id=None):
+#     existing_order = TestOrder.objects.get(id=id)
+#     complete_due_payment_form = CompleteDuePaymentForm(request.POST or None, instance=existing_order)
+#
+#     email = existing_order.client_info.user.email
+#     # contact_no = existing_order.approved_order.client_info.address
+#     # address = current_profile.address
+#
+#     initial_data = {
+#         'email': email,
+#         # 'contact_no': contact_no,
+#         # 'address': address
+#     }
+#
+#     if request.method == 'POST':
+#         if complete_due_payment_form.is_valid():
+#             complete_due_payment_form.save()
+#             return redirect('tests:order-details', id)
+#
+#     template = 'report_processing/complete_due_payment.html'
+#
+#     context = {
+#         'complete_due_payment_form': CompleteDuePaymentForm(initial=initial_data),
+#         'existing_order': existing_order,
+#     }
+#
+#     return render(request, template, context)

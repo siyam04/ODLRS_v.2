@@ -66,7 +66,7 @@ class TestOrder(models.Model):
     test_info = models.ForeignKey(Test, on_delete=models.SET_NULL, null=True, related_name='test_order')
 
     # Step 3+4+5+6
-    payment_type = models.CharField(max_length=20, choices=PAYMENT_TYPE, blank=True, null=True)
+    payment_type = models.CharField(max_length=20, choices=PAYMENT_TYPE, default='Full Payment', blank=True, null=True)
 
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD, blank=True, null=True)
     booked_time_slot = models.CharField(max_length=20, choices=TIME_SLOT, blank=True, null=True)

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Complete Due Payment Form | ODLRS{% endblock %}
+
+{% block content %}
+<div>
+    <div class="row my-5">
+        <div class="col-6 offset-3 text-cente">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Complete Due Payment</h3>
+                </div>
+                <div class="card-body">
+
+{#                    <form action="{% url 'tests:order' test_id %}" method="post">#}
+                    <form action="#" method="post">
+                        {% csrf_token %}
+
+                        {{ complete_due_payment_form.as_p }}
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            PAYMENT
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
