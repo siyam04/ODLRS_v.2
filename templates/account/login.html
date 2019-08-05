@@ -22,17 +22,6 @@
 
 				<h3>{% trans "Sign In" %}</h3>
 
-
-                <!-- Login with Google section -->
-				{% get_providers as socialaccount_providers %}
-				{% if socialaccount_providers %}
-                    <p>Login with {% include "socialaccount/snippets/provider_list.html" with process="login" %}</p>
-                    <br>
-                    Or,
-				{% endif %}
-                <!-- Login with Google section end -->
-
-
                 <!-- SignUp form -->
 				<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
 					{% csrf_token %}
@@ -48,20 +37,33 @@
 				</form>
                 <!-- SignUp form end -->
 
-                <!-- Not Registered Yet? -->
+                <hr>
+                <!-- Google_login and Not_Registered_Yet? section -->
                 {% get_providers as socialaccount_providers %}
+
 				{% if socialaccount_providers %}
+
+                    <!-- Login with Google -->
+                    <p>Login with {% include "socialaccount/snippets/provider_list.html" with process="login" %}</p>
+                    <hr>
+                    <!-- Login with Google end -->
+
+                    <!-- Signup -->
                     <p>
                         {% blocktrans with site.name as site_name %}
                             Not registered yet? <a href="{{ signup_url }}">sign up</a>
                         {% endblocktrans %}
                     </p>
+                    <!-- Signup end -->
+
 				{% else %}
+
                     <p>{% blocktrans %}If you have not created an account yet, then please
                         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
                     </p>
+
 				{% endif %}
-                <!-- Not Registered Yet? -->
+                <!-- Google_login and Not_Registered_Yet? section END -->
 
 			</div>
 		</div>
@@ -74,6 +76,10 @@
 
 {% endblock %}
 
+
+
+
+<!-- Original All-auth Login_form codes -->
 
 {#{% extends "base.html" %}#}
 {##}
@@ -126,3 +132,6 @@
 {#</form>#}
 {##}
 {#{% endblock %}#}
+
+<!-- Original All-auth Login_form codes -->
+
