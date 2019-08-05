@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib import messages
 
@@ -16,6 +17,11 @@ from .forms import TestOrderForm, TestAddForm
 
 def all_tests(request, template_name='tests/all_tests.html'):
     all_test_list = Test.objects.all().order_by('-id')
+
+    query = request.GET.get('q')
+
+    if query:
+        all_test_list = all_test_list.filter(Q(test_name__icontains=query)).distinct()
 
     context = {'all_test_list': all_test_list}
 

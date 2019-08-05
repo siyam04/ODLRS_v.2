@@ -12,7 +12,7 @@ class DiagnosticCenter(models.Model):
 
     class Meta:
         verbose_name_plural = 'Diagnostic Centers'
-        ordering = ['-id']
+        # ordering = ['-id']
 
     def __str__(self):
         return self.name

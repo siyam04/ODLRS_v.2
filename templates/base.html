@@ -56,7 +56,9 @@
 
 					{% if user.is_authenticated %}
 					<li class="nav-item ">
-						<a class="nav-link text-warnin" href="{% url 'custom_users:profile' %}">Profile</a>
+						<a class="nav-link text-warnin" href="{% url 'custom_users:orders-by-user' %}">
+                            <strong style="color: yellow">Profile</strong>
+                        </a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
