@@ -16,10 +16,14 @@ from .views import (
 
     add_test_by_admin,
     add_category_by_admin,
-    all_tests_list_for_staff,
-    added_tests_list_for_staff_admin,
+    filtered_categories_by_admin,
+    filtered_categories_for_staff,
+
     delete_test,
     edit_test,
+
+    all_tests_list_for_staff,
+    added_tests_list_for_staff_admin,
 
     confirm_payment_message,
 
@@ -53,7 +57,11 @@ urlpatterns = [
 
     path('add-category/<username>/', add_category_by_admin, name='add-category'),
 
-    path('all-tests-list-staff/', all_tests_list_for_staff, name='all-tests-list-staff'),
+    path('filtered-categories-by-admin/<username>/', filtered_categories_by_admin, name='filtered-categories-by-admin'),
+
+    path('filtered-categories-for-staff/<username>/', filtered_categories_for_staff, name='filtered-categories-for-staff'),
+
+    path('all-tests-list-staff/<username>/', all_tests_list_for_staff, name='all-tests-list-staff'),
 
     path('added-tests-list-staff-admin/<username>/', added_tests_list_for_staff_admin, name='added-tests-list-staff-admin'),
 

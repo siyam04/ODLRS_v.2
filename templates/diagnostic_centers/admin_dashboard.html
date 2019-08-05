@@ -33,13 +33,21 @@
                     </li>
 
                     <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'tests:filtered-categories-by-admin' admin.username %}">
+                            Recent Categories
+                        </a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link text-success" href="{% url 'tests:add-test' admin.username %}">Add New Test</a>
                     </li>
 
                     <li class="nav-item">
                         <!-- <button type="submit"> -->
                         <a class="nav-link text-white" href="{% url 'tests:added-tests-list-staff-admin' admin.username %}">
-                            Recently Added Tests
+                            Recent Tests
                         </a>
                         <!-- </button> -->
                     </li>

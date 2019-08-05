@@ -187,7 +187,7 @@ def add_category_by_admin(request, username=None):
 
             add_category.save()
 
-            return redirect('tests:categories')
+            return redirect('tests:filtered-categories-by-admin', username)
 
     else:
         category_add_form = CategoryAddForm()
@@ -200,18 +200,64 @@ def add_category_by_admin(request, username=None):
 ########################################################################################
 
 
-def all_tests_list_for_staff(request):
-    all_added_tests = Test.objects.all().order_by('-id')
+def filtered_categories_by_admin(request, username=None):
+    admin = DiagnosticAdmin.objects.get(username=username)
+    # staff = DiagnosticStaff.objects.filter(username=username)
+
+    added_categories_admin = TestCategory.objects.filter(center__center_admins=admin)
+    # categories_staff = TestCategory.objects.filter(center__center_staffs=staff)
+
+    template = 'tests/filtered_categories_admin.html'
+
+    context = {
+        'added_categories_admin': added_categories_admin,
+        'admin': admin,
+        # 'categories_staff': categories_staff,
+        # 'staff': staff,
+    }
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def filtered_categories_for_staff(request, username=None):
+    staff = DiagnosticStaff.objects.filter(username=username)
+
+    categories_staff = TestCategory.objects.filter(center__center_staffs=staff)
+
+    template = 'tests/filtered_categories_staff.html'
+
+    context = {
+        'categories_staff': categories_staff,
+        'staff': staff,
+    }
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def all_tests_list_for_staff(request, username):
+    # all_added_tests = Test.objects.all().order_by('-id')
+    staff = DiagnosticStaff.objects.get(username=username)
+
+    staff_filtered_tests = Test.objects.filter(center__center_staffs=staff)
 
     # All added tests Paginator
-    paginator = Paginator(all_added_tests, 8)
+    paginator = Paginator(staff_filtered_tests, 20)
     page = request.GET.get('page')
     all_added_tests_paginator_data = paginator.get_page(page)
 
     template = 'tests/all_tests_list_for_staff.html'
-    context = {'all_added_tests': all_added_tests_paginator_data}
+    context = {
+        'all_added_tests': all_added_tests_paginator_data,
+        'staff': staff,
+    }
 
     return render(request, template, context)
+
+########################################################################################
 
 
 def added_tests_list_for_staff_admin(request, username=None):
