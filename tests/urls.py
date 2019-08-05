@@ -15,7 +15,9 @@ from .views import (
     staff_rejected,
 
     add_test_by_admin,
-    all_tests_list_for_staff_admin,
+    add_category_by_admin,
+    all_tests_list_for_staff,
+    added_tests_list_for_staff_admin,
     delete_test,
     edit_test,
 
@@ -49,11 +51,15 @@ urlpatterns = [
 
     path('add-test/<username>/', add_test_by_admin, name='add-test'),
 
-    path('all-tests-list-staff-admin/', all_tests_list_for_staff_admin, name='all-tests-list-staff-admin'),
+    path('add-category/<username>/', add_category_by_admin, name='add-category'),
 
-    path('delete-test/<int:id>/', delete_test, name='delete_test'),
+    path('all-tests-list-staff/', all_tests_list_for_staff, name='all-tests-list-staff'),
 
-    path('edit-test/<int:id>/', edit_test, name='edit-test'),
+    path('added-tests-list-staff-admin/<username>/', added_tests_list_for_staff_admin, name='added-tests-list-staff-admin'),
+
+    path('delete-test/<int:id>/<username>/', delete_test, name='delete_test'),
+
+    path('edit-test/<int:id>/<username>/', edit_test, name='edit-test'),
 
     path('confirm-payment-message/<int:id>/', confirm_payment_message, name='confirm-payment-message'),
 

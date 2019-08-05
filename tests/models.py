@@ -7,6 +7,8 @@ from custom_users.models import Profile
 
 class TestCategory(models.Model):
     category_name = models.CharField(max_length=50)
+    center = models.ForeignKey(DiagnosticCenter, on_delete=models.CASCADE, related_name='category_center',
+                               null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Test Categories'

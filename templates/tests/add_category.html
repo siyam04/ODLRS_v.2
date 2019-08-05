@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Test | ODLRS</title>
+    <title>Add Category | ODLRS</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
@@ -31,8 +31,9 @@
 
 {#                    <li class="nav-item">#}
 {#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' admin.username %}">#}
-{#                            Recently Added Tests</a>#}
+{#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently#}
+{#                            Added#}
+{#                            Tests</a>#}
 {#                        <!-- </button> -->#}
 {#                    </li>#}
 
@@ -60,8 +61,8 @@
             <div class="col-6 offset-3">
                 <div class="card my-4">
 
-                    <div class="card-header bg-dark text-white text-center">
-                        <h2 class="">Edit Test</h2>
+                    <div class="card-header bg-primary text-white text-center">
+                        <h2 class="">Add Category</h2>
                         <h6 class="mb-0">Managed by Admin</h6>
                     </div>
 
@@ -69,9 +70,9 @@
                         <form method="post">
                             {% csrf_token %}
 
-                            {{ edit_form.as_p }}
+                            {{ category_add_form.as_p }}
 
-                            <button class="btn btn-dark" style="width: 100%" type="submit">EDIT</button>
+                            <button class="btn btn-success" style="width: 100%" type="submit">ADD</button>
                         </form>
                     </div>
 

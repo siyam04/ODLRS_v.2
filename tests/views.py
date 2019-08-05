@@ -9,7 +9,7 @@ from custom_users.models import Profile
 from diagnostic_centers.models import DiagnosticAdmin, DiagnosticStaff, DiagnosticCenter
 
 from .models import Test, TestCategory, TestOrder
-from .forms import TestOrderForm, TestAddForm
+from .forms import TestOrderForm, TestAddForm, CategoryAddForm
 
 
 ########################################################################################
@@ -161,7 +161,8 @@ def add_test_by_admin(request, username=None):
 
             add_test.save()
 
-            return redirect('tests:all-tests-list-staff-admin')
+            # return redirect('tests:all-tests-list-staff-admin')
+            return redirect('tests:added-tests-list-staff-admin', username)
 
     else:
         test_add_form = TestAddForm()
@@ -174,7 +175,32 @@ def add_test_by_admin(request, username=None):
 ########################################################################################
 
 
-def all_tests_list_for_staff_admin(request):
+def add_category_by_admin(request, username=None):
+    if request.method == 'POST':
+        category_add_form = CategoryAddForm(request.POST)
+
+        if category_add_form.is_valid():
+            add_category = category_add_form.save(commit=False)
+
+            admin = DiagnosticAdmin.objects.get(username=username)
+            add_category.center = DiagnosticCenter.objects.get(id=admin.center.id)
+
+            add_category.save()
+
+            return redirect('tests:categories')
+
+    else:
+        category_add_form = CategoryAddForm()
+
+    template = 'tests/add_category.html'
+    context = {'category_add_form': category_add_form}
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def all_tests_list_for_staff(request):
     all_added_tests = Test.objects.all().order_by('-id')
 
     # All added tests Paginator
@@ -182,30 +208,69 @@ def all_tests_list_for_staff_admin(request):
     page = request.GET.get('page')
     all_added_tests_paginator_data = paginator.get_page(page)
 
-    template = 'tests/all_tests_list_for_staff_admin.html'
+    template = 'tests/all_tests_list_for_staff.html'
     context = {'all_added_tests': all_added_tests_paginator_data}
+
+    return render(request, template, context)
+
+
+def added_tests_list_for_staff_admin(request, username=None):
+
+    admin = DiagnosticAdmin.objects.get(username=username)
+    # staffs = DiagnosticStaff.objects.filter(username=username)
+
+    added_tests = Test.objects.filter(center__center_admins=admin)
+
+    # staffs_by_center = Test.objects.filter(center__center_staffs=staffs)
+
+    # All added tests Paginator
+    paginator = Paginator(added_tests, 20)
+    page = request.GET.get('page')
+    added_tests_paginator_data = paginator.get_page(page)
+
+    template = 'tests/added_tests_list_for_staff_admin.html'
+
+    context = {
+        'all_added_tests': added_tests_paginator_data,
+        'admin': admin,
+        # 'staffs': staffs,
+        # 'staffs_by_center': staffs_by_center,
+    }
 
     return render(request, template, context)
 
 ########################################################################################
 
 
-def delete_test(request, id=None):
+def delete_test(request, id=None, username=None):
     test_object = Test.objects.get(id=id)
-    test_object.delete()
-    return redirect('tests:all-tests-list-staff-admin')
+    admin = DiagnosticAdmin.objects.get(username=username)
+
+    test_object.center = DiagnosticCenter.objects.get(id=admin.center.id)
+
+    if test_object.center is not None:
+        test_object.delete()
+
+    return redirect('tests:added-tests-list-staff-admin', username)
 
 ########################################################################################
 
 
-def edit_test(request, id=None):
+def edit_test(request, id=None, username=None):
     test_query = Test.objects.get(id=id)
     edit_form = TestAddForm(request.POST or None, instance=test_query)
 
     if request.method == 'POST':
         if edit_form.is_valid():
-            edit_form.save()
-            return all_tests_list_for_staff_admin(request)
+            edited = edit_form.save(commit=False)
+
+            admin = DiagnosticAdmin.objects.get(username=username)
+            edited.center = DiagnosticCenter.objects.get(id=admin.center.id)
+
+            edited.save()
+
+            return redirect('tests:added-tests-list-staff-admin', username)
+            # return added_tests_list_for_staff_admin(request)
 
     context = {'edit_form': edit_form}
     template = 'tests/edit_test.html'

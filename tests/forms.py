@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import TextInput, Select, SelectDateWidget, TimeInput, DateInput
 
-from .models import TestOrder, Test
+from .models import TestOrder, Test, TestCategory
 
 
 class TestOrderForm(forms.ModelForm):
@@ -44,3 +44,17 @@ class TestAddForm(forms.ModelForm):
             'price': TextInput(attrs={'class': 'form-control'}),
             'active_status': Select(attrs={'class': 'form-control'}),
         }
+
+
+class CategoryAddForm(forms.ModelForm):
+    class Meta:
+        model = TestCategory
+
+        fields = ['category_name']
+
+        exclude = ['center', ]
+
+        widgets = {'category_name': TextInput(attrs={'class': 'form-control'}),}
+
+
+

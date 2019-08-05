@@ -9,7 +9,8 @@ from .models import (
 
 
 class TestCategoryAdmin(admin.ModelAdmin):
-    list_display = ['id', 'category_name']
+    list_display = ['id', 'category_name', 'center']
+    list_display_links = ['category_name']
     list_filter = ['category_name']
     search_fields = ['id', 'category_name']
 
