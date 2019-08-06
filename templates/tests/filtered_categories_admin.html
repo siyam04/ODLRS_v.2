@@ -54,37 +54,27 @@
             {% for category in added_categories_admin %}
             <div class="col-3">
                 <div class="card mb-4">
-{#                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">#}
 
                     <div class="card-body">
-{#                        <li>{{ admin.username }}</li>#}
 
-{#                        <h5 class="card-title">#}
-{#                            <a href="{% url 'tests:categorise-tests' category.id %}">#}
-{#                            {{ category.category_name }}#}
-{#                            </a>#}
-{#                        </h5>#}
                         <h5 class="card-title">{{ category.category_name }}</h5>
 
                         <h6 class="card-subtitle mb-2 text-muted">{{ category.center.name }}</h6>
-{#                        <p class="card-text center">{{ test.center }}</p>#}
-{#                        <p class="card-text">Discount: {{ test.discount }}</p>#}
-{#                        <p class="card-text text-danger">Price: {{ test.price }} TK</p>#}
-{#                        <p class="card-text">{{ test.active_status }}</p>#}
+
                     </div>
 
-{#                        <!-- Delete -->#}
-{#                        <a href="{% url 'tests:delete_test' category.id admin.username %}">#}
-{#                            <button type="submit" class="btn btn-danger">DELETE</button>#}
-{#                            <br><br>#}
-{#                        </a>#}
-{#                        <!-- Delete -->#}
+                        <!-- Delete -->
+                        <a href="{% url 'tests:delete-category' category.id admin.username %}">
+                            <button type="submit" class="btn btn-danger">DELETE</button>
+                            <br><br>
+                        </a>
+                        <!-- Delete -->
 {##}
-{#                        <!-- Edit -->#}
-{#                        <a href="{% url 'tests:edit-test' category.id admin.username %}"><button type="submit" class="btn btn-warning">#}
-{#                            EDIT</button>#}
-{#                        </a>#}
-{#                        <!-- Edit -->#}
+                        <!-- Edit -->
+                        <a href="{% url 'tests:edit-category' category.id admin.username %}"><button type="submit" class="btn btn-warning">
+                            EDIT</button>
+                        </a>
+                        <!-- Edit -->
                 </div>
             </div>
             {% endfor %}

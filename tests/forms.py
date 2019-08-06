@@ -54,7 +54,7 @@ class CategoryAddForm(forms.ModelForm):
 
         exclude = ['center', ]
 
-        widgets = {'category_name': TextInput(attrs={'class': 'form-control'}),}
+        widgets = {'category_name': TextInput(attrs={'class': 'form-control'})}
 
 
 

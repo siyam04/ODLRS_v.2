@@ -12,6 +12,7 @@ class TestCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'Test Categories'
+        ordering = ['-id']
 
     def __str__(self):
         return self.category_name

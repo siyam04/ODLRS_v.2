@@ -22,6 +22,9 @@ from .views import (
     delete_test,
     edit_test,
 
+    edit_category,
+    delete_category,
+
     all_tests_list_for_staff,
     added_tests_list_for_staff_admin,
 
@@ -67,7 +70,11 @@ urlpatterns = [
 
     path('delete-test/<int:id>/<username>/', delete_test, name='delete_test'),
 
+    path('delete-category/<int:id>/<username>/', delete_category, name='delete-category'),
+
     path('edit-test/<int:id>/<username>/', edit_test, name='edit-test'),
+
+    path('edit-category/<int:id>/<username>/', edit_category, name='edit-category'),
 
     path('confirm-payment-message/<int:id>/', confirm_payment_message, name='confirm-payment-message'),
 

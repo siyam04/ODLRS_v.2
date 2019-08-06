@@ -200,6 +200,44 @@ def add_category_by_admin(request, username=None):
 ########################################################################################
 
 
+def edit_category(request, id=None, username=None):
+    category_query = TestCategory.objects.get(id=id)
+    edit_form = CategoryAddForm(request.POST or None, instance=category_query)
+
+    if request.method == 'POST':
+        if edit_form.is_valid():
+            edited = edit_form.save(commit=False)
+
+            admin = DiagnosticAdmin.objects.get(username=username)
+            edited.center = DiagnosticCenter.objects.get(id=admin.center.id)
+
+            edited.save()
+
+            return redirect('tests:filtered-categories-by-admin', username)
+
+    template = 'tests/edit_category.html'
+
+    context = {'edit_form': edit_form}
+
+    return render(request, template, context)
+
+########################################################################################
+
+
+def delete_category(request, id=None, username=None):
+    category_object = TestCategory.objects.get(id=id)
+    admin = DiagnosticAdmin.objects.get(username=username)
+
+    category_object.center = DiagnosticCenter.objects.get(id=admin.center.id)
+
+    if category_object.center is not None:
+        category_object.delete()
+
+    return redirect('tests:filtered-categories-by-admin', username)
+
+########################################################################################
+
+
 def filtered_categories_by_admin(request, username=None):
     admin = DiagnosticAdmin.objects.get(username=username)
     # staff = DiagnosticStaff.objects.filter(username=username)
@@ -222,7 +260,7 @@ def filtered_categories_by_admin(request, username=None):
 
 
 def filtered_categories_for_staff(request, username=None):
-    staff = DiagnosticStaff.objects.filter(username=username)
+    staff = DiagnosticStaff.objects.get(username=username)
 
     categories_staff = TestCategory.objects.filter(center__center_staffs=staff)
 
