@@ -15,7 +15,7 @@ def home(request):
     if query:
         all_tests = all_tests.filter(Q(test_name__icontains=query)).distinct()
 
-    paginator = Paginator(all_tests, 8)
+    paginator = Paginator(all_tests, 12)
     page = request.GET.get('page')
     all_tests_paginator_data = paginator.get_page(page)
 

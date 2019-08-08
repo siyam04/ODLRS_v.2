@@ -28,7 +28,7 @@ def search_paginator(request):
         )
         print(Centers)
 
-    paginator = Paginator(Centers, 8)
+    paginator = Paginator(Centers, 12)
     page = request.GET.get('page')
     all_centers = paginator.get_page(page)
 

@@ -37,9 +37,15 @@
 
                     <li class="nav-item">
                         <!-- <button type="submit"> -->
-                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently
-                            Added
-                            Tests</a>
+                        <a class="nav-link text-white" href="{% url 'tests:filtered-categories-for-staff' staff.username %}">
+                            Recent Categories</a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff' staff.username %}">
+                            Recent Tests</a>
                         <!-- </button> -->
                     </li>
 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Categories-Staff | ODLRS</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <style>
+        p {
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand text-warning" href="#"><b>ODLRS</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <b style="color: orangered">{{ staff.username }}</b>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-dashboard' staff.username %}">
+                            <button type="submit" class="btn btn-success">Back to DASHBOARD</button>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h3 style="color: blue">*Staff Page</h3>
+
+    <div class="container mt-4">
+        <div class="row">
+
+            {% for category in categories_staff %}
+            <div class="col-3">
+                <div class="card mb-4">
+{#                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">#}
+
+                    <div class="card-body">
+{#                        <li>{{ admin.username }}</li>#}
+
+                        <h5 class="card-title">{{ category.category_name }}
+{#                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>#}
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ category.center.name }}</h6>
+{#                        <p class="card-text center">{{ test.center }}</p>#}
+{#                        <p class="card-text">Discount: {{ test.discount }}</p>#}
+{#                        <p class="card-text text-danger">Price: {{ test.price }} TK</p>#}
+{#                        <p class="card-text">{{ test.active_status }}</p>#}
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+            <br><br>
+
+        </div>
+    </div>
+
+{#    {% for staff in staffs_by_center %}#}
+{#        <li>{{ staff.username }}</li>#}
+{#    {% endfor %}#}
+
+    <div class="footer bg-dark text-white text-center py-2">
+        <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
+    </div>
+
+</body>
+
+</html>
