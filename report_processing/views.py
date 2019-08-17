@@ -49,30 +49,27 @@ def single_report_details(request, id=None):
 ########################################################################################################################
 
 
-# def complete_due_payment(request, id=None):
-#     existing_order = TestOrder.objects.get(id=id)
-#     complete_due_payment_form = CompleteDuePaymentForm(request.POST or None, instance=existing_order)
-#
-#     email = existing_order.client_info.user.email
-#     # contact_no = existing_order.approved_order.client_info.address
-#     # address = current_profile.address
-#
-#     initial_data = {
-#         'email': email,
-#         # 'contact_no': contact_no,
-#         # 'address': address
-#     }
-#
-#     if request.method == 'POST':
-#         if complete_due_payment_form.is_valid():
-#             complete_due_payment_form.save()
-#             return redirect('tests:order-details', id)
-#
-#     template = 'report_processing/complete_due_payment.html'
-#
-#     context = {
-#         'complete_due_payment_form': CompleteDuePaymentForm(initial=initial_data),
-#         'existing_order': existing_order,
-#     }
-#
-#     return render(request, template, context)
+def complete_due_payment(request, id=None, report_id=None):
+    existing_order = TestOrder.objects.get(id=id)
+    existing_order.payment_type ='Full Payment'
+    existing_order.validation = False
+    existing_order.save()
+
+    report_details = PaymentValidation.objects.get(id=report_id)
+
+    total_price = int(report_details.approved_order.test_info.price - report_details.approved_order.test_info.discount)
+
+    due_price = int(
+        (report_details.approved_order.test_info.price - report_details.approved_order.test_info.discount) / 2)
+
+    template = 'report_processing/single_report_details.html'
+
+    context = {
+        'report_details': report_details,
+        'total_price': total_price,
+        'due_price': due_price,
+    }
+
+    return render(request, template, context)
+
+

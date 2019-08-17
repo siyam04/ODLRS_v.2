@@ -155,9 +155,12 @@
                         {% endif %}
 
                         {% if report_details.approved_order.payment_type == 'Half Payment' %}
-                            <a href="#">
+
+                            <a href="{% url 'report_processing:complete-due-payment' report_details.approved_order.id report_details.id %}">
+
                                 <button type="button" class="btn btn-success">Complete Payment</button>
                             </a>
+
                         {% endif %}
                         <!-- Button -->
 
