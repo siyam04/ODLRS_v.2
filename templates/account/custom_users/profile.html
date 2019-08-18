@@ -7,80 +7,45 @@
 <div class="container inner-content">
 
     <div class="row my-">
-        <div class="col-md-5">
-            <div class="card p-3">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        Profile Name:
-                        <h2 class="text-success">{{ user.customer_profile.profile_name }}
-                        </h2>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="card profile-bg mb-4">
 
-                        <img src="{{ user.customer_profile.image.url }}" alt="" class="rounded-circle mx-auto d-block"
-                            height="200" width="200">
-                    </li>
+                <div class="card-header bg-warning text-center p-0 pt-4">
 
-                    <li class="list-group-item">
-                        Username: <p class="text-success">{{ user.username }}</p>
-                    </li>
+                    <img src="{{ user.customer_profile.image.url }}" alt="" class="rounded-circle" height="150"
+                        width="150">
+                    <h4 class="text-dark bg-white py-2 mt-4 mb-0">{{ user.customer_profile.profile_name }}
+                    </h4>
+                </div>
 
-                    <li class="list-group-item">
-                        Email: <p class="text-success">{{ user.email }}</p>
-                    </li>
+                <div class="card-body bg-dark rounded-bottom">
+                    <ul class="list-group list-group-flush text-cente text-white">
 
-                    <li class="list-group-item">
-                        Contact: <p class="text-success">{{ user.customer_profile.contact_no }}</p>
-                    </li>
+                        <!-- <li class="list-group-item d-flex">
+                            Username: <p>{{ user.username }}</p>
+                        </!-->
 
-                    <li class="list-group-item">
-                        Address: <p class="text-success">{{ user.customer_profile.address }}</p>
-                    </li>
+                        <li>
+                            Email: <p>{{ user.email }}</p>
+                        </li>
 
-                    {% if user.email %}
-                    <li class="list-group-item">
-                        {# <p>{{ user.email }}</p>#}
-                    </li>
-                    {% endif %}
-                </ul>
+                        <li>
+                            Contact: <p>{{ user.customer_profile.contact_no }}</p>
+                        </li>
+
+                        <li>
+                            Address: <p>{{ user.customer_profile.address }}</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="col-md-7">
-            <div class="card p-3">
+        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
 
-                <div class="row">
-                    <div class="col">
-                        <a class="btn btn-info btn-s" href="{% url 'custom_users:profile-edit' %}">Edit Profile</a>
-                    </div>
-
-                    <div class="col">
-                        <a class="btn btn-info btn-s" href="{% url 'custom_users:filtered-reports-by-user' user.id %}">
-                            Reports
-                        </a>
-                    </div>
-
-{#                    {% for report in filtered_report %}#}
-{#                    <div class="col">#}
-{##}
-{#                        <a class="btn btn-info btn-s" href="{% url 'custom_users:filtered-reports-by-user' report.id %}">#}
-{#                            Reports#}
-{#                        </a>#}
-{#                    </div>#}
-{#                    {% endfor %}#}
-
-                </div>
-
+            <div class="order-table">
+                {% block orders %} {% endblock %}
             </div>
 
-            <div class="card mt-4">
-                <div class="card-header bg-waning">
-                    <h4 class="mb-0"> Your Orders </h4>
-                </div>
-                {% block orders %}
-
-
-                {% endblock %}
-
-
-            </div>
         </div>
     </div>
 

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,82 +12,86 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
-    <style>
-        p {
-            margin-bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+    <script src="{% static 'js/jquery.min.js' %}"></script>
 </head>
 
-<body>
+<body class="common-">
+    <!-- loader -->
+    <div class="fakeLoader"></div>
+    <!-- loader -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand text-warning" href="#"><b>ODLRS</b></a>
+            <a class="navbar-brand text-warning"
+                href="{% url 'diagnostic_centers:admin-dashboard' admin.username %}"><b>ODLRS</b></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <b style="color: orangered">{{ admin.username }}</b>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
 
-
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:admin-dashboard' admin.username %}">
-                            <button type="submit" class="btn btn-success">Back to DASHBOARD</button>
+                    <li class="nav-item user-profile">
+                        <a class="nav-link d-flex dropdown-btn" href="#">
+                            <img src="../../static/images/admin-staff.png" alt="" class="rounded-circle">
+                            <span class=" dropdown-toggle text-white ml-2">Admin</span>
                         </a>
+
+                        <ul class="dropdown">
+                            <li class="text-center">
+                                <img src="../../static/images/admin-staff.png" alt="" class="rounded-circle mb-2">
+                                <a href="http://localhost:8000/admin-dashboard/labaid_admin_1">Admin Dashboard</a>
+                            </li>
+                            <div class="dropdown-divider"></div>
+
+                            <li class="dropdown-item">
+                                <a href="{% url 'tests:add-category' admin.username %}">
+                                    Add New Category
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="{% url 'tests:add-test' admin.username %}">Add New Test</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="{% url 'tests:filtered-categories-by-admin' admin.username %}">
+                                    Recent Categories
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="{% url 'tests:added-tests-list-staff-admin' admin.username %}">
+                                    Recent Tests
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="" href="{% url 'diagnostic_centers:admin-logout' %}">Logout</a>
+                            </li>
+                        </ul>
                     </li>
-
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link text-white" href="#">Report Lists</a>#}
-{#                    </li>#}
-
-{#                    <li class="nav-item">#}
-{#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently#}
-{#                            Added#}
-{#                            Tests</a>#}
-{#                        <!-- </button> -->#}
-{#                    </li>#}
-
-{#                    <li class="nav-item">#}
-{#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-warning"#}
-{#                            href="http://localhost:8000/staff-dashboard/labaid_staff_1">Staff#}
-{#                            Dashboard</a>#}
-{#                        <!-- </button> -->#}
-{#                    </li>#}
-
-{#                    <li class="nav-item">#}
-{#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>#}
-{#                        <!-- </button> -->#}
-{#                    </li>#}
 
                 </ul>
             </div>
         </div>
     </nav>
 
-    <h3 style="color: blue">*Admin Page</h3>
 
-    <div class="container mt-4">
+    <div class="container inner-conten mt-5">
         <div class="row">
 
             {% for test in all_added_tests %}
             <div class="col-3">
-                <div class="card mb-4">
+                <div class="card mt-5 mb-4">
                     <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
 
                     <div class="card-body">
-{#                        <li>{{ admin.username }}</li>#}
+                        {#                        <li>{{ admin.username }}</li>#}
 
                         <h5 class="card-title">{{ test.test_name }}
-{#                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>#}
+                            {#                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>#}
                         </h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
                         <p class="card-text center">{{ test.center }}</p>
@@ -95,18 +100,19 @@
                         <p class="card-text">{{ test.active_status }}</p>
                     </div>
 
-                        <!-- Delete -->
-                        <a href="{% url 'tests:delete_test' test.id admin.username %}">
-                            <button type="submit" class="btn btn-danger">DELETE</button>
-                            <br><br>
-                        </a>
-                        <!-- Delete -->
+                    <!-- Delete -->
+                    <a href="{% url 'tests:delete_test' test.id admin.username %}">
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                        <br><br>
+                    </a>
+                    <!-- Delete -->
 
-                        <!-- Edit -->
-                        <a href="{% url 'tests:edit-test' test.id admin.username %}"><button type="submit" class="btn btn-warning">
+                    <!-- Edit -->
+                    <a href="{% url 'tests:edit-test' test.id admin.username %}"><button type="submit"
+                            class="btn btn-warning">
                             EDIT</button>
-                        </a>
-                        <!-- Edit -->
+                    </a>
+                    <!-- Edit -->
                 </div>
             </div>
             {% endfor %}
@@ -117,10 +123,9 @@
                 <li class="page-item">
 
                     {% if all_added_tests.has_previous %}
-                        <a class="page-link" href="?page={{ all_added_tests.previous_page_number }}"
-                           aria-label="Previous">
-                            <span aria-hidden="false">&laquo;</span>
-                        </a>
+                    <a class="page-link" href="?page={{ all_added_tests.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="false">&laquo;</span>
+                    </a>
                     {% endif %}
 
                 </li>
@@ -132,9 +137,9 @@
 
                     {% if all_added_tests.has_next %}
 
-                        <a class="page-link" href="?page={{ all_added_tests.next_page_number }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
+                    <a class="page-link" href="?page={{ all_added_tests.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
                     {% endif %}
                 </li>
             </ul>
@@ -143,14 +148,30 @@
         </div>
     </div>
 
-{#    {% for staff in staffs_by_center %}#}
-{#        <li>{{ staff.username }}</li>#}
-{#    {% endfor %}#}
+    {#    {% for staff in staffs_by_center %}#}
+    {#        <li>{{ staff.username }}</li>#}
+    {#    {% endfor %}#}
 
     <div class="footer bg-dark text-white text-center py-2">
         <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
     </div>
 
+
+
+    <script src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script>
+        $.fakeLoader();
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-btn").click(function () {
+                $('.dropdown').toggle();
+            });
+        });
+    </script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

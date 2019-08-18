@@ -55,14 +55,35 @@
 					</li> -->
 
 					{% if user.is_authenticated %}
-					<li class="nav-item ">
-						<a class="nav-link text-warnin" href="{% url 'custom_users:orders-by-user' %}">
-                            <strong style="color: yellow">Profile</strong>
-                        </a>
+					<li class="nav-item user-profile">
+						<a class="nav-link d-flex dropdown-btn" href="#">
+							<img src="{{ user.customer_profile.image.url }}" alt="" class="rounded-circle">
+							<span class=" dropdown-toggle ml-2">{{user.username}} </span>
+						</a>
+
+						<ul class="dropdown">
+							<li class="text-center">
+								<img src="{{ user.customer_profile.image.url }}" alt="" class="rounded-circle">
+								<p>{{ user.customer_profile.profile_name }}</p>
+								<a href="{% url 'custom_users:profile-edit' %}">
+									Edit Profile
+								</a>
+							</li>
+							<div class="dropdown-divider"></div>
+							<li class="dropdown-item">
+								<a href="{% url 'custom_users:orders-by-user' %}"> View Profile</a>
+							</li>
+							<li class="dropdown-item">
+								<a href="{% url 'custom_users:filtered-reports-by-user' user.id %}"> Reports</a>
+							</li>
+							<li class="dropdown-item">
+								<a href="{% url 'account_logout' %}"> Logout</a>
+							</li>
+						</ul>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-					</li>
+					</li> -->
 					{% else %}
 					<li class="nav-item ">
 						<a class="nav-link" href="{% url 'account_login' %}">Login</a>
@@ -109,6 +130,13 @@
 	<script src="{% static 'js/fakeLoader.min.js' %}"></script>
 	<script>
 		$.fakeLoader();
+	</script>
+	<script>
+		$(document).ready(function () {
+			$(".dropdown-btn").click(function () {
+				$('.dropdown').toggle();
+			});
+		});
 	</script>
 
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
