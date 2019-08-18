@@ -23,56 +23,56 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand text-warning" href="#"><b>ODLRS</b></a>
+            <a class="navbar-brand text-warnin" href="#">ODLRS</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <b style="color: orangered">{{ staff.username }}</b>
+            <p class="text-white">{{ staff.username }}</p>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
 
 
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-dashboard' staff.username %}">
-                            <button type="submit" class="btn btn-success">Back to DASHBOARD</button>
+                        <a class="nav-link text-white"
+                            href="{% url 'diagnostic_centers:staff-dashboard' staff.username %}">
+                            <button type="submit" class="btn btn-white btn-sm">Back to DASHBOARD</button>
                         </a>
                     </li>
 
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link text-white" href="#">Report Lists</a>#}
-{#                    </li>#}
+                    {#                    <li class="nav-item">#}
+                    {#                        <a class="nav-link text-white" href="#">Report Lists</a>#}
+                    {#                    </li>#}
 
-{#                    <li class="nav-item">#}
-{#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently#}
-{#                            Added#}
-{#                            Tests</a>#}
-{#                        <!-- </button> -->#}
-{#                    </li>#}
+                    {#                    <li class="nav-item">#}
+                    {#                        <!-- <button type="submit"> -->#}
+                    {#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently#}
+                    {#                            Added#}
+                    {#                            Tests</a>#}
+                    {#                        <!-- </button> -->#}
+                    {#                    </li>#}
 
-{#                    <li class="nav-item">#}
-{#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-warning"#}
-{#                            href="http://localhost:8000/staff-dashboard/labaid_staff_1">Staff#}
-{#                            Dashboard</a>#}
-{#                        <!-- </button> -->#}
-{#                    </li>#}
+                    {#                    <li class="nav-item">#}
+                    {#                        <!-- <button type="submit"> -->#}
+                    {#                        <a class="nav-link text-warning"#}
+                    {#                            href="http://localhost:8000/staff-dashboard/labaid_staff_1">Staff#}
+                    {#                            Dashboard</a>#}
+                    {#                        <!-- </button> -->#}
+                    {#                    </li>#}
 
-{#                    <li class="nav-item">#}
-{#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>#}
-{#                        <!-- </button> -->#}
-{#                    </li>#}
+                    {#                    <li class="nav-item">#}
+                    {#                        <!-- <button type="submit"> -->#}
+                    {#                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>#}
+                    {#                        <!-- </button> -->#}
+                    {#                    </li>#}
 
                 </ul>
             </div>
         </div>
     </nav>
 
-    <h3 style="color: blue">*Staff Page</h3>
 
     <div class="container mt-4">
         <div class="row">
@@ -86,7 +86,7 @@
 
 
                         <h5 class="card-title">{{ test.test_name }}
-{#                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>#}
+                            {#                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>#}
                         </h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ test.category }}</h6>
                         <p class="card-text center">{{ test.center }}</p>
@@ -105,10 +105,9 @@
                 <li class="page-item">
 
                     {% if all_added_tests.has_previous %}
-                        <a class="page-link" href="?page={{ all_added_tests.previous_page_number }}"
-                           aria-label="Previous">
-                            <span aria-hidden="false">&laquo;</span>
-                        </a>
+                    <a class="page-link" href="?page={{ all_added_tests.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="false">&laquo;</span>
+                    </a>
                     {% endif %}
 
                 </li>
@@ -120,9 +119,9 @@
 
                     {% if all_added_tests.has_next %}
 
-                        <a class="page-link" href="?page={{ all_added_tests.next_page_number }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
+                    <a class="page-link" href="?page={{ all_added_tests.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
                     {% endif %}
                 </li>
             </ul>
@@ -131,9 +130,9 @@
         </div>
     </div>
 
-{#    {% for staff in staffs_by_center %}#}
-{#        <li>{{ staff.username }}</li>#}
-{#    {% endfor %}#}
+    {#    {% for staff in staffs_by_center %}#}
+    {#        <li>{{ staff.username }}</li>#}
+    {#    {% endfor %}#}
 
     <div class="footer bg-dark text-white text-center py-2">
         <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>

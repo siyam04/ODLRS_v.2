@@ -16,15 +16,38 @@ $overlightgreen: #3ec1c9;
   background: $lightgreen;
   color: white;
   font-weight: 600;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
 
   &:hover {
     background: $darkgreen;
   }
+}
+
+.card-bottom-img {
+  background: url(../images/round-pic.png) no-repeat;
+  width: 100%;
+  height: 45px;
+}
+
+.common-bg {
+  background: linear-gradient(45deg, #63d5da, #8962f0, #e839f4);
+  width: 100%;
+  height: 100%;
+  padding-top: 6rem;
+  position: absolute;
+  overflow: auto;
+  z-index: -99;
+}
+
+.card,
+.card-header,
+.card-footer {
+  border: 0;
+}
+
+.card-header h3,
+.card-header h2 {
+  position: relative;
+  top: 20px;
 }
 
 html,
@@ -49,9 +72,75 @@ nav.navbar {
 
   ul li a {
     color: #fff;
-    text-transform: uppercase;
-    font-size: 15px;
+    // text-transform: uppercase;
+    font-size: 16px;
     outline: none;
+  }
+
+  .user-profile {
+    img {
+      width: 25px;
+      height: 25px;
+      border: 2px solid white;
+    }
+
+    ul.dropdown {
+      list-style: none;
+      background: white;
+      padding: 5px 0;
+      padding-top: 15px;
+      border-radius: 3px;
+      width: 180px;
+      position: absolute;
+      top: 57px;
+      right: 119px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+
+      display: none;
+
+      li {
+        padding: 0;
+
+        &.dropdown-item {
+          line-height: 30px;
+          background: transparent;
+
+          a {
+            transition: all 0.3s ease 0s;
+
+            &:hover {
+              padding-left: 20px;
+            }
+          }
+        }
+
+        p {
+          font-size: 14px;
+          padding-top: 5px;
+          color: $darkgreen;
+          font-weight: 500;
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 0;
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+          color: #62626b;
+          font-size: 13px;
+          padding: 0 12px;
+          display: block;
+          text-decoration: none;
+
+          &:hover {
+            color: $darkgreen;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -208,12 +297,6 @@ p {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
   }
-
-  // .welcome .card-body {
-  //   min-height: 190px;
-  // }
-
-  /* .btn-block button{} */
 }
 
 .add-to-cart-box {
@@ -313,6 +396,7 @@ p {
         padding: 0;
       }
     }
+
     .signup {
       label {
         text-transform: uppercase;
@@ -354,11 +438,13 @@ p {
       color: $darkgreen;
       margin-bottom: 2rem;
     }
+
     label {
       text-transform: uppercase;
       font-size: 12px;
       color: $darkgreen;
     }
+
     input {
       background: transparent;
       border: none;
@@ -378,6 +464,7 @@ p {
         display: none;
       }
     }
+
     .custom-select {
       border: none;
       border-bottom: 1px solid lightblue;
@@ -438,6 +525,7 @@ p {
       color: $darkgreen;
       margin-bottom: 2rem;
     }
+
     p {
       //   color: #969696;
 
@@ -446,11 +534,44 @@ p {
         font-weight: 500;
         padding-right: 15px;
       }
+
       span:last-child {
         color: #62626b;
       }
     }
   }
+}
+
+.google-login {
+  .box:first-child {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .box:nth-child(2) {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: white;
+
+    a {
+      color: white;
+    }
+  }
+}
+
+.card-footer {
+  width: 85%;
+  text-align: center;
+  margin: auto;
+  border: 0;
+  background: $darkgreen;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 8px 8px 0 0 !important;
+  -webkit-border-radius: 8px 8px 0 0 !important;
+  -moz-border-radius: 8px 8px 0 0 !important;
+  -ms-border-radius: 8px 8px 0 0 !important;
+  -o-border-radius: 8px 8px 0 0 !important;
 }
 
 .login-btn {
@@ -465,6 +586,98 @@ p {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
+.list-group {
+  list-style: none;
+  padding: 0 1rem;
+
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid #333333;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.profile-bg {
+  border: 0;
+  border-radius: 3px !important;
+
+  img {
+    border: 5px solid white;
+    box-shadow: 0 0 3px rgba(12, 6, 41, 0.3);
+  }
+}
+
+.order-table {
+  a {
+    text-decoration: none;
+    // color: #000;
+    outline: none;
+  }
+}
+
+.report {
+  p,
+  a,
+  td {
+    font-size: 15px;
+  }
+}
+
+.single-reports,
+.card-width {
+  width: 60%;
+  height: 100%;
+  margin: auto;
+  position: relative;
+
+  .card {
+    border: 0;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
+    .alert {
+      a {
+        font-size: 20px;
+        padding-top: 1px;
+        text-decoration: none;
+        font-weight: bold;
+        line-height: normal;
+        color: #333333;
+      }
+    }
+  }
+}
+
+.group {
+  margin-bottom: 10px;
+
+  p {
+    &:first-child {
+      font-size: 14px;
+      color: $darkgreen;
+    }
+
+    &:last-child {
+      color: #62626b;
+      padding: 6px 0;
+      border-bottom: 1px solid #eaeaea;
+      font-size: 16px;
+    }
+  }
+
+  a {
+    font-size: 16px;
+    color: #62626b;
+    display: block;
+    padding: 6px 0 !important;
+    border-bottom: 1px solid #eaeaea;
+  }
+}
+
 .footer {
   background: #328691;
+  position: relative;
+  z-index: 11;
 }

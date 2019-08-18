@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,9 +11,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
 </head>
 
-<body>
+<body class="common-bg">
+    <!-- loader -->
+    <div class="fakeLoader"></div>
+    <!-- loader -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -24,30 +33,22 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item user-profile">
+                        <a class="nav-link d-flex dropdown-btn" href="#">
+                            <img src="{% static 'images/admin-staff.png' %}" alt="" class="rounded-circle">
+                            <span class=" dropdown-toggle text-white ml-2">Admin</span>
+                        </a>
 
-                    <li class="nav-item">
-{#                        <a class="nav-link text-warning" href="{% url 'tests:add-test' %}">Add New Test</a>#}
-                    </li>
-
-{#                    <li class="nav-item">#}
-{#                        <!-- <button type="submit"> -->#}
-{#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' admin.username %}">#}
-{#                            Recently Added Tests</a>#}
-{#                        <!-- </button> -->#}
-{#                    </li>#}
-
-                    <li class="nav-item">
-                        <!-- <button type="submit"> -->
-                        <a class="nav-link text-warning"
-                            href="http://localhost:8000/admin-dashboard/labaid_admin_1">Admin
-                            Dashboard</a>
-                        <!-- </button> -->
-                    </li>
-
-                    <li class="nav-item">
-                        <!-- <button type="submit"> -->
-                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:admin-logout' %}">Logout</a>
-                        <!-- </button> -->
+                        <ul class="dropdown">
+                            <li class="text-center">
+                                <img src="{% static 'images/admin-staff.png' %}" alt="" class="rounded-circle mb-2">
+                                <a href="http://localhost:8000/admin-dashboard/labaid_admin_1">Admin Dashboard</a>
+                            </li>
+                            <div class="dropdown-divider"></div>
+                            <li class="dropdown-item">
+                                <a href="{% url 'diagnostic_centers:admin-logout' %}">Logout</a>
+                            </li>
+                        </ul>
                     </li>
 
                 </ul>
@@ -56,25 +57,21 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-6 offset-3">
-                <div class="card my-4">
+        <div class="card-width">
+            <div class="card mb-5">
+                <div class="card-header bg-dark text-center py-">
+                    <h2 class="text-white mb-0 text-uppercase"> Edit Test </h2>
+                </div>
+                <div class="card-bottom-img"></div>
 
-                    <div class="card-header bg-dark text-white text-center">
-                        <h2 class="">Edit Test</h2>
-                        <h6 class="mb-0">Managed by Admin</h6>
-                    </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
 
-                    <div class="card-body">
-                        <form method="post">
-                            {% csrf_token %}
+                        {{ edit_form.as_p }}
 
-                            {{ edit_form.as_p }}
-
-                            <button class="btn btn-dark" style="width: 100%" type="submit">EDIT</button>
-                        </form>
-                    </div>
-
+                        <button class="btn btn-dark w-100 mt-4" type="submit">UPDATE</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -83,6 +80,22 @@
     <div class="footer bg-dark text-white text-center py-2">
         <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
     </div>
+
+
+    <script src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script>
+        $.fakeLoader();
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-btn").click(function () {
+                $('.dropdown').toggle();
+            });
+        });
+    </script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

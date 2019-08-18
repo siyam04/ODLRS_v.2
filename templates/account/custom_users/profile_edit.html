@@ -6,11 +6,11 @@
 
 <style>
     img {
-        border-radius: 50%;
+        /* border-radius: 50%;
         margin-bottom: 1rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         width: 130px;
-        height: 130px;
+        height: 130px; */
     }
 
     .card {
@@ -20,14 +20,14 @@
 
 <div class="login-bg inner-content pb-4">
     <div class="container">
-        <div class="col-6 offset-3">
+        <div class="card-width">
             <div class="card log-bo text-center">
-
-                <!-- <div class="card-header">
-            </div> -->
+                <div class="card-header bg-dark text-center py-">
+                    <h3 class="text-white mb-0 text-capitalize">Edit Your Profile</h3>
+                </div>
+                <div class="card-bottom-img"></div>
 
                 <div class="card-body px-4">
-                    <h3 class="mb-4">Edit Your Profile</h3>
 
                     <form class="login" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -37,7 +37,7 @@
                         {{profile_form.as_p}}
 
                         <hr>
-                        <button type="submit" class="btn login-btn w-100 my-2">Update</button>
+                        <button type="submit" class="btn btn-dark login-bt w-100 my-2">Update</button>
                     </form>
                 </div>
 

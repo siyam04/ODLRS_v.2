@@ -18,11 +18,11 @@
 			<!-- <div class="card-header bg-warnin">
 					</div> -->
 
-			<div class="card-body">
+			<div class="card-body pb-0">
 
 				<h3>{% trans "Sign In" %}</h3>
 
-                <!-- SignUp form -->
+				<!-- SignUp form -->
 				<form class="login mt-4" method="POST" action="{% url 'account_login' %}">
 					{% csrf_token %}
 					{{ form.as_p }}
@@ -35,36 +35,42 @@
 					<button class="btn w-100 my-4 login-btn primaryAction" type="submit"
 						style="width: 80%">{% trans "Sign In" %}</button>
 				</form>
-                <!-- SignUp form end -->
+				<!-- SignUp form end -->
 
-                <hr>
-                <!-- Google_login and Not_Registered_Yet? section -->
-                {% get_providers as socialaccount_providers %}
 
-				{% if socialaccount_providers %}
+			</div>
 
-                    <!-- Login with Google -->
-                    <p>Login with {% include "socialaccount/snippets/provider_list.html" with process="login" %}</p>
-                    <hr>
-                    <!-- Login with Google end -->
+			<div class="card-footer">
+				<div class="google-login text-center text-white">
+					<div class="box mb-2">
+						Sign Up with
+					</div>
 
-                    <!-- Signup -->
-                    <p>
-                        {% blocktrans with site.name as site_name %}
-                            Not registered yet? <a href="{{ signup_url }}">sign up</a>
-                        {% endblocktrans %}
-                    </p>
-                    <!-- Signup end -->
+					<!-- Google_login and Not_Registered_Yet? section -->
+					{% get_providers as socialaccount_providers %}
 
-				{% else %}
+					{% if socialaccount_providers %}
+					<div class="box">
+						<span>
+							{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+						</span>
+						<span class="px-2"> OR </span>
+						<span>
+							{% blocktrans with site.name as site_name %}
+							<a href="{{ signup_url }}">sign up</a>
+							{% endblocktrans %}
+						</span>
+					</div>
+					{% else %}
+					<div class="box">
+						{% blocktrans %}
+						<a href="{{ signup_url }}">sign up</a> first.
+						{% endblocktrans %}
+					</div>
+					{% endif %}
+					<!-- Google_login and Not_Registered_Yet? section END -->
 
-                    <p>{% blocktrans %}If you have not created an account yet, then please
-                        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-                    </p>
-
-				{% endif %}
-                <!-- Google_login and Not_Registered_Yet? section END -->
-
+				</div>
 			</div>
 		</div>
 
@@ -77,7 +83,18 @@
 {% endblock %}
 
 
+<!-- Login with Google -->
+<!-- <p>{% include "socialaccount/snippets/provider_list.html" with process="login" %}</p>
+<hr> -->
+<!-- Login with Google end -->
 
+<!-- Signup -->
+<!-- <p>
+	{% blocktrans with site.name as site_name %}
+	<a href="{{ signup_url }}">sign up</a>
+	{% endblocktrans %}
+</!-->
+<!-- Signup end -->
 
 <!-- Original All-auth Login_form codes -->
 
@@ -134,4 +151,3 @@
 {#{% endblock %}#}
 
 <!-- Original All-auth Login_form codes -->
-

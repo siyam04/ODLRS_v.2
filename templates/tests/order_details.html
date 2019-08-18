@@ -4,93 +4,121 @@
 
 {% block content %}
 
-<div class="box inner-content login-bg">
+<div class="box inner-content login-bg pb-4">
     <div class="container">
-        <div class="row my-">
-            <div class="col-6 offset-3 text-cente">
-                <div class="card order-form mb-4">
+        <div class="card-width">
+            <div class="card order-form mb-">
+                <div class="card-header bg-dark text-center py-">
+                    <h2 class="text-white mb-0 text-uppercase">Order Details</h2>
+                </div>
+                <div class="card-bottom-img"></div>
 
-                    <div class="card-body">
-                        <h3 class="mb-">Order Details</h3>
+                <div class="card-body">
+                    <div class="row">
 
-                        <!-- <p>
-                            <span>Order No: </span>
-                            <span>{{ order_details.id }}</span>
-                        </!-->
-                        <p>
-                            <span>Client:</span>
-                            <span>
-                                {{ order_details.client_info }}
-                                ({{ order_details.client_info.profile_name }})
-                            </span>
-                        </p>
-                        <p>
-                            <span>Email:</span>
-                            <span>{{ order_details.client_info.user.email }}</sp>
-                        </p>
-                        <p>
-                            <span>Contact: </span>
-                            <span>{{ order_details.contact_no }}</span>
-                        </p>
-                        <p>
-                            <span>Address:</span>
-                            <span>{{ order_details.client_info.address }}</span>
-                        </p>
-                        <hr />
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Name</p>
+                                <p>
+                                    {{ order_details.client_info.profile_name }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Email</p>
+                                <p>{{ order_details.client_info.user.email }}
+                                </p>
+                            </div>
+                        </div>
 
-                        <p>
-                            <span>Test Name:</span>
-                            <span>{{ order_details.test_info.test_name }}</span>
-                        </p>
-                        <p>
-                            <span>Category:</span>
-                            <span>{{ order_details.test_info.category }}</span>
-                        </p>
-                        <p>
-                            <span>Center:</span>
-                            <span>{{ order_details.test_info.center.name }}</span>
-                        </p>
-                        <p>
-                            <span>Booked Time Slot: </span>
-                            <span>{{ order_details.booked_time_slot }}</span>
-                        </p>
-                        <p>
-                            <span>Booked Date: </span>
-                            <span>{{ order_details.booked_date }}</span>
-                        </p>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Test Name</p>
+                                <p>{{ order_details.test_info.test_name }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Category</p>
+                                <p>{{ order_details.test_info.category }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Center</p>
+                                <p>{{ order_details.test_info.center.name }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Booked Time Slot: </p>
+                                <p>{{ order_details.booked_time_slot }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Booked Date: </p>
+                                <p>{{ order_details.booked_date }}</p>
+                            </div>
+                        </div>
                         <hr>
-                        <p>
-                            <span>Payment Type:</span>
-                            <span>{{ order_details.payment_type }}</span>
-                        </p>
-                        <p>
-                            <span>Payment Method:</span>
-                            <span>{{ order_details.payment_method }}</span>
-                        </p>
-                        <hr />
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Payment Type</p>
+                                <p>{{ order_details.payment_type }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Payment Method</p>
+                                <p>{{ order_details.payment_method }}</p>
+                            </div>
+                        </div>
 
-                        <p>
-                            <span>Discount:</span>
-                            <span> {{ order_details.test_info.discount }}</span>
-                        </p>
-                        <p>
-                            <span>Test Price:</span>
-                            <span> {{ order_details.test_info.price }}</span>
-                        </p>
-                        <hr />
 
-                        <p>
-                            <span>Total Price: </span>
-                            <span style="color: red"> {{ total_price }} </span>
-                        </p>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Discount</p>
+                                <p> {{ order_details.test_info.discount }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Test Price</p>
+                                <p> {{ order_details.test_info.price }}</p>
+                            </div>
+                        </div>
 
-                        <hr />
+
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Total Price: </p>
+                                <p> {{ total_price }} </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Contact: </p>
+                                <p>{{ order_details.contact_no }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="group">
+                                <p>Address</p>
+                                <p>{{ order_details.client_info.address }}</p>
+                            </div>
+                        </div>
+
                         {% if request.user.is_authenticated %}
-
-                        <a href="{% url 'tests:confirm-payment-message' id=order_details.id %}">
-                            <button type="button" class="btn custom-btn w-100">CONFIRM</button>
-                        </a>
-
+                        <div class="col-12">
+                            <div class="group">
+                                <a href="{% url 'tests:confirm-payment-message' id=order_details.id %}">
+                                    <button type="button" class="btn btn-dark custom-bt w-100">CONFIRM</button>
+                                </a>
+                            </div>
+                        </div>
                         {% endif %}
                     </div>
                 </div>
