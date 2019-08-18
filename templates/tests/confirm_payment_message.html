@@ -144,7 +144,7 @@
                         {% if order_details.staff_check == True and order_details.accepted == True and order_details.came_for_test == False %}
                         <div class="col-12">
                             <a href="{% url 'tests:came-for-test' order_details.id staff_username %}"
-                                class="btn custom-btn text-white w-100">
+                                class="btn btn-dark custom-bt text-white w-100">
                                 Came For Test
                             </a>
                         </div>
