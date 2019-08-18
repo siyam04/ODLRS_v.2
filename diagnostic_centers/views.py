@@ -202,20 +202,6 @@ def staff_dashboard(request, id=None, username=None):
     if request.method == 'POST':
         form = PaymentValidationForm(request.POST, request.FILES)
 
-        # <!----------------------------- ERROR ------------------------------------->
-        # message_form = SendMessageForm(request.POST, request.FILES)
-        #
-        # if message_form.is_valid():
-        #     send_message_form = message_form.save(commit=False)
-        #     # order = TestOrder.objects.get(id=id)
-        #     order = TestOrder.objects.get(id=id)
-        #     order.payment_type = 'Half Payment'
-        #     order.save()
-        #     # send_message_form.approved_order = order.test_info.test_name
-        #     send_message_form.send_message = order.payment_type
-        #     send_message_form.save()
-        # <!----------------------------- ERROR ------------------------------------->
-
         if form.is_valid():
 
             payment_form = form.save(commit=False)
@@ -245,14 +231,9 @@ def staff_dashboard(request, id=None, username=None):
         'staff_username': username,
         'payment_form': PaymentValidationForm(),
 
-    # <!----------------------------- ERROR ------------------------------------->
-    #     'send_message_form': SendMessageForm(),
-    # <!----------------------------- ERROR ------------------------------------->
-
     }
 
     return render(request, template, context)
-
 
 ########################################################################################################################
 

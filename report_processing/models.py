@@ -6,7 +6,7 @@ from tests.models import TestOrder
 class PaymentValidation(models.Model):
 
     # category = models.OneToOneField(TestOrder, on_delete=models.SET_NULL, null=True)
-    approved_order = models.OneToOneField(TestOrder, on_delete=models.SET_NULL, null=True)
+    approved_order = models.ForeignKey(TestOrder, on_delete=models.SET_NULL, null=True, blank=True)
 
     upload_report = models.FileField(upload_to='reports_PDF', null=True, blank=True)
 
