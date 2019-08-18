@@ -143,9 +143,10 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="group text-succes">
-                                <p>Download Report</p>
-                                <a href="/media/reports_PDF/report_demo.pdf">{{ report_details.upload_report }}</a>
+                            <div class="group">
+                                <p class="">Download Report</p>
+                                <a href="/media/reports_PDF/report_demo.pdf"
+                                    class="text-danger">{{ report_details.upload_report }}</a>
                             </div>
                         </div>
 
@@ -153,98 +154,42 @@
                             <div class="row mt-2">
                                 {% if request.user.is_authenticated %}
                                 <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <a href="{% url 'home' %}"><button type="button" class="btn btn-warning w-100">
-                                            Back to Home</button>
+                                    <a href="{% url 'home' %}" class="btn btn-warning w-100">Back to Home
                                     </a>
                                 </div>
                                 {% endif %}
                                 {% if report_details.approved_order.payment_type == 'Half Payment' %}
                                 <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <a href="#">
-                                        <button type="button" class="btn btn-success w-100">Complete
-                                            Payment</button>
+                                    <a class="btn btn-success w-100"
+                                        href="{% url 'report_processing:complete-due-payment' report_details.approved_order.id report_details.id %}">
+                                        CompletePayment
                                     </a>
                                 </div>
                                 {% endif %}
                             </div>
 
+                            <!-- {% if request.user.is_authenticated %}
+
+
+                            {% endif %}
+
+                            {% if report_details.approved_order.payment_type == 'Half Payment' %}
+
+                            <a
+                                href="{% url 'report_processing:complete-due-payment' report_details.approved_order.id report_details.id %}">
+
+                                <button type="button" class="btn btn-success">Complete Payment</button>
+                            </a>
+
+                            {% endif %} -->
 
                         </div>
                     </div>
 
-
                 </div>
             </div>
-
-            <!-- Order History -->
-            <!-- <div class="card-body">
-
-                    <h5 style="color: black">Order History:</h5>
-                    <li>Test Name: <b style="color: blue">{{ report_details.approved_order.test_info.test_name }}</b>
-                    </li>
-
-                    <li>Booked DateTime:
-                        <p style="color: blue">
-                            {{ report_details.approved_order.booked_date }}
-                            ({{ report_details.approved_order.booked_time_slot }})
-                        </p>
-                    </li>
-
-                    {% if report_details.approved_order.payment_type == 'Half Payment' %}
-
-                    <li>Total Price: <b style="color: red">{{ total_price }}</b></li>
-
-                    <li>Payment Status: <b style="color: red">
-                            {{ report_details.approved_order.payment_type }}
-                            ({{ report_details.approved_order.payment_method}})
-                        </b></li>
-
-                    {% else %}
-
-                    <li>Total Price: <b style="color: green">{{ total_price }}</b></li>
-
-                    <li>Payment Status: <b style="color: green">
-                            {{ report_details.approved_order.payment_type }}
-                            ({{ report_details.approved_order.payment_method}})
-                        </b></li>
-
-                    {% endif %}
-
-                    <li>Client: <b style="color: blue">
-                            {{ report_details.approved_order.client_info.user.username }}
-                            ({{ report_details.approved_order.client_info.user.customer_profile.profile_name }})
-                        </b></li>
-
-                    <li>Contact:
-                        <b style="color: blue">
-                            {{ report_details.approved_order.client_info.user.customer_profile.contact_no }}
-                        </b>
-                    </li>
-
-                    <li>Email:
-                        <b style="color: blue">
-                            {{ report_details.approved_order.client_info.user.email }}
-                        </b>
-                    </li>
-                    <hr>
-
-                    <hr>
-                    <h5 style="color: black">Record for Office:</h5>
-
-                    {% if request.user.is_authenticated %}
-
-                    <a href="{% url 'home' %}"><button type="button" class="btn btn-warning">
-                            Back to Home</button>
-                    </a>
-                    {% endif %}
-
-                    {% if report_details.approved_order.payment_type == 'Half Payment' %}
-                    <a href="#">
-                        <button type="button" class="btn btn-success">Complete Payment</button>
-                    </a>
-                    {% endif %}
-                </div> -->
         </div>
+    </div>
     </div>
 
     <script src="{% static 'js/fakeLoader.min.js' %}"></script>
