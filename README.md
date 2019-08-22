@@ -12,5 +12,11 @@
 * Install all the requirements using previously opened cmd where the virtual environment was activated:
   >> pip install -r requirements.txt
   
-* Run local server:
+* Run Local Server:
   >> python manage.py runserver
+  
+* PATHs:
+  1. Django Admin Dashboard: http://127.0.0.1:8000/admin/ (default)
+  2. Homepage: http://127.0.0.1:8000/
+  3. Diagnostic Admin Login: http://127.0.0.1:8000/admin-login/
+  4. Diagnostic Staff Login: http://127.0.0.1:8000/staff-login/
