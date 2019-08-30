@@ -1,0 +1,720 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Staff Dashboard | ODLRS</title>
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
+        integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">ODLRS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+
+                    {#                    <li class="nav-item">#}
+                    {#                        <a class="nav-link text-white" href="{% url 'report_processing:all-reports' %}"> Report List </a>#}
+                    {#                    </li>#}
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white"
+                            href="{% url 'tests:filtered-categories-for-staff' staff.username %}">
+                            Recent Categories</a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff' staff.username %}">
+                            Recent Tests</a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        {#                        <a class="nav-link text-warning"#}
+                        {#                            href="http://localhost:8000/staff-dashboard/labaid_staff_1">Staff#}
+                        {#                            Dashboard</a>#}
+                        <a class="nav-link text-warning"
+                            href="{% url 'diagnostic_centers:staff-dashboard' staff.username %}">
+                            Staff Dashboard
+                        </a>
+                        <!-- </button> -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <button type="submit"> -->
+                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>
+                        <!-- </button> -->
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container inner-content">
+        <div class="staff bg-dark text-white text-center p-4 mb-4">
+            <h1> <strong>Staff Dashboard</strong> </h1>
+
+            <div class="row mt-4 mx-4 py-3 bg-warning text-dark">
+                <div class="col">
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong>
+                        <b style="color: orangered">{{ staff.center }}</b>
+                    </h6>
+                </div>
+                <div class="col">
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Staff Name:</strong>
+                        <b style="color: orangered">{{ staff.username }}</b>
+                    </h6>
+                </div>
+                <div class="col">
+                    <h6 class="text-white mb-0"> <strong class="text-dark">Reported To:</strong>
+
+                        {% for a in admins %}
+                        <b style="color: orangered">{{ a.username }}</b>
+                        {% endfor %}
+
+                    </h6>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Counting-->
+        <p>Total Pending Orders: {{ count_pending_tests }}</p>
+        <p>Total Confirmed Orders: {{ count_confirmed_tests }}</p>
+        <p>Total Came for Tests: {{ count_came_for_tests }}</p>
+        <p>Total HALF Paid Orders: {{ count_half_payment_orders }}</p>
+        <p>Total FULL Paid Orders: {{ count_full_payment_orders }}</p>
+        <p>Total Completed Orders: {{ count_completed_orders }}</p>
+        <!--Counting-->
+
+        <div class="staff-task">
+            <div class="row">
+
+                <!-- Step 0 Pending -->
+                <div class="col-md-6">
+
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-danger text-white">
+                                <th colspan="2">STEP-0:<br>Pending...</th>
+                            </tr>
+                            <tr>
+                                <th>SL NO.</th>
+                                <th> Orders </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for test in pending_tests %}
+
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+                                <td>
+                                    <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
+                                        <strong>{{ test.test_info.test_name }}</strong>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- step-0 Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if pending_tests.has_previous %}
+                            <a class="page-link" href="?page={{ pending_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ pending_tests.number }} of
+                                {{ pending_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if pending_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ pending_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-0 Paginator end -->
+                </div>
+                <!-- Step 0 Pending End -->
+
+                <!-- Step 1 Confirmed -->
+                <div class="col-md-6">
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-success text-white">
+                                <th colspan="2">STEP-1:<br>Confirming...</th>
+                            </tr>
+                            <tr>
+                                <th>SL NO.</th>
+                                <th>Orders</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for test in confirmed_tests %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+                                <td>
+
+                                    {% if test.staff_check == True and test.accepted == True %}
+
+                                    <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
+                                        <strong>{{ test.test_info.test_name }}</strong>
+                                    </a>
+
+                                    <li>Status: <b style="color: green">Order Confirmed</b></li>
+                                    {#                                    <li style="color: purple">Send Report (PDF from Local Machine)</li>#}
+                                    {#                                    <li style="color: red">Report Status (Sent / Not Sent)</li>#}
+
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- step-1 Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_previous %}
+                            <a class="page-link" href="?page={{ confirmed_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ confirmed_tests.number }} of
+                                {{ confirmed_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if confirmed_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ confirmed_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-1 Paginator end -->
+                </div>
+                <!-- Step 1 End -->
+
+                <!-- Step 2 Came for Test -->
+                <div class="col-md-6">
+                    <hr>
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th colspan="2">STEP-2:<br>Came For Test...</th>
+                            </tr>
+                            <tr>
+                                <th>SL.</th>
+                                <th> Orders </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for test in came_for_tests %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+                                <td>
+
+                                    {% if test.staff_check == True and test.accepted == True %}
+                                    <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
+                                        <strong>{{ test.test_info.test_name }}</strong><br><br>
+                                    </a>
+                                    <li>STEP-1: <b style="color: green">{{ test.accepted }}</b></li>
+
+                                    {% if test.came_for_test == True %}
+                                    <li>Came for Test: <b style="color: green">{{ test.came_for_test }}</b></li>
+                                    {% endif %}
+
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- step-2 Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_previous %}
+                            <a class="page-link" href="?page={{ came_for_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ came_for_tests.number }} of
+                                {{ came_for_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ came_for_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-2 Paginator end -->
+
+                </div>
+                <!-- Step 2 End -->
+
+                <!-- Step 3 Checking -->
+                <div class="col-md-6">
+                    <hr>
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-danger text-white">
+                                <th colspan="2">STEP-3:<br>Verifying Before Report Delivery...</th>
+                            </tr>
+                            <tr>
+                                <th>SL.</th>
+                                <th> Orders </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for test in came_for_tests %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+                                <td>
+                                    {% if test.staff_check == True and test.accepted == True and test.came_for_test == True %}
+                                    <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
+                                        <strong>{{ test.test_info.test_name }}</strong><br><br>
+                                    </a>
+                                    <li>STEP-2: <b style="color: green">{{ test.came_for_test }}</b></li>
+                                    <li>Payment Status: <b style="color: green">{{ test.payment_type }}</b></li>
+                                    <li>Verified: <b style="color: green">{{ test.accepted }}</b></li>
+                                    {% endif %}
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <!-- step-3 Paginator -->
+                    <ul class="pagination mb-0">
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_previous %}
+                            <a class="page-link" href="?page={{ came_for_tests.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ came_for_tests.number }} of
+                                {{ came_for_tests.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if came_for_tests.has_next %}
+
+                            <a class="page-link" href="?page={{ came_for_tests.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-3 Paginator end -->
+
+                </div>
+                <!-- Step 3 End -->
+
+                <!-- Step 4 Send Message -->
+                <div class="col-md-6">
+                    <hr>
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-warning text-dark">
+                                <th colspan="2">STEP-4: For Half Payments<br>Sending Message For Complete Payment</th>
+                            </tr>
+                            <tr>
+                                <th>SL.</th>
+                                <th>Orders</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for test in half_payment_orders %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+                                <td>
+
+                                    {#                                    {% if test.staff_check == True and test.accepted == True %}#}
+                                    {% if test.staff_check == True and test.accepted == True and test.payment_type == 'Half Payment' %}
+                                    <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
+                                        <strong>{{ test.test_info.test_name }}</strong><br><br>
+                                    </a>
+
+                                    <li>STEP-3: <b style="color: green">{{ test.accepted }}</b></li>
+                                    <li>Payment Status: <b style="color: green">{{ test.payment_type }}</b></li><br>
+                                    {% if test.validation == False %}
+                                    <!----------------------------- Form ------------------------------------->
+                                    <form
+                                        action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
+                                        method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ payment_form.send_message }}
+                                        <br>
+                                        <button class="btn btn-warning" type="submit">SEND MESSAGE</button>
+                                    </form>
+                                    {% elif test.validation == True %}
+                                    <li><b style="color: green">Message Sent</b></li>
+
+                                    {#                                            <li style="color: black">#}
+                                    {#                                                Send Notification For FULL Payment<br>with #BKash_No and #Bank_ACC_NO#}
+                                    {#                                            </li>#}
+
+                                    {% endif %}
+
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- step-4 Paginator -->
+                    <ul class="pagination">
+                        <li class="page-item">
+
+                            {% if half_payment_orders.has_previous %}
+                            <a class="page-link" href="?page={{ half_payment_orders.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ half_payment_orders.number }} of
+                                {{ half_payment_orders.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if half_payment_orders.has_next %}
+
+                            <a class="page-link" href="?page={{ half_payment_orders.next_page_number }}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-4 Paginator end -->
+
+                </div>
+                <!-- Step 4 End -->
+
+                <!-- Step 5 + 6 Report Delivery -->
+                <div class="col-md-6">
+                    <hr>
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th colspan="2">STEP-5 + 6: For Full Payments<br>Report Delivery...</th>
+                            </tr>
+                            <tr>
+                                <th>SL.</th>
+                                <th>Orders</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for test in full_payment_orders %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+                                <td>
+
+                                    {% if test.staff_check == True and test.accepted == True and test.payment_type == 'Full Payment' %}
+
+                                    <a href="{% url 'tests:staff-confirm-payment-message' test.id staff_username %}">
+                                        <strong>{{ test.test_info.test_name }}</strong><br><br>
+                                    </a>
+
+                                    <li>STEP-4: <b style="color: green">{{ test.accepted }}</b></li>
+                                    <li>Payment Status: <b style="color: green">{{ test.payment_type }}</b></li><br>
+
+                                    {% if test.validation == False %}
+
+                                    <form
+                                        action="{% url 'diagnostic_centers:staff-dashboards' test.id staff.username %}"
+                                        method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ payment_form.as_p }}
+                                        <button class="btn btn-success" type="submit">SEND REPORT</button>
+                                    </form>
+
+                                    {% elif test.validation == True %}
+                                    <li>Status: <b style="color: green">Report Delivered</b></li>
+
+                                    {% endif %}
+
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- step 5+6 Paginator -->
+                    <ul class="pagination mb-0">
+                        <li class="page-item">
+
+                            {% if full_payment_orders.has_previous %}
+                            <a class="page-link" href="?page={{ full_payment_orders.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ full_payment_orders.number }} of
+                                {{ full_payment_orders.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if full_payment_orders.has_next %}
+
+                            <a class="page-link" href="?page={{ full_payment_orders.next_page_number }}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step 5+6 Paginator end -->
+
+                </div>
+                <!-- Step 5 + 6 End -->
+
+                <!-- Step 7 Completed Orders -->
+                <div class="col-md-12">
+                    <hr>
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-success text-white">
+                                <th colspan="6">STEP-7: Payment Complete and Report Sent<br>Completed Orders</th>
+                            </tr>
+                            <tr>
+                                <th>SL.</th>
+                                <th>Orders</th>
+                                <th>DateTime</th>
+                                <th>Reports</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for report in completed_orders %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+
+                                <td><a href="{% url 'report_processing:single-report-details' report.id %}">
+                                        <b style="color: green">{{ report.approved_order.test_info.test_name }}</b></a>
+                                </td>
+
+                                <td style="color: green">{{ report.datetime }}</td>
+                                <td style="color: blue">{{ report.upload_report }}</td>
+                                <td><b style="color: green">{{ report.send_message }}</b></td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- step-7 Paginator -->
+                    <ul class="pagination mb-0">
+                        <li class="page-item">
+
+                            {% if completed_orders.has_previous %}
+                            <a class="page-link" href="?page={{ completed_orders.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ completed_orders.number }} of
+                                {{ completed_orders.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if completed_orders.has_next %}
+
+                            <a class="page-link" href="?page={{ completed_orders.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-7 Paginator end -->
+
+                </div>
+                <!-- Step 7 End -->
+
+                <!-- Step 8 Half Payment Orders with Sent Messages -->
+                <div class="col-md-12">
+                    <hr>
+                    <table class="table table-striped table-bordered table-hover mb-4">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th colspan="6">STEP-8: Payment Not Complete and Report Not Sent<br>
+                                    Pending Orders
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>SL.</th>
+                                <th>Orders</th>
+                                <th>DateTime</th>
+                                <th>Reports</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for report in sent_message_orders %}
+                            <tr>
+                                <td> {{ forloop.counter }} </td>
+
+                                <td><a href="{% url 'report_processing:single-report-details' report.id %}">
+                                        <b style="color: red">{{ report.approved_order.test_info.test_name }}</b></a>
+                                </td>
+
+                                <td style="color: red">{{ report.datetime }}</td>
+
+                                <td>{{ report.upload_report }}-</td>
+                                <td style="color: red">{{ report.send_message }}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- step-8 Paginator -->
+                    <ul class="pagination mb-0">
+                        <li class="page-item">
+
+                            {% if sent_message_orders.has_previous %}
+                            <a class="page-link" href="?page={{ sent_message_orders.previous_page_number }}"
+                                aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Page {{ sent_message_orders.number }} of
+                                {{ sent_message_orders.paginator.num_pages }}.</a>
+                        </li>
+                        <li class="page-item">
+
+                            {% if sent_message_orders.has_next %}
+
+                            <a class="page-link" href="?page={{ sent_message_orders.next_page_number }}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!-- step-8 Paginator end -->
+                    <br><br>
+                </div>
+                <!-- Step 8 End -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="footer bg-dark text-white text-center py-2">
+        <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
+    </div>
+
+
+
+    <script src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script>
+        $.fakeLoader();
+    </script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

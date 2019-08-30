@@ -1,266 +1,330 @@
 {% load staticfiles %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Dashboard | ODLRS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Staff Dashboard</title>
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and component">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
+    <link href="../../static/css/plugin.css" rel="stylesheet">
+
+
+    <style>
+        .rounded-circle {
+            border: 2px solid white;
+            margin-top: -4px;
+        }
+
+        .admin-icon img {
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-icon a.dropdown-item {
+            transition: all 0.3s ease 0s;
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -ms-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+        }
+
+        .admin-icon a.dropdown-item:hover {
+            padding-left: 35px;
+            color: #3ac47d !important;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- loader -->
-    <div class="fakeLoader"></div>
-    <!-- loader -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand text-warning"
-                href="{% url 'diagnostic_centers:admin-dashboard' admin.username %}"><b>ODLRS</b></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item user-profile">
-                        <a class="nav-link d-flex dropdown-btn" href="#">
-                            <img src="{% static 'images/admin-staff.png' %}" alt="" class="rounded-circle">
-                            <span class=" dropdown-toggle text-white ml-2">Admin</span>
-                        </a>
-
-                        <ul class="dropdown">
-                            <li class="text-center">
-                                <img src="{% static 'images/admin-staff.png' %}" alt="" class="rounded-circle mb-2">
-                                <a href="http://localhost:8000/admin-dashboard/labaid_admin_1">Admin Dashboard</a>
-                            </li>
-                            <div class="dropdown-divider"></div>
-
-                            <li class="dropdown-item">
-                                <a href="{% url 'tests:add-category' admin.username %}">
-                                    Add New Category
-                                </a>
-                            </li>
-                            <li class="dropdown-item">
-                                <a href="{% url 'tests:add-test' admin.username %}">Add New Test</a>
-                            </li>
-                            <li class="dropdown-item">
-                                <a href="{% url 'tests:filtered-categories-by-admin' admin.username %}">
-                                    Recent Categories
-                                </a>
-                            </li>
-                            <li class="dropdown-item">
-                                <a href="{% url 'tests:added-tests-list-staff-admin' admin.username %}">
-                                    Recent Tests
-                                </a>
-                            </li>
-                            <li class="dropdown-item">
-                                <a class="" href="{% url 'diagnostic_centers:admin-logout' %}">Logout</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container inner-content" style="min-height: 520px">
-
-        <div class="staff bg-dark text-white text-center p-4 mb-4">
-            <h1> <strong>Admin Dashboard</strong> </h1>
-
-            <div class="row mt-4 mx-4 py-3 bg-warning text-dark">
-                <div class="col">
-                    <h6 class="text-white mb-0"> <strong class="text-dark">Center Name:</strong>
-                        <b style="color: orangered">{{ admin.center }}</b>
-                    </h6>
-                </div>
-                <div class="col">
-                    <h6 class="text-white mb-0"> <strong class="text-dark">Admin Name:</strong>
-                        <b style="color: orangered">{{ admin.username }}</b>
-                    </h6>
+    <div class="app-container app-theme-white body-tabs-shadow fixed-heade">
+        <div class="app-header header-shadow bg-alternate">
+            <div class="app-header__logo text-white">
+                <div class="logo-src">
+                    <h5><strong>ODRLS</strong></h5>
                 </div>
             </div>
-
-        </div>
-
-
-        <div class="staff-info">
-            <div class="row">
-
-                <!-- Step 7 Completed Orders -->
-                <div class="col-md-12">
-                    <table class="table table-striped table-bordered table-hover mb-4">
-                        <thead>
-                            <tr class="bg-success text-white">
-                                <th colspan="6">Completed Orders</th>
-                            </tr>
-                            <tr>
-                                <th width="15px">No.</th>
-                                <th>Orders</th>
-                                <th>DateTime</th>
-                                <th>Reports</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            {% for report in completed_orders %}
-                            <tr>
-                                <td> {{ forloop.counter }} </td>
-
-                                <td><a href="{% url 'report_processing:single-report-details' report.id %}"><b
-                                            style="color: green">
-                                            {{ report.approved_order.test_info.test_name }}</b></a>
-                                </td>
-
-                                <td style="color: green">{{ report.datetime }}</td>
-
-                                <td style="color: blue">{{ report.upload_report }}</td>
-
-                                <td><b style="color: green">{{ report.send_message }}</b></td>
-                            </tr>
-                            {% endfor %}
-
-                        </tbody>
-                    </table>
-
-                    <!-- completed Paginator -->
-                    <ul class="pagination">
-                        <li class="page-item">
-
-                            {% if completed_orders.has_previous %}
-                            <a class="page-link" href="?page={{ completed_orders.previous_page_number }}"
-                                aria-label="Previous">
-                                <span aria-hidden="false">&laquo;</span>
-                            </a>
-                            {% endif %}
-
+            <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-primar btn-sm mobile-toggle-header-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </span>
+            </div>
+            <div class="app-header__content">
+                <div class="app-header-right">
+                    <ul class="header-menu nav">
+                        <li class="dropdown nav-item">
+                            <a href="{% url 'tests:add-category' admin.username %}" type="button" tabindex="0"
+                                class="nav-link text-white">Add New Category</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Page {{ completed_orders.number }} of
-                                {{ completed_orders.paginator.num_pages }}.</a>
+                        <li class="nav-item">
+                            <a href="{% url 'tests:add-test' admin.username %}" type="button" tabindex="0"
+                                class="nav-link text-white">Add New Test</a>
                         </li>
-                        <li class="page-item">
-
-                            {% if completed_orders.has_next %}
-
-                            <a class="page-link" href="?page={{ completed_orders.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                            {% endif %}
+                        <li class="btn-group nav-item">
+                            <a href="{% url 'tests:filtered-categories-by-admin' admin.username %}" type="button"
+                                tabindex="0" class="nav-link text-white">Recent Categories</a>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a href="{% url 'tests:added-tests-list-staff-admin' admin.username %}" type="button"
+                                tabindex="0" class="nav-link text-white">Recent Tests</a>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a href="{% url 'diagnostic_centers:admin-logout' %}" type="button" tabindex="0"
+                                class="nav-link text-white">Logout</a>
                         </li>
                     </ul>
-                    <!-- completed Paginator -->
-                    <br>
                 </div>
-                <!-- Step 7 End -->
-
-
-                <!-- Staffs Table -->
-                <div class="col-12">
-                    <table class="table table-striped table-bordered table-hover mb-4">
-                        <thead>
-                            <tr class="bg-primary text-white">
-                                <th colspan="2"> Staffs </th>
-                            </tr>
-                            <tr>
-                                <th>SL.</th>
-                                <th>Staffs</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            {% for s in admin.staff.all %}
-                            <tr>
-                                <th>{{ forloop.counter }}</th>
-                                <th>{{ s.username }}</th>
-                            </tr>
-                            {% endfor %}
-
-                        </tbody>
-                    </table>
+            </div>
+            <!-- <div class="logo-src mr-auto">
+                    <h5><strong>ODRLS</strong></h5>
                 </div>
-                <!-- Staffs Table End -->
+                <div class="btn-group float-right">
+                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="text-white p-0 btn">
+                        <img src="{% static 'images/admin-staff.png' %}" alt="" class="rounded-circle mr-2"
+                            height="25px">
+                        Admin
+                        <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                    </a>
+                    <div tabindex="-1" role="menu" aria-hidden="true"
+                        class="dropdown-menu dropdown-menu-right admin-icon">
+                        <li class="text-center pt-3 pb-2">
+                            <img src="{% static 'images/admin-staff.png' %}" alt="" class="rounded-circle mb-2"
+                                height="25px"> <br>
+                            <a href="http://localhost:8000/admin-dashboard/labaid_admin_1" class="text-success">Admin
+                                Dashboard</a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'tests:add-category' admin.username %}" type="button" tabindex="0"
+                            class="dropdown-item">Add New Category</a>
+                        <a href="{% url 'tests:add-test' admin.username %}" type="button" tabindex="0"
+                            class="dropdown-item">Add New Test</a>
+                        <a href="{% url 'tests:filtered-categories-by-admin' admin.username %}" type="button"
+                            tabindex="0" class="dropdown-item">Recent Categories</a>
+                        <a href="{% url 'tests:added-tests-list-staff-admin' admin.username %}" type="button"
+                            tabindex="0" class="dropdown-item">Recent Tests</a>
+                        <a href="{% url 'diagnostic_centers:admin-logout' %}" type="button" tabindex="0"
+                            class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-primar btn-sm mobile-toggle-header-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </span>
+            </div> -->
+        </div>
+        <div class="app-main">
+            <div class="app-main__outer">
+                <div class="app-main__inner text-dark">
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content ">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading text-primary">Center Name</div>
+                                            <div class="widget-subheading">{{ admin.center }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading text-success">Admin Name</div>
+                                            <div class="widget-subheading">{{ admin.username }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading text-danger">Staff Name:</div>
+                                            <div class="widget-subheading">
+                                                {% for s in admin.staff.all %}
+                                                {{ s.username }},
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header bg-success text-white">
+                                    STEP-7: Payment Complete and Report Sent
+                                    <span class="ml-2">Completed
+                                        Orders</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" width="20px">NO.</th>
+                                                <th>Orders</th>
+                                                <th>DateTime</th>
+                                                <th>Reports</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for report in completed_orders %}
+                                            <tr>
+                                                <td class="text-center text-muted">{{ forloop.counter }}</td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">
+
+                                                                    <a class="text-dark"
+                                                                        href="{% url 'report_processing:single-report-details' report.id %}">
+                                                                        {{ report.approved_order.test_info.test_name }}
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">
+
+                                                                    <div class="widget-heading text-primar">
+                                                                        {{report.datetime}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">
+                                                                    <div class="widget-heading text-primar">
+                                                                        {{ report.upload_report }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">
+                                                                    <div class="widget-heading text-primar">
+                                                                        {{ report.send_message }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <div class="d-block text-center card-footer">
+                                        <ul class="pagination mb-0">
+                                            <li class="page-item">
+
+                                                {% if completed_orders.has_previous %}
+                                                <a class="page-link"
+                                                    href="?page={{ completed_orders.previous_page_number }}"
+                                                    aria-label="Previous">
+                                                    <span aria-hidden="false">&laquo;</span>
+                                                </a>
+                                                {% endif %}
+
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">Page {{ completed_orders.number }} of
+                                                    {{ completed_orders.paginator.num_pages }}.</a>
+                                            </li>
+                                            <li class="page-item">
+
+                                                {% if completed_orders.has_next %}
+
+                                                <a class="page-link"
+                                                    href="?page={{ completed_orders.next_page_number }}"
+                                                    aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="app-wrapper-footer">
+                    <div class="app-footer">
+                        <div class="app-footer__inner">
+                            <div class="w-100 text-center">
+                                Developed By <span class="text-primary">Abdullah Al Galid & Sohanur Rahman</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
-
-
-    <div class="footer bg-dark text-white text-center py-2">
-        <p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
-    </div>
-
-
-
-
-    <!-- <h1>Admin Dashboard</h1>
-    <hr>
-{#    <button type="submit"><b style="color: red"><a href="{% url 'tests:add-test' %}">Add New Test</a></b></button>#}
-    <br><br>
-{#    <button type="submit"><a href="{% url 'tests:all-tests-list-staff-admin' %}"><b>Newly Added Tests</b></a></button>#}
-    <br><br>
-{#    <button type="submit"><a href="{% url 'diagnostic_centers:admin-logout' %}"><b>Logout</b></a></button>#}
-    <hr>
-{#    <h3>Center Name: <b style="color: blue">{{ admin.center }}</b></h3>#}
-{#    <h3>Admin Name: <b style="color: blue">{{ admin.username }}</b></h3>#}
-    <hr>
-
-    <br> -->
-
-    <!-- <table style="width: 50%" border="1px">
-        <tr><b style="color: forestgreen">Staffs:</b></tr>
-        <tr>
-            <th>#</th>
-            <th>Staff</th>
-        </tr>
-        {% for s in admin.staff.all %}
-        <tr>
-            <th scope="row" style="color: blue">{{ forloop.counter }}</th>
-            <th style="color: blue">{{ s.username }}</th>
-        </tr>
-        {% endfor %}
-    </table>
-    <br>
-    <hr>
-    <h3 style="color: forestgreen">Active Orders</h3>
-
-    {% for test in confirmed_tests %}
-
-    <li><a href="{% url 'tests:order-details' test.id %}">{{ test.test_info.test_name }}</a></li><br>
-
-    {% endfor %} -->
 
 
     <script src="{% static 'js/fakeLoader.min.js' %}"></script>
     <script>
         $.fakeLoader();
     </script>
-    <script>
-        $(document).ready(function () {
-            $(".dropdown-btn").click(function () {
-                $('.dropdown').toggle();
-            });
-        });
-    </script>
 
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-
+    <script src="../../static/js/plugin.js"></script>
 </body>
 
 </html>
