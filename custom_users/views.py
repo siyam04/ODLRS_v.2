@@ -41,7 +41,6 @@ def profile(request, template_name='account/custom_users/profile.html'):
 
 @login_required()
 def profile_edit(request, template_name='account/custom_users/profile_edit.html'):
-
     existing_profile = get_object_or_404(Profile, user=request.user)
     profile_form = ProfileUpdateForm(instance=existing_profile)
 
@@ -55,7 +54,6 @@ def profile_edit(request, template_name='account/custom_users/profile_edit.html'
             messages.success(request, 'Profile Updated for {}'.format(request.user.username), extra_tags='html_safe')
             # return redirect('custom_users:profile')
             return redirect('custom_users:orders-by-user')
-
 
     context = {
         'profile_form': profile_form,
@@ -100,7 +98,6 @@ def filtered_report(request, id=None):
     filtered_reports_paginator = paginator.get_page(page)
 
     template = 'account/custom_users/filtered_reports.html'
-    # template = 'account/custom_users/orders_by_user.html'
 
     context = {'filtered_reports': filtered_reports_paginator}
 

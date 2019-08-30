@@ -53,10 +53,8 @@ INSTALLED_APPS = [
 
     # Google Auth
     'allauth.socialaccount.providers.google',
-
     # Facebook Auth
     # 'allauth.socialaccount.providers.facebook',
-
     # GitHub Auth
     # 'allauth.socialaccount.providers.github',
 

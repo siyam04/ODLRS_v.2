@@ -157,15 +157,23 @@
                                     <a href="{% url 'home' %}" class="btn btn-warning w-100">Back to Home
                                     </a>
                                 </div>
-                                {% endif %}
-                                {% if report_details.approved_order.payment_type == 'Half Payment' %}
-                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    {% if report_details.approved_order.payment_type == 'Half Payment' %}
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
                                     <a class="btn btn-success w-100"
                                         href="{% url 'report_processing:complete-due-payment' report_details.approved_order.id report_details.id %}">
                                         CompletePayment
                                     </a>
-                                </div>
+                                    </div>
+                                    {% endif %}
                                 {% endif %}
+{#                                {% if report_details.approved_order.payment_type == 'Half Payment' %}#}
+{#                                <div class="col-xs-12 col-sm-6 col-md-6">#}
+{#                                    <a class="btn btn-success w-100"#}
+{#                                        href="{% url 'report_processing:complete-due-payment' report_details.approved_order.id report_details.id %}">#}
+{#                                        CompletePayment#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                {% endif %}#}
                             </div>
 
                         </div>

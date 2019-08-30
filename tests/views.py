@@ -64,46 +64,31 @@ def test_details(request, id=id):
 
 @login_required
 def test_order(request, id=None):
-
     try:
         current_profile = Profile.objects.get(user=request.user)
-
         email = current_profile.user.email
         contact_no = current_profile.contact_no
         address = current_profile.address
-
         initial_data = {
-            # 'client_info': current_profile,
-            # 'test_info': current_test,
             'email':email,
             'contact_no': contact_no,
             'address':address
-
         }
-
     except:
         return redirect('account_login')
-
     if request.method == 'POST':
         test_order_form = TestOrderForm(request.POST)
-
         if test_order_form.is_valid():
             order = test_order_form.save(commit=False)
-
             order.client_info = Profile.objects.get(user=request.user)
             order.test_info = Test.objects.get(id=id)
-
             order.save()
-
             return redirect('tests:order-details', id=order.id)
-
     context = {
         'test_order_form': TestOrderForm(initial=initial_data),
         'test_id': id,
     }
-
     template = 'tests/order.html'
-
     return render(request, template, context)
 
 ########################################################################################
@@ -161,7 +146,6 @@ def add_test_by_admin(request, username=None):
 
             add_test.save()
 
-            # return redirect('tests:all-tests-list-staff-admin')
             return redirect('tests:added-tests-list-staff-admin', username)
 
     else:

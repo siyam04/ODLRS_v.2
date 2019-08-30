@@ -13,31 +13,23 @@ from .forms import PaymentValidationForm
 
 def all_reports(request):
     all_reports_query = PaymentValidation.objects.all()
-
-    # All reports Paginator
     paginator = Paginator(all_reports_query, 5)
     page = request.GET.get('page')
     all_reports_paginator = paginator.get_page(page)
-
     template = 'report_processing/all_reports.html'
-
     context = {'all_reports_query': all_reports_paginator}
 
     return render(request, template, context)
 
 ########################################################################################################################
 
-
 def single_report_details(request, id=None):
     report_details = PaymentValidation.objects.get(id=id)
-
     total_price = int(report_details.approved_order.test_info.price - report_details.approved_order.test_info.discount)
-
     due_price = int(
         (report_details.approved_order.test_info.price - report_details.approved_order.test_info.discount) / 2)
 
     template = 'report_processing/single_report_details.html'
-
     context = {
         'report_details': report_details,
         'total_price': total_price,

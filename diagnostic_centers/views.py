@@ -32,7 +32,7 @@ def search_paginator(request):
     page = request.GET.get('page')
     all_centers = paginator.get_page(page)
 
-    context = {"Centers": all_centers,}
+    context = {'Centers': all_centers,}
     template_name = 'diagnostic_centers/all_centers.html'
 
     return render(request, template_name, context)
@@ -50,7 +50,6 @@ def admin_login(request):
 
         try:
             DiagnosticAdmin.objects.get(username=username, password=password)
-            # messages.success(request, 'Login Successful for {}'.format(username), extra_tags='html_safe')
             return redirect('diagnostic_centers:admin-dashboard', username)
 
         except DiagnosticAdmin.DoesNotExist:
@@ -67,13 +66,8 @@ def admin_login(request):
 
 
 def admin_dashboard(request, username=None):
-    # pending_staff_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center).order_by('-id')
-    # confirmed_tests = TestOrder.objects.filter(accepted=True, test_info__center=admin.center).order_by('-id')
-
     admin = DiagnosticAdmin.objects.get(username=username)
-
     validated_orders = TestOrder.objects.filter(accepted=True, validation=True, test_info__center=admin.center)
-
     completed_orders = PaymentValidation.objects.filter(approved_order__payment_type='Full Payment')
 
     # Completed Paginator
@@ -81,15 +75,10 @@ def admin_dashboard(request, username=None):
     page = request.GET.get('page')
     completed_orders_paginator_data = paginator.get_page(page)
 
-    # paginator = Paginator(validated_orders, 5)
-    # page = request.GET.get('page')
-    # paginator_data = paginator.get_page(page)
-
     template = 'diagnostic_centers/admin_dashboard.html'
 
     context = {
         'admin': admin,
-        # 'confirmed_tests': paginator_data,
         'completed_orders': completed_orders_paginator_data
     }
 
@@ -100,7 +89,7 @@ def admin_dashboard(request, username=None):
 
 
 def admin_logout(request):
-    # messages.success(request, 'Logged Out.', extra_tags='html_safe')
+    messages.success(request, 'Logged Out.', extra_tags='html_safe')
     return redirect('diagnostic_centers:admin-login')
 
 
