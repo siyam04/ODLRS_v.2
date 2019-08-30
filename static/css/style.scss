@@ -561,28 +561,61 @@ p {
 }
 
 .card-footer {
-  width: 85%;
-  text-align: center;
-  margin: auto;
-  border: 0;
-  background: $darkgreen;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  border-radius: 8px 8px 0 0 !important;
-  -webkit-border-radius: 8px 8px 0 0 !important;
-  -moz-border-radius: 8px 8px 0 0 !important;
-  -ms-border-radius: 8px 8px 0 0 !important;
-  -o-border-radius: 8px 8px 0 0 !important;
+  // width: 85%;
+  // text-align: center;
+  // margin: auto;
+  // border: 0;
+  // background: $darkgreen;
+  // box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  // border-radius: 8px 8px 0 0 !important;
+  // -webkit-border-radius: 8px 8px 0 0 !important;
+  // -moz-border-radius: 8px 8px 0 0 !important;
+  // -ms-border-radius: 8px 8px 0 0 !important;
+  // -o-border-radius: 8px 8px 0 0 !important;
+}
+
+.boxx1 {
+  border: 0.5px solid #328691;
+  color: #328691;
+  padding: 6px;
+  margin-bottom: 12px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+
+  span {
+    font-size: 13px;
+    font-weight: 500;
+
+    a {
+      color: #328691;
+    }
+  }
+}
+
+.boxx2 {
+  span {
+    font-size: 13px;
+
+    a {
+      color: black;
+    }
+  }
 }
 
 .login-btn {
   color: white;
   background: linear-gradient(45deg, #63d5da, #8962f0, #e839f4);
   border: 0;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
+  text-transform: uppercase;
+  font-size: 14px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -619,6 +652,7 @@ p {
 }
 
 .report {
+
   p,
   a,
   td {
