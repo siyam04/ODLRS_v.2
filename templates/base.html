@@ -117,7 +117,21 @@
 	{% block content %} {% endblock %} {% block extra_body %} {% endblock %}
 
 	<div class="footer text-white text-center py-3">
-		<p class="mb-0"> &copy; Copyrights 2019. All rights reserved. </p>
+		<div class="w-100 text-center d-flex justify-content-center">
+			<div class="d-box"> Developed By</div>
+			<div class="d-box px-2">
+				<a class="text-white" href="https://www.linkedin.com/in/abdullah-al-galib" target="_blank"
+					data-toggle="tooltip" data-placement="top" title="Abdullah Al Galib">"Galib"</a>
+				and
+			</div>
+
+			<div class="d-box">
+				<a class="text-white" href="https://www.linkedin.com/in/sohanoor" target="_blank" data-toggle="tooltip"
+					data-placement="top" title="Sohanur Rahman">
+					"Sohanur"
+				</a>
+			</div>
+		</div>
 	</div>
 
 
@@ -130,6 +144,9 @@
 	<script src="{% static 'js/fakeLoader.min.js' %}"></script>
 	<script>
 		$.fakeLoader();
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
 	</script>
 	<script>
 		$(document).ready(function () {
@@ -138,7 +155,9 @@
 			});
 		});
 	</script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
 </body>
