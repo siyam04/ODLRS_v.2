@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Staff Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
@@ -23,32 +23,6 @@
     <link href="../../static/css/plugin.css" rel="stylesheet">
 
 
-    <style>
-        .rounded-circle {
-            border: 2px solid white;
-            margin-top: -4px;
-        }
-
-        .admin-icon img {
-            width: 50px;
-            height: 50px;
-            border: 2px solid white;
-            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .admin-icon a.dropdown-item {
-            transition: all 0.3s ease 0s;
-            -webkit-transition: all 0.3s ease 0s;
-            -moz-transition: all 0.3s ease 0s;
-            -ms-transition: all 0.3s ease 0s;
-            -o-transition: all 0.3s ease 0s;
-        }
-
-        .admin-icon a.dropdown-item:hover {
-            padding-left: 35px;
-            color: #3ac47d !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -74,23 +48,23 @@
                 <div class="app-header-right">
                     <ul class="header-menu nav">
                         <li class="dropdown nav-item">
-                            <a href="{% url 'tests:add-category' admin.username %}" type="button" tabindex="0"
+                            <a href="{% url 'tests:add-category' admin.username %}" tabindex="0"
                                 class="nav-link text-white">Add New Category</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'tests:add-test' admin.username %}" type="button" tabindex="0"
+                            <a href="{% url 'tests:add-test' admin.username %}" tabindex="0"
                                 class="nav-link text-white">Add New Test</a>
                         </li>
                         <li class="btn-group nav-item">
-                            <a href="{% url 'tests:filtered-categories-by-admin' admin.username %}" type="button"
-                                tabindex="0" class="nav-link text-white">Recent Categories</a>
+                            <a href="{% url 'tests:filtered-categories-by-admin' admin.username %}" tabindex="0"
+                                class="nav-link text-white">Recent Categories</a>
                         </li>
                         <li class="dropdown nav-item">
-                            <a href="{% url 'tests:added-tests-list-staff-admin' admin.username %}" type="button"
-                                tabindex="0" class="nav-link text-white">Recent Tests</a>
+                            <a href="{% url 'tests:added-tests-list-staff-admin' admin.username %}" tabindex="0"
+                                class="nav-link text-white">Recent Tests</a>
                         </li>
                         <li class="dropdown nav-item">
-                            <a href="{% url 'diagnostic_centers:admin-logout' %}" type="button" tabindex="0"
+                            <a href="{% url 'diagnostic_centers:admin-logout' %}" tabindex="0"
                                 class="nav-link text-white">Logout</a>
                         </li>
                     </ul>
@@ -264,7 +238,7 @@
                     <div class="app-footer">
                         <div class="app-footer__inner">
                             <div class="w-100 text-center">
-                                Developed By <span class="text-primary">Abdullah Al Galid & Sohanur Rahman</span>
+                                Developed By <span class="text-primary"> Galib and Sohanur </span>
                             </div>
                         </div>
                     </div>
