@@ -96,8 +96,8 @@ class TestOrder(models.Model):
         verbose_name_plural = 'Test Orders'
 
     # ToDo: Solve object name ERROR (linked to 'PaymentValidation' model)
-    def __str__(self):
-        return self.test_info.test_name
+    # def __str__(self):
+        # return self.test_info.test_name
 
 
 

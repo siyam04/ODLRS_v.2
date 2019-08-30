@@ -17,8 +17,8 @@ class PaymentValidation(models.Model):
         ordering = ['-id']
 
     # ToDo: Solve object name ERROR (linked to 'TestOrder' model)
-    def __str__(self):
-        return self.approved_order.test_info.test_name
+    # def __str__(self):
+        # return self.approved_order.test_info.test_name
 
 
 

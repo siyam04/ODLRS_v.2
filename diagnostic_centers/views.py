@@ -129,6 +129,7 @@ def staff_dashboard(request, id=None, username=None):
     # Step 0
     pending_tests = TestOrder.objects.filter(accepted=False, order_confirmed=True, staff_check=False,
                                              test_info__center=staff.center)
+
     # Step 1
     confirmed_tests = TestOrder.objects.filter(accepted=True, order_confirmed=True, test_info__center=staff.center)
 
@@ -147,6 +148,14 @@ def staff_dashboard(request, id=None, username=None):
 
     # Step 8
     sent_message_orders = PaymentValidation.objects.filter(approved_order__payment_type='Half Payment')
+
+    """Counting"""
+    count_pending_tests = pending_tests.count()
+    count_confirmed_tests = confirmed_tests.count()
+    count_came_for_tests = came_for_tests.count()
+    count_half_payment_orders = half_payment_orders.count()
+    count_full_payment_orders = full_payment_orders.count()
+    count_completed_orders = completed_orders.count()
 
     # Pending Orders Paginator
     paginator = Paginator(pending_tests, 5)
@@ -220,6 +229,14 @@ def staff_dashboard(request, id=None, username=None):
         'staff_username': username,
         'payment_form': PaymentValidationForm(),
 
+        # counting
+        'count_pending_tests': count_pending_tests,
+        'count_confirmed_tests': count_confirmed_tests,
+        'count_came_for_tests': count_came_for_tests,
+        'count_half_payment_orders': count_half_payment_orders,
+        'count_full_payment_orders': count_full_payment_orders,
+        'count_completed_orders': count_completed_orders,
+
     }
 
     return render(request, template, context)
@@ -248,6 +265,7 @@ def center_details(request, id=id):
     return render(request, template, context)
 
 ########################################################################################################################
+
 
 
 

@@ -377,3 +377,20 @@ def came_for_test(request, id=None, username=None):
 
 ########################################################################################
 
+
+def total_test_count_center_staff(request, id=None):
+
+    order_count = TestOrder.objects.filter(test_info__center=id).count()
+
+    template = 'tests/total_test_count/total_test_count_center_staff.html'
+
+    context = {
+
+        'order_count': order_count,
+    }
+
+    return render(request, template, context)
+
+########################################################################################
+
+

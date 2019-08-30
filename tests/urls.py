@@ -32,6 +32,8 @@ from .views import (
 
     came_for_test,
 
+    total_test_count_center_staff,
+
 )
 
 
@@ -81,6 +83,8 @@ urlpatterns = [
     path('staff-confirm-payment-message/<int:id>/<username>/', confirm_payment_message, name='staff-confirm-payment-message'),
 
     path('came-for-test/<int:id>/<username>/', came_for_test, name='came-for-test'),
+
+    path('total-test-count-center-staff/<int:id>/', total_test_count_center_staff, name='total-test-count-center-staff'),
 
 
 ]
