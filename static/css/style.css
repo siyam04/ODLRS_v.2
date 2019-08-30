@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600i,700|Roboto:300,400,500,700&display=swap");
-
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   scroll-behavior: smooth;
 }
@@ -55,13 +54,13 @@ body {
 .btn:focus {
   outline: none;
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
 }
 
 nav.navbar {
   background: transparent;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   z-index: 99999;
@@ -93,7 +92,7 @@ nav.navbar .user-profile ul.dropdown {
   top: 57px;
   right: 119px;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   display: none;
 }
 
@@ -107,11 +106,8 @@ nav.navbar .user-profile ul.dropdown li.dropdown-item {
 }
 
 nav.navbar .user-profile ul.dropdown li.dropdown-item a {
-  transition: all 0.3s ease 0s;
   -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -ms-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 
 nav.navbar .user-profile ul.dropdown li.dropdown-item a:hover {
@@ -130,7 +126,7 @@ nav.navbar .user-profile ul.dropdown li img {
   height: 50px;
   margin-bottom: 0;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 nav.navbar .user-profile ul.dropdown li a {
@@ -224,7 +220,7 @@ p {
 .test-box .card-title {
   margin-bottom: 0;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -245,7 +241,7 @@ p {
   width: 90%;
   min-height: 150px;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin: auto;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -320,7 +316,7 @@ p {
 
 .login-bg .card {
   -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-bg .log-box {
@@ -386,7 +382,7 @@ p {
 .login-bg .log-box .login input:focus {
   background: transparent;
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
   outline: none;
 }
 
@@ -433,7 +429,7 @@ p {
 .login-bg .log-box .signup input:focus {
   background: transparent;
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
   outline: none;
 }
 
@@ -471,7 +467,7 @@ p {
 .login-bg .card-form input:focus {
   background: transparent;
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
   outline: none;
 }
 
@@ -504,7 +500,7 @@ p {
 
 .login-bg .card-form .custom-select:focus {
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
   outline: none;
 }
 
@@ -526,13 +522,13 @@ p {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
 }
 
 .login-bg .card-form .card-body .for-date-time p:nth-child(8) label {
   -ms-grid-column: 1;
-  grid-column-start: 1;
+      grid-column-start: 1;
   grid-column-end: 4;
 }
 
@@ -617,7 +613,7 @@ p {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   -webkit-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .list-group {
@@ -642,7 +638,7 @@ p {
 .profile-bg img {
   border: 5px solid white;
   -webkit-box-shadow: 0 0 3px rgba(12, 6, 41, 0.3);
-  box-shadow: 0 0 3px rgba(12, 6, 41, 0.3);
+          box-shadow: 0 0 3px rgba(12, 6, 41, 0.3);
 }
 
 .order-table a {
@@ -662,13 +658,14 @@ p {
   height: 100%;
   margin: auto;
   position: relative;
+  z-index: 999999999999;
 }
 
 .single-reports .card,
 .card-width .card {
   border: 0;
   -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .single-reports .card .alert a,
@@ -710,5 +707,4 @@ p {
   position: relative;
   z-index: 11;
 }
-
 /*# sourceMappingURL=style.css.map */

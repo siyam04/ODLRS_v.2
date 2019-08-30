@@ -15,6 +15,9 @@
     <meta name="description" content="This is an example dashboard created using build-in elements and component">
     <meta name="msapplication-tap-highlight" content="no">
 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
     <link href="../../static/css/plugin.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="../../static/fonts/"> -->
 </head>
@@ -960,21 +963,11 @@
             </div>
         </div>
     </div>
-    <script src="../../static/js/plugin.js"></script>
     <script src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script src="../../static/js/plugin.js"></script>
     <script>
         $.fakeLoader();
     </script>
-    <script>
-        $(document).ready(function () {
-            $(".dropdown-btn").click(function () {
-                $('.dropdown').toggle();
-            });
-        });
-    </script>
-
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

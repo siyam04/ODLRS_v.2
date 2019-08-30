@@ -666,6 +666,7 @@ p {
   height: 100%;
   margin: auto;
   position: relative;
+  z-index: 999999999999;
 
   .card {
     border: 0;
