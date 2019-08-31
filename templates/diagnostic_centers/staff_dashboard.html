@@ -17,8 +17,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
     <script src="{% static 'js/jquery.min.js' %}"></script>
-
-    <link href="../../static/css/plugin.css" rel="stylesheet">
+    <link href="{% static  'css/plugin.css' %}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="../../static/fonts/"> -->
 </head>
 
@@ -129,10 +128,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-xl-2">
-                            <div class="card mb-3 widget-content bg-midnight-bloom">
+                            <div class="card mb-3 widget-content bg-dark">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Total Orders</div>
+                                        <div class="widget-heading">Pending Orders</div>
                                         <!-- <div class="widget-subheading">Last year expenses</div> -->
                                     </div>
                                     <div class="widget-content-right">
@@ -143,7 +142,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-2">
-                            <div class="card mb-3 widget-content bg-info">
+                            <div class="card mb-3 widget-content bg-success">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Confirmed Orders</div>
@@ -157,7 +156,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-2">
-                            <div class="card mb-3 widget-content bg-success">
+                            <div class="card mb-3 widget-content bg-primary">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">HALF Paid Orders</div>
@@ -963,11 +962,12 @@
             </div>
         </div>
     </div>
-    <script src="{% static 'js/fakeLoader.min.js' %}"></script>
-    <script src="../../static/js/plugin.js"></script>
+
     <script>
         $.fakeLoader();
     </script>
+    <script src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script src="{% static 'js/js/plugin.js' %}"></script>
 </body>
 
 </html>

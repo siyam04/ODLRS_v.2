@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
     <script src="{% static 'js/jquery.min.js' %}"></script>
 
-    <link href="../../static/css/plugin.css" rel="stylesheet">
+    <link href="{% static  'css/plugin.css' %}" rel="stylesheet">
 
 
 </head>
@@ -29,6 +29,7 @@
     <!-- loader -->
     <div class="fakeLoader"></div>
     <!-- loader -->
+
     <div class="app-container app-theme-white body-tabs-shadow fixed-heade">
         <div class="app-header header-shadow bg-alternate">
             <div class="app-header__logo text-white">
@@ -266,7 +267,7 @@
 
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="../../static/js/plugin.js"></script>
+    <script src="{% static 'js/js/plugin.js' %}"></script>
 </body>
 
 </html>
