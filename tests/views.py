@@ -23,7 +23,14 @@ def all_tests(request, template_name='tests/all_tests.html'):
     if query:
         all_test_list = all_test_list.filter(Q(test_name__icontains=query)).distinct()
 
-    context = {'all_test_list': all_test_list}
+    paginator = Paginator(all_test_list, 12)
+    page = request.GET.get('page')
+    all_test_paginator_data = paginator.get_page(page)
+
+    context = {
+        'all_test_list': all_test_list,
+        'all_test_paginator_data': all_test_paginator_data,
+    }
 
     return render(request, template_name, context)
 

@@ -27,7 +27,7 @@
 
     <div class="row">
 
-        {% for test in all_test_list %}
+        {% for test in all_test_paginator_data %}
         <div class="col-3">
             <div class="card test-box">
                 <div class="card-title">
@@ -71,6 +71,33 @@
             </div>
         </div>
         {% endfor %}
+
+        <!-- All tests Paginator -->
+            <ul class="pagination">
+                <li class="page-item">
+
+                    {% if all_test_paginator_data.has_previous %}
+                    <a class="page-link" href="?page={{ all_test_paginator_data.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="false">&laquo;</span>
+                    </a>
+                    {% endif %}
+
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Page {{ all_test_paginator_data.number }} of
+                        {{ all_test_paginator_data.paginator.num_pages }}.</a>
+                </li>
+                <li class="page-item">
+
+                    {% if all_test_paginator_data.has_next %}
+
+                    <a class="page-link" href="?page={{ all_test_paginator_data.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    {% endif %}
+                </li>
+            </ul>
+            <!-- All tests Paginator -->
 
     </div>
 </div>

@@ -22,7 +22,8 @@ class DiagnosticCenterAdmin(admin.ModelAdmin):
 
 
 class DiagnosticAdminAdmin(admin.ModelAdmin):
-    list_display = ['id', 'username', 'password', 'center']
+    # list_display = ['id', 'username', 'password', 'center']
+    list_display = ['id', 'username', 'center']
     list_display_links = ['username']
     list_filter = ['username', 'center']
     search_fields = ['id', 'username', 'center']
@@ -30,7 +31,8 @@ class DiagnosticAdminAdmin(admin.ModelAdmin):
 
 
 class DiagnosticStaffAdmin(admin.ModelAdmin):
-    list_display = ['id', 'username', 'password', 'center']
+    # list_display = ['id', 'username', 'password', 'center']
+    list_display = ['id', 'username', 'center']
     list_display_links = ['username']
     list_filter = ['username', 'center']
     search_fields = ['id', 'username', 'center']
