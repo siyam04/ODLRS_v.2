@@ -9,14 +9,16 @@
 
     <title>Categories-Admin | ODLRS</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> -->
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <link href="{% static  'css/plugin.css' %}" rel="stylesheet">
 </head>
 
 <body class="common-">
@@ -63,7 +65,7 @@
         <div class="row">
 
             {% for category in added_categories_admin %}
-            <div class="col-3">
+            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-3">
                 <div class="card mb-4">
 
                     <div class="card-body">
@@ -74,24 +76,25 @@
 
                     </div>
 
-                    <!-- Delete -->
-                    <a href="{% url 'tests:delete-category' category.id admin.username %}">
-                        <button type="submit" class="btn btn-danger">DELETE</button>
-                        <br><br>
-                    </a>
-                    <!-- Delete -->
-                    {##}
-                    <!-- Edit -->
-                    <a href="{% url 'tests:edit-category' category.id admin.username %}"><button type="submit"
-                            class="btn btn-warning">
-                            EDIT</button>
-                    </a>
-                    <!-- Edit -->
+                    <div class="card-footer filter-category bg-secondar text-center">
+                        <div class="btn-group">
+                            <!-- Delete -->
+                            <a href="{% url 'tests:delete-category' category.id admin.username %}"
+                                class="btn btn-danger btn-sm">DELETE
+                            </a>
+                            <!-- Delete -->
+
+                            <!-- Edit -->
+                            <a href="{% url 'tests:edit-category' category.id admin.username %}"
+                                class="btn btn-warning btn-sm">
+                                EDIT
+                            </a>
+                            <!-- Edit -->
+                        </div>
+                    </div>
                 </div>
             </div>
             {% endfor %}
-            <br><br>
-
         </div>
     </div>
 
