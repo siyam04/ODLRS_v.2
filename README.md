@@ -20,8 +20,8 @@
 * PATHs:
   1. System Admin Dashboard: http://127.0.0.1:8000/admin/ (default)
   2. Homepage: http://127.0.0.1:8000/
-  3. Diagnostic Admin Login: http://127.0.0.1:8000/admin-login/ (Username = labaid_admin_1, Password = labad1-321) Sample for Labaid.
-  4. Diagnostic Staff Login: http://127.0.0.1:8000/staff-login/ (Username = labaid_staff_1, Password = labst1-321) Sample for Labaid.
+  3. Diagnostic Admin Login: http://127.0.0.1:8000/admin-login/ (Username = labaid_admin_1, Password = labad1-321)
+  4. Diagnostic Staff Login: http://127.0.0.1:8000/staff-login/ (Username = labaid_staff_1, Password = labst1-321)
 
 ## Special Thanks to:
 * Ahsan.    https://www.facebook.com/ahredoan
