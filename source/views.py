@@ -32,4 +32,8 @@ def home(request):
 ########################################################################################
 
 
+class DevelopersView(TemplateView):
+    template_name = 'developers.html'
+
+
 

@@ -80,10 +80,12 @@
     </div>
 
     <div class="footer text-white text-center bg-dark py-3" style="position: relative">
-        <p class="mb-0">Developed By <a href="https://www.linkedin.com/in/abdullah-al-galib" target="_blank">Galib</a>
-            and <a href="https://www.linkedin.com/in/sohanoor" target="_blank">Sohanur</a>
-        </p>
+        <div class="d-box px-2">
+            <a class="text-white" href="{% url 'developers' %}" target="_blank"
+               data-toggle="tooltip" data-placement="top" title="About Developers">About Developers</a>
+        </div>
     </div>
+
 
     <script src="{% static 'js/fakeLoader.min.js' %}"></script>
     <script>

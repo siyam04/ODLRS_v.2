@@ -4,8 +4,8 @@ from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
 
-# from .views import HomeView
 from .views import home
+from .views import DevelopersView
 
 
 urlpatterns = [
@@ -31,6 +31,9 @@ urlpatterns = [
 
     # Allauth (built-in)
     path('accounts/', include('allauth.urls')),
+
+    # Developers
+    path('developers/', DevelopersView.as_view(), name='developers'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
