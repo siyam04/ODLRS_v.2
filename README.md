@@ -30,12 +30,14 @@
 * Masud.    https://www.facebook.com/masudmorshed6
 * Rahi.     https://www.facebook.com/icerahi
 * Mohaimin. https://www.facebook.com/python.m
+* Rumi.     https://www.facebook.com/rumimanzurul.hoque
 
 ## Homepage
-![Home](https://user-images.githubusercontent.com/23103980/64064349-db7e8600-cc21-11e9-959a-5523e8a6e0ed.png)
+![Home](https://user-images.githubusercontent.com/23103980/64068231-35e60980-cc57-11e9-94c0-063a1752a4fa.png)
 
 ## Diagnostic Staff Dashboard
-![Staff Dashboard](https://user-images.githubusercontent.com/23103980/64064395-a9b9ef00-cc22-11e9-9136-f55c12a051e5.png)
+![Staff Dashboard](https://user-images.githubusercontent.com/23103980/64068244-5615c880-cc57-11e9-9f4e-c6fc9471d8f1.png)
 
 ## Diagnostic Admin Dashboard
-![Admin Dashboard](https://user-images.githubusercontent.com/23103980/64064396-b0486680-cc22-11e9-9c9f-de765fe9720d.png)
+![Completed Orders Admin](https://user-images.githubusercontent.com/23103980/64068249-6168f400-cc57-11e9-8741-ead7ef8153fd.png)
+
