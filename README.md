@@ -1,5 +1,5 @@
 # Diagnostic Lab Reporting System.
-* Live: 
+* Live: https://odl-v2.herokuapp.com/
 * Developed By Django Web Framework (version: 2.2 Lts).
  
 ## Instructions (Windows 10x64):
