@@ -80,6 +80,10 @@ nav.navbar ul li a {
   outline: none;
 }
 
+nav.navbar .user-profile {
+  position: relative;
+}
+
 nav.navbar .user-profile img {
   width: 25px;
   height: 25px;
@@ -94,8 +98,8 @@ nav.navbar .user-profile ul.dropdown {
   border-radius: 3px;
   width: 180px;
   position: absolute;
-  top: 57px;
-  right: 119px;
+  top: 40px;
+  right: 0px;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   display: none;
@@ -733,6 +737,12 @@ p {
   }
 }
 
+@media (min-width: 576px) and (max-width: 991px) {
+  .user-profile ul.dropdown {
+    left: 0;
+  }
+}
+
 @media (max-width: 575px) {
   .welcome .search-box {
     padding: 15px 0;
@@ -751,6 +761,9 @@ p {
 @media (min-width: 415px) and (max-width: 575px) {
   .login-bg .log-box {
     width: 70%;
+  }
+  .user-profile ul.dropdown {
+    left: 0;
   }
 }
 
@@ -772,21 +785,21 @@ p {
   .header-image .header-content a {
     font-size: 14px;
   }
-  .navbar-nav {
-    text-align: center;
-  }
-  .navbar-nav li {
+  .navbar-nav li.nav-item {
     border-bottom: 1px solid #31808a;
   }
-  .navbar-nav li:last-child {
+  .navbar-nav li.nav-item:last-child {
     border-bottom: 0;
   }
-  .navbar-nav li:first-child {
+  .navbar-nav li.nav-item:first-child {
     border-top: 1px solid #31808a;
   }
-  .navbar-nav li a {
+  .navbar-nav li.nav-item a.nav-link {
     text-transform: uppercase;
     font-size: 13px !important;
+  }
+  .navbar-nav .user-profile ul.dropdown {
+    width: 100% !important;
   }
   .login-bg .log-box {
     width: 90% !important;
