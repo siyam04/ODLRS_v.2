@@ -761,6 +761,11 @@ p {
 	}
   }
 }
+
+@media (min-width: 415px) and (max-width: 575px){
+	.login-bg .log-box{width:70%;}
+}
+
 @media(max-width: 414px) {
 	.search-box h3{
 		margin-bottom: 0;
@@ -800,6 +805,10 @@ p {
 			a{text-transform: uppercase;
 			font-size: 13px !important;}
 		}
+	}
+
+	.login-bg .log-box {
+		width: 90% !important;
 	}
 }
 
