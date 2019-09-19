@@ -7,13 +7,13 @@
 
 <div class="container inner-content">
 
-    <div class="bg-dark p-5 my-">
+    <div class="search-box bg-dark p- my-">
         <div class="container">
-            <h3 class="text-white mb-4">Search Centers</h3>
+            <h3 class="text-white mb-">Search Centers</h3>
 
             <form class="search" action="" method="GET">
 
-                <div class="input-group">
+                <div class="input-group input-group-sm">
                     <input type="text" class="form-control" name='q' placeholder="type any center's name..."
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
@@ -31,7 +31,7 @@
         <div class="row">
 
             {% for centers in Centers %}
-            <div class="col-3">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card test-box mt-4 mb-0">
                     <div class="card-title">
                         <img src="{{ centers.image.url }}" class="card-img-top" alt="..." width="100%">
@@ -40,10 +40,10 @@
                     <div class="card-body">
                         <a href="{% url 'diagnostic_centers:center-details' centers.id %}">{{ centers.name }}</a>
 
-                        <p class="">Email: <span>{{ centers.email }}</span></p>
-                        <p class="">Contact: <span>{{ centers.contact_no }}</span></p>
-                        <p class="">Website: <span>{{ centers.website }}</span> </p>
-                        <p class="">Address: <span>{{ centers.address }}</span> </p>
+                        <p class=""> <span>{{ centers.email }}</span></p>
+                        <p class=""> <span>{{ centers.contact_no }}</span></p>
+                        <p class=""> <span>{{ centers.website }}</span> </p>
+                        <!-- <p class="">Address: <span>{{ centers.address }}</span> </p> -->
                     </div>
                 </div>
             </div>

@@ -14,6 +14,10 @@ button:focus {
           box-shadow: none !important;
 }
 
+a {
+  text-decoration: none;
+}
+
 .custom-btn {
   background: #3ebec7;
   color: white;
@@ -260,7 +264,6 @@ p {
   position: relative;
   top: -50px;
   background: #fff;
-  padding-bottom: 0;
 }
 
 .test-box .card-body p {
@@ -716,15 +719,15 @@ p {
   z-index: 11;
 }
 
-.welcome .search-box {
+.search-box {
   padding: 1.5rem;
 }
 
-.welcome .search-box h3 {
+.search-box h3 {
   margin-bottom: 1rem;
 }
 
-.welcome .search-box input {
+.search-box input {
   padding: 8px 12px;
 }
 
@@ -744,7 +747,7 @@ p {
 }
 
 @media (max-width: 575px) {
-  .welcome .search-box {
+  .search-box {
     padding: 15px 0;
   }
   .header-image {
@@ -769,7 +772,8 @@ p {
 
 @media (max-width: 414px) {
   .search-box h3 {
-    margin-bottom: 0;
+    margin-bottom: 5px;
+    font-size: 24px;
   }
   .header-image .header-content h1 {
     font-size: 28px !important;

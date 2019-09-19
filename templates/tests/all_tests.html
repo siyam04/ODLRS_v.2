@@ -6,29 +6,30 @@
 
 <div class="container inner-content">
     <!-- search -->
-    <div class="bg-dark p-5 mb-4 col-md-12">
+    <div class="search-box bg-dark p- mb-4 col-md-">
+        <div class="container">
 
-        <h3 class="text-white mb-4">Search Tests</h3>
+            <h3 class="text-white mb-">Search Tests</h3>
 
-        <form class="search" action="" method="GET">
-            <div class="input-group">
-                <input type="text" class="form-control" name='q' placeholder="type any test's name..."
-                    aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-info" class="searchButton">
-                        SEARCH
-                    </button>
+            <form class="search" action="" method="GET">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" name='q' placeholder="type any test's name..."
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-info" class="searchButton">
+                            SEARCH
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
-
+            </form>
+        </div>
     </div>
 
 
     <div class="row">
 
         {% for test in all_test_paginator_data %}
-        <div class="col-3">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card test-box">
                 <div class="card-title">
                     <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
@@ -37,7 +38,7 @@
                     {% endif %} -->
                 </div>
 
-                <div class="card-body">
+                <div class="card-body pb-0">
                     <p class="card-subtitle mb-2 text-muted">{{ test.category }}</p>
 
                     <h6 class="">
@@ -73,31 +74,32 @@
         {% endfor %}
 
         <!-- All tests Paginator -->
-            <ul class="pagination">
-                <li class="page-item">
+        <ul class="pagination">
+            <li class="page-item">
 
-                    {% if all_test_paginator_data.has_previous %}
-                    <a class="page-link" href="?page={{ all_test_paginator_data.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="false">&laquo;</span>
-                    </a>
-                    {% endif %}
+                {% if all_test_paginator_data.has_previous %}
+                <a class="page-link" href="?page={{ all_test_paginator_data.previous_page_number }}"
+                    aria-label="Previous">
+                    <span aria-hidden="false">&laquo;</span>
+                </a>
+                {% endif %}
 
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Page {{ all_test_paginator_data.number }} of
-                        {{ all_test_paginator_data.paginator.num_pages }}.</a>
-                </li>
-                <li class="page-item">
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Page {{ all_test_paginator_data.number }} of
+                    {{ all_test_paginator_data.paginator.num_pages }}.</a>
+            </li>
+            <li class="page-item">
 
-                    {% if all_test_paginator_data.has_next %}
+                {% if all_test_paginator_data.has_next %}
 
-                    <a class="page-link" href="?page={{ all_test_paginator_data.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                    {% endif %}
-                </li>
-            </ul>
-            <!-- All tests Paginator -->
+                <a class="page-link" href="?page={{ all_test_paginator_data.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                {% endif %}
+            </li>
+        </ul>
+        <!-- All tests Paginator -->
 
     </div>
 </div>

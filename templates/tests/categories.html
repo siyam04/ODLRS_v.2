@@ -26,7 +26,7 @@
 
         {% for category in  categories %}
 
-        <div class="col-3 text-center mb-4">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center mb-4">
             <a class="text-white" href="{% url 'tests:categorise-tests' category.id %}">
                 <div class="card bg-info  py-5">
                     <h3> {{ category.category_name }} </h3>
