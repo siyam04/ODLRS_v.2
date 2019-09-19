@@ -19,13 +19,13 @@
 <div class="welcome container text-dark" id="welcome">
 
     <!-- search -->
-    <div class="bg-dark p-5 my-4">
+    <div class="search-box bg-dark p- my-4">
 
         <div class="container">
-            <h3 class="text-white mb-4">Search Tests</h3>
+            <h3 class="text-white mb-">Search Tests</h3>
 
             <form class="search" action="" method="GET">
-                <div class="input-group">
+                <div class="input-group input-group-sm">
                     <input type="text" class="form-control" name='q' placeholder="type any test's name..."
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
@@ -78,7 +78,7 @@
                     <p class="card-text text-dange price">Price: <span id="price">{{ test.price }}</span> TK</p>
                     <!-- <p class="card-text">{{ test.active_status }}</p> -->
 
-                    <a class="btn btn-sm order-btn text-center" href="{% url 'tests:order' test.id %}" type="submit">
+                    <a class="btn btn-sm order-btn text-center" href="{% url 'tests:order' test.id %}">
                         ORDER
                     </a>
                 </div>
