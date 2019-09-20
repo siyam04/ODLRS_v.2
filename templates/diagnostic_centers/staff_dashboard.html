@@ -15,10 +15,27 @@
     <meta name="description" content="This is an example dashboard created using build-in elements and component">
     <meta name="msapplication-tap-highlight" content="no">
 
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
-    <script src="{% static 'js/jquery.min.js' %}"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fakeLoader.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
     <link href="{% static  'css/plugin.css' %}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../../static/fonts/"> -->
+
+    <style>
+        @media (max-width: 991px) {
+            ul {
+                border-top: 1px solid #724684;
+            }
+
+            ul li {
+                border-bottom: 1px solid #724684;
+            }
+
+            ul li:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -27,8 +44,48 @@
     <div class="fakeLoader"></div>
     <!-- loader -->
 
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-header header-shadow bg-alternate">
+    <nav class="navbar navbar-expand-lg  header-shadow bg-alternate">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#"><b>ODLRS</b></a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                <i class="fa fa-bars text-white"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="dropdown nav-item">
+                        <a href="{% url 'diagnostic_centers:staff-dashboard' staff.username %}"
+                            class="nav-link text-white">
+                            Staff Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'tests:filtered-categories-for-staff' staff.username %}"
+                            class="nav-link text-white">
+                            Recent Categories
+                        </a>
+                    </li>
+                    <li class="btn-group nav-item">
+                        <a href="{% url 'tests:all-tests-list-staff' staff.username %}" class="nav-link text-white">
+                            Recent Tests
+                        </a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a href="{% url 'diagnostic_centers:staff-logout' %}" class="nav-link text-white">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sideba fixed-heade">
+        <!-- <div class="app-header header-shadow bg-alternate">
             <div class="app-header__logo text-white">
                 <div class="logo-src">
                     <h5><strong>ODRLS</strong></h5>
@@ -71,7 +128,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="app-main">
             <div class="app-main__outer">
                 <div class="app-main__inner text-dark">
@@ -942,24 +999,25 @@
                 </div>
                 <div class="app-wrapper-footer">
                     <div class="app-footer">
-                        <div class="app-footer__inner">
+                        <div class="app-footer__inner bg-alternate">
                             <div class="w-100 text-center d-flex justify-content-center">
 
                                 <div class="d-box px-2">
-                                    <a class="text-danger" href="{% url 'developers' %}" target="_blank"
-                                        data-toggle="tooltip" data-placement="top" title="About Developers">About Developers</a>
+                                    <a class="text-white" href="{% url 'developers' %}" target="_blank"
+                                        data-toggle="tooltip" data-placement="top" title="About Developers">About
+                                        Developers</a>
                                 </div>
-{#                                <div class="d-box"> Developed By</div>#}
-{#                                <div class="d-box px-2">#}
-{#                                    <a href="https://www.linkedin.com/in/abdullah-al-galib" target="_blank">Galib</a>#}
-{#                                    and#}
-{#                                </div>#}
-{##}
-{#                                <div class="d-box">#}
-{#                                    <a href="https://www.linkedin.com/in/sohanoor" target="_blank">#}
-{#                                        Sohanur#}
-{#                                    </a>#}
-{#                                </div>#}
+                                {#                                <div class="d-box"> Developed By</div>#}
+                                {#                                <div class="d-box px-2">#}
+                                {#                                    <a href="https://www.linkedin.com/in/abdullah-al-galib" target="_blank">Galib</a>#}
+                                {#                                    and#}
+                                {#                                </div>#}
+                                {##}
+                                {#                                <div class="d-box">#}
+                                {#                                    <a href="https://www.linkedin.com/in/sohanoor" target="_blank">#}
+                                {#                                        Sohanur#}
+                                {#                                    </a>#}
+                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
@@ -968,10 +1026,13 @@
         </div>
     </div>
 
-    <!-- <script>
+    <script src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script>
         $.fakeLoader();
     </script>
-    <script src="{% static 'js/fakeLoader.min.js' %}"></script> -->
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/js/plugin.js' %}"></script>
 </body>
 

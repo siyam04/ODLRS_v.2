@@ -15,6 +15,12 @@
         p {
             margin-bottom: 0;
         }
+
+        .card {
+            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            border-width: 0;
+            transition: all .2s;
+        }
     </style>
 
 </head>
@@ -23,17 +29,17 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand text-warnin" href="#">ODLRS</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            <a class="navbar-brand text-warnin" href="#"><b>ODLRS</b> <span
+                    class="text-white">({{ staff.username }})</span></a>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> -->
 
-            <p class="text-white">{{ staff.username }}</p>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <div class="" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-
 
                     <li class="nav-item">
                         <a class="nav-link text-white"
@@ -41,32 +47,6 @@
                             <button type="submit" class="btn btn-white btn-sm">Back to DASHBOARD</button>
                         </a>
                     </li>
-
-                    {#                    <li class="nav-item">#}
-                    {#                        <a class="nav-link text-white" href="#">Report Lists</a>#}
-                    {#                    </li>#}
-
-                    {#                    <li class="nav-item">#}
-                    {#                        <!-- <button type="submit"> -->#}
-                    {#                        <a class="nav-link text-white" href="{% url 'tests:all-tests-list-staff-admin' %}">Recently#}
-                    {#                            Added#}
-                    {#                            Tests</a>#}
-                    {#                        <!-- </button> -->#}
-                    {#                    </li>#}
-
-                    {#                    <li class="nav-item">#}
-                    {#                        <!-- <button type="submit"> -->#}
-                    {#                        <a class="nav-link text-warning"#}
-                    {#                            href="http://localhost:8000/staff-dashboard/labaid_staff_1">Staff#}
-                    {#                            Dashboard</a>#}
-                    {#                        <!-- </button> -->#}
-                    {#                    </li>#}
-
-                    {#                    <li class="nav-item">#}
-                    {#                        <!-- <button type="submit"> -->#}
-                    {#                        <a class="nav-link text-white" href="{% url 'diagnostic_centers:staff-logout' %}">Logout</a>#}
-                    {#                        <!-- </button> -->#}
-                    {#                    </li>#}
 
                 </ul>
             </div>
@@ -78,7 +58,7 @@
         <div class="row">
 
             {% for test in all_added_tests %}
-            <div class="col-3">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card mb-4">
                     <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">
 
@@ -136,8 +116,8 @@
 
     <div class="footer bg-dark text-white text-center py-2">
         <div class="d-box px-2">
-            <a class="text-white" href="{% url 'developers' %}" target="_blank"
-               data-toggle="tooltip" data-placement="top" title="About Developers">About Developers</a>
+            <a class="text-white" href="{% url 'developers' %}" target="_blank" data-toggle="tooltip"
+                data-placement="top" title="About Developers">About Developers</a>
         </div>
     </div>
 

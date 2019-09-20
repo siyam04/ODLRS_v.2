@@ -18,6 +18,14 @@
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
 
+    <style>
+        .card {
+            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            border-width: 0;
+            transition: all .2s;
+        }
+    </style>
+
 </head>
 
 <body class="common-b ">
@@ -28,15 +36,16 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand text-warning" href="#"><b>ODLRS</b></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            <a class="navbar-brand text-white" href="#"><b>ODLRS</b> <span
+                    class="text-white">({{ staff.username }})</span></a>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <p class="text-white">{{ staff.username }}</p>
+            <p class="text-white">{{ staff.username }}</p> -->
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
@@ -56,21 +65,15 @@
         <div class="row">
 
             {% for category in categories_staff %}
-            <div class="col-3">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card mb-4">
-                    {#                    <img src="{{ test.image.url }}" class="card-img-top" alt="..." width="100%">#}
 
                     <div class="card-body">
-                        {#                        <li>{{ admin.username }}</li>#}
 
-                        <h5 class="card-title">{{ category.category_name }}
-                            {#                            <a href="{% url 'tests:test-details' test.id %}">{{ test.test_name }}</a>#}
+                        <h5 class="card-title text-success">{{ category.category_name }}
                         </h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ category.center.name }}</h6>
-                        {#                        <p class="card-text center">{{ test.center }}</p>#}
-                        {#                        <p class="card-text">Discount: {{ test.discount }}</p>#}
-                        {#                        <p class="card-text text-danger">Price: {{ test.price }} TK</p>#}
-                        {#                        <p class="card-text">{{ test.active_status }}</p>#}
+
                     </div>
 
                 </div>
@@ -85,8 +88,8 @@
 
     <div class="footer bg-dark text-white text-center py-2">
         <div class="d-box px-2">
-            <a class="text-white" href="{% url 'developers' %}" target="_blank"
-               data-toggle="tooltip" data-placement="top" title="About Developers">About Developers</a>
+            <a class="text-white" href="{% url 'developers' %}" target="_blank" data-toggle="tooltip"
+                data-placement="top" title="About Developers">About Developers</a>
         </div>
     </div>
 
