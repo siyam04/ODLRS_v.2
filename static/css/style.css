@@ -840,6 +840,7 @@ p {
   }
   .header-image h5 {
     font-size: 16px !important;
+    margin-left: 2px !important;
   }
   .header-image a {
     margin-top: 1rem !important;
