@@ -775,7 +775,8 @@ p {
 }
 
 @media (min-width: 415px) and (max-width: 575px){
-	.login-bg .log-box {
+	.login-bg .log-box,
+	.card-width {
 		width: 70%;
 	}
 
@@ -794,6 +795,8 @@ p {
 	.header-image {
 
 		.header-content {
+      top: 58%;
+      
 			h1 {
 				font-size: 28px !important;
 				margin-bottom: -10px;
@@ -806,6 +809,7 @@ p {
 				font-size: 16px !important;
 			}
 			a {
+			  margin-top: 1rem;
 				font-size: 14px;
 			}
 		}
