@@ -2,8 +2,10 @@
 * {
   margin: 0;
   padding: 0;
+  width:100%;
+  height:100%;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   scroll-behavior: smooth;
 }
@@ -11,7 +13,7 @@
 button:focus {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 a {
