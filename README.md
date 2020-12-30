@@ -26,7 +26,7 @@
 ## Special Thanks to:
 * Ahsan.    https://www.facebook.com/ahredoan
 * Nazmul.   https://www.facebook.com/nazmul.0105
-* Tareq.    https://www.facebook.com/tareq.py
+* Tareq.    https://www.facebook.com/tareqmonwer1
 * Masud.    https://www.facebook.com/masudmorshed6
 * Rahi.     https://www.facebook.com/icerahi
 * Mohaimin. https://www.facebook.com/python.m
