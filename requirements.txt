@@ -13,7 +13,7 @@ django-markdown2==0.3.1
 django-pagedown==0.1.1
 django-rest-framework==0.1.0
 django-videofield==0.1.1
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 gunicorn==19.9.0
 idna==2.8
 isort==4.3.20
